@@ -12,6 +12,7 @@ import LayoutEffectsSample from '../samples/LayoutEffectsSample'
 import MemoLabSample from '../samples/MemoLabSample'
 import PortalModalSample from '../samples/PortalModalSample'
 import ReducerBoardSample from '../samples/ReducerBoardSample'
+import UseResourceSample from '../samples/UseResourceSample'
 
 const sampleImplementations: Partial<Record<MiniSampleId, ComponentType>> = {
   'sample-react-context-theme': ContextThemeSample,
@@ -20,6 +21,7 @@ const sampleImplementations: Partial<Record<MiniSampleId, ComponentType>> = {
   'sample-react-memo-lab': MemoLabSample,
   'sample-react-portal-modal': PortalModalSample,
   'sample-react-reducer-board': ReducerBoardSample,
+  'sample-react-use-resource': UseResourceSample,
 }
 
 function readInitialSampleId(): MiniSampleId {

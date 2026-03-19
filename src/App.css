@@ -1271,6 +1271,91 @@ select:focus {
   border-bottom: 3px dashed var(--layout-accent, var(--cobalt));
 }
 
+.resource-sample,
+.resource-toolbar,
+.resource-summary,
+.resource-grid,
+.resource-log {
+  display: grid;
+  gap: 1rem;
+}
+
+.resource-toolbar,
+.resource-summary {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.resource-grid {
+  grid-template-columns: minmax(0, 1.25fr) minmax(280px, 0.9fr);
+}
+
+.resource-toolbar__item,
+.resource-stat,
+.resource-card {
+  border-radius: 1.2rem;
+  border: 1px solid var(--border);
+  background: rgba(255, 252, 246, 0.82);
+}
+
+.resource-toolbar__item,
+.resource-stat,
+.resource-card {
+  padding: 1rem;
+}
+
+.resource-toolbar__item {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.resource-stat {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.resource-stat span,
+.resource-log p {
+  color: var(--muted-strong);
+}
+
+.resource-stat strong {
+  font-size: 1.2rem;
+}
+
+.resource-card {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.resource-card--aside {
+  align-content: start;
+}
+
+.resource-card--fallback {
+  align-content: start;
+  min-height: 18rem;
+}
+
+.resource-card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  gap: 1rem;
+}
+
+.resource-card__header h4 {
+  margin: 0.2rem 0 0;
+  font-size: 1.2rem;
+}
+
+.resource-log p {
+  margin: 0;
+  padding: 0.8rem 0.95rem;
+  border-radius: 0.95rem;
+  background: rgba(255, 252, 246, 0.72);
+  border: 1px solid var(--border);
+}
+
 @media (max-width: 980px) {
   .hero,
   .content-grid,
@@ -1283,7 +1368,9 @@ select:focus {
   .memo-layout,
   .memo-feed,
   .portal-layout,
-  .layout-effects-grid {
+  .layout-effects-grid,
+  .resource-toolbar,
+  .resource-grid {
     grid-template-columns: 1fr;
   }
 
@@ -1300,7 +1387,8 @@ select:focus {
   .portal-toolbar,
   .portal-summary,
   .layout-effects-toolbar,
-  .layout-effects-legend {
+  .layout-effects-legend,
+  .resource-summary {
     grid-template-columns: 1fr;
   }
 

@@ -40,6 +40,7 @@ This project now treats the remaining backlog as isolated mini-samples instead o
 
 - `sample-react-use-resource`
   Covers `use`.
+  Status: implemented.
   Recommended surface: standalone route.
 
 ## React DOM mini-samples
@@ -102,12 +103,11 @@ This project now treats the remaining backlog as isolated mini-samples instead o
 
 ## Suggested build order
 
-1. `sample-react-use-resource`
-2. `sample-ts-utility-mapped`
-3. `sample-ts-functions-tuples`
-4. `sample-ts-classes-models`
-5. `sample-ts-declarations`
-6. `sample-react-hydration-hints`
-7. `sample-react-streaming-ssr`
-8. `sample-react-server-components`
-9. `sample-react-compiler`
+1. `sample-ts-utility-mapped`
+2. `sample-ts-functions-tuples`
+3. `sample-ts-classes-models`
+4. `sample-ts-declarations`
+5. `sample-react-hydration-hints`
+6. `sample-react-streaming-ssr`
+7. `sample-react-server-components`
+8. `sample-react-compiler`

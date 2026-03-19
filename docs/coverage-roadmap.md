@@ -47,12 +47,12 @@ It is intentionally organized by major feature area instead of trying to enumera
 
 - [x] `<Profiler>`
 - [x] `memo`
+- [x] `use`
 
 ### Not included yet: stable React components and APIs
 
 - [ ] `<Activity>`
 - [ ] `startTransition` standalone API
-- [ ] `use` resource API
 
 ### Included now: stable `react-dom` APIs
 

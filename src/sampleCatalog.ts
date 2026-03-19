@@ -100,7 +100,7 @@ export const miniSampleCatalog = [
     id: 'sample-react-use-resource',
     title: 'Resource loading with use()',
     topic: 'React Client',
-    status: 'planned',
+    status: 'implemented',
     surface: 'isolated-route',
     apis: ['use'],
     summary: 'Demonstrate resource consumption and Suspense-driven loading around async data.',
