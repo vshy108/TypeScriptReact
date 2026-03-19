@@ -110,7 +110,7 @@ export const miniSampleCatalog = [
     id: 'sample-react-portal-modal',
     title: 'Portal-based modal and toast system',
     topic: 'React DOM',
-    status: 'planned',
+    status: 'implemented',
     surface: 'isolated-route',
     apis: ['createPortal', 'flushSync'],
     summary: 'Render UI outside the normal tree and compare normal updates versus forced synchronous ones.',

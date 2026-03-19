@@ -9,12 +9,14 @@ import { getDefaultSampleId, readSampleIdFromHash, toSampleHash } from '../sampl
 import ContextThemeSample from '../samples/ContextThemeSample'
 import FormStatusSample from '../samples/FormStatusSample'
 import MemoLabSample from '../samples/MemoLabSample'
+import PortalModalSample from '../samples/PortalModalSample'
 import ReducerBoardSample from '../samples/ReducerBoardSample'
 
 const sampleImplementations: Partial<Record<MiniSampleId, ComponentType>> = {
   'sample-react-context-theme': ContextThemeSample,
   'sample-react-form-status': FormStatusSample,
   'sample-react-memo-lab': MemoLabSample,
+  'sample-react-portal-modal': PortalModalSample,
   'sample-react-reducer-board': ReducerBoardSample,
 }
 

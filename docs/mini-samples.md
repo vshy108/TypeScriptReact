@@ -45,6 +45,7 @@ This project now treats the remaining backlog as isolated mini-samples instead o
 
 - `sample-react-portal-modal`
   Covers `createPortal` and `flushSync`.
+  Status: implemented.
   Recommended surface: standalone route.
 
 - `sample-react-form-status`
@@ -100,14 +101,13 @@ This project now treats the remaining backlog as isolated mini-samples instead o
 
 ## Suggested build order
 
-1. `sample-react-portal-modal`
-2. `sample-react-layout-effects`
-3. `sample-react-use-resource`
-4. `sample-ts-utility-mapped`
-5. `sample-ts-functions-tuples`
-6. `sample-ts-classes-models`
-7. `sample-ts-declarations`
-8. `sample-react-hydration-hints`
-9. `sample-react-streaming-ssr`
-10. `sample-react-server-components`
-11. `sample-react-compiler`
+1. `sample-react-layout-effects`
+2. `sample-react-use-resource`
+3. `sample-ts-utility-mapped`
+4. `sample-ts-functions-tuples`
+5. `sample-ts-classes-models`
+6. `sample-ts-declarations`
+7. `sample-react-hydration-hints`
+8. `sample-react-streaming-ssr`
+9. `sample-react-server-components`
+10. `sample-react-compiler`

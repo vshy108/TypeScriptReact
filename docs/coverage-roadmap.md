@@ -60,11 +60,11 @@ It is intentionally organized by major feature area instead of trying to enumera
 ### Included now: stable `react-dom` APIs
 
 - [x] `useFormStatus`
+- [x] `createPortal`
+- [x] `flushSync`
 
 ### Not included yet: stable `react-dom` APIs
 
-- [ ] `createPortal`
-- [ ] `flushSync`
 - [ ] `preconnect`
 - [ ] `prefetchDNS`
 - [ ] `preinit`
