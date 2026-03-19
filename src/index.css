@@ -1,0 +1,76 @@
+:root {
+  color: #1d1a17;
+  background:
+    radial-gradient(circle at top left, rgba(219, 126, 54, 0.26), transparent 32%),
+    radial-gradient(circle at 80% 10%, rgba(29, 87, 194, 0.18), transparent 28%),
+    linear-gradient(180deg, #f7efe1 0%, #eee1d2 48%, #f8f6f1 100%);
+  font-family:
+    'Avenir Next',
+    'Segoe UI Variable',
+    'Segoe UI',
+    sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color-scheme: light;
+  --ink: #1d1a17;
+  --muted: #6d635a;
+  --muted-strong: #50473f;
+  --surface: rgba(255, 249, 241, 0.83);
+  --border: rgba(61, 45, 35, 0.12);
+  --shadow: 0 24px 60px rgba(56, 33, 15, 0.12);
+  --cobalt: #1d57c2;
+  --copper: #b35a26;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  color: var(--ink);
+  background: transparent;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+h1,
+h2,
+h3,
+strong {
+  font-family:
+    'Iowan Old Style',
+    'Palatino Linotype',
+    'Book Antiqua',
+    serif;
+}
+
+a {
+  color: inherit;
+}
+
+code {
+  font-family:
+    'SFMono-Regular',
+    'Cascadia Code',
+    'Consolas',
+    monospace;
+}
+
+#root {
+  min-height: 100vh;
+}
