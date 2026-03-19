@@ -178,7 +178,7 @@ function buildMatchScore(member: LabMember, normalizedQuery: string) {
   return score
 }
 
-// This hook keeps the derived roster stable across unrelated renders and exposes a DevTools label.
+// useMemo caches the expensive roster derivation, and useDebugValue adds a compact summary for React DevTools.
 function useVisibleRoster(
   query: string,
   focusFilter: FocusFilter,
@@ -240,6 +240,7 @@ function useVisibleRoster(
   return roster
 }
 
+// memo skips rerendering this card when its props are referentially stable across parent renders.
 const MemoMemberCard = memo(function MemoMemberCard({
   member,
   isSelected,
@@ -274,6 +275,7 @@ const MemoMemberCard = memo(function MemoMemberCard({
   )
 })
 
+// memo also protects the larger stage shell so unrelated outer state can rerender without repainting the full lab.
 const MemoLabStage = memo(function MemoLabStage({
   query,
   focusFilter,
@@ -416,7 +418,7 @@ export default function MemoLabSample() {
   const [profileEntries, setProfileEntries] = useState<readonly ProfileEntry[]>([])
   const roster = useVisibleRoster(query, focusFilter, onlyAvailable, sortMode)
 
-  // The stable selection callback is what makes memoized rows worth keeping here.
+  // useCallback keeps handler identities stable, which is what makes memoized children and Profiler output meaningful here.
   const handleSelectMember = useCallback((memberId: LabMemberId) => {
     setSelectedId(memberId)
   }, [])
@@ -463,6 +465,7 @@ export default function MemoLabSample() {
         same props and can be skipped.
       </p>
 
+      {/* Profiler measures commit timing for the subtree below so the sample can show which interactions actually rerender it. */}
       <Profiler id="memo-stage" onRender={handleProfilerRender}>
         <MemoLabStage
           query={query}

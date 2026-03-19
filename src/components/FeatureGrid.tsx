@@ -1,3 +1,4 @@
+// Type-only imports disappear from emitted JavaScript, which matters when verbatimModuleSyntax is enabled.
 import type { ReactNode } from 'react'
 
 interface SelectableFeature {
@@ -14,7 +15,7 @@ interface FeatureGridProps<T extends SelectableFeature> {
   readonly renderMeta: (item: T) => ReactNode
 }
 
-// This generic component shows how one typed UI building block can render many feature shapes.
+// This generic component shows how generic props can reuse one UI primitive across many item shapes.
 export function FeatureGrid<T extends SelectableFeature>({
   items,
   activeId,

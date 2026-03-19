@@ -1,3 +1,4 @@
+// This file also uses type-only imports so keyboard and ref types stay available to the checker without creating runtime imports.
 import type { KeyboardEvent, Ref } from 'react'
 import { useId, useImperativeHandle, useRef } from 'react'
 
@@ -13,8 +14,10 @@ interface CommandPaletteProps {
 }
 
 export function CommandPalette({ ref, suggestions, onSubmit }: CommandPaletteProps) {
+  // useId creates stable DOM ids that match labels, inputs, and datalists without hard-coded strings.
   const inputId = useId()
   const listId = `${inputId}-suggestions`
+  // useRef holds onto the input DOM node across renders without causing rerenders when it changes.
   const inputRef = useRef<HTMLInputElement>(null)
 
   // React 19 allows ref as a regular prop, so this component can expose a small imperative API.

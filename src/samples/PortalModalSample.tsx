@@ -77,6 +77,7 @@ function ModalPortal({
     return null
   }
 
+  // createPortal renders this overlay into a body-level host while keeping it logically inside the same React tree.
   return createPortal(
     <div className="portal-backdrop" onClick={onClose}>
       <section
@@ -125,6 +126,7 @@ function ToastPortal({
     return null
   }
 
+  // A second portal target shows that separate overlay layers can still share one owning component tree.
   return createPortal(
     <div className="portal-toast-stack" aria-live="polite">
       {toasts.map((toast) => (

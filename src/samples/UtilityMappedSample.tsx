@@ -13,6 +13,7 @@ interface ReleaseContract {
   readonly paused: boolean
 }
 
+// These conditional, mapped, utility, and infer-based types derive new contracts from ReleaseContract instead of copying interfaces by hand.
 type ValueKind<Value> = Value extends string
   ? 'text'
   : Value extends number
@@ -74,6 +75,7 @@ const releaseContracts = [
   },
 ] as const satisfies readonly ReleaseContract[]
 
+// ReturnType, keyof, indexed access, Pick, Partial, and Record all stay tied to the runtime source model here.
 type ReleaseContractId = (typeof releaseContracts)[number]['id']
 type ReleaseField = keyof ReleaseContract
 type EditableReleaseField = 'owner' | 'channel' | 'rolloutPercent' | 'paused'

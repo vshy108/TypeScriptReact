@@ -1,9 +1,11 @@
+// These type aliases use unions and template literal patterns to keep shared ids and categories precise across the app.
 export type FeatureCategory = 'React' | 'TypeScript' | 'Tooling'
 export type FeatureId = `feature-${number}`
 export type FeatureRelease = 'React 19' | 'TS 5.9' | 'Vite 8'
 export type TaskLane = 'UI' | 'Data' | 'Performance'
 export type TaskId = `task-${string}`
 
+// Interfaces give the static catalog one reusable contract, and readonly fields prevent accidental mutation of shared sample data.
 export interface FeatureDefinition {
   readonly id: FeatureId
   readonly title: string
@@ -23,6 +25,7 @@ export interface Task {
   readonly optimistic?: true
 }
 
+// "as const" preserves the literal lane values, and "satisfies" checks that the readonly array still matches the domain union.
 // "satisfies" verifies the lane list against the domain type without widening the literals away.
 export const taskLanes = ['UI', 'Data', 'Performance'] as const satisfies readonly TaskLane[]
 
@@ -151,7 +154,7 @@ export const featureCatalog = [
   },
 ] as const satisfies readonly FeatureDefinition[]
 
-// Derive the exact id union from the catalog so selection state can never drift from the data.
+// "typeof" plus indexed access types derive the exact id union from the runtime catalog so selection state never drifts from the data.
 export type KnownFeatureId = (typeof featureCatalog)[number]['id']
 
 export const paletteSuggestions = [

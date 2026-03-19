@@ -33,6 +33,7 @@ import { getServerSnapshot, getSnapshot, subscribe } from './releaseStore'
 const TypeNotes = lazy(() => import('./components/TypeNotes'))
 
 type FilterCategory = FeatureCategory | 'All'
+// This discriminated union narrows on status, and the matching assertNever helper keeps the switch exhaustive.
 type SubmissionState =
   | { readonly status: 'idle'; readonly message: string }
   | { readonly status: 'success'; readonly message: string }
@@ -87,6 +88,7 @@ function assertNonEmptyString(
 }
 
 function isTaskLane(value: string): value is TaskLane {
+  // A type guard lets later code treat the validated string as the narrower TaskLane union.
   return taskLanes.some((lane) => lane === value)
 }
 
@@ -120,6 +122,7 @@ function parseTaskFormData(formData: FormData): TaskDraft {
 }
 
 function assertNever(value: never): never {
+  // Exhaustive never checks make sure new union members cannot slip through unhandled branches.
   throw new Error(`Unhandled value: ${String(value)}`)
 }
 
@@ -137,10 +140,12 @@ function statusClassName(status: SubmissionState['status']) {
 }
 
 export default function App() {
+  // useId produces accessible form ids, and useRef keeps imperative handles for the palette and form DOM node.
   const featureFormId = useId()
   const commandRef = useRef<CommandPaletteHandle>(null)
   const taskFormRef = useRef<HTMLFormElement>(null)
 
+  // useState holds local UI state for the current filters, selected feature, and activity logs.
   const [tasks, setTasks] = useState<readonly Task[]>(starterTasks)
   const [query, setQuery] = useState('')
   const [category, setCategory] = useState<FilterCategory>('All')
@@ -148,6 +153,7 @@ export default function App() {
   const [commandLog, setCommandLog] = useState<readonly string[]>([
     'Press Ctrl/Cmd + K to load the currently selected feature into the palette.',
   ])
+  // useTransition marks category changes as non-urgent, while useDeferredValue lets search lag slightly behind fast typing.
   const [transitionPending, startTransition] = useTransition()
   const deferredQuery = useDeferredValue(query)
   // This value lives outside React state and is synchronized through useSyncExternalStore.
@@ -194,6 +200,7 @@ export default function App() {
     ].slice(0, 4))
   })
 
+  // useEffect is the right place for browser subscriptions because setup happens after render and cleanup happens on unmount.
   useEffect(() => {
     // Register the global shortcut once; the effect event keeps its inner logic fresh.
     function handleGlobalShortcut(event: KeyboardEvent) {
@@ -292,6 +299,7 @@ export default function App() {
             <h2>useActionState + useOptimistic + useId</h2>
           </div>
 
+          {/* React-managed form elements keep DOM input state, FormData submission, and button pending UI coordinated through React. */}
           <form ref={taskFormRef} action={handleTaskAction} className="task-form">
             <div className="field">
               <label htmlFor={`${featureFormId}-title`}>Task title</label>
@@ -478,6 +486,7 @@ export default function App() {
       <MiniSampleBoard />
       <MiniSampleStage />
 
+      {/* Suspense shows a fallback while the lazy TypeNotes chunk is still loading. */}
       <Suspense
         fallback={
           <section className="surface surface--compact">

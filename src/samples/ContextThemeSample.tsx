@@ -62,11 +62,13 @@ const themeTokens = {
 
 const themeOrder = ['sunrise', 'midnight', 'grove'] as const satisfies readonly ThemeName[]
 
+// createContext defines the shared channels that providers fill and consumers read lower in the tree.
 const ThemeContext = createContext<ThemeContextValue | null>(null)
 const FeatureFlagsContext = createContext<FeatureFlagsContextValue | null>(null)
 
 // React 19 lets the context object itself act as the provider, which keeps setup compact.
 function ThemeProvider({ children }: PropsWithChildren) {
+  // useState holds provider-owned data so every consumer below can react to one shared theme value.
   const [theme, setTheme] = useState<ThemeName>('sunrise')
 
   function cycleTheme() {
@@ -114,6 +116,7 @@ function FeatureFlagsProvider({ children }: PropsWithChildren) {
   )
 }
 
+// useContext reads the nearest matching provider so consumers do not need theme props threaded through every layer.
 function useThemeContext() {
   const context = useContext(ThemeContext)
 
@@ -218,6 +221,7 @@ function ThemePreviewPanel() {
 
       <dl className="context-token-grid">
         {Object.entries(tokens).map(([name, value]) => (
+          // Fragment groups paired dt/dd elements under one key without adding an extra wrapper to the definition list.
           <Fragment key={name}>
             <dt>{name}</dt>
             <dd>

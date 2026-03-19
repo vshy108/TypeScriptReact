@@ -8,7 +8,7 @@
     "types": ["vite/client"],
     "skipLibCheck": true,
 
-    /* Bundler mode */
+    /* Bundler mode: moduleResolution "bundler" matches Vite, verbatimModuleSyntax preserves ESM imports exactly, and isolatedModules keeps every file safe to compile on its own. */
     "moduleResolution": "bundler",
     "verbatimModuleSyntax": true,
     "moduleDetection": "force",
@@ -16,7 +16,7 @@
     "jsx": "react-jsx",
     "isolatedModules": true,
 
-    /* Linting */
+    /* Strictness: exactOptionalPropertyTypes and noUncheckedIndexedAccess make optional and indexed values behave like the runtime, while erasableSyntaxOnly and noUncheckedSideEffectImports keep TS-specific syntax and side-effect imports honest. */
     "strict": true,
     "exactOptionalPropertyTypes": true,
     "noUncheckedIndexedAccess": true,

@@ -96,6 +96,7 @@ function BriefPreview({
 }: {
   readonly resourcePromise: Promise<LoadedLaunchBrief>
 }) {
+  // use() lets render read a promise directly; if it is still pending, React will suspend this subtree automatically.
   const brief = use(resourcePromise)
 
   return (
@@ -139,6 +140,7 @@ function BriefFallback() {
 }
 
 export default function UseResourceSample() {
+  // useState tracks which resource key should be read and whether the sample should request a fresh revision.
   const [activeId, setActiveId] = useState<LaunchBriefId>(launchBriefs[0].id)
   const [revision, setRevision] = useState(1)
   const [activityLog, setActivityLog] = useState<readonly string[]>([
@@ -211,6 +213,7 @@ export default function UseResourceSample() {
       </div>
 
       <div className="resource-grid">
+        {/* Suspense catches the thrown pending promise from use() and swaps in the fallback until it resolves. */}
         <Suspense fallback={<BriefFallback />}>
           <BriefPreview resourcePromise={activeResource} />
         </Suspense>
