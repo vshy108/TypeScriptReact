@@ -20,6 +20,8 @@ It is intentionally organized by major feature area instead of trying to enumera
 - [x] `useState`
 - [x] `useRef`
 - [x] `useEffect`
+- [x] `useLayoutEffect`
+- [x] `useInsertionEffect`
 - [x] `useId`
 - [x] `useImperativeHandle`
 - [x] `useContext`
@@ -40,11 +42,6 @@ It is intentionally organized by major feature area instead of trying to enumera
 - [x] `createRoot`
 - [x] `createContext`
 - [x] React-managed form elements such as `<form>`, `<input>`, `<select>`, and `<option>`
-
-### Not included yet: stable React hooks
-
-- [ ] `useLayoutEffect`
-- [ ] `useInsertionEffect`
 
 ### Included now: stable React components and APIs
 

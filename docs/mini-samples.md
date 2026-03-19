@@ -35,6 +35,7 @@ This project now treats the remaining backlog as isolated mini-samples instead o
 
 - `sample-react-layout-effects`
   Covers `useLayoutEffect` and `useInsertionEffect`.
+  Status: implemented.
   Recommended surface: standalone route.
 
 - `sample-react-use-resource`
@@ -101,13 +102,12 @@ This project now treats the remaining backlog as isolated mini-samples instead o
 
 ## Suggested build order
 
-1. `sample-react-layout-effects`
-2. `sample-react-use-resource`
-3. `sample-ts-utility-mapped`
-4. `sample-ts-functions-tuples`
-5. `sample-ts-classes-models`
-6. `sample-ts-declarations`
-7. `sample-react-hydration-hints`
-8. `sample-react-streaming-ssr`
-9. `sample-react-server-components`
-10. `sample-react-compiler`
+1. `sample-react-use-resource`
+2. `sample-ts-utility-mapped`
+3. `sample-ts-functions-tuples`
+4. `sample-ts-classes-models`
+5. `sample-ts-declarations`
+6. `sample-react-hydration-hints`
+7. `sample-react-streaming-ssr`
+8. `sample-react-server-components`
+9. `sample-react-compiler`

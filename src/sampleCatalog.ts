@@ -90,7 +90,7 @@ export const miniSampleCatalog = [
     id: 'sample-react-layout-effects',
     title: 'Measured layout and synchronous effects',
     topic: 'React Client',
-    status: 'planned',
+    status: 'implemented',
     surface: 'isolated-route',
     apis: ['useLayoutEffect', 'useInsertionEffect'],
     summary: 'Measure DOM layout, coordinate style injection, and contrast behavior with regular effects.',
