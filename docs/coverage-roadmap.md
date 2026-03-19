@@ -26,10 +26,13 @@ It is intentionally organized by major feature area instead of trying to enumera
 - [x] `useReducer`
 - [x] `useActionState`
 - [x] `useOptimistic`
+- [x] `useMemo`
+- [x] `useCallback`
 - [x] `useDeferredValue`
 - [x] `useTransition`
 - [x] `useSyncExternalStore`
 - [x] `useEffectEvent`
+- [x] `useDebugValue`
 - [x] `<StrictMode>`
 - [x] `<Suspense>`
 - [x] `<Fragment>`
@@ -40,17 +43,17 @@ It is intentionally organized by major feature area instead of trying to enumera
 
 ### Not included yet: stable React hooks
 
-- [ ] `useMemo`
-- [ ] `useCallback`
 - [ ] `useLayoutEffect`
 - [ ] `useInsertionEffect`
-- [ ] `useDebugValue`
+
+### Included now: stable React components and APIs
+
+- [x] `<Profiler>`
+- [x] `memo`
 
 ### Not included yet: stable React components and APIs
 
-- [ ] `<Profiler>`
 - [ ] `<Activity>`
-- [ ] `memo`
 - [ ] `startTransition` standalone API
 - [ ] `use` resource API
 

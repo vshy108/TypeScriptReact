@@ -30,6 +30,7 @@ This project now treats the remaining backlog as isolated mini-samples instead o
 
 - `sample-react-memo-lab`
   Covers `memo`, `useMemo`, `useCallback`, `Profiler`, and `useDebugValue`.
+  Status: implemented.
   Recommended surface: standalone route.
 
 - `sample-react-layout-effects`
@@ -99,15 +100,14 @@ This project now treats the remaining backlog as isolated mini-samples instead o
 
 ## Suggested build order
 
-1. `sample-react-memo-lab`
-2. `sample-react-portal-modal`
-3. `sample-react-layout-effects`
-4. `sample-react-use-resource`
-5. `sample-ts-utility-mapped`
-6. `sample-ts-functions-tuples`
-7. `sample-ts-classes-models`
-8. `sample-ts-declarations`
-9. `sample-react-hydration-hints`
-10. `sample-react-streaming-ssr`
-11. `sample-react-server-components`
-12. `sample-react-compiler`
+1. `sample-react-portal-modal`
+2. `sample-react-layout-effects`
+3. `sample-react-use-resource`
+4. `sample-ts-utility-mapped`
+5. `sample-ts-functions-tuples`
+6. `sample-ts-classes-models`
+7. `sample-ts-declarations`
+8. `sample-react-hydration-hints`
+9. `sample-react-streaming-ssr`
+10. `sample-react-server-components`
+11. `sample-react-compiler`

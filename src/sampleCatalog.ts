@@ -80,7 +80,7 @@ export const miniSampleCatalog = [
     id: 'sample-react-memo-lab',
     title: 'Memoization and render-control lab',
     topic: 'React Client',
-    status: 'planned',
+    status: 'implemented',
     surface: 'isolated-route',
     apis: ['memo', 'useMemo', 'useCallback', 'Profiler', 'useDebugValue'],
     summary: 'Show which renders are avoided, when memoization helps, and where it adds useless complexity.',

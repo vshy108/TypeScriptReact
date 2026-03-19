@@ -41,6 +41,7 @@ This project is a modern React starter that goes beyond the default template. It
 - `src/samples/ContextThemeSample.tsx` demonstrates `createContext()` and `useContext()` in an isolated sample
 - `src/samples/ReducerBoardSample.tsx` demonstrates `useReducer()` with domain-oriented actions instead of a trivial counter
 - `src/samples/FormStatusSample.tsx` demonstrates `useFormStatus()` through nested submit controls and a form-scoped pending inspector
+- `src/samples/MemoLabSample.tsx` demonstrates `memo()`, `useMemo()`, `useCallback()`, `Profiler`, and `useDebugValue()` in one isolated render-control lab
 - `src/components/TypeNotes.tsx` is lazy-loaded behind `Suspense`
 - `docs/coverage-roadmap.md` tracks what is implemented and what still needs examples
 - `docs/mini-samples.md` splits the backlog into isolated sample-sized units
