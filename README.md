@@ -45,6 +45,7 @@ This project is a modern React starter that goes beyond the default template. It
 - `src/samples/LayoutEffectsSample.tsx` demonstrates `useLayoutEffect()` and `useInsertionEffect()` with measured chips and injected style rules
 - `src/samples/UseResourceSample.tsx` demonstrates `use()` with Suspense, a tiny promise cache, and explicit resource refreshes
 - `src/samples/PortalModalSample.tsx` demonstrates `createPortal()` and `flushSync()` with body-mounted modal and toast hosts
+- `src/samples/UtilityMappedSample.tsx` demonstrates TypeScript utility types, `keyof`, mapped types, conditional types, and `infer` through one derived release-contract model
 - `src/components/TypeNotes.tsx` is lazy-loaded behind `Suspense`
 - `docs/coverage-roadmap.md` tracks what is implemented and what still needs examples
 - `docs/mini-samples.md` splits the backlog into isolated sample-sized units

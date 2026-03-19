@@ -185,7 +185,7 @@ export const miniSampleCatalog = [
     id: 'sample-ts-utility-mapped',
     title: 'Utility, mapped, and conditional types',
     topic: 'TypeScript Language',
-    status: 'planned',
+    status: 'implemented',
     surface: 'isolated-route',
     apis: ['Partial', 'Pick', 'Record', 'ReturnType', 'keyof', 'conditional types', 'mapped types', 'infer'],
     summary: 'Turn the domain model into a type-transformation playground with visible before and after shapes.',

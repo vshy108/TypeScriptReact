@@ -129,6 +129,11 @@ It is intentionally organized by major feature area instead of trying to enumera
 - [x] `erasableSyntaxOnly`
 - [x] `noUncheckedSideEffectImports`
 - [x] Project references through `tsc -b`
+- [x] Utility types such as `Partial`, `Pick`, `Record`, and `ReturnType`
+- [x] `keyof`
+- [x] Conditional types
+- [x] Mapped types
+- [x] `infer`
 
 ### Not included yet: core language and handbook topics
 
@@ -141,11 +146,6 @@ It is intentionally organized by major feature area instead of trying to enumera
 - [ ] Access modifiers
 - [ ] Abstract classes
 - [ ] `implements`
-- [ ] Utility types such as `Partial`, `Pick`, `Record`, and `ReturnType`
-- [ ] `keyof`
-- [ ] Conditional types
-- [ ] Mapped types
-- [ ] `infer`
 - [ ] Recursive types
 
 ### Not included yet: reference and ecosystem topics

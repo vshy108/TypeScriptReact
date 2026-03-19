@@ -77,6 +77,7 @@ This project now treats the remaining backlog as isolated mini-samples instead o
 
 - `sample-ts-utility-mapped`
   Covers `Partial`, `Pick`, `Record`, `ReturnType`, `keyof`, conditional types, mapped types, and `infer`.
+  Status: implemented.
   Recommended surface: standalone route.
 
 - `sample-ts-functions-tuples`
@@ -103,11 +104,10 @@ This project now treats the remaining backlog as isolated mini-samples instead o
 
 ## Suggested build order
 
-1. `sample-ts-utility-mapped`
-2. `sample-ts-functions-tuples`
-3. `sample-ts-classes-models`
-4. `sample-ts-declarations`
-5. `sample-react-hydration-hints`
-6. `sample-react-streaming-ssr`
-7. `sample-react-server-components`
-8. `sample-react-compiler`
+1. `sample-ts-functions-tuples`
+2. `sample-ts-classes-models`
+3. `sample-ts-declarations`
+4. `sample-react-hydration-hints`
+5. `sample-react-streaming-ssr`
+6. `sample-react-server-components`
+7. `sample-react-compiler`
