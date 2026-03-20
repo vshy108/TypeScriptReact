@@ -35,4 +35,10 @@ export const implementedSampleArtifacts: Partial<Record<MiniSampleId, Implemente
     entryPoint: 'node-samples/ts-declarations/src/index.ts',
     verificationCommand: 'node ./node_modules/typescript/bin/tsc -p node-samples/ts-declarations/tsconfig.json',
   },
+  'sample-ts-advanced-runtime-types': {
+    label: 'Node-only advanced runtime types workspace',
+    rootDir: 'node-samples/ts-advanced-runtime',
+    entryPoint: 'node-samples/ts-advanced-runtime/src/index.ts',
+    verificationCommand: 'node ./node_modules/typescript/bin/tsc -p node-samples/ts-advanced-runtime/tsconfig.json',
+  },
 }

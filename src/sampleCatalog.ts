@@ -334,7 +334,7 @@ export const miniSampleCatalog = [
     id: "sample-ts-advanced-runtime-types",
     title: "Enums, symbols, iterators, mixins, and decorators",
     topic: "TypeScript Interop",
-    status: "deferred",
+    status: "implemented",
     surface: "node-only",
     apis: [
       "enums",
