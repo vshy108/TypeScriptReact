@@ -573,6 +573,25 @@ export const miniSampleCatalog = [
     whyIsolated:
       "Class feature demos need runtime execution and output display that's best shown in isolation.",
   },
+  {
+    id: "sample-ts-template-literals",
+    title: "Template literal type expansion",
+    topic: "TypeScript Language",
+    status: "implemented",
+    surface: "node-only",
+    apis: [
+      "template literal types",
+      "union cartesian product",
+      "Uppercase Lowercase Capitalize",
+      "infer in template literals",
+      "route parameter extraction",
+      "performance limits",
+    ],
+    summary:
+      "Demonstrate template literal types with union cartesian products, intrinsic string manipulation, pattern matching with infer, type-safe route params, and performance limits.",
+    whyIsolated:
+      "Template literal type demos are purely type-level with console output, not React-renderable.",
+  },
 ] as const satisfies readonly MiniSample[];
 
 export const sampleStatusMeta = {

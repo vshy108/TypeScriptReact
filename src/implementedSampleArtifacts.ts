@@ -93,4 +93,11 @@ export const implementedSampleArtifacts: Partial<
     verificationCommand:
       "node ./node_modules/typescript/bin/tsc -p node-samples/ts-variance/tsconfig.json",
   },
+  "sample-ts-template-literals": {
+    label: "Node-only template literal types workspace",
+    rootDir: "node-samples/ts-template-literals",
+    entryPoint: "node-samples/ts-template-literals/src/index.ts",
+    verificationCommand:
+      "node ./node_modules/typescript/bin/tsc -p node-samples/ts-template-literals/tsconfig.json",
+  },
 };
