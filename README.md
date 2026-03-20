@@ -55,6 +55,8 @@ This project is a modern React starter that goes beyond the default template. It
 - `src/samples/UtilityMappedSample.tsx` demonstrates TypeScript utility types, `keyof`, mapped types, conditional types, and `infer` through one derived release-contract model
 - `src/samples/FunctionsTuplesSample.tsx` demonstrates tuples, overloads, call signatures, construct signatures, and `this` typing through a typed command-routing playground
 - `src/samples/ClassesModelsSample.tsx` demonstrates classes, access modifiers, abstract classes, `implements`, and intersection types through a plugin registry model
+- `src/samples/RecursiveTypesSample.tsx` demonstrates recursive interfaces, recursive type aliases, `DeepReadonly`, and `DeepKeyPaths` through an org-tree hierarchy
+- `src/samples/ActivityTransitionSample.tsx` demonstrates `<Activity>` boundaries and standalone `startTransition` through a tier-based operator console
 - `src/test/samples.test.tsx` smoke-tests the integrated app and every implemented isolated-route sample from the catalog
 - `src/test/node-samples.test.ts` type-checks implemented node-only samples through their own project configs
 - `src/test/separate-entry-samples.test.ts` verifies implemented separate-entry samples publish the expected HTML and module entry files
@@ -63,6 +65,9 @@ This project is a modern React starter that goes beyond the default template. It
 - `src/test/setup.ts` provides the jsdom test setup and browser API shims used by Vitest
 - `node-samples/ts-declarations/src/index.ts` consumes an untyped JavaScript module through authored declarations, module augmentation, and a triple-slash reference
 - `node-samples/ts-declarations/vendor/legacy-release-kit.d.ts` is the authored declaration file for the node-only interop sample
+- `node-samples/ts-advanced-runtime/src/index.ts` demonstrates enums, symbols, iterators, generators, TC39 decorators, mixins, and namespaces
+- `node-samples/ts-jsdoc-interop/src/release-notes.js` is a JSDoc-typed JavaScript module consumed by TypeScript through `allowJs` + `checkJs`
+- `node-samples/ts-jsdoc-interop/src/index.ts` imports and type-checks the JSDoc-typed JS module
 - `hydration.html` is the separate HTML shell that the hydration sample attaches to
 - `server-samples/react-streaming-ssr/README.md` explains the SSR workspace and how to run it directly
 - `src/components/TypeNotes.tsx` is lazy-loaded behind `Suspense`

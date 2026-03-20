@@ -149,17 +149,17 @@ It is intentionally organized by major feature area instead of trying to enumera
 
 ### Not included yet: core language and handbook topics
 
-- [ ] Recursive types
+- [x] Recursive types
 
 ### Not included yet: reference and ecosystem topics
 
-- [ ] Enums
-- [ ] Decorators
-- [ ] Mixins
-- [ ] Symbols
-- [ ] Iterators and generators
-- [ ] Namespaces
-- [ ] JSDoc-powered typing
+- [x] Enums
+- [x] Decorators
+- [x] Mixins
+- [x] Symbols
+- [x] Iterators and generators
+- [x] Namespaces
+- [x] JSDoc-powered typing
 - [ ] Advanced `tsconfig` options beyond the current strict baseline
 
 ## Backlog structure

@@ -97,6 +97,11 @@ This project now treats the remaining backlog as isolated mini-samples instead o
   Status: implemented.
   Recommended surface: standalone route.
 
+- `sample-ts-recursive-types`
+  Covers recursive interfaces, recursive type aliases, `DeepReadonly`, and `DeepKeyPaths`.
+  Status: implemented.
+  Recommended surface: standalone route.
+
 ## TypeScript interop mini-samples
 
 - `sample-ts-declarations`
@@ -106,10 +111,12 @@ This project now treats the remaining backlog as isolated mini-samples instead o
 
 - `sample-ts-jsdoc-interop`
   Covers JSDoc-powered typing, `allowJs`, and `checkJs`.
+  Status: implemented.
   Recommended surface: node-only package-style sample.
 
 - `sample-ts-advanced-runtime-types`
   Covers enums, symbols, iterators, mixins, decorators, and namespaces.
+  Status: implemented.
   Recommended surface: node-only package-style sample.
 
 ## Suggested build order
