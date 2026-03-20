@@ -68,7 +68,18 @@ This project is a modern React starter that goes beyond the default template. It
 - `src/components/TypeNotes.tsx` is lazy-loaded behind `Suspense`
 - `docs/coverage-roadmap.md` tracks what is implemented and what still needs examples
 - `docs/mini-samples.md` splits the backlog into isolated sample-sized units
+## Why some React features are not covered here
 
+All stable React client and DOM APIs are demonstrated in this project. The remaining uncovered features require infrastructure that does not fit inside a single Vite client app:
+
+| Feature | Reason not covered |
+|---------|-------------------|
+| React Compiler, `"use memo"`, `"use no memo"` | Requires the React Compiler Babel/SWC plugin configured in a dedicated build pipeline. The compiler transforms code at build time, so it cannot be shown as a runtime sample inside a standard Vite project. |
+| Server Components, Server Functions, `'use client'`, `'use server'` | These rely on a framework-aware bundler (e.g. Next.js, Remix) that splits server and client modules at build time. Faking them in a plain client app would misrepresent how they work. |
+| Deeper lint examples (`exhaustive-deps`, purity, `static-components`) | These are ESLint rule demonstrations rather than API usage. They would need intentionally broken code and lint output, which do not fit the sample-and-test pattern used here. |
+| Canary APIs (`<ViewTransition>`, `addTransitionType`) | Not yet part of a stable React release. Will be added when they ship in a stable version. |
+| Experimental APIs (`experimental_taintObjectReference`) | Intentionally unstable and subject to removal. Not appropriate for a learning reference. |
+| Legacy APIs (`Children`, `cloneElement`, `createRef`, `forwardRef`, class components, `PureComponent`) | These are superseded by modern equivalents already shown in this project. They exist for backward compatibility and are not recommended for new code. |
 ## Notes
 
 The request asked to “show all React and TypeScript usage”. A single project cannot literally cover every API and every type-system feature without turning into a reference manual. This app focuses on the most useful modern patterns you are likely to apply in real work while keeping the code readable and runnable.
