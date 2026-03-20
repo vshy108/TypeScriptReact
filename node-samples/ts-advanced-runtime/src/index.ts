@@ -20,9 +20,9 @@ enum DeployStage {
 // String enums are fully opaque at runtime — no reverse mapping.
 // They read better in logs and serialized output than numeric enums.
 enum NotificationChannel {
-  Email = 'email',
-  Slack = 'slack',
-  PagerDuty = 'pagerduty',
+  Email = "email",
+  Slack = "slack",
+  PagerDuty = "pagerduty",
 }
 
 // const enums are inlined at compile time and leave no runtime object.
@@ -37,19 +37,22 @@ const enum Priority {
 
 function describeStage(stage: DeployStage): string {
   // Reverse mapping: DeployStage[stage] gives the string name from a numeric value.
-  return `Stage ${stage}: ${DeployStage[stage]}`
+  return `Stage ${stage}: ${DeployStage[stage]}`;
 }
 
-function formatNotification(channel: NotificationChannel, message: string): string {
-  return `[${channel}] ${message}`
+function formatNotification(
+  channel: NotificationChannel,
+  message: string,
+): string {
+  return `[${channel}] ${message}`;
 }
 
 const enumOutput = [
   describeStage(DeployStage.Build),
   describeStage(DeployStage.Production),
-  formatNotification(NotificationChannel.Slack, 'Deploy complete'),
+  formatNotification(NotificationChannel.Slack, "Deploy complete"),
   `Priority value: ${Priority.Critical}`,
-]
+];
 
 // ============================================================================
 // 2. SYMBOLS — unique property keys and well-known protocols
@@ -58,34 +61,34 @@ const enumOutput = [
 // Symbols create guaranteed-unique property keys, even if two different modules
 // happen to use the same string description. They are ideal for internal metadata
 // that should not collide with user-facing properties.
-const traceIdSymbol = Symbol('traceId')
-const versionSymbol = Symbol('version')
+const traceIdSymbol = Symbol("traceId");
+const versionSymbol = Symbol("version");
 
 interface Traceable {
-  readonly [traceIdSymbol]: string
-  readonly [versionSymbol]: number
+  readonly [traceIdSymbol]: string;
+  readonly [versionSymbol]: number;
 }
 
 function createTraceable(traceId: string, version: number): Traceable {
   return {
     [traceIdSymbol]: traceId,
     [versionSymbol]: version,
-  }
+  };
 }
 
 // Symbol.for creates a global symbol shared across realms.
 // Use this sparingly — it loses the uniqueness guarantee that makes symbols valuable.
-const globalMarker = Symbol.for('app.globalMarker')
+const globalMarker = Symbol.for("app.globalMarker");
 
 const symbolOutput = (() => {
-  const record = createTraceable('trace-abc-123', 4)
+  const record = createTraceable("trace-abc-123", 4);
   return [
     `Trace ID: ${record[traceIdSymbol]}`,
     `Version: ${record[versionSymbol]}`,
-    `Global symbol key: ${Symbol.keyFor(globalMarker) ?? 'unknown'}`,
-    `Symbols are unique: ${Symbol('x') !== Symbol('x')}`,
-  ]
-})()
+    `Global symbol key: ${Symbol.keyFor(globalMarker) ?? "unknown"}`,
+    `Symbols are unique: ${Symbol("x") !== Symbol("x")}`,
+  ];
+})();
 
 // ============================================================================
 // 3. ITERATORS AND GENERATORS — custom iteration protocols
@@ -96,28 +99,28 @@ const symbolOutput = (() => {
 // class to the built-in iteration machinery.
 
 class RingBuffer<T> implements Iterable<T> {
-  private readonly items: T[]
-  private head = 0
+  private readonly items: T[];
+  private head = 0;
 
   constructor(private readonly capacity: number) {
-    this.items = []
+    this.items = [];
   }
 
   push(item: T): void {
     if (this.items.length < this.capacity) {
-      this.items.push(item)
+      this.items.push(item);
     } else {
-      this.items[this.head] = item
-      this.head = (this.head + 1) % this.capacity
+      this.items[this.head] = item;
+      this.head = (this.head + 1) % this.capacity;
     }
   }
 
   // The Symbol.iterator method makes this class iterable.
   // It yields items in insertion order starting from the oldest.
   *[Symbol.iterator](): Iterator<T> {
-    const len = this.items.length
+    const len = this.items.length;
     for (let i = 0; i < len; i++) {
-      yield this.items[(this.head + i) % len]!
+      yield this.items[(this.head + i) % len]!;
     }
   }
 }
@@ -125,38 +128,38 @@ class RingBuffer<T> implements Iterable<T> {
 // A generator function that produces an infinite sequence.
 // Generators are lazy — they produce values on demand without allocating the full sequence.
 function* fibonacci(): Generator<number, never, undefined> {
-  let a = 0
-  let b = 1
+  let a = 0;
+  let b = 1;
   while (true) {
-    yield a
-    ;[a, b] = [b, a + b]
+    yield a;
+    [a, b] = [b, a + b];
   }
 }
 
 function take<T>(count: number, iterable: Iterable<T>): T[] {
-  const result: T[] = []
+  const result: T[] = [];
   for (const item of iterable) {
-    result.push(item)
-    if (result.length >= count) break
+    result.push(item);
+    if (result.length >= count) break;
   }
-  return result
+  return result;
 }
 
 const iteratorOutput = (() => {
-  const ring = new RingBuffer<string>(3)
-  ring.push('alpha')
-  ring.push('bravo')
-  ring.push('charlie')
-  ring.push('delta') // Overwrites 'alpha'
+  const ring = new RingBuffer<string>(3);
+  ring.push("alpha");
+  ring.push("bravo");
+  ring.push("charlie");
+  ring.push("delta"); // Overwrites 'alpha'
 
-  const ringValues = [...ring]
-  const fib10 = take(10, fibonacci())
+  const ringValues = [...ring];
+  const fib10 = take(10, fibonacci());
 
   return [
-    `Ring buffer (capacity 3): [${ringValues.join(', ')}]`,
-    `Fibonacci first 10: [${fib10.join(', ')}]`,
-  ]
-})()
+    `Ring buffer (capacity 3): [${ringValues.join(", ")}]`,
+    `Fibonacci first 10: [${fib10.join(", ")}]`,
+  ];
+})();
 
 // ============================================================================
 // 4. DECORATORS — TC39 stage 3 (not legacy experimentalDecorators)
@@ -169,16 +172,19 @@ const iteratorOutput = (() => {
 
 function logged<This, Args extends unknown[], Return>(
   target: (this: This, ...args: Args) => Return,
-  context: ClassMethodDecoratorContext<This, (this: This, ...args: Args) => Return>,
+  context: ClassMethodDecoratorContext<
+    This,
+    (this: This, ...args: Args) => Return
+  >,
 ): (this: This, ...args: Args) => Return {
-  const methodName = String(context.name)
+  const methodName = String(context.name);
 
   return function (this: This, ...args: Args): Return {
-    decoratorLog.push(`→ ${methodName} called with ${args.length} arg(s)`)
-    const result = target.call(this, ...args)
-    decoratorLog.push(`← ${methodName} returned`)
-    return result
-  }
+    decoratorLog.push(`→ ${methodName} called with ${args.length} arg(s)`);
+    const result = target.call(this, ...args);
+    decoratorLog.push(`← ${methodName} returned`);
+    return result;
+  };
 }
 
 // A class field decorator that validates the initial value is non-empty.
@@ -186,40 +192,37 @@ function nonEmpty<This>(
   _target: undefined,
   context: ClassFieldDecoratorContext<This, string>,
 ): (this: This, value: string) => string {
-  const fieldName = String(context.name)
+  const fieldName = String(context.name);
 
   return function (_value: string): string {
     if (!_value.trim()) {
-      throw new Error(`${fieldName} must not be empty.`)
+      throw new Error(`${fieldName} must not be empty.`);
     }
-    return _value
-  }
+    return _value;
+  };
 }
 
-const decoratorLog: string[] = []
+const decoratorLog: string[] = [];
 
 class AuditService {
   @nonEmpty
-  readonly label: string
+  readonly label: string;
 
   constructor(label: string) {
-    this.label = label
+    this.label = label;
   }
 
   @logged
   recordEvent(eventName: string): string {
-    return `[${this.label}] Event recorded: ${eventName}`
+    return `[${this.label}] Event recorded: ${eventName}`;
   }
 }
 
 const decoratorOutput = (() => {
-  const service = new AuditService('Release audit')
-  const result = service.recordEvent('deploy-started')
-  return [
-    result,
-    ...decoratorLog,
-  ]
-})()
+  const service = new AuditService("Release audit");
+  const result = service.recordEvent("deploy-started");
+  return [result, ...decoratorLog];
+})();
 
 // ============================================================================
 // 5. MIXINS — composing behavior from multiple sources
@@ -230,43 +233,43 @@ const decoratorOutput = (() => {
 // function that takes a base class and returns a subclass with added capabilities.
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-type Constructor<T = object> = new (...args: any[]) => T
+type Constructor<T = object> = new (...args: any[]) => T;
 
 interface Timestamped {
-  readonly createdAt: Date
-  formatCreatedAt(): string
+  readonly createdAt: Date;
+  formatCreatedAt(): string;
 }
 
 interface Tagged {
-  readonly tags: string[]
-  addTag(tag: string): void
-  hasTag(tag: string): boolean
+  readonly tags: string[];
+  addTag(tag: string): void;
+  hasTag(tag: string): boolean;
 }
 
 function withTimestamp<TBase extends Constructor>(Base: TBase) {
   return class extends Base implements Timestamped {
-    readonly createdAt = new Date()
+    readonly createdAt = new Date();
 
     formatCreatedAt(): string {
-      return this.createdAt.toISOString().slice(0, 19)
+      return this.createdAt.toISOString().slice(0, 19);
     }
-  }
+  };
 }
 
 function withTags<TBase extends Constructor>(Base: TBase) {
   return class extends Base implements Tagged {
-    readonly tags: string[] = []
+    readonly tags: string[] = [];
 
     addTag(tag: string): void {
       if (!this.tags.includes(tag)) {
-        this.tags.push(tag)
+        this.tags.push(tag);
       }
     }
 
     hasTag(tag: string): boolean {
-      return this.tags.includes(tag)
+      return this.tags.includes(tag);
     }
-  }
+  };
 }
 
 // Compose mixins: Base → Timestamped → Tagged
@@ -274,22 +277,22 @@ class BaseRecord {
   constructor(readonly name: string) {}
 }
 
-const EnhancedRecord = withTags(withTimestamp(BaseRecord))
+const EnhancedRecord = withTags(withTimestamp(BaseRecord));
 
 const mixinOutput = (() => {
-  const record = new EnhancedRecord('Release record')
-  record.addTag('platform')
-  record.addTag('v2')
-  record.addTag('platform') // Duplicate ignored
+  const record = new EnhancedRecord("Release record");
+  record.addTag("platform");
+  record.addTag("v2");
+  record.addTag("platform"); // Duplicate ignored
 
   return [
     `Name: ${record.name}`,
     `Created: ${record.formatCreatedAt()}`,
-    `Tags: [${record.tags.join(', ')}]`,
-    `Has "v2": ${record.hasTag('v2')}`,
-    `Has "beta": ${record.hasTag('beta')}`,
-  ]
-})()
+    `Tags: [${record.tags.join(", ")}]`,
+    `Has "v2": ${record.hasTag("v2")}`,
+    `Has "beta": ${record.hasTag("beta")}`,
+  ];
+})();
 
 // ============================================================================
 // 6. NAMESPACES — organizing related types and values
@@ -303,36 +306,36 @@ const mixinOutput = (() => {
 // eslint-disable-next-line @typescript-eslint/no-namespace
 namespace ReleaseProtocol {
   export interface Step {
-    readonly name: string
-    readonly required: boolean
+    readonly name: string;
+    readonly required: boolean;
   }
 
   export interface Plan {
-    readonly steps: readonly Step[]
-    readonly owner: string
+    readonly steps: readonly Step[];
+    readonly owner: string;
   }
 
   export function summarize(plan: Plan): string {
-    const required = plan.steps.filter((s) => s.required).length
-    return `${plan.owner}: ${plan.steps.length} steps (${required} required)`
+    const required = plan.steps.filter((s) => s.required).length;
+    return `${plan.owner}: ${plan.steps.length} steps (${required} required)`;
   }
 }
 
 const namespaceOutput = (() => {
   const plan: ReleaseProtocol.Plan = {
-    owner: 'Platform core',
+    owner: "Platform core",
     steps: [
-      { name: 'Lint check', required: true },
-      { name: 'Unit tests', required: true },
-      { name: 'Visual diff', required: false },
-      { name: 'Deploy canary', required: true },
+      { name: "Lint check", required: true },
+      { name: "Unit tests", required: true },
+      { name: "Visual diff", required: false },
+      { name: "Deploy canary", required: true },
     ],
-  }
+  };
   return [
     ReleaseProtocol.summarize(plan),
-    `Steps: ${plan.steps.map((s) => s.name).join(', ')}`,
-  ]
-})()
+    `Steps: ${plan.steps.map((s) => s.name).join(", ")}`,
+  ];
+})();
 
 // ============================================================================
 // Combined output — proves every feature runs and type-checks
@@ -345,8 +348,8 @@ export const advancedRuntimeOutput = {
   decorators: decoratorOutput,
   mixins: mixinOutput,
   namespaces: namespaceOutput,
-} as const
+} as const;
 
 export const advancedRuntimeSummary = Object.entries(advancedRuntimeOutput)
-  .map(([section, lines]) => `[${section}]\n${lines.join('\n')}`)
-  .join('\n\n')
+  .map(([section, lines]) => `[${section}]\n${lines.join("\n")}`)
+  .join("\n\n");

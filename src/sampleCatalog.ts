@@ -322,7 +322,7 @@ export const miniSampleCatalog = [
     id: "sample-ts-jsdoc-interop",
     title: "JSDoc and JS project typing",
     topic: "TypeScript Interop",
-    status: "planned",
+    status: "implemented",
     surface: "node-only",
     apis: ["JSDoc-powered typing", "allowJs", "checkJs"],
     summary:
