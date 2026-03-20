@@ -30,6 +30,8 @@ import MiniSampleStage from './components/MiniSampleStage'
 import { getServerSnapshot, getSnapshot, subscribe } from './releaseStore'
 
 // Keep the TypeScript note cards out of the initial bundle to demonstrate lazy loading.
+// lazy() + Suspense is the modern replacement for manual code-splitting patterns that used
+// dynamic import() with class component setState or custom loading wrappers.
 const TypeNotes = lazy(() => import('./components/TypeNotes'))
 
 type FilterCategory = FeatureCategory | 'All'
@@ -141,6 +143,8 @@ function statusClassName(status: SubmissionState['status']) {
 
 export default function App() {
   // useId produces accessible form ids, and useRef keeps imperative handles for the palette and form DOM node.
+  // useRef is the modern replacement for createRef(), which was designed for class components and created
+  // a new ref object on every render. useRef persists the same object across renders automatically.
   const featureFormId = useId()
   const commandRef = useRef<CommandPaletteHandle>(null)
   const taskFormRef = useRef<HTMLFormElement>(null)

@@ -242,6 +242,9 @@ function useVisibleRoster(
 }
 
 // memo skips rerendering this card when its props are referentially stable across parent renders.
+// memo() is the modern replacement for PureComponent, which was a class-based component that
+// implemented shouldComponentUpdate with a shallow prop comparison. memo() provides the same
+// optimization for function components without requiring a class.
 const MemoMemberCard = memo(function MemoMemberCard({
   member,
   isSelected,

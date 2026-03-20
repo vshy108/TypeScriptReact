@@ -67,6 +67,8 @@ const ThemeContext = createContext<ThemeContextValue | null>(null)
 const FeatureFlagsContext = createContext<FeatureFlagsContextValue | null>(null)
 
 // React 19 lets the context object itself act as the provider, which keeps setup compact.
+// Function component providers with useState are the modern replacement for class components
+// with this.state — every sample in this project uses function components instead of classes.
 function ThemeProvider({ children }: PropsWithChildren) {
   // useState holds provider-owned data so every consumer below can react to one shared theme value.
   const [theme, setTheme] = useState<ThemeName>('sunrise')
@@ -86,6 +88,7 @@ function ThemeProvider({ children }: PropsWithChildren) {
         cycleTheme,
       }}
     >
+      {/* Direct children composition is the modern replacement for the legacy Children utilities\n         (Children.map, Children.forEach) and cloneElement(), which inspected and modified children\n         by injecting props. Context + composition eliminates that fragile pattern entirely. */}
       {children}
     </ThemeContext>
   )
@@ -117,6 +120,9 @@ function FeatureFlagsProvider({ children }: PropsWithChildren) {
 }
 
 // useContext reads the nearest matching provider so consumers do not need theme props threaded through every layer.
+// useContext is the modern replacement for the class-based static contextType property, which could only
+// subscribe to a single context and required a class component. useContext works with function components
+// and can be called multiple times to read from different contexts.
 function useThemeContext() {
   const context = useContext(ThemeContext)
 

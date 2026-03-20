@@ -21,6 +21,8 @@ export function CommandPalette({ ref, suggestions, onSubmit }: CommandPalettePro
   const inputRef = useRef<HTMLInputElement>(null)
 
   // React 19 allows ref as a regular prop, so this component can expose a small imperative API.
+  // This is the modern replacement for forwardRef(), which wrapped components in a higher-order function
+  // just to receive a ref. With React 19, ref is a standard prop — no wrapper needed.
   useImperativeHandle(
     ref,
     () => ({
