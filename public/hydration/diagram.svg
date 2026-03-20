@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 220" role="img" aria-labelledby="title desc">
+  <title id="title">Hydration timeline</title>
+  <desc id="desc">A simple timeline showing HTML shell, resource hints, and hydration.</desc>
+  <rect width="360" height="220" rx="24" fill="#f8f0e3" />
+  <path d="M52 150h256" fill="none" stroke="#b35a26" stroke-width="10" stroke-linecap="round" />
+  <circle cx="84" cy="150" r="18" fill="#1d57c2" />
+  <circle cx="180" cy="150" r="18" fill="#b35a26" />
+  <circle cx="276" cy="150" r="18" fill="#1d57c2" />
+  <text x="54" y="110" fill="#1d1a17" font-family="Avenir Next, sans-serif" font-size="18">HTML</text>
+  <text x="146" y="110" fill="#1d1a17" font-family="Avenir Next, sans-serif" font-size="18">Hints</text>
+  <text x="234" y="110" fill="#1d1a17" font-family="Avenir Next, sans-serif" font-size="18">Hydrate</text>
+</svg>
+

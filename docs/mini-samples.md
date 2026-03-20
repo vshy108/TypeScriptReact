@@ -57,6 +57,7 @@ This project now treats the remaining backlog as isolated mini-samples instead o
 
 - `sample-react-hydration-hints`
   Covers `hydrateRoot`, `preconnect`, `prefetchDNS`, `preinit`, `preinitModule`, `preload`, and `preloadModule`.
+  Status: implemented.
   Recommended surface: separate client entry point.
 
 ## React server mini-samples
@@ -107,7 +108,6 @@ This project now treats the remaining backlog as isolated mini-samples instead o
 
 ## Suggested build order
 
-1. `sample-react-hydration-hints`
-2. `sample-react-streaming-ssr`
-3. `sample-react-server-components`
-4. `sample-react-compiler`
+1. `sample-react-streaming-ssr`
+2. `sample-react-server-components`
+3. `sample-react-compiler`

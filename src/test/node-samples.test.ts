@@ -2,7 +2,7 @@
 
 import { execFileSync } from 'node:child_process'
 import { describe, expect, it } from 'vitest'
-import { externalSampleArtifacts } from '../externalSampleArtifacts'
+import { implementedSampleArtifacts } from '../implementedSampleArtifacts'
 import { miniSampleCatalog } from '../sampleCatalog'
 
 const implementedNodeOnlySamples = miniSampleCatalog.filter(
@@ -13,13 +13,13 @@ describe('node-only mini-samples', () => {
   it('keeps every implemented node-only sample wired to an artifact definition', () => {
     const missingArtifacts = implementedNodeOnlySamples
       .map((sample) => sample.id)
-      .filter((id) => !externalSampleArtifacts[id])
+      .filter((id) => !implementedSampleArtifacts[id])
 
     expect(missingArtifacts).toEqual([])
   })
 
   it.each(implementedNodeOnlySamples)('type-checks %s through its dedicated project config', (sample) => {
-    const artifact = externalSampleArtifacts[sample.id]
+    const artifact = implementedSampleArtifacts[sample.id]
 
     if (!artifact) {
       throw new Error(`Missing node-only artifact config for ${sample.id}.`)

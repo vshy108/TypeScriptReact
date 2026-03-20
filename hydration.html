@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hydration and Resource Hints Sample</title>
+  </head>
+  <body>
+    <div id="hydration-root">
+      <div class="hydration-page">
+        <header class="hydration-hero">
+          <p class="eyebrow">Implemented sample</p>
+          <h1>Hydration and resource hint APIs</h1>
+          <p class="hydration-copy">This entry starts with matching HTML already on the page. The client registers network hints and then uses <code>hydrateRoot()</code> to attach React behavior without throwing the existing shell away.</p>
+          <div class="hydration-meta">
+            <span>Entry: /hydration.html</span>
+            <span>Root API: hydrateRoot()</span>
+            <span>Shell: static HTML matched to the React tree</span>
+          </div>
+        </header>
+
+        <main class="hydration-grid">
+          <article class="hydration-card">
+            <p class="eyebrow">Hydration status</p>
+            <h2>Server shell to interactive client</h2>
+            <p class="section-copy">Waiting for hydrateRoot() to attach client event handlers to the existing markup.</p>
+            <div class="hydration-actions">
+              <button type="button" class="primary-button">Focus next hint</button>
+              <button type="button" class="secondary-button">Reset selection</button>
+            </div>
+            <div class="hydration-log">
+              <p>Server markup arrived before the client bundle executed.</p>
+              <p>Resource hints are registered before hydrateRoot() runs.</p>
+            </div>
+          </article>
+
+          <article class="hydration-card">
+            <p class="eyebrow">Registered hints</p>
+            <h2>Network preparation plan</h2>
+            <div class="hydration-hint-list">
+              <button type="button" class="hydration-hint-button is-selected">
+                <strong>prefetchDNS</strong>
+                <span>https://fonts.googleapis.com</span>
+              </button>
+              <button type="button" class="hydration-hint-button">
+                <strong>preconnect</strong>
+                <span>https://fonts.gstatic.com</span>
+              </button>
+              <button type="button" class="hydration-hint-button">
+                <strong>preload</strong>
+                <span>/hydration/diagram.svg</span>
+              </button>
+              <button type="button" class="hydration-hint-button">
+                <strong>preinit</strong>
+                <span>/hydration/critical.css</span>
+              </button>
+              <button type="button" class="hydration-hint-button">
+                <strong>preloadModule</strong>
+                <span>/hydration/preview-module.js</span>
+              </button>
+              <button type="button" class="hydration-hint-button">
+                <strong>preinitModule</strong>
+                <span>/hydration/preview-module.js</span>
+              </button>
+            </div>
+            <section class="hydration-detail" aria-live="polite">
+              <span>prefetchDNS</span>
+              <code>https://fonts.googleapis.com</code>
+              <p>Resolve the stylesheet host before the server shell asks for remote font CSS.</p>
+            </section>
+          </article>
+        </main>
+      </div>
+    </div>
+    <script type="module" src="/src/hydration/main.tsx"></script>
+  </body>
+</html>

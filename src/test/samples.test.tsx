@@ -2,15 +2,19 @@ import { render, screen } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
 import App from '../App'
 import MiniSampleStage from '../components/MiniSampleStage'
-import { externalSampleArtifacts } from '../externalSampleArtifacts'
+import { implementedSampleArtifacts } from '../implementedSampleArtifacts'
 import { miniSampleCatalog } from '../sampleCatalog'
 import { sampleImplementations } from '../sampleImplementations'
 import { toSampleHash } from '../sampleRuntime'
 
 const implementedSamples = miniSampleCatalog.filter((sample) => sample.status === 'implemented')
 const implementedRouteSamples = implementedSamples.filter((sample) => sample.surface === 'isolated-route')
-const implementedNodeOnlySamples = implementedSamples.filter((sample) => sample.surface === 'node-only')
-const supportedImplementedSurfaces = new Set(['current-app', 'isolated-route', 'node-only'] as const)
+const implementedArtifactSamples = implementedSamples.filter(
+  (sample) => sample.surface === 'node-only' || sample.surface === 'separate-entry',
+)
+const supportedImplementedSurfaces = new Set(
+  ['current-app', 'isolated-route', 'separate-entry', 'node-only'] as const,
+)
 
 describe('sample coverage contract', () => {
   it('keeps every implemented sample on a surface covered by the current test harness', () => {
@@ -27,8 +31,10 @@ describe('sample coverage contract', () => {
     expect(missingImplementations).toEqual([])
   })
 
-  it('maps every implemented node-only sample to an external artifact entry', () => {
-    const missingArtifacts = implementedNodeOnlySamples.map((sample) => sample.id).filter((id) => !externalSampleArtifacts[id])
+  it('maps every implemented artifact-backed sample to an artifact entry', () => {
+    const missingArtifacts = implementedArtifactSamples
+      .map((sample) => sample.id)
+      .filter((id) => !implementedSampleArtifacts[id])
 
     expect(missingArtifacts).toEqual([])
   })
@@ -59,15 +65,15 @@ describe('isolated mini-samples', () => {
   })
 })
 
-describe('implemented external samples', () => {
-  it.each(implementedNodeOnlySamples)('renders external implementation details for %s', async (sample) => {
-    const artifact = externalSampleArtifacts[sample.id]
+describe('implemented artifact-backed samples', () => {
+  it.each(implementedArtifactSamples)('renders artifact implementation details for %s', async (sample) => {
+    const artifact = implementedSampleArtifacts[sample.id]
     window.location.hash = toSampleHash(sample.id)
 
     render(<MiniSampleStage />)
 
     expect(await screen.findByRole('heading', { level: 2, name: sample.title })).toBeTruthy()
-    expect(screen.getByText('Implemented outside the current app surface.')).toBeTruthy()
+    expect(screen.getByText('Implemented on a different sample surface.')).toBeTruthy()
     expect(screen.getByText(artifact?.entryPoint ?? '')).toBeTruthy()
     expect(screen.queryByText('Implementation slot reserved.')).toBeNull()
   })

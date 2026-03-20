@@ -59,16 +59,15 @@ It is intentionally organized by major feature area instead of trying to enumera
 - [x] `useFormStatus`
 - [x] `createPortal`
 - [x] `flushSync`
+- [x] `preconnect`
+- [x] `prefetchDNS`
+- [x] `preinit`
+- [x] `preinitModule`
+- [x] `preload`
+- [x] `preloadModule`
+- [x] `hydrateRoot`
 
 ### Not included yet: stable `react-dom` APIs
-
-- [ ] `preconnect`
-- [ ] `prefetchDNS`
-- [ ] `preinit`
-- [ ] `preinitModule`
-- [ ] `preload`
-- [ ] `preloadModule`
-- [ ] `hydrateRoot`
 
 ### Not included yet: server and prerender APIs
 

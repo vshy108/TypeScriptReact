@@ -130,7 +130,7 @@ export const miniSampleCatalog = [
     id: 'sample-react-hydration-hints',
     title: 'Hydration and resource hint APIs',
     topic: 'React DOM',
-    status: 'planned',
+    status: 'implemented',
     surface: 'separate-entry',
     apis: [
       'hydrateRoot',

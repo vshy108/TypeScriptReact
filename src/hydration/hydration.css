@@ -1,0 +1,185 @@
+.hydration-page {
+  width: min(1120px, calc(100vw - 2rem));
+  margin: 0 auto;
+  padding: 2rem 0 4rem;
+  display: grid;
+  gap: 1.4rem;
+}
+
+.hydration-hero,
+.hydration-card {
+  background: rgba(255, 249, 241, 0.83);
+  border: 1px solid rgba(61, 45, 35, 0.12);
+  border-radius: 1.75rem;
+  box-shadow: 0 24px 60px rgba(56, 33, 15, 0.12);
+  backdrop-filter: blur(18px);
+}
+
+.hydration-hero {
+  padding: 1.5rem;
+}
+
+.hydration-hero h1,
+.hydration-card h2 {
+  margin: 0.25rem 0 0.7rem;
+}
+
+.hydration-copy,
+.section-copy,
+.hydration-hint-button span,
+.hydration-detail p,
+.hydration-meta,
+.hydration-log p {
+  color: var(--muted);
+}
+
+.hydration-copy {
+  max-width: 58rem;
+  font-size: 1.03rem;
+}
+
+.hydration-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 1rem;
+}
+
+.hydration-meta span {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.38rem 0.72rem;
+  border-radius: 999px;
+  border: 1px solid rgba(23, 70, 162, 0.15);
+  background: rgba(23, 70, 162, 0.08);
+}
+
+.hydration-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.hydration-card {
+  padding: 1.3rem;
+  display: grid;
+  gap: 1rem;
+  align-content: start;
+}
+
+.eyebrow {
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 0.72rem;
+  color: var(--muted-strong);
+}
+
+.section-copy {
+  margin: 0;
+}
+
+.hydration-actions,
+.hydration-hint-list {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.hydration-actions {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.primary-button,
+.secondary-button,
+.hydration-hint-button {
+  border: none;
+  border-radius: 1rem;
+  padding: 0.9rem 1rem;
+  font: inherit;
+  cursor: pointer;
+  transition:
+    transform 160ms ease,
+    box-shadow 160ms ease,
+    border-color 160ms ease;
+}
+
+.primary-button {
+  background: linear-gradient(135deg, var(--cobalt), var(--copper));
+  color: white;
+  box-shadow: 0 10px 30px rgba(32, 83, 183, 0.28);
+}
+
+.secondary-button,
+.hydration-hint-button {
+  background: rgba(255, 255, 255, 0.76);
+  border: 1px solid rgba(61, 45, 35, 0.12);
+  color: var(--ink);
+}
+
+.primary-button:hover,
+.secondary-button:hover,
+.hydration-hint-button:hover {
+  transform: translateY(-1px);
+}
+
+.hydration-hint-button {
+  display: grid;
+  gap: 0.28rem;
+  text-align: left;
+}
+
+.hydration-hint-button.is-selected {
+  border-color: rgba(29, 87, 194, 0.4);
+  box-shadow: 0 0 0 4px rgba(29, 87, 194, 0.08);
+}
+
+.hydration-detail,
+.hydration-log p {
+  border-radius: 1rem;
+  border: 1px solid rgba(61, 45, 35, 0.12);
+  background: rgba(255, 252, 246, 0.72);
+}
+
+.hydration-detail {
+  padding: 1rem;
+  display: grid;
+  gap: 0.55rem;
+}
+
+.hydration-detail span {
+  color: var(--muted-strong);
+  font-weight: 600;
+}
+
+.hydration-detail code {
+  display: inline-flex;
+  width: fit-content;
+  padding: 0.28rem 0.55rem;
+  border-radius: 0.7rem;
+  background: rgba(23, 70, 162, 0.08);
+}
+
+.hydration-detail p {
+  margin: 0;
+}
+
+.hydration-log {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.hydration-log p {
+  margin: 0;
+  padding: 0.85rem 0.95rem;
+}
+
+@media (max-width: 860px) {
+  .hydration-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hydration-actions {
+    grid-template-columns: 1fr;
+  }
+}
+
