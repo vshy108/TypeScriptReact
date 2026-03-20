@@ -4,6 +4,7 @@ import ActivityTransitionSample from "./samples/ActivityTransitionSample";
 import ClassesModelsSample from "./samples/ClassesModelsSample";
 import ContextIdentitySample from "./samples/ContextIdentitySample";
 import ContextThemeSample from "./samples/ContextThemeSample";
+import ErrorBoundarySample from "./samples/ErrorBoundarySample";
 import FormStatusSample from "./samples/FormStatusSample";
 import FunctionsTuplesSample from "./samples/FunctionsTuplesSample";
 import LayoutEffectsSample from "./samples/LayoutEffectsSample";
@@ -22,6 +23,7 @@ export const sampleImplementations: Partial<
   "sample-react-activity-transition": ActivityTransitionSample,
   "sample-react-context-identity": ContextIdentitySample,
   "sample-react-context-theme": ContextThemeSample,
+  "sample-react-error-boundary": ErrorBoundarySample,
   "sample-react-form-status": FormStatusSample,
   "sample-react-layout-effects": LayoutEffectsSample,
   "sample-react-memo-lab": MemoLabSample,

@@ -426,6 +426,25 @@ export const miniSampleCatalog = [
     whyIsolated:
       "The buggy and fixed providers need side-by-side comparison with visible render counts that would be noisy in a shared context demo.",
   },
+  {
+    id: "sample-react-error-boundary",
+    title: "Error boundaries and Suspense interaction",
+    topic: "React Client",
+    status: "implemented",
+    surface: "isolated-route",
+    apis: [
+      "ErrorBoundary class",
+      "getDerivedStateFromError",
+      "componentDidCatch",
+      "Suspense vs errors",
+      "lazy() failure",
+      "nested boundaries",
+    ],
+    summary:
+      "Show that Suspense handles loading but NOT errors. Demonstrate render-time throws, failed lazy() imports, nested error boundaries, and the reset/retry pattern.",
+    whyIsolated:
+      "Error boundary demos intentionally crash components and need isolation so failures don't take down the whole app.",
+  },
 ] as const satisfies readonly MiniSample[];
 
 export const sampleStatusMeta = {
