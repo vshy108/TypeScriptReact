@@ -57,7 +57,18 @@ This project is a modern React starter that goes beyond the default template. It
 - `src/samples/ClassesModelsSample.tsx` demonstrates classes, access modifiers, abstract classes, `implements`, and intersection types through a plugin registry model
 - `src/samples/RecursiveTypesSample.tsx` demonstrates recursive interfaces, recursive type aliases, `DeepReadonly`, and `DeepKeyPaths` through an org-tree hierarchy
 - `src/samples/ActivityTransitionSample.tsx` demonstrates `<Activity>` boundaries and standalone `startTransition` through a tier-based operator console
-- `src/samples/ActivityTransitionSample.tsx` demonstrates `<Activity>` boundaries and standalone `startTransition` through a tier-based operator console
+- `src/samples/StaleClosureSample.tsx` demonstrates stale closures in setTimeout/Promise, functional updaters, and React 18+ automatic batching
+- `src/samples/ContextIdentitySample.tsx` demonstrates the context provider identity perf trap and the useMemo/useCallback fix
+- `src/samples/ErrorBoundarySample.tsx` demonstrates ErrorBoundary vs Suspense, lazy() failures, nested boundaries, and reset
+- `src/samples/KeyIdentitySample.tsx` demonstrates key={index} reorder bug, key={id} fix, and the key reset trick
+- `src/samples/RefTimingSample.tsx` demonstrates ref.current null during render, callback refs, and useImperativeHandle
+- `src/samples/ConditionalDistributivitySample.tsx` demonstrates distributive vs non-distributive conditional types, Extract/Exclude, and infer
+- `src/samples/MappedFilteringSample.tsx` demonstrates mapped type key remapping with `as`, value-based filtering, and template literal key transforms
+- `src/samples/PrivateFieldsSample.tsx` demonstrates private vs #private fields, override keyword, parameter properties, and init order
+- `src/samples/HydrationMismatchDemo.ts` is a comment-based demonstration of hydration mismatch causes, detection, and fixes
+- `node-samples/ts-variance/src/index.ts` demonstrates covariance, contravariance, invariance, Array unsoundness, and explicit variance annotations
+- `node-samples/ts-template-literals/src/index.ts` demonstrates template literal types, union cartesian products, infer pattern matching, and route params
+- `node-samples/ts-generic-inference/src/index.ts` demonstrates generic inference failures (partial inference, NoInfer, overload order, satisfies)
 - `src/test/samples.test.tsx` smoke-tests the integrated app and every implemented isolated-route sample from the catalog
 - `src/test/node-samples.test.ts` type-checks implemented node-only samples through their own project configs
 - `src/test/separate-entry-samples.test.ts` verifies implemented separate-entry samples publish the expected HTML and module entry files

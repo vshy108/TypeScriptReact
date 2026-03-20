@@ -51,6 +51,10 @@ It is intentionally organized by major feature area instead of trying to enumera
 
 ### Not included yet: stable React components and APIs
 
+(All stable components and APIs are now covered.)
+
+### Included now: `<Activity>` and `startTransition`
+
 - [x] `<Activity>`
 - [x] `startTransition` standalone API
 
@@ -68,6 +72,17 @@ It is intentionally organized by major feature area instead of trying to enumera
 - [x] `hydrateRoot`
 
 ### Not included yet: stable `react-dom` APIs
+
+(All stable react-dom APIs are now covered.)
+
+### Included now: edge-case and gotcha demos
+
+- [x] Stale closures and batching traps
+- [x] Context provider identity perf trap
+- [x] Error boundaries and Suspense interaction
+- [x] Key identity and state preservation
+- [x] Ref timing and callback refs
+- [x] Hydration mismatch detection (comment-based demo)
 
 ### Included now: server and prerender APIs
 
@@ -147,11 +162,20 @@ It is intentionally organized by major feature area instead of trying to enumera
 - [x] Declaration files and `.d.ts` authoring
 - [x] Module augmentation
 
-### Not included yet: core language and handbook topics
+### Included now: recursive types
 
 - [x] Recursive types
 
-### Not included yet: reference and ecosystem topics
+### Included now: edge-case and gotcha demos
+
+- [x] Conditional type distributivity
+- [x] Mapped type filtering and remapping
+- [x] Variance and assignability
+- [x] `private` vs `#private` fields
+- [x] Template literal type expansion
+- [x] Generic inference failures
+
+### Included now: reference and ecosystem topics
 
 - [x] Enums
 - [x] Decorators
