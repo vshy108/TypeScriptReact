@@ -494,6 +494,38 @@ select:focus {
   justify-content: flex-start;
 }
 
+.external-sample {
+  margin-top: 1rem;
+}
+
+.external-sample__details {
+  display: grid;
+  gap: 0.8rem;
+}
+
+.external-sample__details p {
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: start;
+  padding: 0.8rem 0.95rem;
+  border-radius: 0.95rem;
+  background: rgba(255, 252, 246, 0.72);
+  border: 1px solid var(--border);
+}
+
+.external-sample__details span {
+  color: var(--muted-strong);
+}
+
+.external-sample__details code {
+  display: inline-flex;
+  padding: 0.28rem 0.55rem;
+  border-radius: 0.7rem;
+  background: rgba(23, 70, 162, 0.08);
+}
+
 .sample-badge {
   display: inline-flex;
   align-items: center;
@@ -1708,6 +1740,7 @@ select:focus {
   .ts-utility-code p,
   .ts-utility-plan p,
   .ts-utility-table__row,
+  .external-sample__details p,
   .classes-list p,
   .functions-list p {
     grid-template-columns: 1fr;

@@ -35,6 +35,7 @@ This project is a modern React starter that goes beyond the default template. It
 - `src/catalog.ts` holds typed sample data and domain types
 - `src/releaseStore.ts` is the external store example for `useSyncExternalStore`
 - `src/sampleCatalog.ts` is the typed registry for isolated mini-samples
+- `src/externalSampleArtifacts.ts` describes implemented samples that live outside the browser app surface
 - `src/sampleImplementations.ts` is the shared implementation registry used by both the app and the test suite
 - `src/sampleRuntime.ts` resolves mini-sample hash routes
 - `src/components/CommandPalette.tsx` shows React 19 ref-as-prop usage
@@ -52,7 +53,10 @@ This project is a modern React starter that goes beyond the default template. It
 - `src/samples/FunctionsTuplesSample.tsx` demonstrates tuples, overloads, call signatures, construct signatures, and `this` typing through a typed command-routing playground
 - `src/samples/ClassesModelsSample.tsx` demonstrates classes, access modifiers, abstract classes, `implements`, and intersection types through a plugin registry model
 - `src/test/samples.test.tsx` smoke-tests the integrated app and every implemented isolated-route sample from the catalog
+- `src/test/node-samples.test.ts` type-checks implemented node-only samples through their own project configs
 - `src/test/setup.ts` provides the jsdom test setup and browser API shims used by Vitest
+- `node-samples/ts-declarations/src/index.ts` consumes an untyped JavaScript module through authored declarations, module augmentation, and a triple-slash reference
+- `node-samples/ts-declarations/vendor/legacy-release-kit.d.ts` is the authored declaration file for the node-only interop sample
 - `src/components/TypeNotes.tsx` is lazy-loaded behind `Suspense`
 - `docs/coverage-roadmap.md` tracks what is implemented and what still needs examples
 - `docs/mini-samples.md` splits the backlog into isolated sample-sized units

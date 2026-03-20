@@ -143,6 +143,10 @@ It is intentionally organized by major feature area instead of trying to enumera
 - [x] Access modifiers
 - [x] Abstract classes
 - [x] `implements`
+- [x] Declaration merging
+- [x] Triple-slash directives
+- [x] Declaration files and `.d.ts` authoring
+- [x] Module augmentation
 
 ### Not included yet: core language and handbook topics
 
@@ -152,14 +156,10 @@ It is intentionally organized by major feature area instead of trying to enumera
 
 - [ ] Enums
 - [ ] Decorators
-- [ ] Declaration merging
 - [ ] Mixins
 - [ ] Symbols
 - [ ] Iterators and generators
 - [ ] Namespaces
-- [ ] Triple-slash directives
-- [ ] Declaration files and `.d.ts` authoring
-- [ ] Module augmentation
 - [ ] JSDoc-powered typing
 - [ ] Advanced `tsconfig` options beyond the current strict baseline
 

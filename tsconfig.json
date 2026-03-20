@@ -3,6 +3,8 @@
   // tsc -b follows these project references so app and node configs build and type-check as one graph.
   "references": [
     { "path": "./tsconfig.app.json" },
-    { "path": "./tsconfig.node.json" }
+    { "path": "./tsconfig.node.json" },
+    { "path": "./tsconfig.test.json" },
+    { "path": "./node-samples/ts-declarations/tsconfig.json" }
   ]
 }

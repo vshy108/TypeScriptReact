@@ -5,6 +5,7 @@ import {
   sampleSurfaceLabels,
   type MiniSampleId,
 } from '../sampleCatalog'
+import { externalSampleArtifacts } from '../externalSampleArtifacts'
 import { sampleImplementations } from '../sampleImplementations'
 import { getDefaultSampleId, readSampleIdFromHash, toSampleHash } from '../sampleRuntime'
 
@@ -31,6 +32,7 @@ export default function MiniSampleStage() {
   const activeSample =
     miniSampleCatalog.find((sample) => sample.id === activeSampleId) ?? miniSampleCatalog[0]
   const SampleImplementation = sampleImplementations[activeSample.id]
+  const externalArtifact = externalSampleArtifacts[activeSample.id]
   const statusMeta = sampleStatusMeta[activeSample.status]
 
   return (
@@ -51,6 +53,27 @@ export default function MiniSampleStage() {
 
       {SampleImplementation ? (
         <SampleImplementation />
+      ) : activeSample.status === 'implemented' && externalArtifact ? (
+        <div className="sample-card external-sample">
+          <strong>Implemented outside the current app surface.</strong>
+          <p>{activeSample.whyIsolated}</p>
+
+          <div className="sample-card__meta">
+            <span>{externalArtifact.label}</span>
+            <span>{externalArtifact.rootDir}</span>
+          </div>
+
+          <div className="external-sample__details">
+            <p>
+              <span>Entry point</span>
+              <code>{externalArtifact.entryPoint}</code>
+            </p>
+            <p>
+              <span>Verify with</span>
+              <code>{externalArtifact.verificationCommand}</code>
+            </p>
+          </div>
+        </div>
       ) : (
         <div className="empty-state">
           <strong>Implementation slot reserved.</strong>

@@ -94,6 +94,7 @@ This project now treats the remaining backlog as isolated mini-samples instead o
 
 - `sample-ts-declarations`
   Covers `.d.ts` authoring, declaration merging, module augmentation, and triple-slash directives.
+  Status: implemented.
   Recommended surface: node-only package-style sample.
 
 - `sample-ts-jsdoc-interop`
@@ -106,8 +107,7 @@ This project now treats the remaining backlog as isolated mini-samples instead o
 
 ## Suggested build order
 
-1. `sample-ts-declarations`
-2. `sample-react-hydration-hints`
-3. `sample-react-streaming-ssr`
-4. `sample-react-server-components`
-5. `sample-react-compiler`
+1. `sample-react-hydration-hints`
+2. `sample-react-streaming-ssr`
+3. `sample-react-server-components`
+4. `sample-react-compiler`

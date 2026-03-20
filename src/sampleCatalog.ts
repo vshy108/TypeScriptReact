@@ -215,7 +215,7 @@ export const miniSampleCatalog = [
     id: 'sample-ts-declarations',
     title: 'Declaration files and package typing',
     topic: 'TypeScript Interop',
-    status: 'planned',
+    status: 'implemented',
     surface: 'node-only',
     apis: ['.d.ts authoring', 'declaration merging', 'module augmentation', 'triple-slash directives'],
     summary: 'Author types for an untyped module and consume them from a separate sample.',
