@@ -517,6 +517,25 @@ export const miniSampleCatalog = [
     whyIsolated:
       "Type-level edge cases need side-by-side examples with explanations that would clutter a shared demo.",
   },
+  {
+    id: "sample-ts-mapped-filtering",
+    title: "Mapped type filtering and remapping",
+    topic: "TypeScript Language",
+    status: "implemented",
+    surface: "isolated-route",
+    apis: [
+      "as clause key remapping",
+      "never key removal",
+      "PickByType value filtering",
+      "template literal key transform",
+      "keyof T & string",
+      "-readonly modifier",
+    ],
+    summary:
+      "Demonstrate mapped type key remapping with `as`, value-based filtering via never, template literal key transforms, symbol key exclusion, and readonly/mutable modifiers.",
+    whyIsolated:
+      "Type-level mapped type demos need structured examples with explanations that would clutter other samples.",
+  },
 ] as const satisfies readonly MiniSample[];
 
 export const sampleStatusMeta = {

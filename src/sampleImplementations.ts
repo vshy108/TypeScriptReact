@@ -10,6 +10,7 @@ import FormStatusSample from "./samples/FormStatusSample";
 import FunctionsTuplesSample from "./samples/FunctionsTuplesSample";
 import KeyIdentitySample from "./samples/KeyIdentitySample";
 import LayoutEffectsSample from "./samples/LayoutEffectsSample";
+import MappedFilteringSample from "./samples/MappedFilteringSample";
 import MemoLabSample from "./samples/MemoLabSample";
 import PortalModalSample from "./samples/PortalModalSample";
 import RecursiveTypesSample from "./samples/RecursiveTypesSample";
@@ -40,5 +41,6 @@ export const sampleImplementations: Partial<
   "sample-ts-classes-models": ClassesModelsSample,
   "sample-ts-conditional-distributivity": ConditionalDistributivitySample,
   "sample-ts-functions-tuples": FunctionsTuplesSample,
+  "sample-ts-mapped-filtering": MappedFilteringSample,
   "sample-ts-utility-mapped": UtilityMappedSample,
 };
