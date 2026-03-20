@@ -2,6 +2,7 @@ import type { ComponentType } from "react";
 import type { MiniSampleId } from "./sampleCatalog";
 import ActivityTransitionSample from "./samples/ActivityTransitionSample";
 import ClassesModelsSample from "./samples/ClassesModelsSample";
+import ConditionalDistributivitySample from "./samples/ConditionalDistributivitySample";
 import ContextIdentitySample from "./samples/ContextIdentitySample";
 import ContextThemeSample from "./samples/ContextThemeSample";
 import ErrorBoundarySample from "./samples/ErrorBoundarySample";
@@ -37,6 +38,7 @@ export const sampleImplementations: Partial<
   "sample-react-use-resource": UseResourceSample,
   "sample-ts-recursive-types": RecursiveTypesSample,
   "sample-ts-classes-models": ClassesModelsSample,
+  "sample-ts-conditional-distributivity": ConditionalDistributivitySample,
   "sample-ts-functions-tuples": FunctionsTuplesSample,
   "sample-ts-utility-mapped": UtilityMappedSample,
 };

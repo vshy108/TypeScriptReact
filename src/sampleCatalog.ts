@@ -498,6 +498,25 @@ export const miniSampleCatalog = [
     whyIsolated:
       "Hydration mismatches require a real SSR setup to reproduce. This comment-based demo explains the edge cases and fixes with type-checked code snippets.",
   },
+  {
+    id: "sample-ts-conditional-distributivity",
+    title: "Conditional type distributivity",
+    topic: "TypeScript Language",
+    status: "implemented",
+    surface: "isolated-route",
+    apis: [
+      "distributive conditional types",
+      "non-distributive [T] extends [U]",
+      "never empty union",
+      "Extract",
+      "Exclude",
+      "infer",
+    ],
+    summary:
+      "Show how T extends U ? A : B distributes over unions, how [T] extends [U] prevents it, the never-as-empty-union gotcha, and practical filtering with Extract/Exclude and infer.",
+    whyIsolated:
+      "Type-level edge cases need side-by-side examples with explanations that would clutter a shared demo.",
+  },
 ] as const satisfies readonly MiniSample[];
 
 export const sampleStatusMeta = {
