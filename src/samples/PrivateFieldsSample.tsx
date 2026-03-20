@@ -112,24 +112,22 @@ function demonstrateOverride(): readonly string[] {
 // Section 3: Constructor parameter properties
 // ---------------------------------------------------------------------------
 
-// Shorthand: `readonly name: string` in the constructor parameter list
-// declares the property AND assigns it in one step.
+// Shorthand: constructor parameter properties declare and assign in one step.
+// NOTE: Parameter properties (`readonly name` in a constructor parameter list)
+// are NOT erasable syntax — they generate runtime assignment code. With
+// `erasableSyntaxOnly: true`, TypeScript forbids them. The shorthand form
+// would look like this:
+//
+//   class Employee {
+//     constructor(
+//       readonly name: string,
+//       private readonly department: string,
+//       protected salary: number,
+//     ) {}
+//   }
+//
+// Since this project enables erasableSyntaxOnly, we use the explicit form:
 class Employee {
-  constructor(
-    readonly name: string,
-    private readonly department: string,
-    protected salary: number,
-  ) {
-    // No manual `this.name = name` needed — the parameter property does it.
-  }
-
-  describe(): string {
-    return `${this.name} (${this.department}), salary: ${this.salary}`;
-  }
-}
-
-// Equivalent without parameter properties (more verbose):
-class EmployeeVerbose {
   readonly name: string;
   private readonly department: string;
   protected salary: number;
@@ -147,8 +145,10 @@ class EmployeeVerbose {
 
 function demonstrateParamProps(): readonly string[] {
   const emp = new Employee("Alice", "Engineering", 120000);
-  const empV = new EmployeeVerbose("Bob", "Design", 110000);
-  return [emp.describe(), empV.describe()];
+  return [
+    emp.describe(),
+    "Parameter property shorthand is blocked by erasableSyntaxOnly — see comment above for the compact form.",
+  ];
 }
 
 // ---------------------------------------------------------------------------

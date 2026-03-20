@@ -15,8 +15,9 @@
 //    distributive conditionals. This sample shows how to build custom filters
 //    that select union members by shape (e.g., objects with a `kind` field).
 
-/* eslint-disable @typescript-eslint/no-unused-vars -- type-proof bindings verify
-   compile-time results without runtime side effects. */
+/* eslint-disable @typescript-eslint/no-unused-vars, @typescript-eslint/no-explicit-any --
+   type-proof bindings verify compile-time results without runtime side effects.
+   any[] is required in MyReturnType because function param types are contravariant. */
 
 import { useState } from "react";
 
@@ -92,7 +93,10 @@ const _checkKinds: AllKinds = "click" as AllKinds;
 // ---------------------------------------------------------------------------
 
 // Extract the return type of a function (simplified ReturnType).
-type MyReturnType<T> = T extends (...args: readonly unknown[]) => infer R
+// Note: we use `any[]` for the rest parameter (not `unknown[]`) because
+// function parameter types are checked contravariantly — a concrete param
+// list like [number] doesn't extend `readonly unknown[]` in this position.
+type MyReturnType<T> = T extends (...args: any[]) => infer R
   ? R
   : never;
 
