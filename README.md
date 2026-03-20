@@ -95,6 +95,33 @@ The following categories are intentionally excluded:
 | Canary APIs (`<ViewTransition>`, `addTransitionType`) | Not yet part of a stable React release. Will be added when they ship in a stable version. |
 | Experimental APIs (`experimental_taintObjectReference`) | Intentionally unstable and subject to removal. Not appropriate for a learning reference. |
 | Legacy APIs (`Children`, `cloneElement`, `createRef`, `forwardRef`, class components, `PureComponent`) | These are superseded by modern equivalents already shown in this project. They exist for backward compatibility and are not recommended for new code. |
+
+## Edge cases and special behaviors
+
+Beyond API coverage, these samples demonstrate the non-obvious gotchas and special behaviors that developers encounter in production:
+
+### React edge cases
+
+| Sample | Key patterns |
+|--------|-------------|
+| Stale closures and batching traps | `useState` in `setTimeout`/Promise loses batching; closure captures stale value; fix with functional updater or `useRef` |
+| Context provider identity perf trap | Recreating value object on every render re-renders ALL consumers; fix with `useMemo` on the value |
+| Error boundaries + Suspense | `lazy()` import failure isn't caught by Suspense — needs an `ErrorBoundary` wrapper; nested boundary resolution |
+| Key identity and state preservation | `key={index}` reorder bug (state follows DOM position, not data); `key` reset trick to remount a component |
+| Ref timing and callback refs | `ref.current` is `null` during first render; callback ref called with `null` on unmount; `useImperativeHandle` to expose methods |
+| Hydration mismatch detection | Server renders one value, client renders another; React's console warning and recovery behavior (comment-based demo) |
+
+### TypeScript edge cases
+
+| Sample | Key patterns |
+|--------|-------------|
+| Conditional type distributivity | `T extends U ? A : B` distributes over unions; `[T] extends [U]` prevents it; practical filtering patterns |
+| Mapped type filtering and remapping | `as` clause to filter keys by value type; `[K in keyof T & string]` to exclude symbol keys; `never` key removal |
+| Variance and assignability | Covariant return types, contravariant params, invariant mutable properties; why `Array<Cat>` isn't `Array<Animal>` |
+| `private` vs `#private` fields | Compile-time `private` vs runtime `#field`; `override` keyword; constructor parameter properties; init order |
+| Template literal type expansion | Union cartesian product explosion; `infer` inside template literals; performance limits with large unions |
+| Generic inference failures | Partial inference impossible; overload+generic resolution order; bidirectional contextual typing |
+
 ## Notes
 
 The request asked to “show all React and TypeScript usage”. A single project cannot literally cover every API and every type-system feature without turning into a reference manual. This app focuses on the most useful modern patterns you are likely to apply in real work while keeping the code readable and runnable.

@@ -390,6 +390,25 @@ export const miniSampleCatalog = [
     whyIsolated:
       "Advanced tsconfig options require a dedicated project config and do not affect the main app build.",
   },
+  {
+    id: "sample-react-stale-closure",
+    title: "Stale closures and batching traps",
+    topic: "React Client",
+    status: "implemented",
+    surface: "isolated-route",
+    apis: [
+      "useState stale closure",
+      "functional updater",
+      "useRef latest value",
+      "React 18 batching",
+      "setTimeout batching",
+      "Promise batching",
+    ],
+    summary:
+      "Demonstrate the most common React gotchas: stale closures in setTimeout/setInterval/Promise callbacks, and React 18+ automatic batching across all contexts.",
+    whyIsolated:
+      "Edge-case demos need isolated state to show the bug and the fix side-by-side without interfering with other samples.",
+  },
 ] as const satisfies readonly MiniSample[];
 
 export const sampleStatusMeta = {
