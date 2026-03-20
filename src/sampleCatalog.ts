@@ -445,6 +445,23 @@ export const miniSampleCatalog = [
     whyIsolated:
       "Error boundary demos intentionally crash components and need isolation so failures don't take down the whole app.",
   },
+  {
+    id: "sample-react-key-identity",
+    title: "Key identity and state preservation",
+    topic: "React Client",
+    status: "implemented",
+    surface: "isolated-route",
+    apis: [
+      "key={index} reorder bug",
+      "key={id} stable identity",
+      "key reset trick",
+      "state follows DOM position",
+    ],
+    summary:
+      "Show how key={index} causes state to stick to the wrong item on reorder, and how changing a component's key forces a full remount to reset local state.",
+    whyIsolated:
+      "Key identity bugs need a reorderable list with visible per-row state to demonstrate the problem clearly.",
+  },
 ] as const satisfies readonly MiniSample[];
 
 export const sampleStatusMeta = {

@@ -7,6 +7,7 @@ import ContextThemeSample from "./samples/ContextThemeSample";
 import ErrorBoundarySample from "./samples/ErrorBoundarySample";
 import FormStatusSample from "./samples/FormStatusSample";
 import FunctionsTuplesSample from "./samples/FunctionsTuplesSample";
+import KeyIdentitySample from "./samples/KeyIdentitySample";
 import LayoutEffectsSample from "./samples/LayoutEffectsSample";
 import MemoLabSample from "./samples/MemoLabSample";
 import PortalModalSample from "./samples/PortalModalSample";
@@ -25,6 +26,7 @@ export const sampleImplementations: Partial<
   "sample-react-context-theme": ContextThemeSample,
   "sample-react-error-boundary": ErrorBoundarySample,
   "sample-react-form-status": FormStatusSample,
+  "sample-react-key-identity": KeyIdentitySample,
   "sample-react-layout-effects": LayoutEffectsSample,
   "sample-react-memo-lab": MemoLabSample,
   "sample-react-portal-modal": PortalModalSample,
