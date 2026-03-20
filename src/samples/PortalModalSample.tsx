@@ -92,7 +92,14 @@ function ModalPortal({
 
   // createPortal renders this overlay into a body-level host while keeping it logically inside the same React tree.
   return createPortal(
-    <div className="portal-backdrop" onClick={onClose}>
+    <div
+      className="portal-backdrop"
+      role="presentation"
+      onClick={onClose}
+      onKeyDown={(e) => {
+        if (e.key === 'Escape') onClose()
+      }}
+    >
       <section
         className="portal-modal"
         role="dialog"

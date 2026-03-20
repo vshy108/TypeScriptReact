@@ -133,6 +133,70 @@ This project now treats the remaining backlog as isolated mini-samples instead o
   Status: implemented (comment-based demo).
   Surface: comment-demo.
 
+## React edge-case mini-samples
+
+- `sample-react-stale-closure`
+  Covers stale closures in setTimeout/Promise, functional updaters, and React 18+ automatic batching.
+  Status: implemented.
+  Recommended surface: standalone route.
+
+- `sample-react-context-identity`
+  Covers context provider identity perf trap and the useMemo/useCallback fix.
+  Status: implemented.
+  Recommended surface: standalone route.
+
+- `sample-react-error-boundary`
+  Covers ErrorBoundary vs Suspense, lazy() failures, nested boundaries, and reset.
+  Status: implemented.
+  Recommended surface: standalone route.
+
+- `sample-react-key-identity`
+  Covers key={index} reorder bug, key={id} fix, and the key reset trick.
+  Status: implemented.
+  Recommended surface: standalone route.
+
+- `sample-react-ref-timing`
+  Covers ref.current null during render, callback refs, and useImperativeHandle.
+  Status: implemented.
+  Recommended surface: standalone route.
+
+- `sample-react-hydration-mismatch`
+  Covers hydration mismatch causes, detection, suppressHydrationWarning, and fixes.
+  Status: implemented (comment-based demo).
+  Surface: comment-demo.
+
+## TypeScript edge-case mini-samples
+
+- `sample-ts-conditional-distributivity`
+  Covers distributive vs non-distributive conditional types, Extract/Exclude, never-as-empty-union, and infer.
+  Status: implemented.
+  Recommended surface: standalone route.
+
+- `sample-ts-mapped-filtering`
+  Covers mapped type key remapping with `as`, value-based filtering via never, template literal key transforms, and symbol key exclusion.
+  Status: implemented.
+  Recommended surface: standalone route.
+
+- `sample-ts-private-fields`
+  Covers private vs #private fields, override keyword, parameter properties, and field initialization order.
+  Status: implemented.
+  Recommended surface: standalone route.
+
+- `sample-ts-variance`
+  Covers covariance, contravariance, invariance, Array unsoundness, and explicit variance annotations.
+  Status: implemented.
+  Recommended surface: node-only package-style sample.
+
+- `sample-ts-template-literals`
+  Covers template literal types, union cartesian products, intrinsic string manipulation, infer pattern matching, and route params.
+  Status: implemented.
+  Recommended surface: node-only package-style sample.
+
+- `sample-ts-generic-inference`
+  Covers partial inference (currying workaround), NoInfer<T>, overload resolution order, contextual typing, generic defaults, and satisfies.
+  Status: implemented.
+  Recommended surface: node-only package-style sample.
+
 ## Suggested build order
 
 All samples are implemented.
