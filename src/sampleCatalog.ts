@@ -480,6 +480,24 @@ export const miniSampleCatalog = [
     whyIsolated:
       "Ref timing demos need mount/unmount controls and imperative method calls that would be noisy in other samples.",
   },
+  {
+    id: "sample-react-hydration-mismatch",
+    title: "Hydration mismatch detection",
+    topic: "React DOM",
+    status: "implemented",
+    surface: "comment-demo",
+    apis: [
+      "hydration mismatch",
+      "suppressHydrationWarning",
+      "useId deterministic",
+      "useSyncExternalStore getServerSnapshot",
+      "streaming SSR recovery",
+    ],
+    summary:
+      "Explain what causes hydration mismatches (Date.now, window APIs, locale), how React 19 detects and reports them with diff views, and fixes: useEffect, useSyncExternalStore, suppressHydrationWarning, useId.",
+    whyIsolated:
+      "Hydration mismatches require a real SSR setup to reproduce. This comment-based demo explains the edge cases and fixes with type-checked code snippets.",
+  },
 ] as const satisfies readonly MiniSample[];
 
 export const sampleStatusMeta = {

@@ -80,4 +80,10 @@ export const implementedSampleArtifacts: Partial<
     entryPoint: "src/samples/ReactLintRulesDemo.ts",
     verificationCommand: "npm run typecheck",
   },
+  "sample-react-hydration-mismatch": {
+    label: "Comment-based hydration mismatch demo",
+    rootDir: ".",
+    entryPoint: "src/samples/HydrationMismatchDemo.ts",
+    verificationCommand: "npm run typecheck",
+  },
 };
