@@ -13,6 +13,7 @@ import MemoLabSample from "./samples/MemoLabSample";
 import PortalModalSample from "./samples/PortalModalSample";
 import RecursiveTypesSample from "./samples/RecursiveTypesSample";
 import ReducerBoardSample from "./samples/ReducerBoardSample";
+import RefTimingSample from "./samples/RefTimingSample";
 import StaleClosureSample from "./samples/StaleClosureSample";
 import UtilityMappedSample from "./samples/UtilityMappedSample";
 import UseResourceSample from "./samples/UseResourceSample";
@@ -31,6 +32,7 @@ export const sampleImplementations: Partial<
   "sample-react-memo-lab": MemoLabSample,
   "sample-react-portal-modal": PortalModalSample,
   "sample-react-reducer-board": ReducerBoardSample,
+  "sample-react-ref-timing": RefTimingSample,
   "sample-react-stale-closure": StaleClosureSample,
   "sample-react-use-resource": UseResourceSample,
   "sample-ts-recursive-types": RecursiveTypesSample,

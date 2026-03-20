@@ -462,6 +462,24 @@ export const miniSampleCatalog = [
     whyIsolated:
       "Key identity bugs need a reorderable list with visible per-row state to demonstrate the problem clearly.",
   },
+  {
+    id: "sample-react-ref-timing",
+    title: "Ref timing and callback refs",
+    topic: "React Client",
+    status: "implemented",
+    surface: "isolated-route",
+    apis: [
+      "ref null during render",
+      "callback refs",
+      "useImperativeHandle",
+      "forwardRef",
+      "ref mount/unmount lifecycle",
+    ],
+    summary:
+      "Show that ref.current is null during render, callback refs fire on mount (node) and unmount (null), and useImperativeHandle exposes a custom method API through a ref.",
+    whyIsolated:
+      "Ref timing demos need mount/unmount controls and imperative method calls that would be noisy in other samples.",
+  },
 ] as const satisfies readonly MiniSample[];
 
 export const sampleStatusMeta = {
