@@ -592,6 +592,25 @@ export const miniSampleCatalog = [
     whyIsolated:
       "Template literal type demos are purely type-level with console output, not React-renderable.",
   },
+  {
+    id: "sample-ts-generic-inference",
+    title: "Generic inference failures",
+    topic: "TypeScript Language",
+    status: "implemented",
+    surface: "node-only",
+    apis: [
+      "partial inference currying",
+      "NoInfer<T>",
+      "overload resolution order",
+      "bidirectional contextual typing",
+      "generic defaults",
+      "satisfies operator",
+    ],
+    summary:
+      "Show when generic inference fails (partial inference, inference conflicts, overload order) and standard workarounds (currying, NoInfer, explicit params, satisfies).",
+    whyIsolated:
+      "Inference failure demos are purely type-level with console output, not React-renderable.",
+  },
 ] as const satisfies readonly MiniSample[];
 
 export const sampleStatusMeta = {

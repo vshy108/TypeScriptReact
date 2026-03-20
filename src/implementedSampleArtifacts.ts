@@ -100,4 +100,11 @@ export const implementedSampleArtifacts: Partial<
     verificationCommand:
       "node ./node_modules/typescript/bin/tsc -p node-samples/ts-template-literals/tsconfig.json",
   },
+  "sample-ts-generic-inference": {
+    label: "Node-only generic inference failures workspace",
+    rootDir: "node-samples/ts-generic-inference",
+    entryPoint: "node-samples/ts-generic-inference/src/index.ts",
+    verificationCommand:
+      "node ./node_modules/typescript/bin/tsc -p node-samples/ts-generic-inference/tsconfig.json",
+  },
 };
