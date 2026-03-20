@@ -5,6 +5,7 @@
     { "path": "./tsconfig.app.json" },
     { "path": "./tsconfig.node.json" },
     { "path": "./tsconfig.test.json" },
-    { "path": "./node-samples/ts-declarations/tsconfig.json" }
+    { "path": "./node-samples/ts-declarations/tsconfig.json" },
+    { "path": "./server-samples/react-streaming-ssr/tsconfig.json" }
   ]
 }

@@ -63,7 +63,8 @@ This project now treats the remaining backlog as isolated mini-samples instead o
 ## React server mini-samples
 
 - `sample-react-streaming-ssr`
-  Covers `renderToPipeableStream`, `renderToReadableStream`, `renderToString`, `renderToStaticMarkup`, `prerender`, and `resume`.
+  Covers `renderToPipeableStream`, `renderToReadableStream`, `renderToString`, `renderToStaticMarkup`, `resumeToPipeableStream`, `prerender`, `prerenderToNodeStream`, `resume`, `resumeAndPrerender`, and `resumeAndPrerenderToNodeStream`.
+  Status: implemented.
   Recommended surface: separate SSR workspace.
 
 - `sample-react-server-components`
@@ -108,6 +109,5 @@ This project now treats the remaining backlog as isolated mini-samples instead o
 
 ## Suggested build order
 
-1. `sample-react-streaming-ssr`
-2. `sample-react-server-components`
-3. `sample-react-compiler`
+1. `sample-react-server-components`
+2. `sample-react-compiler`

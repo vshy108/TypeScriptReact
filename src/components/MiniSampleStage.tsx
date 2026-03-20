@@ -74,6 +74,12 @@ export default function MiniSampleStage() {
               <span>Entry point</span>
               <code>{implementedArtifact.entryPoint}</code>
             </p>
+            {implementedArtifact.readmePath ? (
+              <p>
+                <span>Workspace guide</span>
+                <code>{implementedArtifact.readmePath}</code>
+              </p>
+            ) : null}
             {implementedArtifact.launchPath ? (
               <p>
                 <span>Open in dev</span>

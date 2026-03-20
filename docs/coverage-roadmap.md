@@ -69,18 +69,18 @@ It is intentionally organized by major feature area instead of trying to enumera
 
 ### Not included yet: stable `react-dom` APIs
 
-### Not included yet: server and prerender APIs
+### Included now: server and prerender APIs
 
-- [ ] `renderToPipeableStream`
-- [ ] `renderToReadableStream`
-- [ ] `renderToStaticMarkup`
-- [ ] `renderToString`
-- [ ] `resume`
-- [ ] `resumeToPipeableStream`
-- [ ] `prerender`
-- [ ] `prerenderToNodeStream`
-- [ ] `resumeAndPrerender`
-- [ ] `resumeAndPrerenderToNodeStream`
+- [x] `renderToPipeableStream`
+- [x] `renderToReadableStream`
+- [x] `renderToStaticMarkup`
+- [x] `renderToString`
+- [x] `resume`
+- [x] `resumeToPipeableStream`
+- [x] `prerender`
+- [x] `prerenderToNodeStream`
+- [x] `resumeAndPrerender`
+- [x] `resumeAndPrerenderToNodeStream`
 
 ### Not included yet: compiler, lint, and server-component topics
 

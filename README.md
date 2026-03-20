@@ -51,17 +51,20 @@ This project is a modern React starter that goes beyond the default template. It
 - `src/samples/UseResourceSample.tsx` demonstrates `use()` with Suspense, a tiny promise cache, and explicit resource refreshes
 - `src/samples/PortalModalSample.tsx` demonstrates `createPortal()` and `flushSync()` with body-mounted modal and toast hosts
 - `src/hydration/HydrationHintsApp.tsx` and `src/hydration/main.tsx` demonstrate `hydrateRoot()` plus the resource hint APIs in a separate entry
+- `server-samples/react-streaming-ssr/src/runAllModes.tsx` demonstrates the current stable React server/static rendering APIs in one dedicated SSR workspace
 - `src/samples/UtilityMappedSample.tsx` demonstrates TypeScript utility types, `keyof`, mapped types, conditional types, and `infer` through one derived release-contract model
 - `src/samples/FunctionsTuplesSample.tsx` demonstrates tuples, overloads, call signatures, construct signatures, and `this` typing through a typed command-routing playground
 - `src/samples/ClassesModelsSample.tsx` demonstrates classes, access modifiers, abstract classes, `implements`, and intersection types through a plugin registry model
 - `src/test/samples.test.tsx` smoke-tests the integrated app and every implemented isolated-route sample from the catalog
 - `src/test/node-samples.test.ts` type-checks implemented node-only samples through their own project configs
 - `src/test/separate-entry-samples.test.ts` verifies implemented separate-entry samples publish the expected HTML and module entry files
+- `src/test/react-streaming-ssr.test.ts` compiles and executes the SSR workspace so the report proves each server/static API path actually ran
 - `src/test/hydration-entry.test.tsx` hydrates the pre-rendered sample shell and checks that the resource hint APIs register their DOM hints
 - `src/test/setup.ts` provides the jsdom test setup and browser API shims used by Vitest
 - `node-samples/ts-declarations/src/index.ts` consumes an untyped JavaScript module through authored declarations, module augmentation, and a triple-slash reference
 - `node-samples/ts-declarations/vendor/legacy-release-kit.d.ts` is the authored declaration file for the node-only interop sample
 - `hydration.html` is the separate HTML shell that the hydration sample attaches to
+- `server-samples/react-streaming-ssr/README.md` explains the SSR workspace and how to run it directly
 - `src/components/TypeNotes.tsx` is lazy-loaded behind `Suspense`
 - `docs/coverage-roadmap.md` tracks what is implemented and what still needs examples
 - `docs/mini-samples.md` splits the backlog into isolated sample-sized units
