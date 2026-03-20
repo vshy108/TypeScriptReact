@@ -51,8 +51,8 @@ It is intentionally organized by major feature area instead of trying to enumera
 
 ### Not included yet: stable React components and APIs
 
-- [ ] `<Activity>`
-- [ ] `startTransition` standalone API
+- [x] `<Activity>`
+- [x] `startTransition` standalone API
 
 ### Included now: stable `react-dom` APIs
 

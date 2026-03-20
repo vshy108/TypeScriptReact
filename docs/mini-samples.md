@@ -60,6 +60,11 @@ This project now treats the remaining backlog as isolated mini-samples instead o
   Status: implemented.
   Recommended surface: separate client entry point.
 
+- `sample-react-activity-transition`
+  Covers `Activity` and standalone `startTransition`.
+  Status: implemented.
+  Recommended surface: standalone route.
+
 ## React server mini-samples
 
 - `sample-react-streaming-ssr`

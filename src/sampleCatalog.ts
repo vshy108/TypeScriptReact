@@ -145,6 +145,16 @@ export const miniSampleCatalog = [
     whyIsolated: 'Hydration requires a separate HTML and server-rendered shell, so it should not share the SPA entry.',
   },
   {
+    id: 'sample-react-activity-transition',
+    title: 'Activity boundaries and standalone startTransition',
+    topic: 'React Client',
+    status: 'implemented',
+    surface: 'isolated-route',
+    apis: ['Activity', 'startTransition'],
+    summary: 'Control which subtrees are visible or hidden with Activity while deferring low-priority updates through the standalone startTransition API.',
+    whyIsolated: 'Activity boundaries affect rendering visibility and are easiest to understand in a dedicated operator console scenario.',
+  },
+  {
     id: 'sample-react-streaming-ssr',
     title: 'Streaming SSR and prerender flows',
     topic: 'React Server',
