@@ -555,6 +555,24 @@ export const miniSampleCatalog = [
     whyIsolated:
       "Variance demos use class hierarchies and console output that don't render as React components.",
   },
+  {
+    id: "sample-ts-private-fields",
+    title: "private vs #private fields",
+    topic: "TypeScript Language",
+    status: "implemented",
+    surface: "isolated-route",
+    apis: [
+      "private keyword (compile-time)",
+      "#private fields (runtime)",
+      "override keyword",
+      "constructor parameter properties",
+      "field initialization order",
+    ],
+    summary:
+      "Compare TS compile-time private vs JS #private runtime encapsulation, demonstrate override safety, parameter properties shorthand, and field initialization order gotchas.",
+    whyIsolated:
+      "Class feature demos need runtime execution and output display that's best shown in isolation.",
+  },
 ] as const satisfies readonly MiniSample[];
 
 export const sampleStatusMeta = {

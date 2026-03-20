@@ -13,6 +13,7 @@ import LayoutEffectsSample from "./samples/LayoutEffectsSample";
 import MappedFilteringSample from "./samples/MappedFilteringSample";
 import MemoLabSample from "./samples/MemoLabSample";
 import PortalModalSample from "./samples/PortalModalSample";
+import PrivateFieldsSample from "./samples/PrivateFieldsSample";
 import RecursiveTypesSample from "./samples/RecursiveTypesSample";
 import ReducerBoardSample from "./samples/ReducerBoardSample";
 import RefTimingSample from "./samples/RefTimingSample";
@@ -37,6 +38,7 @@ export const sampleImplementations: Partial<
   "sample-react-ref-timing": RefTimingSample,
   "sample-react-stale-closure": StaleClosureSample,
   "sample-react-use-resource": UseResourceSample,
+  "sample-ts-private-fields": PrivateFieldsSample,
   "sample-ts-recursive-types": RecursiveTypesSample,
   "sample-ts-classes-models": ClassesModelsSample,
   "sample-ts-conditional-distributivity": ConditionalDistributivitySample,
