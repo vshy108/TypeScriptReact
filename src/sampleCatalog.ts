@@ -409,6 +409,23 @@ export const miniSampleCatalog = [
     whyIsolated:
       "Edge-case demos need isolated state to show the bug and the fix side-by-side without interfering with other samples.",
   },
+  {
+    id: "sample-react-context-identity",
+    title: "Context provider identity perf trap",
+    topic: "React Client",
+    status: "implemented",
+    surface: "isolated-route",
+    apis: [
+      "useContext identity trap",
+      "useMemo provider value",
+      "useCallback stable reference",
+      "memo consumer skip",
+    ],
+    summary:
+      "Show how recreating the context value object on every render forces all consumers to re-render, and how useMemo + useCallback fix the identity problem.",
+    whyIsolated:
+      "The buggy and fixed providers need side-by-side comparison with visible render counts that would be noisy in a shared context demo.",
+  },
 ] as const satisfies readonly MiniSample[];
 
 export const sampleStatusMeta = {

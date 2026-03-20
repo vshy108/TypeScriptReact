@@ -2,6 +2,7 @@ import type { ComponentType } from "react";
 import type { MiniSampleId } from "./sampleCatalog";
 import ActivityTransitionSample from "./samples/ActivityTransitionSample";
 import ClassesModelsSample from "./samples/ClassesModelsSample";
+import ContextIdentitySample from "./samples/ContextIdentitySample";
 import ContextThemeSample from "./samples/ContextThemeSample";
 import FormStatusSample from "./samples/FormStatusSample";
 import FunctionsTuplesSample from "./samples/FunctionsTuplesSample";
@@ -19,6 +20,7 @@ export const sampleImplementations: Partial<
   Record<MiniSampleId, ComponentType>
 > = {
   "sample-react-activity-transition": ActivityTransitionSample,
+  "sample-react-context-identity": ContextIdentitySample,
   "sample-react-context-theme": ContextThemeSample,
   "sample-react-form-status": FormStatusSample,
   "sample-react-layout-effects": LayoutEffectsSample,
