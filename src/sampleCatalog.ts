@@ -205,7 +205,7 @@ export const miniSampleCatalog = [
     id: 'sample-ts-classes-models',
     title: 'Classes and object-oriented modeling',
     topic: 'TypeScript Language',
-    status: 'planned',
+    status: 'implemented',
     surface: 'isolated-route',
     apis: ['classes', 'access modifiers', 'abstract classes', 'implements', 'intersection types'],
     summary: 'Model a small plugin or domain system with classes and interfaces.',

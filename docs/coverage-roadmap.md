@@ -138,14 +138,14 @@ It is intentionally organized by major feature area instead of trying to enumera
 - [x] Function overloads
 - [x] Call signatures and construct signatures
 - [x] `this` typing in functions
+- [x] Intersection types
+- [x] Classes
+- [x] Access modifiers
+- [x] Abstract classes
+- [x] `implements`
 
 ### Not included yet: core language and handbook topics
 
-- [ ] Intersection types
-- [ ] Classes
-- [ ] Access modifiers
-- [ ] Abstract classes
-- [ ] `implements`
 - [ ] Recursive types
 
 ### Not included yet: reference and ecosystem topics

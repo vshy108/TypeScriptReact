@@ -1,5 +1,6 @@
 import type { ComponentType } from 'react'
 import type { MiniSampleId } from './sampleCatalog'
+import ClassesModelsSample from './samples/ClassesModelsSample'
 import ContextThemeSample from './samples/ContextThemeSample'
 import FormStatusSample from './samples/FormStatusSample'
 import FunctionsTuplesSample from './samples/FunctionsTuplesSample'
@@ -19,6 +20,7 @@ export const sampleImplementations: Partial<Record<MiniSampleId, ComponentType>>
   'sample-react-portal-modal': PortalModalSample,
   'sample-react-reducer-board': ReducerBoardSample,
   'sample-react-use-resource': UseResourceSample,
+  'sample-ts-classes-models': ClassesModelsSample,
   'sample-ts-functions-tuples': FunctionsTuplesSample,
   'sample-ts-utility-mapped': UtilityMappedSample,
 }

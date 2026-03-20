@@ -50,6 +50,7 @@ This project is a modern React starter that goes beyond the default template. It
 - `src/samples/PortalModalSample.tsx` demonstrates `createPortal()` and `flushSync()` with body-mounted modal and toast hosts
 - `src/samples/UtilityMappedSample.tsx` demonstrates TypeScript utility types, `keyof`, mapped types, conditional types, and `infer` through one derived release-contract model
 - `src/samples/FunctionsTuplesSample.tsx` demonstrates tuples, overloads, call signatures, construct signatures, and `this` typing through a typed command-routing playground
+- `src/samples/ClassesModelsSample.tsx` demonstrates classes, access modifiers, abstract classes, `implements`, and intersection types through a plugin registry model
 - `src/test/samples.test.tsx` smoke-tests the integrated app and every implemented isolated-route sample from the catalog
 - `src/test/setup.ts` provides the jsdom test setup and browser API shims used by Vitest
 - `src/components/TypeNotes.tsx` is lazy-loaded behind `Suspense`

@@ -87,6 +87,7 @@ This project now treats the remaining backlog as isolated mini-samples instead o
 
 - `sample-ts-classes-models`
   Covers classes, access modifiers, abstract classes, `implements`, and intersection types.
+  Status: implemented.
   Recommended surface: standalone route.
 
 ## TypeScript interop mini-samples
@@ -105,9 +106,8 @@ This project now treats the remaining backlog as isolated mini-samples instead o
 
 ## Suggested build order
 
-1. `sample-ts-classes-models`
-2. `sample-ts-declarations`
-3. `sample-react-hydration-hints`
-4. `sample-react-streaming-ssr`
-5. `sample-react-server-components`
-6. `sample-react-compiler`
+1. `sample-ts-declarations`
+2. `sample-react-hydration-hints`
+3. `sample-react-streaming-ssr`
+4. `sample-react-server-components`
+5. `sample-react-compiler`
