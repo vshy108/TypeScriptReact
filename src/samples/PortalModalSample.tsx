@@ -1,3 +1,13 @@
+// Portal-based modal and toast system
+// ------------------------------------
+// This sample demonstrates createPortal and flushSync.
+// Key patterns:
+//   - Two separate body-level portal hosts (modal + toast) so overlays
+//     don't inherit CSS stacking contexts from the sample card.
+//   - flushSync forces a state update to commit immediately so a DOM read
+//     right after sees the updated value. Compare with normal batching
+//     where the read happens before React commits.
+
 import { useEffect, useRef, useState } from 'react'
 import { createPortal, flushSync } from 'react-dom'
 
@@ -39,6 +49,9 @@ function createToast(mode: ToastMode, visibleCount: number): ToastRecord {
   }
 }
 
+// Creates and mounts a dedicated <div> on document.body as a portal target.
+// Body-level hosts prevent CSS stacking-context surprises: z-index, overflow,
+// and transforms in ancestor elements won't clip or misposition the overlay.
 function usePortalHost(className: string, label: string) {
   const [host] = useState<HTMLElement | null>(() => {
     if (typeof document === 'undefined') {
@@ -177,6 +190,10 @@ export default function PortalModalSample() {
   }
 
   // flushSync is only used here so the sample can compare a forced commit against normal batching.
+  // In the sync path, the state update commits before the next line runs, so
+  // toastCountRef.current.textContent shows the new count immediately.
+  // In the batched path, React defers the commit, so the same DOM read still
+  // sees the old count — demonstrating why flushSync exists for rare sync needs.
   function enqueueToast(mode: ToastMode) {
     if (mode === 'sync') {
       flushSync(() => {

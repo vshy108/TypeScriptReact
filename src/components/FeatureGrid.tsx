@@ -1,6 +1,9 @@
 // Type-only imports disappear from emitted JavaScript, which matters when verbatimModuleSyntax is enabled.
 import type { ReactNode } from 'react'
 
+// SelectableFeature is the constraint for any item that can appear in the grid.
+// Keeping it minimal (id, title, category, summary) makes FeatureGrid reusable
+// for different item shapes — the generic T only needs to extend this baseline.
 interface SelectableFeature {
   readonly id: string
   readonly title: string
@@ -8,6 +11,8 @@ interface SelectableFeature {
   readonly summary: string
 }
 
+// The generic parameter T lets callers pass their own item type (e.g. FeatureDefinition)
+// while the grid only depends on the SelectableFeature contract.
 interface FeatureGridProps<T extends SelectableFeature> {
   readonly items: readonly T[]
   readonly activeId: T['id']

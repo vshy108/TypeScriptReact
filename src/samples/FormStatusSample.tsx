@@ -1,3 +1,11 @@
+// Nested submit button state
+// --------------------------
+// This sample demonstrates useFormStatus for reading the active form submission
+// from any descendant without threading props down from the form shell.
+// Key pattern: multiple <button name="intent"> elements let the action handler
+// distinguish which submit button was clicked, while useFormStatus gives
+// nested components access to the pending state and submitted form data.
+
 import { useId, useState } from 'react'
 import { useFormStatus } from 'react-dom'
 
@@ -113,6 +121,9 @@ function createDispatchRecord(draft: DispatchDraft, durationMs: number): Dispatc
   }
 }
 
+// Safely extract a string field from the in-flight FormData.
+// useFormStatus exposes `data` only while a submission is active,
+// so this helper defends against null data and non-string entries.
 function readPendingField(data: FormData | null, field: string) {
   const value = data?.get(field)
   return typeof value === 'string' ? value : null
@@ -123,7 +134,8 @@ function getAudienceLabel(audience: DispatchAudience) {
 }
 
 function PendingInspector() {
-  // These descendants read the nearest parent form state without any prop threading.
+  // These descendants read the nearest parent <form>'s submission state
+  // without any prop threading. useFormStatus only works inside a <form>.
   const { pending, data, method } = useFormStatus()
   const subject = readPendingField(data, 'subject')?.trim()
   const audience = readPendingField(data, 'audience')
@@ -158,6 +170,9 @@ function PendingInspector() {
   )
 }
 
+// Each submit button carries a different `name="intent"` value. useFormStatus
+// reads which button triggered the submission so individual buttons can show
+// their own active indicator without shared boolean props.
 function SubmitButton({ intent }: { readonly intent: DispatchIntent }) {
   const { pending, data } = useFormStatus()
   const activeIntent = readPendingField(data, 'intent')
@@ -185,6 +200,8 @@ export default function FormStatusSample() {
   )
 
   // A function action gives useFormStatus a live snapshot of the form that is currently submitting.
+  // performance.now() captures the wall-clock duration of the simulated async work
+  // so the dispatch record can display how long the submission took.
   async function handleDispatch(formData: FormData) {
     const startedAt = performance.now()
 

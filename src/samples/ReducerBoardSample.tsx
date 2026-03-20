@@ -1,3 +1,10 @@
+// Reducer-driven task board
+// -------------------------
+// This sample demonstrates useReducer with a domain-oriented action pattern.
+// Instead of scattering state mutations across event handlers, every transition
+// goes through one reducer function that owns the full state shape.
+// Key patterns: discriminated union actions, exhaustive switch, lazy initializer.
+
 import { useId, useReducer, useState, type FormEvent } from 'react'
 
 type BoardLane = 'Backlog' | 'Active' | 'Done'
@@ -18,6 +25,8 @@ interface BoardState {
   readonly lastAction: string
 }
 
+// Each action variant carries just enough data for its case.
+// TypeScript narrows `action` inside each switch branch through the discriminated `type` field.
 type BoardAction =
   | { readonly type: 'add'; readonly task: BoardTask }
   | { readonly type: 'move'; readonly taskId: BoardTaskId; readonly lane: BoardLane }
@@ -59,6 +68,8 @@ function createBoardState(): BoardState {
 }
 
 // useReducer shines when handlers dispatch intent and the reducer owns every state transition.
+// Each case returns the full next state including a `lastAction` string so the UI can
+// show which transition just happened without threading extra state through event handlers.
 function boardReducer(state: BoardState, action: BoardAction): BoardState {
   switch (action.type) {
     case 'add':
@@ -100,6 +111,9 @@ function boardReducer(state: BoardState, action: BoardAction): BoardState {
         lastAction: 'Reset reducer state to its initializer output.',
       }
     default:
+      // assertNever guarantees exhaustiveness at compile time: if a new action variant
+      // is added to BoardAction but not handled above, TypeScript will report a type error
+      // here because `action` won't narrow to `never`.
       return assertNever(action)
   }
 }
@@ -126,6 +140,8 @@ export default function ReducerBoardSample() {
   const formId = useId()
   const [draftTitle, setDraftTitle] = useState('')
   // Lazy initialization keeps the initial board construction out of the render path.
+  // The third argument (createBoardState) runs once on mount instead of every render,
+  // which avoids recalculating the starter tasks on each update.
   const [state, dispatch] = useReducer(boardReducer, undefined, createBoardState)
 
   const visibleLanes = boardLanes.filter((lane) => state.filter === 'All' || state.filter === lane)

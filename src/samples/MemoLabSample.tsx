@@ -1,3 +1,10 @@
+// Memoization and render-control lab
+// -----------------------------------
+// This sample demonstrates memo(), useMemo(), useCallback(), Profiler, and useDebugValue.
+// It shows which renders are avoided through memoization, where memoization genuinely
+// helps (expensive roster derivation), and how useDebugValue surfaces custom labels
+// in React DevTools for custom hooks.
+
 import {
   Profiler,
   memo,
@@ -165,6 +172,10 @@ function createProfileEntry(
   }
 }
 
+// Simple additive scoring heuristic for roster ranking.
+// Base score comes from the member's competency rating, availability adds a small
+// bonus (+6), and each matching search term adds a larger boost (+12) so keyword
+// relevance dominates the sort order over static attributes.
 function buildMatchScore(member: LabMember, normalizedQuery: string) {
   const haystack = `${member.name} ${member.focus} ${member.region} ${member.note}`.toLowerCase()
   const terms = normalizedQuery.split(/\s+/).filter(Boolean)
@@ -227,6 +238,9 @@ function useVisibleRoster(
     }
   }, [focusFilter, normalizedQuery, onlyAvailable, sortMode])
 
+  // useDebugValue's second argument is a formatter function. React DevTools
+  // only calls it when the hook panel is open, so the formatting work is
+  // deferred until someone actually inspects the component.
   useDebugValue(
     {
       visibleCount: roster.summary.visibleCount,
@@ -241,7 +255,10 @@ function useVisibleRoster(
   return roster
 }
 
-// memo skips rerendering this card when its props are referentially stable across parent renders.
+// memo() wraps a function component with a shallow prop comparison.
+// When the parent re-renders but this card's props haven't changed
+// (same member ref, same isSelected, same onSelectMember callback),
+// React skips rendering this subtree entirely.
 // memo() is the modern replacement for PureComponent, which was a class-based component that
 // implemented shouldComponentUpdate with a shallow prop comparison. memo() provides the same
 // optimization for function components without requiring a class.

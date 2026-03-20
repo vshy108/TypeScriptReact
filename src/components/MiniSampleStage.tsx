@@ -16,6 +16,9 @@ function readInitialSampleId(): MiniSampleId {
 export default function MiniSampleStage() {
   const [activeSampleId, setActiveSampleId] = useState<MiniSampleId>(readInitialSampleId)
 
+  // Listen for browser hashchange events so forward/back navigation and
+  // command palette selections update the active sample in real time.
+  // Cleanup removes the listener to avoid leaks when the component unmounts.
   useEffect(() => {
     function syncFromHash() {
       setActiveSampleId(readSampleIdFromHash() ?? getDefaultSampleId())

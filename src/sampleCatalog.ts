@@ -37,6 +37,9 @@ export const sampleTopics = [
 ] as const satisfies readonly SampleTopic[];
 
 // This registry is the source of truth for the backlog once work is split into mini-samples.
+// The UI reads it to populate the sample board and command palette, the test suite reads it
+// to verify that every "implemented" entry has a matching component or artifact, and the
+// routing module reads it to resolve hash slugs back to catalog ids.
 export const miniSampleCatalog = [
   {
     id: "sample-core-lab",

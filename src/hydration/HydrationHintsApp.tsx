@@ -19,6 +19,9 @@ export default function HydrationHintsApp() {
   const [statusMessage, setStatusMessage] = useState(initialHydrationStatus)
   const [activityLog, setActivityLog] = useState<readonly string[]>(initialHydrationLog)
 
+  // Schedule the hydrated status update with setTimeout(0) so it runs after
+  // the initial hydration render completes. This gives hydrateRoot() time to
+  // finish attaching event handlers before we update the status message.
   useEffect(() => {
     const hydrationTick = window.setTimeout(() => {
       setStatusMessage(hydratedStatus)

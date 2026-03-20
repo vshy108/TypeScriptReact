@@ -1,3 +1,11 @@
+// Resource loading with use()
+// ---------------------------
+// This sample demonstrates the use() hook with Suspense-driven loading.
+// Key pattern: the component reads a Promise directly from render via use().
+// If the Promise is still pending, React throws internally and the nearest
+// <Suspense> boundary catches it, showing the fallback until it resolves.
+// There is no manual `isLoading` flag anywhere — Suspense handles it.
+
 import { Suspense, use, useState } from 'react'
 
 type LaunchBriefId = `brief-${number}`
@@ -43,6 +51,10 @@ const launchBriefs = [
   },
 ] as const satisfies readonly LaunchBriefTemplate[]
 
+// The cache stores Promises (not resolved values) keyed by brief+revision.
+// Caching the Promise itself lets React suspend on the first read and reuse
+// the same boundary on re-renders — if the Promise already resolved, use()
+// returns the value immediately without suspending again.
 const resourceCache = new Map<string, Promise<LoadedLaunchBrief>>()
 
 function formatTime(date: Date) {
@@ -157,6 +169,9 @@ export default function UseResourceSample() {
     ].slice(0, 5))
   }
 
+  // Bumping the revision number creates a new cache key, which forces
+  // readLaunchBrief to start a fresh fetch. The Suspense boundary re-suspends
+  // while the new Promise is pending, without any manual loading state.
   function refreshActiveBrief() {
     const nextRevision = revision + 1
     setRevision(nextRevision)

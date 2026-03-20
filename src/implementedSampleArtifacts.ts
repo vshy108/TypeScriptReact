@@ -10,7 +10,10 @@ export interface ImplementedSampleArtifact {
   readonly readmePath?: string;
 }
 
-// Implemented samples that do not render through the current SPA route surface publish their artifact details here.
+// Implemented samples that do not render through the current SPA route surface publish their
+// artifact details here. This is separate from sampleImplementations because these samples
+// have their own entry points (hydration HTML, SSR workspace, node-only tsconfig, comment-based
+// demo files) rather than a React component that MiniSampleStage can render inline.
 export const implementedSampleArtifacts: Partial<
   Record<MiniSampleId, ImplementedSampleArtifact>
 > = {

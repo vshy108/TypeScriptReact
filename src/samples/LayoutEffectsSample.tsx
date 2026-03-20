@@ -1,3 +1,13 @@
+// Measured layout and synchronous effects
+// ----------------------------------------
+// This sample demonstrates the timing difference between three effect types:
+//   useInsertionEffect — runs before DOM measurement, used to inject CSS rules.
+//   useLayoutEffect    — runs after DOM mutation but before the browser paints.
+//   useEffect          — runs after paint (passive / deferred).
+// The visual result: the layout marker snaps into position without flicker
+// because useLayoutEffect moves it before paint, while the passive marker
+// updates visibly after paint for comparison.
+
 import { useEffect, useInsertionEffect, useLayoutEffect, useRef, useState } from 'react'
 
 type LayoutSignalId = `signal-${number}`
@@ -69,6 +79,9 @@ const accentTokens = {
 
 let nextLayoutScopeNumber = 1
 
+// Build a scoped CSS block for the current accent palette and density mode.
+// These rules are injected via useInsertionEffect before any layout measurement,
+// so by the time useLayoutEffect reads element sizes the new styles are already active.
 function createLayoutStyles(scopeClass: string, accent: AccentMode, density: DensityMode) {
   const tokens = accentTokens[accent]
   const paddingX = density === 'compact' ? '0.85rem' : '1.2rem'
@@ -118,6 +131,8 @@ function createLayoutStyles(scopeClass: string, accent: AccentMode, density: Den
 `
 }
 
+// Measure the active chip's position relative to the strip container.
+// Returns a snapshot with width and left offset for the marker overlay.
 function readSnapshot(
   strip: HTMLDivElement | null,
   activeNode: HTMLButtonElement | null,
@@ -137,6 +152,7 @@ function readSnapshot(
   }
 }
 
+// Position a marker element using CSS transforms to match a measured snapshot.
 function applyMarker(marker: HTMLDivElement | null, snapshot: LayoutSnapshot | null) {
   if (!marker || !snapshot) {
     if (marker) {
@@ -191,7 +207,9 @@ export default function LayoutEffectsSample() {
 
   const activeSignal = layoutSignals.find((signal) => signal.id === activeId) ?? layoutSignals[0]
 
-  // CSS-in-JS libraries use useInsertionEffect for this exact phase: inject styles before layout reads.
+  // CSS-in-JS libraries use useInsertionEffect for this exact phase: inject styles
+  // before layout reads. The style element is appended to <head> and updated whenever
+  // the accent or density changes, then removed on cleanup.
   useInsertionEffect(() => {
     if (!styleElement) {
       return
@@ -206,6 +224,7 @@ export default function LayoutEffectsSample() {
   }, [accent, density, scopeClass, styleElement])
 
   // Measure the selected chip and move the primary marker before the browser paints.
+  // Because this runs synchronously after DOM mutation, the marker never flickers.
   useLayoutEffect(() => {
     const snapshot = readSnapshot(stripRef.current, getChipNode(chipRefs.current, activeId), activeSignal.label)
 
@@ -216,7 +235,9 @@ export default function LayoutEffectsSample() {
     }
   }, [activeId, activeSignal.label, density])
 
-  // A passive effect runs later, so this secondary marker updates after paint.
+  // A passive effect runs after paint, so this secondary marker updates with a visible
+  // delay on fast machines. Compare the layout note vs passive note timestamps to see
+  // the timing difference.
   useEffect(() => {
     const snapshot = readSnapshot(stripRef.current, getChipNode(chipRefs.current, activeId), activeSignal.label)
 

@@ -1,8 +1,14 @@
+// JSDoc and JS project typing
+// ---------------------------
 // This TypeScript file imports from a JSDoc-typed JavaScript file.
 // It demonstrates that allowJs + checkJs lets TypeScript consume JS modules
 // with full type safety — the JSDoc annotations in release-notes.js provide
 // the same type information that a .d.ts file would.
 
+// require() is used here because the JS module uses CommonJS exports.
+// The `as typeof import(...)` cast extracts the full inferred type from
+// the JSDoc annotations in the .js file, giving us strongly typed access
+// to every exported binding without writing a separate .d.ts.
 /* eslint-disable @typescript-eslint/no-require-imports */
 const { jsdocOutput, formatVersion, sampleNotes } =
   require("./release-notes.js") as typeof import("./release-notes.js");
