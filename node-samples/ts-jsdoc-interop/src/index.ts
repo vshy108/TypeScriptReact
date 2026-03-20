@@ -3,9 +3,10 @@
 // with full type safety — the JSDoc annotations in release-notes.js provide
 // the same type information that a .d.ts file would.
 
-// eslint-disable-next-line @typescript-eslint/no-require-imports
+/* eslint-disable @typescript-eslint/no-require-imports */
 const { jsdocOutput, formatVersion, sampleNotes } =
   require("./release-notes.js") as typeof import("./release-notes.js");
+/* eslint-enable @typescript-eslint/no-require-imports */
 
 // TypeScript infers the types from the JSDoc annotations in the .js file.
 // If the JS file had a type error in its JSDoc, it would show up here too.
