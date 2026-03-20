@@ -227,6 +227,24 @@ export const miniSampleCatalog = [
       "Compiler configuration affects the whole build and should be tested in a contained workspace.",
   },
   {
+    id: "sample-ts-recursive-types",
+    title: "Recursive types and tree-shaped data",
+    topic: "TypeScript Language",
+    status: "implemented",
+    surface: "isolated-route",
+    apis: [
+      "recursive types",
+      "DeepReadonly",
+      "DeepKeyPaths",
+      "recursive interfaces",
+      "recursive type aliases",
+    ],
+    summary:
+      "Model tree-shaped data with self-referencing interfaces and type aliases, then derive compile-time utilities like DeepReadonly and DeepKeyPaths.",
+    whyIsolated:
+      "Recursive types need a clear tree structure to demonstrate, which gets lost in a flat sample.",
+  },
+  {
     id: "sample-ts-utility-mapped",
     title: "Utility, mapped, and conditional types",
     topic: "TypeScript Language",

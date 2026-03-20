@@ -8,6 +8,7 @@ import FunctionsTuplesSample from "./samples/FunctionsTuplesSample";
 import LayoutEffectsSample from "./samples/LayoutEffectsSample";
 import MemoLabSample from "./samples/MemoLabSample";
 import PortalModalSample from "./samples/PortalModalSample";
+import RecursiveTypesSample from "./samples/RecursiveTypesSample";
 import ReducerBoardSample from "./samples/ReducerBoardSample";
 import UtilityMappedSample from "./samples/UtilityMappedSample";
 import UseResourceSample from "./samples/UseResourceSample";
@@ -24,6 +25,7 @@ export const sampleImplementations: Partial<
   "sample-react-portal-modal": PortalModalSample,
   "sample-react-reducer-board": ReducerBoardSample,
   "sample-react-use-resource": UseResourceSample,
+  "sample-ts-recursive-types": RecursiveTypesSample,
   "sample-ts-classes-models": ClassesModelsSample,
   "sample-ts-functions-tuples": FunctionsTuplesSample,
   "sample-ts-utility-mapped": UtilityMappedSample,
