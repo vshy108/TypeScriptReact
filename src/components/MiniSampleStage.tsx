@@ -1,32 +1,12 @@
-import { useEffect, useState, type ComponentType } from 'react'
+import { useEffect, useState } from 'react'
 import {
   miniSampleCatalog,
   sampleStatusMeta,
   sampleSurfaceLabels,
   type MiniSampleId,
 } from '../sampleCatalog'
+import { sampleImplementations } from '../sampleImplementations'
 import { getDefaultSampleId, readSampleIdFromHash, toSampleHash } from '../sampleRuntime'
-import ContextThemeSample from '../samples/ContextThemeSample'
-import FormStatusSample from '../samples/FormStatusSample'
-import FunctionsTuplesSample from '../samples/FunctionsTuplesSample'
-import LayoutEffectsSample from '../samples/LayoutEffectsSample'
-import MemoLabSample from '../samples/MemoLabSample'
-import PortalModalSample from '../samples/PortalModalSample'
-import ReducerBoardSample from '../samples/ReducerBoardSample'
-import UtilityMappedSample from '../samples/UtilityMappedSample'
-import UseResourceSample from '../samples/UseResourceSample'
-
-const sampleImplementations: Partial<Record<MiniSampleId, ComponentType>> = {
-  'sample-react-context-theme': ContextThemeSample,
-  'sample-react-form-status': FormStatusSample,
-  'sample-react-layout-effects': LayoutEffectsSample,
-  'sample-react-memo-lab': MemoLabSample,
-  'sample-react-portal-modal': PortalModalSample,
-  'sample-react-reducer-board': ReducerBoardSample,
-  'sample-ts-functions-tuples': FunctionsTuplesSample,
-  'sample-ts-utility-mapped': UtilityMappedSample,
-  'sample-react-use-resource': UseResourceSample,
-}
 
 function readInitialSampleId(): MiniSampleId {
   return readSampleIdFromHash() ?? getDefaultSampleId()

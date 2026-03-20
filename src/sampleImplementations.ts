@@ -1,0 +1,24 @@
+import type { ComponentType } from 'react'
+import type { MiniSampleId } from './sampleCatalog'
+import ContextThemeSample from './samples/ContextThemeSample'
+import FormStatusSample from './samples/FormStatusSample'
+import FunctionsTuplesSample from './samples/FunctionsTuplesSample'
+import LayoutEffectsSample from './samples/LayoutEffectsSample'
+import MemoLabSample from './samples/MemoLabSample'
+import PortalModalSample from './samples/PortalModalSample'
+import ReducerBoardSample from './samples/ReducerBoardSample'
+import UtilityMappedSample from './samples/UtilityMappedSample'
+import UseResourceSample from './samples/UseResourceSample'
+
+// The app and the tests share this registry so every implemented sample id points at one concrete component in one place.
+export const sampleImplementations: Partial<Record<MiniSampleId, ComponentType>> = {
+  'sample-react-context-theme': ContextThemeSample,
+  'sample-react-form-status': FormStatusSample,
+  'sample-react-layout-effects': LayoutEffectsSample,
+  'sample-react-memo-lab': MemoLabSample,
+  'sample-react-portal-modal': PortalModalSample,
+  'sample-react-reducer-board': ReducerBoardSample,
+  'sample-react-use-resource': UseResourceSample,
+  'sample-ts-functions-tuples': FunctionsTuplesSample,
+  'sample-ts-utility-mapped': UtilityMappedSample,
+}

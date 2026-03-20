@@ -24,6 +24,8 @@ This project is a modern React starter that goes beyond the default template. It
 - `npm run dev` starts the Vite dev server
 - `npm run build` runs TypeScript project builds and produces a production bundle
 - `npm run lint` runs ESLint
+- `npm run test` runs the registry-driven sample test suite in Vitest
+- `npm run test:watch` runs the Vitest watcher during sample development
 - `npm run typecheck` runs TypeScript without building the app bundle
 - `npm run preview` serves the built app locally
 
@@ -33,6 +35,7 @@ This project is a modern React starter that goes beyond the default template. It
 - `src/catalog.ts` holds typed sample data and domain types
 - `src/releaseStore.ts` is the external store example for `useSyncExternalStore`
 - `src/sampleCatalog.ts` is the typed registry for isolated mini-samples
+- `src/sampleImplementations.ts` is the shared implementation registry used by both the app and the test suite
 - `src/sampleRuntime.ts` resolves mini-sample hash routes
 - `src/components/CommandPalette.tsx` shows React 19 ref-as-prop usage
 - `src/components/FeatureGrid.tsx` is a generic TypeScript component
@@ -47,6 +50,8 @@ This project is a modern React starter that goes beyond the default template. It
 - `src/samples/PortalModalSample.tsx` demonstrates `createPortal()` and `flushSync()` with body-mounted modal and toast hosts
 - `src/samples/UtilityMappedSample.tsx` demonstrates TypeScript utility types, `keyof`, mapped types, conditional types, and `infer` through one derived release-contract model
 - `src/samples/FunctionsTuplesSample.tsx` demonstrates tuples, overloads, call signatures, construct signatures, and `this` typing through a typed command-routing playground
+- `src/test/samples.test.tsx` smoke-tests the integrated app and every implemented isolated-route sample from the catalog
+- `src/test/setup.ts` provides the jsdom test setup and browser API shims used by Vitest
 - `src/components/TypeNotes.tsx` is lazy-loaded behind `Suspense`
 - `docs/coverage-roadmap.md` tracks what is implemented and what still needs examples
 - `docs/mini-samples.md` splits the backlog into isolated sample-sized units

@@ -4,6 +4,7 @@ import {
   useCallback,
   useDebugValue,
   useMemo,
+  useRef,
   useState,
   type ProfilerOnRenderCallback,
 } from 'react'
@@ -416,6 +417,7 @@ export default function MemoLabSample() {
   const [selectedId, setSelectedId] = useState<LabMemberId>(labMembers[0].id)
   const [toneMode, setToneMode] = useState<ToneMode>('calm')
   const [profileEntries, setProfileEntries] = useState<readonly ProfileEntry[]>([])
+  const skipProfilerFeedbackRef = useRef(false)
   const roster = useVisibleRoster(query, focusFilter, onlyAvailable, sortMode)
 
   // useCallback keeps handler identities stable, which is what makes memoized children and Profiler output meaningful here.
@@ -425,6 +427,13 @@ export default function MemoLabSample() {
 
   const handleProfilerRender = useCallback<ProfilerOnRenderCallback>(
     (_id, phase, actualDuration, baseDuration) => {
+      // Ignore the commit caused by updating the profiler feed itself, or the callback would recurse into another log update.
+      if (skipProfilerFeedbackRef.current) {
+        skipProfilerFeedbackRef.current = false
+        return
+      }
+
+      skipProfilerFeedbackRef.current = true
       setProfileEntries((currentEntries) => [
         createProfileEntry(phase, actualDuration, baseDuration),
         ...currentEntries,
