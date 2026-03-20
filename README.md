@@ -68,6 +68,10 @@ This project is a modern React starter that goes beyond the default template. It
 - `node-samples/ts-advanced-runtime/src/index.ts` demonstrates enums, symbols, iterators, generators, TC39 decorators, mixins, and namespaces
 - `node-samples/ts-jsdoc-interop/src/release-notes.js` is a JSDoc-typed JavaScript module consumed by TypeScript through `allowJs` + `checkJs`
 - `node-samples/ts-jsdoc-interop/src/index.ts` imports and type-checks the JSDoc-typed JS module
+- `node-samples/ts-advanced-tsconfig/src/index.ts` demonstrates advanced tsconfig options: path aliases, composite projects, declaration maps, and index-signature strictness
+- `src/samples/ReactCompilerDemo.ts` is a comment-based demonstration of React Compiler setup, `"use memo"`, and `"use no memo"` directives
+- `src/samples/ServerComponentsDemo.ts` is a comment-based demonstration of Server Components, Server Functions, `'use client'`, and `'use server'` directives
+- `src/samples/ReactLintRulesDemo.ts` is a comment-based demonstration of `exhaustive-deps`, `rules-of-hooks`, purity enforcement, and component-only export rules
 - `hydration.html` is the separate HTML shell that the hydration sample attaches to
 - `server-samples/react-streaming-ssr/README.md` explains the SSR workspace and how to run it directly
 - `src/components/TypeNotes.tsx` is lazy-loaded behind `Suspense`
@@ -75,13 +79,18 @@ This project is a modern React starter that goes beyond the default template. It
 - `docs/mini-samples.md` splits the backlog into isolated sample-sized units
 ## Why some React features are not covered here
 
-All stable React client and DOM APIs are demonstrated in this project. The remaining uncovered features require infrastructure that does not fit inside a single Vite client app:
+All stable React client and DOM APIs are demonstrated in this project. The remaining features that require special infrastructure are covered through comment-based demonstrations (`comment-demo` surface) showing annotated sample code:
+
+| Feature | How covered |
+|---------|-------------|
+| React Compiler, `"use memo"`, `"use no memo"` | Comment-based demo in `src/samples/ReactCompilerDemo.ts`. Requires the Babel/SWC plugin to run for real. |
+| Server Components, Server Functions, `'use client'`, `'use server'` | Comment-based demo in `src/samples/ServerComponentsDemo.ts`. Requires a framework-aware bundler to run for real. |
+| Lint rules (`exhaustive-deps`, purity, `rules-of-hooks`) | Comment-based demo in `src/samples/ReactLintRulesDemo.ts`. Requires intentionally broken code that does not fit the sample-and-test pattern. |
+
+The following categories are intentionally excluded:
 
 | Feature | Reason not covered |
 |---------|-------------------|
-| React Compiler, `"use memo"`, `"use no memo"` | Requires the React Compiler Babel/SWC plugin configured in a dedicated build pipeline. The compiler transforms code at build time, so it cannot be shown as a runtime sample inside a standard Vite project. |
-| Server Components, Server Functions, `'use client'`, `'use server'` | These rely on a framework-aware bundler (e.g. Next.js, Remix) that splits server and client modules at build time. Faking them in a plain client app would misrepresent how they work. |
-| Deeper lint examples (`exhaustive-deps`, purity, `static-components`) | These are ESLint rule demonstrations rather than API usage. They would need intentionally broken code and lint output, which do not fit the sample-and-test pattern used here. |
 | Canary APIs (`<ViewTransition>`, `addTransitionType`) | Not yet part of a stable React release. Will be added when they ship in a stable version. |
 | Experimental APIs (`experimental_taintObjectReference`) | Intentionally unstable and subject to removal. Not appropriate for a learning reference. |
 | Legacy APIs (`Children`, `cloneElement`, `createRef`, `forwardRef`, class components, `PureComponent`) | These are superseded by modern equivalents already shown in this project. They exist for backward compatibility and are not recommended for new code. |

@@ -82,16 +82,16 @@ It is intentionally organized by major feature area instead of trying to enumera
 - [x] `resumeAndPrerender`
 - [x] `resumeAndPrerenderToNodeStream`
 
-### Not included yet: compiler, lint, and server-component topics
+### Included now: compiler, lint, and server-component topics (comment-based demos)
 
-- [ ] React Compiler setup
-- [ ] `"use memo"` directive
-- [ ] `"use no memo"` directive
-- [ ] Server Components
-- [ ] Server Functions
-- [ ] `'use client'`
-- [ ] `'use server'`
-- [ ] Deeper React lint examples such as `exhaustive-deps`, `purity`, and `static-components`
+- [x] React Compiler setup
+- [x] `"use memo"` directive
+- [x] `"use no memo"` directive
+- [x] Server Components
+- [x] Server Functions
+- [x] `'use client'`
+- [x] `'use server'`
+- [x] Deeper React lint examples such as `exhaustive-deps`, `purity`, and `static-components`
 
 ### Optional or deferred React topics
 
@@ -160,7 +160,7 @@ It is intentionally organized by major feature area instead of trying to enumera
 - [x] Iterators and generators
 - [x] Namespaces
 - [x] JSDoc-powered typing
-- [ ] Advanced `tsconfig` options beyond the current strict baseline
+- [x] Advanced `tsconfig` options beyond the current strict baseline
 
 ## Backlog structure
 

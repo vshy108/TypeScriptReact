@@ -74,11 +74,13 @@ This project now treats the remaining backlog as isolated mini-samples instead o
 
 - `sample-react-server-components`
   Covers Server Components, Server Functions, `'use client'`, and `'use server'`.
-  Recommended surface: framework-aware workspace.
+  Status: implemented (comment-based demo).
+  Surface: comment-demo.
 
 - `sample-react-compiler`
   Covers React Compiler, `"use memo"`, and `"use no memo"`.
-  Recommended surface: separate compiler-enabled workspace.
+  Status: implemented (comment-based demo).
+  Surface: comment-demo.
 
 ## TypeScript language mini-samples
 
@@ -119,7 +121,18 @@ This project now treats the remaining backlog as isolated mini-samples instead o
   Status: implemented.
   Recommended surface: node-only package-style sample.
 
+- `sample-ts-advanced-tsconfig`
+  Covers `resolveJsonModule`, `paths`, `baseUrl`, `composite`, `declarationMap`, `importHelpers`, and `noPropertyAccessFromIndexSignature`.
+  Status: implemented.
+  Recommended surface: node-only package-style sample.
+
+## React lint mini-samples
+
+- `sample-react-lint-rules-demo`
+  Covers `exhaustive-deps`, `rules-of-hooks`, `react-compiler` purity enforcement, and `react-refresh/only-export-components`.
+  Status: implemented (comment-based demo).
+  Surface: comment-demo.
+
 ## Suggested build order
 
-1. `sample-react-server-components`
-2. `sample-react-compiler`
+All samples are implemented.

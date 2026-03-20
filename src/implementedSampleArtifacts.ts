@@ -52,4 +52,29 @@ export const implementedSampleArtifacts: Partial<
     verificationCommand:
       "node ./node_modules/typescript/bin/tsc -p node-samples/ts-jsdoc-interop/tsconfig.json",
   },
+  "sample-ts-advanced-tsconfig": {
+    label: "Node-only advanced tsconfig workspace",
+    rootDir: "node-samples/ts-advanced-tsconfig",
+    entryPoint: "node-samples/ts-advanced-tsconfig/src/index.ts",
+    verificationCommand:
+      "node ./node_modules/typescript/bin/tsc -p node-samples/ts-advanced-tsconfig/tsconfig.json",
+  },
+  "sample-react-compiler": {
+    label: "Comment-based compiler demo",
+    rootDir: ".",
+    entryPoint: "src/samples/ReactCompilerDemo.ts",
+    verificationCommand: "npm run typecheck",
+  },
+  "sample-react-server-components": {
+    label: "Comment-based server components demo",
+    rootDir: ".",
+    entryPoint: "src/samples/ServerComponentsDemo.ts",
+    verificationCommand: "npm run typecheck",
+  },
+  "sample-react-lint-rules-demo": {
+    label: "Comment-based lint rules demo",
+    rootDir: ".",
+    entryPoint: "src/samples/ReactLintRulesDemo.ts",
+    verificationCommand: "npm run typecheck",
+  },
 };

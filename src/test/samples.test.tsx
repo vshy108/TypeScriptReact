@@ -10,10 +10,10 @@ import { toSampleHash } from '../sampleRuntime'
 const implementedSamples = miniSampleCatalog.filter((sample) => sample.status === 'implemented')
 const implementedRouteSamples = implementedSamples.filter((sample) => sample.surface === 'isolated-route')
 const implementedArtifactSamples = implementedSamples.filter(
-  (sample) => sample.surface === 'node-only' || sample.surface === 'separate-entry',
+  (sample) => sample.surface === 'node-only' || sample.surface === 'separate-entry' || sample.surface === 'comment-demo',
 )
 const supportedImplementedSurfaces = new Set(
-  ['current-app', 'isolated-route', 'separate-entry', 'node-only'] as const,
+  ['current-app', 'isolated-route', 'separate-entry', 'node-only', 'comment-demo'] as const,
 )
 
 describe('sample coverage contract', () => {

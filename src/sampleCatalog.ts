@@ -11,7 +11,8 @@ export type SampleSurface =
   | "current-app"
   | "isolated-route"
   | "separate-entry"
-  | "node-only";
+  | "node-only"
+  | "comment-demo";
 
 export type MiniSampleId = `sample-${string}`;
 
@@ -201,8 +202,8 @@ export const miniSampleCatalog = [
     id: "sample-react-server-components",
     title: "Server Components and Server Functions",
     topic: "React Server",
-    status: "deferred",
-    surface: "separate-entry",
+    status: "implemented",
+    surface: "comment-demo",
     apis: [
       "Server Components",
       "Server Functions",
@@ -210,21 +211,21 @@ export const miniSampleCatalog = [
       "'use server'",
     ],
     summary:
-      "Demonstrate server/client boundaries and file-level directives in a framework-aware environment.",
+      "Comment-based demonstration of server/client boundaries and file-level directives. Requires a framework-aware bundler to run for real.",
     whyIsolated:
-      "These patterns are environment-specific and should not be faked inside a plain Vite client app.",
+      "These patterns are environment-specific and are demonstrated through annotated code comments instead of runnable samples.",
   },
   {
     id: "sample-react-compiler",
     title: "React Compiler and directives",
     topic: "React Server",
-    status: "deferred",
-    surface: "separate-entry",
+    status: "implemented",
+    surface: "comment-demo",
     apis: ["React Compiler", '"use memo"', '"use no memo"'],
     summary:
-      "Show compiler setup, generated behavior, and when directives change optimization decisions.",
+      "Comment-based demonstration of compiler setup, generated behavior, and directive-controlled optimization. Requires the Babel/SWC plugin to run for real.",
     whyIsolated:
-      "Compiler configuration affects the whole build and should be tested in a contained workspace.",
+      "Compiler configuration affects the whole build and is demonstrated through annotated code comments instead of runnable samples.",
   },
   {
     id: "sample-ts-recursive-types",
@@ -349,6 +350,43 @@ export const miniSampleCatalog = [
     whyIsolated:
       "These topics are niche and should not dilute the main learning path before the core language samples exist.",
   },
+  {
+    id: "sample-react-lint-rules-demo",
+    title: "React ESLint rules and purity enforcement",
+    topic: "React Client",
+    status: "implemented",
+    surface: "comment-demo",
+    apis: [
+      "exhaustive-deps",
+      "rules-of-hooks",
+      "react-compiler purity",
+      "react-refresh/only-export-components",
+    ],
+    summary:
+      "Comment-based demonstration of the key React lint rules: exhaustive-deps, purity enforcement, rules-of-hooks, and component-only exports.",
+    whyIsolated:
+      "Lint rule demos require intentionally broken code and are shown through annotated code comments instead of runnable samples.",
+  },
+  {
+    id: "sample-ts-advanced-tsconfig",
+    title: "Advanced tsconfig options beyond strict",
+    topic: "TypeScript Interop",
+    status: "implemented",
+    surface: "node-only",
+    apis: [
+      "resolveJsonModule",
+      "paths",
+      "baseUrl",
+      "composite",
+      "declarationMap",
+      "importHelpers",
+      "noPropertyAccessFromIndexSignature",
+    ],
+    summary:
+      "Explore tsconfig options beyond the strict baseline: path aliases, composite projects, declaration maps, and index-signature strictness.",
+    whyIsolated:
+      "Advanced tsconfig options require a dedicated project config and do not affect the main app build.",
+  },
 ] as const satisfies readonly MiniSample[];
 
 export const sampleStatusMeta = {
@@ -362,4 +400,5 @@ export const sampleSurfaceLabels = {
   "isolated-route": "Standalone route",
   "separate-entry": "Separate entry point",
   "node-only": "Node-only sample",
+  "comment-demo": "Comment-based demo",
 } as const;
