@@ -9,6 +9,7 @@
     { "path": "./node-samples/ts-advanced-runtime/tsconfig.json" },
     { "path": "./node-samples/ts-jsdoc-interop/tsconfig.json" },
     { "path": "./node-samples/ts-advanced-tsconfig/tsconfig.json" },
+    { "path": "./node-samples/ts-variance/tsconfig.json" },
     { "path": "./server-samples/react-streaming-ssr/tsconfig.json" }
   ]
 }

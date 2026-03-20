@@ -86,4 +86,11 @@ export const implementedSampleArtifacts: Partial<
     entryPoint: "src/samples/HydrationMismatchDemo.ts",
     verificationCommand: "npm run typecheck",
   },
+  "sample-ts-variance": {
+    label: "Node-only variance and assignability workspace",
+    rootDir: "node-samples/ts-variance",
+    entryPoint: "node-samples/ts-variance/src/index.ts",
+    verificationCommand:
+      "node ./node_modules/typescript/bin/tsc -p node-samples/ts-variance/tsconfig.json",
+  },
 };

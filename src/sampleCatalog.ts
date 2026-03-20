@@ -536,6 +536,25 @@ export const miniSampleCatalog = [
     whyIsolated:
       "Type-level mapped type demos need structured examples with explanations that would clutter other samples.",
   },
+  {
+    id: "sample-ts-variance",
+    title: "Variance and assignability",
+    topic: "TypeScript Language",
+    status: "implemented",
+    surface: "node-only",
+    apis: [
+      "covariance out",
+      "contravariance in",
+      "invariance in out",
+      "Array unsoundness",
+      "strictFunctionTypes",
+      "variance annotations TS 4.7",
+    ],
+    summary:
+      "Show covariant return types, contravariant params, invariant mutable properties, the Array<Cat>/Array<Animal> unsoundness, and explicit in/out/in out variance annotations.",
+    whyIsolated:
+      "Variance demos use class hierarchies and console output that don't render as React components.",
+  },
 ] as const satisfies readonly MiniSample[];
 
 export const sampleStatusMeta = {
