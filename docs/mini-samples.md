@@ -82,6 +82,7 @@ This project now treats the remaining backlog as isolated mini-samples instead o
 
 - `sample-ts-functions-tuples`
   Covers tuples, overloads, call signatures, construct signatures, and `this` typing.
+  Status: implemented.
   Recommended surface: standalone route.
 
 - `sample-ts-classes-models`
@@ -104,10 +105,9 @@ This project now treats the remaining backlog as isolated mini-samples instead o
 
 ## Suggested build order
 
-1. `sample-ts-functions-tuples`
-2. `sample-ts-classes-models`
-3. `sample-ts-declarations`
-4. `sample-react-hydration-hints`
-5. `sample-react-streaming-ssr`
-6. `sample-react-server-components`
-7. `sample-react-compiler`
+1. `sample-ts-classes-models`
+2. `sample-ts-declarations`
+3. `sample-react-hydration-hints`
+4. `sample-react-streaming-ssr`
+5. `sample-react-server-components`
+6. `sample-react-compiler`

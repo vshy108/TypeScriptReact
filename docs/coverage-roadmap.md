@@ -134,14 +134,14 @@ It is intentionally organized by major feature area instead of trying to enumera
 - [x] Conditional types
 - [x] Mapped types
 - [x] `infer`
+- [x] Tuples
+- [x] Function overloads
+- [x] Call signatures and construct signatures
+- [x] `this` typing in functions
 
 ### Not included yet: core language and handbook topics
 
-- [ ] Tuples
 - [ ] Intersection types
-- [ ] Function overloads
-- [ ] Call signatures and construct signatures
-- [ ] `this` typing in functions
 - [ ] Classes
 - [ ] Access modifiers
 - [ ] Abstract classes

@@ -8,6 +8,7 @@ import {
 import { getDefaultSampleId, readSampleIdFromHash, toSampleHash } from '../sampleRuntime'
 import ContextThemeSample from '../samples/ContextThemeSample'
 import FormStatusSample from '../samples/FormStatusSample'
+import FunctionsTuplesSample from '../samples/FunctionsTuplesSample'
 import LayoutEffectsSample from '../samples/LayoutEffectsSample'
 import MemoLabSample from '../samples/MemoLabSample'
 import PortalModalSample from '../samples/PortalModalSample'
@@ -22,6 +23,7 @@ const sampleImplementations: Partial<Record<MiniSampleId, ComponentType>> = {
   'sample-react-memo-lab': MemoLabSample,
   'sample-react-portal-modal': PortalModalSample,
   'sample-react-reducer-board': ReducerBoardSample,
+  'sample-ts-functions-tuples': FunctionsTuplesSample,
   'sample-ts-utility-mapped': UtilityMappedSample,
   'sample-react-use-resource': UseResourceSample,
 }

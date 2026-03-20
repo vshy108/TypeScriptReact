@@ -195,7 +195,7 @@ export const miniSampleCatalog = [
     id: 'sample-ts-functions-tuples',
     title: 'Function typing, overloads, and tuples',
     topic: 'TypeScript Language',
-    status: 'planned',
+    status: 'implemented',
     surface: 'isolated-route',
     apis: ['tuples', 'function overloads', 'call signatures', 'construct signatures', 'this typing'],
     summary: 'Show how APIs can expose multiple call forms while preserving type safety.',
