@@ -68,12 +68,13 @@ Implemented now:
 - recovery credit ledgers with stale-credit invalidation and approver sign-off
 - relaunch exception registers with stale-threshold invalidation and approver sign-off
 - remediation readiness registries with stale-evidence invalidation and approver sign-off
+- exit readiness ledgers with stale-criterion invalidation and approver sign-off
 - staged incident comms approval packs with legal overrides and customer-visible rollback wording diffs
 - post-rollback customer segmentation with region-specific update timing and escalation-safe message forks
 
 Highest-value addition:
 
-- another feature slice that reuses the typed client, hook, panel, and test pattern for a publish-gated incident workflow
+- another feature slice that extends the publish-gated incident workflow pattern with one more typed owner-review and invalidation flow
 
 Suggested structure:
 

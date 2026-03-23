@@ -781,6 +781,24 @@ export const miniSampleCatalog = [
       "Remediation readiness registries are easiest to explain when registry review, stale-evidence invalidation, and approver sign-off stay visible together in one route.",
   },
   {
+    id: "sample-react-release-exit-readiness-ledgers",
+    title: "Release exit readiness ledgers",
+    topic: "React Client",
+    status: "implemented",
+    surface: "isolated-route",
+    apis: [
+      "exit readiness review",
+      "stale-criterion invalidation",
+      "approver sign-off",
+      "exit criterion reconciliation",
+      "publish gating",
+    ],
+    summary:
+      "Show owner-reviewed exit readiness ledgers, stale-criterion invalidation, approver sign-off, and a publish gate that only clears once the revised packet is approved.",
+    whyIsolated:
+      "Exit readiness ledgers are easiest to explain when ledger review, stale-criterion invalidation, and approver sign-off stay visible together in one route.",
+  },
+  {
     id: "sample-react-streaming-ssr",
     title: "Streaming SSR and prerender flows",
     topic: "React Server",
