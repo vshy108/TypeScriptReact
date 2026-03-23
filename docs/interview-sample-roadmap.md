@@ -102,6 +102,7 @@ Already added in this docs folder:
 - [./interview-walkthroughs.md](./interview-walkthroughs.md)
 - [./frontend-system-design.md](./frontend-system-design.md)
 - [./debugging-playbook.md](./debugging-playbook.md)
+- [./debugging-walkthroughs.md](./debugging-walkthroughs.md)
 
 Highest-value additions:
 

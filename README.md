@@ -36,6 +36,7 @@ This project is a modern React starter that goes beyond the default template. It
 - `docs/react-typescript-terms.md` is the landing page for the React and TypeScript term guides
 - `docs/interview-prep.md` is the practical React frontend interview-prep path built on top of the repo
 - `docs/interview-walkthroughs.md` is the product-scenario answer guide for practicing structured interview responses from real repo examples
+- `docs/debugging-walkthroughs.md` is the debugging-answer drill guide for explaining root-cause investigation from concrete repo failures
 
 ## File map
 
