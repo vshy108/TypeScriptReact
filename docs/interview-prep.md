@@ -23,6 +23,7 @@ The existing guides explain React and TypeScript terms well. Interview preparati
 5. Read [./frontend-system-design.md](./frontend-system-design.md) to practice architecture and tradeoff discussions.
 6. Read [./debugging-playbook.md](./debugging-playbook.md) to prepare for debugging and troubleshooting questions.
 7. Read [./debugging-walkthroughs.md](./debugging-walkthroughs.md) to practice how to structure debugging answers under interview pressure.
+8. Read [./system-design-walkthroughs.md](./system-design-walkthroughs.md) to practice architecture scenario answers with concrete repo boundaries.
 
 ## Practical Interview Focus Areas
 
@@ -72,4 +73,5 @@ The highest-priority interview walkthrough gap is now covered. The remaining wor
 - [./frontend-system-design.md](./frontend-system-design.md)
 - [./debugging-playbook.md](./debugging-playbook.md)
 - [./debugging-walkthroughs.md](./debugging-walkthroughs.md)
+- [./system-design-walkthroughs.md](./system-design-walkthroughs.md)
 - [./interview-sample-roadmap.md](./interview-sample-roadmap.md)

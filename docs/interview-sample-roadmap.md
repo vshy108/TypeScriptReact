@@ -103,6 +103,7 @@ Already added in this docs folder:
 - [./frontend-system-design.md](./frontend-system-design.md)
 - [./debugging-playbook.md](./debugging-playbook.md)
 - [./debugging-walkthroughs.md](./debugging-walkthroughs.md)
+- [./system-design-walkthroughs.md](./system-design-walkthroughs.md)
 
 Highest-value additions:
 

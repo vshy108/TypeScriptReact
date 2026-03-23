@@ -37,6 +37,7 @@ This project is a modern React starter that goes beyond the default template. It
 - `docs/interview-prep.md` is the practical React frontend interview-prep path built on top of the repo
 - `docs/interview-walkthroughs.md` is the product-scenario answer guide for practicing structured interview responses from real repo examples
 - `docs/debugging-walkthroughs.md` is the debugging-answer drill guide for explaining root-cause investigation from concrete repo failures
+- `docs/system-design-walkthroughs.md` is the architecture-scenario drill guide for practicing frontend system design answers from real repo boundaries
 
 ## File map
 
