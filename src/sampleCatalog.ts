@@ -259,6 +259,24 @@ export const miniSampleCatalog = [
       "Mutation-heavy feature slices are easiest to reason about when draft state, save state, and persisted state are visible together in one route.",
   },
   {
+    id: "sample-react-release-rollout-optimistic",
+    title: "Release rollout optimistic updates",
+    topic: "React Client",
+    status: "implemented",
+    surface: "isolated-route",
+    apis: [
+      "optimistic UI",
+      "rollback on failure",
+      "typed mutation client",
+      "custom hook optimistic state",
+      "integration tests",
+    ],
+    summary:
+      "Show optimistic mutation handling where blockers disappear immediately, then either stay resolved on success or roll back when validation rejects the save.",
+    whyIsolated:
+      "Optimistic updates are easiest to learn when the speculative UI and rollback are visible without unrelated state on the page.",
+  },
+  {
     id: "sample-react-streaming-ssr",
     title: "Streaming SSR and prerender flows",
     topic: "React Server",

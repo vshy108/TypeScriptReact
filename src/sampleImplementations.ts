@@ -2,6 +2,7 @@ import type { ComponentType } from "react";
 import type { MiniSampleId } from "./sampleCatalog";
 import ReleaseApprovalWorkflowPanel from "./features/release-approval-workflow/ReleaseApprovalWorkflowPanel";
 import ReleaseReadinessPanel from "./features/release-readiness/ReleaseReadinessPanel";
+import ReleaseRolloutOptimisticPanel from "./features/release-rollout-optimistic/ReleaseRolloutOptimisticPanel";
 import ActivityTransitionSample from "./samples/ActivityTransitionSample";
 import AccessibleDialogSample from "./samples/AccessibleDialogSample";
 import ClassesModelsSample from "./samples/ClassesModelsSample";
@@ -44,6 +45,7 @@ export const sampleImplementations: Partial<
   "sample-react-portal-modal": PortalModalSample,
   "sample-react-release-approval-workflow": ReleaseApprovalWorkflowPanel,
   "sample-react-release-readiness-feature": ReleaseReadinessPanel,
+  "sample-react-release-rollout-optimistic": ReleaseRolloutOptimisticPanel,
   "sample-react-reducer-board": ReducerBoardSample,
   "sample-react-ref-timing": RefTimingSample,
   "sample-react-stale-closure": StaleClosureSample,
