@@ -12,6 +12,26 @@ Use these guides as a companion while reading the app and sample files. The goal
 - [React terms](./react-terms.md): React client APIs, DOM APIs, server APIs, compiler and lint concepts, and the edge-case terms demonstrated by this repo.
 - [TypeScript terms](./typescript-terms.md): TypeScript language features, interop topics, compiler options, and type-system edge cases demonstrated by this repo.
 
+## Keyword Index
+
+### React keywords
+
+- Core client: `Suspense`, `lazy`, `useActionState`, `useOptimistic`, `useDeferredValue`, `useTransition`, `useEffectEvent`, `useSyncExternalStore`, `ref as prop`, `useImperativeHandle`, `createContext`, `useContext`, `Fragment`, `useReducer`, `memo`, `useMemo`, `useCallback`, `Profiler`, `useDebugValue`, `useLayoutEffect`, `useInsertionEffect`, `use`, `useState stale closure`, `functional updater`, `useRef latest value`
+- Decision points: `useEffect vs useEffectEvent`, `useDeferredValue vs useTransition`, `useActionState vs useOptimistic`, `useState vs useReducer`, `useMemo vs memo vs useCallback`, `useEffect vs useLayoutEffect`, `Suspense vs ErrorBoundary`
+- DOM and hydration: `createPortal`, `flushSync`, `useFormStatus`, `hydrateRoot`, `preconnect`, `prefetchDNS`, `preinit`, `preinitModule`, `preload`, `preloadModule`, `hydration mismatch`, `suppressHydrationWarning`, `useId deterministic`, `getServerSnapshot`
+- Server and compiler: `Activity`, `startTransition`, `renderToPipeableStream`, `renderToReadableStream`, `renderToString`, `renderToStaticMarkup`, `resumeToPipeableStream`, `prerender`, `prerenderToNodeStream`, `resume`, `resumeAndPrerender`, `resumeAndPrerenderToNodeStream`, `Server Components`, `Server Functions`, `'use client'`, `'use server'`, `React Compiler`, `'use memo'`, `'use no memo'`, `exhaustive-deps`, `rules-of-hooks`, `react-compiler purity`, `react-refresh/only-export-components`
+- Edge cases: `React 18 batching`, `setTimeout batching`, `Promise batching`, `useContext identity trap`, `useMemo provider value`, `useCallback stable reference`, `memo consumer skip`, `ErrorBoundary class`, `getDerivedStateFromError`, `componentDidCatch`, `Suspense vs errors`, `lazy() failure`, `nested boundaries`, `key={index} reorder bug`, `key={id} stable identity`, `key reset trick`, `state follows DOM position`, `ref null during render`, `callback refs`, `forwardRef`, `ref mount/unmount lifecycle`
+
+### TypeScript keywords
+
+- Core and config: `exactOptionalPropertyTypes`, `null vs undefined vs void vs field?: Type`, `noUncheckedIndexedAccess`, `template literal ids`, `assertion functions`, `as const`, `satisfies`, `satisfies vs as`, `generic components`
+- Decision points: `type vs interface`, `unknown vs any`, `type guards vs assertion functions`, `readonly vs as const`, `field?: Type vs field: Type | undefined`, `union literals vs enum`, `type aliases vs generic components`, `K extends string vs key: string`
+- Type transformation: `Partial`, `Pick`, `Record`, `ReturnType`, `keyof`, `conditional types`, `mapped types`, `infer`
+- Function and object modeling: `tuples`, `function overloads`, `call signatures`, `construct signatures`, `this typing`, `classes`, `access modifiers`, `abstract classes`, `implements`, `intersection types`
+- Recursive and declaration work: `recursive types`, `recursive interfaces`, `recursive type aliases`, `DeepReadonly`, `DeepKeyPaths`, `.d.ts authoring`, `declaration merging`, `module augmentation`, `triple-slash directives`, `JSDoc-powered typing`, `allowJs`, `checkJs`
+- Runtime and project config: `enums`, `symbols`, `iterators`, `mixins`, `decorators`, `namespaces`, `resolveJsonModule`, `paths`, `baseUrl`, `composite`, `declarationMap`, `importHelpers`, `noPropertyAccessFromIndexSignature`
+- Edge cases and advanced inference: `distributive conditional types`, `non-distributive [T] extends [U]`, `never empty union`, `Extract`, `Exclude`, `as clause key remapping`, `never key removal`, `PickByType value filtering`, `template literal key transform`, `keyof T & string`, `-readonly modifier`, `covariance out`, `contravariance in`, `invariance in out`, `Array unsoundness`, `strictFunctionTypes`, `variance annotations TS 4.7`, `private keyword (compile-time)`, `#private fields (runtime)`, `override keyword`, `constructor parameter properties`, `field initialization order`, `template literal types`, `union cartesian product`, `Uppercase Lowercase Capitalize`, `infer in template literals`, `route parameter extraction`, `performance limits`, `partial inference currying`, `NoInfer<T>`, `overload resolution order`, `bidirectional contextual typing`, `generic defaults`, `satisfies operator`
+
 ## Common Decision Points
 
 These are the kinds of comparisons that are easy to confuse in real projects and worth reading side by side instead of as isolated glossary entries.
