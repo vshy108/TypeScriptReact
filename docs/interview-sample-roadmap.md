@@ -10,10 +10,11 @@ Implemented now:
 
 - accessible dialog with focus trap, keyboard dismissal, and focus return
 - accessible listbox with arrow-key navigation, Home and End jumps, and keyboard selection
+- accessible form errors with semantic associations, announced summaries, and focus on the first invalid field
 
 Highest-value additions:
 
-- form error messaging with semantic associations and keyboard-friendly validation
+- no additional high-priority additions in this section right now
 
 Why this matters:
 

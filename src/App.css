@@ -2187,6 +2187,42 @@ textarea:focus {
   background: rgba(226, 241, 255, 0.85);
 }
 
+.accessible-form-errors-sample,
+.accessible-form-errors-sample__layout,
+.accessible-form-errors-sample__form {
+  display: grid;
+  gap: 1rem;
+}
+
+.accessible-form-errors-sample__layout {
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+}
+
+.accessible-form-errors-sample__error-summary {
+  border-radius: 1rem;
+  border: 1px solid rgba(177, 62, 45, 0.28);
+  background: rgba(255, 238, 232, 0.92);
+  padding: 0.95rem 1rem;
+}
+
+.accessible-form-errors-sample__help,
+.accessible-form-errors-sample__status {
+  margin: 0.35rem 0 0;
+  color: var(--muted);
+}
+
+.accessible-form-errors-sample__error {
+  margin: 0.35rem 0 0;
+  color: #9a2f20;
+  font-weight: 600;
+}
+
+.accessible-form-errors-sample input[aria-invalid="true"],
+.accessible-form-errors-sample textarea[aria-invalid="true"] {
+  border-color: rgba(177, 62, 45, 0.68);
+  box-shadow: 0 0 0 3px rgba(177, 62, 45, 0.12);
+}
+
 .async-ui-verification-sample__actions {
   display: flex;
 }
@@ -2387,6 +2423,7 @@ textarea:focus {
   .release-stability-attestation-ledgers__grid,
   .release-resumption-attestation-registers__summary,
   .release-resumption-attestation-registers__grid,
+  .accessible-form-errors-sample__layout,
   .accessible-listbox-sample__summary,
   .accessible-listbox-sample__layout,
   .async-ui-verification-sample__summary,

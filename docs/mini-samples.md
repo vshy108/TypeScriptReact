@@ -240,6 +240,11 @@ This project now treats the remaining backlog as isolated mini-samples instead o
   Status: implemented.
   Recommended surface: standalone route.
 
+- `sample-react-accessible-form-errors`
+  Covers semantic form errors, `aria-invalid`, `aria-describedby`, announced error summaries, and focus on the first invalid field.
+  Status: implemented.
+  Recommended surface: standalone route.
+
 - `sample-react-accessible-listbox`
   Covers listbox semantics, keyboard navigation, `aria-activedescendant`, and keyboard-driven option selection.
   Status: implemented.

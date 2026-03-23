@@ -63,8 +63,7 @@ Primary repo files: [../src/hydration/HydrationHintsApp.tsx](../src/hydration/Hy
 
 These are the most interview-relevant topics that are not yet as strong as the current API coverage:
 
-1. Accessibility-focused form error messaging with semantic associations and keyboard-friendly validation
-2. Additional interview-style walkthroughs for product scenarios
+1. Additional interview-style walkthroughs for product scenarios
 
 ## Related Guides
 

@@ -192,6 +192,25 @@ export const miniSampleCatalog = [
       "Listbox keyboard behavior is easiest to verify in a focused sample where active-option movement and selection are the main subject.",
   },
   {
+    id: "sample-react-accessible-form-errors",
+    title: "Accessible form errors and validation messaging",
+    topic: "React DOM",
+    status: "implemented",
+    surface: "isolated-route",
+    apis: [
+      "aria-invalid",
+      "aria-describedby",
+      "role=alert",
+      "error summary",
+      "focus first invalid field",
+      "keyboard-friendly validation",
+    ],
+    summary:
+      "Practice semantic validation messaging: linked field errors, an announced error summary, and focus management that helps keyboard users recover quickly.",
+    whyIsolated:
+      "Accessible validation is easiest to verify in a focused sample where field guidance, errors, and focus recovery are the main subject.",
+  },
+  {
     id: "sample-react-hydration-hints",
     title: "Hydration and resource hint APIs",
     topic: "React DOM",

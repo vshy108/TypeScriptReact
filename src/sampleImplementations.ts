@@ -36,6 +36,7 @@ import ReleaseRolloutReconciliationPanel from "./features/release-rollout-reconc
 import ReleaseRolloutOptimisticPanel from "./features/release-rollout-optimistic/ReleaseRolloutOptimisticPanel";
 import ActivityTransitionSample from "./samples/ActivityTransitionSample";
 import AccessibleDialogSample from "./samples/AccessibleDialogSample";
+import AccessibleFormErrorsSample from "./samples/AccessibleFormErrorsSample";
 import AccessibleListboxSample from "./samples/AccessibleListboxSample";
 import AsyncUiVerificationSample from "./samples/AsyncUiVerificationSample";
 import ClassesModelsSample from "./samples/ClassesModelsSample";
@@ -67,6 +68,7 @@ export const sampleImplementations: Partial<
   // entries, so forcing every MiniSampleId to have a component would make the registry lie about what is runnable.
   "sample-react-activity-transition": ActivityTransitionSample,
   "sample-react-accessible-dialog": AccessibleDialogSample,
+  "sample-react-accessible-form-errors": AccessibleFormErrorsSample,
   "sample-react-accessible-listbox": AccessibleListboxSample,
   "sample-react-async-ui-verification": AsyncUiVerificationSample,
   "sample-react-context-identity": ContextIdentitySample,
