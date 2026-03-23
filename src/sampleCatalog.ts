@@ -367,6 +367,24 @@ export const miniSampleCatalog = [
       "Review workflows are easiest to explain when the draft, blocking comments, and approval state are visible together in one route.",
   },
   {
+    id: "sample-react-release-field-merge",
+    title: "Release field-level merge resolution",
+    topic: "React Client",
+    status: "implemented",
+    surface: "isolated-route",
+    apis: [
+      "field-level merge",
+      "side-by-side conflict resolution",
+      "automatic non-conflicting merge",
+      "overlapping edits",
+      "rebased save",
+    ],
+    summary:
+      "Show how untouched fields can merge automatically while overlapping fields stay blocked until the user resolves them one by one.",
+    whyIsolated:
+      "Field-level conflict resolution is easiest to explain when the base, local, and server values are visible side by side in one route.",
+  },
+  {
     id: "sample-react-streaming-ssr",
     title: "Streaming SSR and prerender flows",
     topic: "React Server",

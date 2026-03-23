@@ -88,6 +88,11 @@ This project now treats the remaining backlog as isolated mini-samples instead o
   Status: implemented.
   Recommended surface: standalone route.
 
+- `sample-react-release-field-merge`
+  Covers field-level merge resolution, automatic non-conflicting merges, and side-by-side conflict choices.
+  Status: implemented.
+  Recommended surface: standalone route.
+
 ## React DOM mini-samples
 
 - `sample-react-portal-modal`

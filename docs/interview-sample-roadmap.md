@@ -47,10 +47,11 @@ Implemented now:
 - release rollout reconciliation with optimistic client state that later syncs back to the authoritative server result
 - release incident collaborative editing with teammate presence, a shared draft, and conflict-aware saves
 - release review threads and approvals with blocked publish until reviewer comments are resolved and approvals are green
+- release field-level merge resolution with automatic non-conflicting merges and explicit side-by-side conflict choices
 
 Highest-value addition:
 
-- a ninth feature slice that combines collaborative edits with partial-field merges or side-by-side conflict resolution
+- a tenth feature slice that combines merge resolution with audit history, change attribution, or undo support
 
 Suggested structure:
 
