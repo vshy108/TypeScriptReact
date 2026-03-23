@@ -183,6 +183,16 @@ This project now treats the remaining backlog as isolated mini-samples instead o
   Status: implemented.
   Recommended surface: standalone route.
 
+- `sample-react-release-rollback-waiver-ledgers`
+  Covers rollback waiver ledgers, expired-exception invalidation, approver sign-off, and the publish gate that stays blocked until the revised waivers are approved.
+  Status: implemented.
+  Recommended surface: standalone route.
+
+- `sample-react-release-recovery-credit-ledgers`
+  Covers recovery credit ledgers, stale-credit invalidation, approver sign-off, and the publish gate that stays blocked until the revised credits are approved.
+  Status: implemented.
+  Recommended surface: standalone route.
+
 ## React DOM mini-samples
 
 - `sample-react-portal-modal`

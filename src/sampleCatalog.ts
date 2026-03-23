@@ -709,6 +709,42 @@ export const miniSampleCatalog = [
       "Customer promise reconciliation is easiest to explain when promise review, stale-claim invalidation, and approver sign-off stay visible together in one route.",
   },
   {
+    id: "sample-react-release-rollback-waiver-ledgers",
+    title: "Release rollback waiver ledgers",
+    topic: "React Client",
+    status: "implemented",
+    surface: "isolated-route",
+    apis: [
+      "waiver ledger review",
+      "expired-exception invalidation",
+      "approver sign-off",
+      "rollback exception reconciliation",
+      "publish gating",
+    ],
+    summary:
+      "Show owner-reviewed rollback waiver ledgers, expired-exception invalidation, approver sign-off, and a publish gate that only clears once the revised waivers are approved.",
+    whyIsolated:
+      "Rollback waiver ledgers are easiest to explain when ledger review, expired-exception invalidation, and approver sign-off stay visible together in one route.",
+  },
+  {
+    id: "sample-react-release-recovery-credit-ledgers",
+    title: "Release recovery credit ledgers",
+    topic: "React Client",
+    status: "implemented",
+    surface: "isolated-route",
+    apis: [
+      "recovery credit review",
+      "stale-credit invalidation",
+      "approver sign-off",
+      "credit reconciliation",
+      "publish gating",
+    ],
+    summary:
+      "Show owner-reviewed recovery credit ledgers, stale-credit invalidation, approver sign-off, and a publish gate that only clears once the revised credits are approved.",
+    whyIsolated:
+      "Recovery credit ledgers are easiest to explain when ledger review, stale-credit invalidation, and approver sign-off stay visible together in one route.",
+  },
+  {
     id: "sample-react-streaming-ssr",
     title: "Streaming SSR and prerender flows",
     topic: "React Server",

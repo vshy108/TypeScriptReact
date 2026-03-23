@@ -1659,6 +1659,144 @@ textarea:focus {
   gap: 1rem;
 }
 
+.release-rollback-waiver-ledgers,
+.release-rollback-waiver-ledgers__summary,
+.release-rollback-waiver-ledgers__grid,
+.release-rollback-waiver-ledgers__panel,
+.release-rollback-waiver-ledgers__ledger-list,
+.release-rollback-waiver-ledgers__exception-list,
+.release-rollback-waiver-ledgers__audit-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.release-rollback-waiver-ledgers__summary {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.release-rollback-waiver-ledgers__grid {
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+}
+
+.release-rollback-waiver-ledgers__actions {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.release-rollback-waiver-ledgers__ledger-card,
+.release-rollback-waiver-ledgers__exception-card,
+.release-rollback-waiver-ledgers__audit-card {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: start;
+  border-radius: 1rem;
+  border: 1px solid var(--border);
+  background: rgba(255, 252, 246, 0.72);
+  padding: 0.9rem 1rem;
+}
+
+.release-rollback-waiver-ledgers__ledger-card p,
+.release-rollback-waiver-ledgers__exception-card p,
+.release-rollback-waiver-ledgers__audit-card p {
+  margin: 0.25rem 0 0;
+  color: var(--muted);
+}
+
+.release-rollback-waiver-ledgers__ledger-card span,
+.release-rollback-waiver-ledgers__exception-card span,
+.release-rollback-waiver-ledgers__audit-meta span {
+  text-transform: capitalize;
+}
+
+.release-rollback-waiver-ledgers__ledger-card > div:last-child {
+  display: grid;
+  gap: 0.5rem;
+  justify-items: end;
+  text-align: right;
+}
+
+.release-rollback-waiver-ledgers__exception-card,
+.release-rollback-waiver-ledgers__audit-card {
+  display: grid;
+}
+
+.release-rollback-waiver-ledgers__audit-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.release-recovery-credit-ledgers,
+.release-recovery-credit-ledgers__summary,
+.release-recovery-credit-ledgers__grid,
+.release-recovery-credit-ledgers__panel,
+.release-recovery-credit-ledgers__ledger-list,
+.release-recovery-credit-ledgers__credit-list,
+.release-recovery-credit-ledgers__audit-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.release-recovery-credit-ledgers__summary {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.release-recovery-credit-ledgers__grid {
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+}
+
+.release-recovery-credit-ledgers__actions {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.release-recovery-credit-ledgers__ledger-card,
+.release-recovery-credit-ledgers__credit-card,
+.release-recovery-credit-ledgers__audit-card {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: start;
+  border-radius: 1rem;
+  border: 1px solid var(--border);
+  background: rgba(255, 252, 246, 0.72);
+  padding: 0.9rem 1rem;
+}
+
+.release-recovery-credit-ledgers__ledger-card p,
+.release-recovery-credit-ledgers__credit-card p,
+.release-recovery-credit-ledgers__audit-card p {
+  margin: 0.25rem 0 0;
+  color: var(--muted);
+}
+
+.release-recovery-credit-ledgers__ledger-card span,
+.release-recovery-credit-ledgers__credit-card span,
+.release-recovery-credit-ledgers__audit-meta span {
+  text-transform: capitalize;
+}
+
+.release-recovery-credit-ledgers__ledger-card > div:last-child {
+  display: grid;
+  gap: 0.5rem;
+  justify-items: end;
+  text-align: right;
+}
+
+.release-recovery-credit-ledgers__credit-card,
+.release-recovery-credit-ledgers__audit-card {
+  display: grid;
+}
+
+.release-recovery-credit-ledgers__audit-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
 .sample-summary {
   grid-template-columns: repeat(3, minmax(0, 1fr));
   margin: 1rem 0 1.2rem;
@@ -1837,6 +1975,10 @@ textarea:focus {
   .release-remediation-evidence-bundles__grid,
   .release-customer-promise-reconciliation__summary,
   .release-customer-promise-reconciliation__grid,
+  .release-rollback-waiver-ledgers__summary,
+  .release-rollback-waiver-ledgers__grid,
+  .release-recovery-credit-ledgers__summary,
+  .release-recovery-credit-ledgers__grid,
   .release-multi-region-rollback__summary,
   .release-multi-region-rollback__grid,
   .release-rollout-pause-resume__summary,

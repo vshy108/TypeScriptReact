@@ -11,11 +11,13 @@ import ReleaseFieldMergePanel from "./features/release-field-merge/ReleaseFieldM
 import ReleaseFollowUpCommitmentsPanel from "./features/release-follow-up-commitments/ReleaseFollowUpCommitmentsPanel";
 import ReleaseIncidentTimelineReconstructionPanel from "./features/release-incident-timeline-reconstruction/ReleaseIncidentTimelineReconstructionPanel";
 import ReleaseRemediationEvidenceBundlesPanel from "./features/release-remediation-evidence-bundles/ReleaseRemediationEvidenceBundlesPanel";
+import ReleaseRecoveryCreditLedgersPanel from "./features/release-recovery-credit-ledgers/ReleaseRecoveryCreditLedgersPanel";
 import ReleaseLaunchOrchestrationPanel from "./features/release-launch-orchestration/ReleaseLaunchOrchestrationPanel";
 import ReleaseMultiRegionRollbackPanel from "./features/release-multi-region-rollback/ReleaseMultiRegionRollbackPanel";
 import ReleaseOwnershipTransferAuditPanel from "./features/release-ownership-transfer-audit/ReleaseOwnershipTransferAuditPanel";
 import ReleasePostRollbackSegmentationPanel from "./features/release-post-rollback-segmentation/ReleasePostRollbackSegmentationPanel";
 import ReleaseRollbackDecisionMatrixPanel from "./features/release-rollback-decision-matrix/ReleaseRollbackDecisionMatrixPanel";
+import ReleaseRollbackWaiverLedgersPanel from "./features/release-rollback-waiver-ledgers/ReleaseRollbackWaiverLedgersPanel";
 import ReleaseRolloutPauseResumePanel from "./features/release-rollout-pause-resume/ReleaseRolloutPauseResumePanel";
 import ReleaseScheduledPublishPanel from "./features/release-scheduled-publish/ReleaseScheduledPublishPanel";
 import type { MiniSampleId } from "./sampleCatalog";
@@ -97,8 +99,12 @@ export const sampleImplementations: Partial<
   "sample-react-release-post-rollback-segmentation":
     ReleasePostRollbackSegmentationPanel,
   "sample-react-release-readiness-feature": ReleaseReadinessPanel,
+  "sample-react-release-recovery-credit-ledgers":
+    ReleaseRecoveryCreditLedgersPanel,
   "sample-react-release-rollback-decision-matrix":
     ReleaseRollbackDecisionMatrixPanel,
+  "sample-react-release-rollback-waiver-ledgers":
+    ReleaseRollbackWaiverLedgersPanel,
   "sample-react-release-review-threads": ReleaseReviewThreadsPanel,
   "sample-react-release-rollout-pause-resume": ReleaseRolloutPauseResumePanel,
   "sample-react-release-scheduled-publish": ReleaseScheduledPublishPanel,
