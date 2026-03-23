@@ -1191,7 +1191,10 @@ select:focus {
 .debounced-search__toolbar,
 .debounced-search__events,
 .release-readiness,
-.release-readiness__toolbar {
+.release-readiness__toolbar,
+.release-approval-workflow,
+.release-approval-workflow__toolbar,
+.release-approval-workflow__history {
   display: grid;
   gap: 1rem;
 }
@@ -1203,7 +1206,9 @@ select:focus {
 .debounced-search__summary,
 .debounced-search__panels,
 .release-readiness__summary,
-.release-readiness__details {
+.release-readiness__details,
+.release-approval-workflow__grid,
+.release-approval-workflow__summary {
   display: grid;
   gap: 1rem;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1264,6 +1269,65 @@ select:focus {
 
 .release-readiness__item p {
   margin-bottom: 0;
+}
+
+.release-approval-workflow__form,
+.release-approval-workflow__history {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.release-approval-workflow__actions {
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.release-approval-workflow__facts,
+.release-approval-workflow__timeline {
+  margin: 0;
+  padding-left: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.85rem;
+}
+
+.release-approval-workflow__facts li,
+.release-approval-workflow__timeline-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  gap: 1rem;
+}
+
+.release-approval-workflow__facts span,
+.release-approval-workflow__timeline-item p {
+  color: var(--muted);
+}
+
+textarea {
+  width: 100%;
+  border-radius: 1rem;
+  border: 1px solid var(--border);
+  background: rgba(255, 253, 249, 0.92);
+  color: var(--ink);
+  padding: 0.9rem 1rem;
+  font: inherit;
+  box-sizing: border-box;
+  resize: vertical;
+  min-height: 7.5rem;
+  transition:
+    border-color 160ms ease,
+    transform 160ms ease,
+    box-shadow 160ms ease;
+}
+
+textarea:focus {
+  outline: none;
+  border-color: rgba(29, 87, 194, 0.5);
+  box-shadow: 0 0 0 4px rgba(29, 87, 194, 0.08);
+  transform: translateY(-1px);
 }
 
 .accessible-dialog__checklist {
@@ -1851,6 +1915,8 @@ select:focus {
   .debounced-search__panels,
   .release-readiness__summary,
   .release-readiness__details,
+  .release-approval-workflow__grid,
+  .release-approval-workflow__summary,
   .layout-effects-toolbar,
   .layout-effects-legend,
 

@@ -241,6 +241,24 @@ export const miniSampleCatalog = [
       "A feature slice is easiest to discuss when the architecture is visible in one focused route instead of being mixed into unrelated demos.",
   },
   {
+    id: "sample-react-release-approval-workflow",
+    title: "Release approval mutation workflow",
+    topic: "React Client",
+    status: "implemented",
+    surface: "isolated-route",
+    apis: [
+      "typed mutation client",
+      "custom hook draft state",
+      "server-style validation",
+      "persisted mutation result",
+      "integration tests",
+    ],
+    summary:
+      "Show a real mutation flow: edit a typed approval draft, submit it through a client mutation, handle validation errors, and render the updated persisted state.",
+    whyIsolated:
+      "Mutation-heavy feature slices are easiest to reason about when draft state, save state, and persisted state are visible together in one route.",
+  },
+  {
     id: "sample-react-streaming-ssr",
     title: "Streaming SSR and prerender flows",
     topic: "React Server",

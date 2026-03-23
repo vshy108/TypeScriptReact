@@ -40,10 +40,11 @@ Why this matters:
 Implemented now:
 
 - release readiness feature slice with `types.ts`, `client.ts`, `useReleaseReadiness.ts`, `ReleaseReadinessPanel.tsx`, and an integration test
+- release approval mutation workflow with draft state, a save mutation, validation errors, and persisted workflow history
 
 Highest-value addition:
 
-- a second feature slice that includes a mutation flow, not only a read-heavy dashboard
+- a third feature slice that introduces optimistic updates or multi-step mutations
 
 Suggested structure:
 

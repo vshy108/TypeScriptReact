@@ -60,6 +60,8 @@ This project is a modern React starter that goes beyond the default template. It
 - `src/samples/AccessibleDialogSample.tsx` demonstrates accessible dialog behavior with labeled semantics, focus trapping, Escape dismissal, and focus return
 - `src/features/release-readiness/types.ts` defines the typed domain model for the real-world feature slice
 - `src/features/release-readiness/client.ts`, `src/features/release-readiness/useReleaseReadiness.ts`, and `src/features/release-readiness/ReleaseReadinessPanel.tsx` show one complete feature path from typed API client to hook to UI
+- `src/features/release-approval-workflow/types.ts` defines the typed mutation workflow model for a second feature slice
+- `src/features/release-approval-workflow/client.ts`, `src/features/release-approval-workflow/useReleaseApprovalWorkflow.ts`, and `src/features/release-approval-workflow/ReleaseApprovalWorkflowPanel.tsx` show a draft-edit-submit flow with server-style validation and persisted mutation state
 - `src/hydration/HydrationHintsApp.tsx` and `src/hydration/main.tsx` demonstrate `hydrateRoot()` plus the resource hint APIs in a separate entry
 - `server-samples/react-streaming-ssr/src/runAllModes.tsx` demonstrates the current stable React server/static rendering APIs in one dedicated SSR workspace
 - `src/samples/UtilityMappedSample.tsx` demonstrates TypeScript utility types, `keyof`, mapped types, conditional types, and `infer` through one derived release-contract model
