@@ -9,6 +9,7 @@ import ReleaseEscalationRoutingPanel from "./features/release-escalation-routing
 import ReleaseFieldMergePanel from "./features/release-field-merge/ReleaseFieldMergePanel";
 import ReleaseFollowUpCommitmentsPanel from "./features/release-follow-up-commitments/ReleaseFollowUpCommitmentsPanel";
 import ReleaseIncidentTimelineReconstructionPanel from "./features/release-incident-timeline-reconstruction/ReleaseIncidentTimelineReconstructionPanel";
+import ReleaseRemediationEvidenceBundlesPanel from "./features/release-remediation-evidence-bundles/ReleaseRemediationEvidenceBundlesPanel";
 import ReleaseLaunchOrchestrationPanel from "./features/release-launch-orchestration/ReleaseLaunchOrchestrationPanel";
 import ReleaseMultiRegionRollbackPanel from "./features/release-multi-region-rollback/ReleaseMultiRegionRollbackPanel";
 import ReleaseOwnershipTransferAuditPanel from "./features/release-ownership-transfer-audit/ReleaseOwnershipTransferAuditPanel";
@@ -80,6 +81,8 @@ export const sampleImplementations: Partial<
   "sample-react-release-handoff-conflict": ReleaseHandoffConflictPanel,
   "sample-react-release-incident-timeline-reconstruction":
     ReleaseIncidentTimelineReconstructionPanel,
+  "sample-react-release-remediation-evidence-bundles":
+    ReleaseRemediationEvidenceBundlesPanel,
   "sample-react-release-incident-collaboration":
     ReleaseIncidentCollaborationPanel,
   "sample-react-release-approval-workflow": ReleaseApprovalWorkflowPanel,

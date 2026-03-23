@@ -673,6 +673,24 @@ export const miniSampleCatalog = [
       "Follow-up commitments are easiest to explain when owner review, ETA drift invalidation, and approver sign-off stay visible together in one route.",
   },
   {
+    id: "sample-react-release-remediation-evidence-bundles",
+    title: "Release remediation evidence bundles",
+    topic: "React Client",
+    status: "implemented",
+    surface: "isolated-route",
+    apis: [
+      "remediation evidence",
+      "stale-proof invalidation",
+      "approver sign-off",
+      "evidence packet review",
+      "publish gating",
+    ],
+    summary:
+      "Show owner-reviewed remediation evidence bundles, stale-proof invalidation, approver sign-off, and a publish gate that only clears once the revised proof is approved.",
+    whyIsolated:
+      "Remediation evidence is easiest to explain when bundle review, stale-proof invalidation, and approver sign-off stay visible together in one route.",
+  },
+  {
     id: "sample-react-streaming-ssr",
     title: "Streaming SSR and prerender flows",
     topic: "React Server",
