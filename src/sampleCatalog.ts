@@ -745,6 +745,24 @@ export const miniSampleCatalog = [
       "Recovery credit ledgers are easiest to explain when ledger review, stale-credit invalidation, and approver sign-off stay visible together in one route.",
   },
   {
+    id: "sample-react-release-relaunch-exception-registers",
+    title: "Release relaunch exception registers",
+    topic: "React Client",
+    status: "implemented",
+    surface: "isolated-route",
+    apis: [
+      "relaunch register review",
+      "stale-threshold invalidation",
+      "approver sign-off",
+      "relaunch threshold reconciliation",
+      "publish gating",
+    ],
+    summary:
+      "Show owner-reviewed relaunch exception registers, stale-threshold invalidation, approver sign-off, and a publish gate that only clears once the revised thresholds are approved.",
+    whyIsolated:
+      "Relaunch exception registers are easiest to explain when register review, stale-threshold invalidation, and approver sign-off stay visible together in one route.",
+  },
+  {
     id: "sample-react-streaming-ssr",
     title: "Streaming SSR and prerender flows",
     topic: "React Server",

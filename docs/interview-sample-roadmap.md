@@ -66,12 +66,13 @@ Implemented now:
 - customer promise reconciliation with stale-claim invalidation and approver sign-off
 - rollback waiver ledgers with expired exception invalidation and approver sign-off
 - recovery credit ledgers with stale-credit invalidation and approver sign-off
+- relaunch exception registers with stale-threshold invalidation and approver sign-off
 - staged incident comms approval packs with legal overrides and customer-visible rollback wording diffs
 - post-rollback customer segmentation with region-specific update timing and escalation-safe message forks
 
 Highest-value addition:
 
-- a thirtieth feature slice that models relaunch exception registers with stale-threshold invalidation and approver sign-off
+- a thirty-first feature slice that models remediation readiness registries with stale-evidence invalidation and approver sign-off
 
 Suggested structure:
 

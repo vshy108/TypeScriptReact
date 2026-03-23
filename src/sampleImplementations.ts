@@ -12,6 +12,7 @@ import ReleaseFollowUpCommitmentsPanel from "./features/release-follow-up-commit
 import ReleaseIncidentTimelineReconstructionPanel from "./features/release-incident-timeline-reconstruction/ReleaseIncidentTimelineReconstructionPanel";
 import ReleaseRemediationEvidenceBundlesPanel from "./features/release-remediation-evidence-bundles/ReleaseRemediationEvidenceBundlesPanel";
 import ReleaseRecoveryCreditLedgersPanel from "./features/release-recovery-credit-ledgers/ReleaseRecoveryCreditLedgersPanel";
+import ReleaseRelaunchExceptionRegistersPanel from "./features/release-relaunch-exception-registers/ReleaseRelaunchExceptionRegistersPanel";
 import ReleaseLaunchOrchestrationPanel from "./features/release-launch-orchestration/ReleaseLaunchOrchestrationPanel";
 import ReleaseMultiRegionRollbackPanel from "./features/release-multi-region-rollback/ReleaseMultiRegionRollbackPanel";
 import ReleaseOwnershipTransferAuditPanel from "./features/release-ownership-transfer-audit/ReleaseOwnershipTransferAuditPanel";
@@ -101,6 +102,8 @@ export const sampleImplementations: Partial<
   "sample-react-release-readiness-feature": ReleaseReadinessPanel,
   "sample-react-release-recovery-credit-ledgers":
     ReleaseRecoveryCreditLedgersPanel,
+  "sample-react-release-relaunch-exception-registers":
+    ReleaseRelaunchExceptionRegistersPanel,
   "sample-react-release-rollback-decision-matrix":
     ReleaseRollbackDecisionMatrixPanel,
   "sample-react-release-rollback-waiver-ledgers":
