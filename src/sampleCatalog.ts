@@ -691,6 +691,24 @@ export const miniSampleCatalog = [
       "Remediation evidence is easiest to explain when bundle review, stale-proof invalidation, and approver sign-off stay visible together in one route.",
   },
   {
+    id: "sample-react-release-customer-promise-reconciliation",
+    title: "Release customer promise reconciliation",
+    topic: "React Client",
+    status: "implemented",
+    surface: "isolated-route",
+    apis: [
+      "customer promise review",
+      "stale-claim invalidation",
+      "approver sign-off",
+      "promise reconciliation",
+      "publish gating",
+    ],
+    summary:
+      "Show owner-reviewed customer promises, stale-claim invalidation, approver sign-off, and a publish gate that only clears once the reconciled promise language is approved.",
+    whyIsolated:
+      "Customer promise reconciliation is easiest to explain when promise review, stale-claim invalidation, and approver sign-off stay visible together in one route.",
+  },
+  {
     id: "sample-react-streaming-ssr",
     title: "Streaming SSR and prerender flows",
     topic: "React Server",

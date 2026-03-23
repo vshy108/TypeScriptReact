@@ -178,6 +178,11 @@ This project now treats the remaining backlog as isolated mini-samples instead o
   Status: implemented.
   Recommended surface: standalone route.
 
+- `sample-react-release-customer-promise-reconciliation`
+  Covers customer promise reconciliation, stale-claim invalidation, approver sign-off, and the publish gate that stays blocked until the reconciled language is approved.
+  Status: implemented.
+  Recommended surface: standalone route.
+
 ## React DOM mini-samples
 
 - `sample-react-portal-modal`

@@ -63,12 +63,13 @@ Implemented now:
 - cross-channel incident FAQ curation with stale-answer invalidation and reviewer sign-off
 - post-incident follow-up commitments with ETA drift invalidation and approver sign-off
 - remediation evidence bundles with stale-proof invalidation and approver sign-off
+- customer promise reconciliation with stale-claim invalidation and approver sign-off
 - staged incident comms approval packs with legal overrides and customer-visible rollback wording diffs
 - post-rollback customer segmentation with region-specific update timing and escalation-safe message forks
 
 Highest-value addition:
 
-- a twenty-seventh feature slice that models customer promise reconciliation with stale-claim invalidation and approver sign-off
+- a twenty-eighth feature slice that models rollback waiver ledgers with expired exception invalidation and approver sign-off
 
 Suggested structure:
 

@@ -5,6 +5,7 @@ import ReleaseCommunicationHandoffPanel from "./features/release-communication-h
 import ReleaseIncidentFaqCurationPanel from "./features/release-incident-faq-curation/ReleaseIncidentFaqCurationPanel";
 import ReleaseIncidentCommsApprovalPacksPanel from "./features/release-incident-comms-approval-packs/ReleaseIncidentCommsApprovalPacksPanel";
 import ReleaseDelegatedApprovalBundlesPanel from "./features/release-delegated-approval-bundles/ReleaseDelegatedApprovalBundlesPanel";
+import ReleaseCustomerPromiseReconciliationPanel from "./features/release-customer-promise-reconciliation/ReleaseCustomerPromiseReconciliationPanel";
 import ReleaseEscalationRoutingPanel from "./features/release-escalation-routing/ReleaseEscalationRoutingPanel";
 import ReleaseFieldMergePanel from "./features/release-field-merge/ReleaseFieldMergePanel";
 import ReleaseFollowUpCommitmentsPanel from "./features/release-follow-up-commitments/ReleaseFollowUpCommitmentsPanel";
@@ -75,6 +76,8 @@ export const sampleImplementations: Partial<
     ReleaseIncidentCommsApprovalPacksPanel,
   "sample-react-release-delegated-approval-bundles":
     ReleaseDelegatedApprovalBundlesPanel,
+  "sample-react-release-customer-promise-reconciliation":
+    ReleaseCustomerPromiseReconciliationPanel,
   "sample-react-release-escalation-routing": ReleaseEscalationRoutingPanel,
   "sample-react-release-field-merge": ReleaseFieldMergePanel,
   "sample-react-release-follow-up-commitments": ReleaseFollowUpCommitmentsPanel,
