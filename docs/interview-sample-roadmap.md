@@ -52,10 +52,11 @@ Implemented now:
 - release branch compare view with alternate drafts, side-by-side wording comparison, and branch promotion
 - release scheduled publish state with approvals, a live countdown, and a rollback window immediately after publish
 - release launch orchestration with progressive checkpoints, live guardrails, and automatic abort when a metric breaches during rollout
+- release rollout pause and resume with checkpoint acknowledgements and manual override recovery after an operator stop
 
 Highest-value addition:
 
-- a fourteenth feature slice that combines rollout pause-and-resume controls with checkpoint acknowledgements or manual override recovery
+- a fifteenth feature slice that combines multi-region rollback targeting with dependency acknowledgements or partial recovery tracking
 
 Suggested structure:
 

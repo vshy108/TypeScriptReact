@@ -743,6 +743,63 @@ textarea:focus {
   color: #8d3d1f;
 }
 
+.release-rollout-pause-resume,
+.release-rollout-pause-resume__summary,
+.release-rollout-pause-resume__grid,
+.release-rollout-pause-resume__panel,
+.release-rollout-pause-resume__checkpoint-list,
+.release-rollout-pause-resume__acknowledgement-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.release-rollout-pause-resume__summary {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.release-rollout-pause-resume__grid {
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr) minmax(0, 1.1fr);
+}
+
+.release-rollout-pause-resume__actions {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.release-rollout-pause-resume__checkpoint-card,
+.release-rollout-pause-resume__acknowledgement-card {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: start;
+  border-radius: 1rem;
+  border: 1px solid var(--border);
+  background: rgba(255, 252, 246, 0.72);
+  padding: 0.9rem 1rem;
+}
+
+.release-rollout-pause-resume__checkpoint-card p,
+.release-rollout-pause-resume__acknowledgement-card p {
+  margin: 0.25rem 0 0;
+  color: var(--muted);
+}
+
+.release-rollout-pause-resume__checkpoint-card span,
+.release-rollout-pause-resume__acknowledgement-card span,
+.release-rollout-pause-resume__reason {
+  text-transform: capitalize;
+}
+
+.release-rollout-pause-resume__acknowledgement-card > div:last-child {
+  display: grid;
+  gap: 0.5rem;
+  justify-items: end;
+}
+
+.release-rollout-pause-resume__reason {
+  color: #8d3d1f;
+}
+
 .sample-summary {
   grid-template-columns: repeat(3, minmax(0, 1fr));
   margin: 1rem 0 1.2rem;
@@ -896,7 +953,9 @@ textarea:focus {
   }
 
   .release-launch-orchestration__summary,
-  .release-launch-orchestration__grid {
+  .release-launch-orchestration__grid,
+  .release-rollout-pause-resume__summary,
+  .release-rollout-pause-resume__grid {
     grid-template-columns: minmax(0, 1fr);
   }
 }

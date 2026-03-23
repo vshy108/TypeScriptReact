@@ -457,6 +457,24 @@ export const miniSampleCatalog = [
       "Launch orchestration is easiest to explain when checkpoint state, live guardrails, and the abort outcome stay visible in one route.",
   },
   {
+    id: "sample-react-release-rollout-pause-resume",
+    title: "Release rollout pause and resume",
+    topic: "React Client",
+    status: "implemented",
+    surface: "isolated-route",
+    apis: [
+      "checkpoint pause",
+      "operator acknowledgement",
+      "manual override",
+      "resume gate",
+      "timer-driven rollout",
+    ],
+    summary:
+      "Show a rollout that pauses mid-flight, waits for required acknowledgements, and then resumes through a manual override path.",
+    whyIsolated:
+      "Pause-and-resume recovery is easiest to explain when the active checkpoint, acknowledgement gate, and resumed timeline stay visible together in one route.",
+  },
+  {
     id: "sample-react-streaming-ssr",
     title: "Streaming SSR and prerender flows",
     topic: "React Server",

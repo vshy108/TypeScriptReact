@@ -3,6 +3,7 @@ import ReleaseBranchComparePanel from "./features/release-branch-compare/Release
 import ReleaseChangeHistoryPanel from "./features/release-change-history/ReleaseChangeHistoryPanel";
 import ReleaseFieldMergePanel from "./features/release-field-merge/ReleaseFieldMergePanel";
 import ReleaseLaunchOrchestrationPanel from "./features/release-launch-orchestration/ReleaseLaunchOrchestrationPanel";
+import ReleaseRolloutPauseResumePanel from "./features/release-rollout-pause-resume/ReleaseRolloutPauseResumePanel";
 import ReleaseScheduledPublishPanel from "./features/release-scheduled-publish/ReleaseScheduledPublishPanel";
 import type { MiniSampleId } from "./sampleCatalog";
 import ReleaseHandoffConflictPanel from "./features/release-handoff-conflict/ReleaseHandoffConflictPanel";
@@ -64,6 +65,7 @@ export const sampleImplementations: Partial<
   "sample-react-release-launch-orchestration": ReleaseLaunchOrchestrationPanel,
   "sample-react-release-readiness-feature": ReleaseReadinessPanel,
   "sample-react-release-review-threads": ReleaseReviewThreadsPanel,
+  "sample-react-release-rollout-pause-resume": ReleaseRolloutPauseResumePanel,
   "sample-react-release-scheduled-publish": ReleaseScheduledPublishPanel,
   "sample-react-release-rollout-reconciliation":
     ReleaseRolloutReconciliationPanel,
