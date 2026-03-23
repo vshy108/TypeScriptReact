@@ -1176,6 +1176,75 @@ textarea:focus {
   gap: 1rem;
 }
 
+.release-rollback-decision-matrix,
+.release-rollback-decision-matrix__summary,
+.release-rollback-decision-matrix__grid,
+.release-rollback-decision-matrix__panel,
+.release-rollback-decision-matrix__metric-list,
+.release-rollback-decision-matrix__signoff-list,
+.release-rollback-decision-matrix__audit-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.release-rollback-decision-matrix__summary {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.release-rollback-decision-matrix__grid {
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+}
+
+.release-rollback-decision-matrix__actions {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.release-rollback-decision-matrix__metric-card,
+.release-rollback-decision-matrix__signoff-card,
+.release-rollback-decision-matrix__audit-card {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: start;
+  border-radius: 1rem;
+  border: 1px solid var(--border);
+  background: rgba(255, 252, 246, 0.72);
+  padding: 0.9rem 1rem;
+}
+
+.release-rollback-decision-matrix__metric-card p,
+.release-rollback-decision-matrix__signoff-card p,
+.release-rollback-decision-matrix__audit-card p {
+  margin: 0.25rem 0 0;
+  color: var(--muted);
+}
+
+.release-rollback-decision-matrix__metric-card span,
+.release-rollback-decision-matrix__signoff-card span,
+.release-rollback-decision-matrix__audit-meta span {
+  text-transform: capitalize;
+}
+
+.release-rollback-decision-matrix__metric-card > div:last-child,
+.release-rollback-decision-matrix__signoff-card > div:last-child {
+  display: grid;
+  gap: 0.5rem;
+  justify-items: end;
+  text-align: right;
+}
+
+.release-rollback-decision-matrix__audit-card {
+  display: grid;
+}
+
+.release-rollback-decision-matrix__audit-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
 .sample-summary {
   grid-template-columns: repeat(3, minmax(0, 1fr));
   margin: 1rem 0 1.2rem;
@@ -1340,6 +1409,8 @@ textarea:focus {
   .release-delegated-approval-bundles__grid,
   .release-incident-timeline-reconstruction__summary,
   .release-incident-timeline-reconstruction__grid,
+  .release-rollback-decision-matrix__summary,
+  .release-rollback-decision-matrix__grid,
   .release-multi-region-rollback__summary,
   .release-multi-region-rollback__grid,
   .release-rollout-pause-resume__summary,

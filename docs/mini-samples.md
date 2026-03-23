@@ -148,6 +148,11 @@ This project now treats the remaining backlog as isolated mini-samples instead o
   Status: implemented.
   Recommended surface: standalone route.
 
+- `sample-react-release-rollback-decision-matrix`
+  Covers conflicting rollback metrics, canonical decision selection, quorum sign-off, and the execution gate that stays blocked until governance is complete.
+  Status: implemented.
+  Recommended surface: standalone route.
+
 ## React DOM mini-samples
 
 - `sample-react-portal-modal`

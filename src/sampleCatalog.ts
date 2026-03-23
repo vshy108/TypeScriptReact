@@ -583,6 +583,24 @@ export const miniSampleCatalog = [
       "Timeline reconstruction is easiest to explain when the witness conflict, canonical resolution, and executive summary gate stay visible together in one route.",
   },
   {
+    id: "sample-react-release-rollback-decision-matrix",
+    title: "Release rollback decision matrix",
+    topic: "React Client",
+    status: "implemented",
+    surface: "isolated-route",
+    apis: [
+      "conflicting metrics",
+      "decision matrix",
+      "quorum sign-off",
+      "rollback governance",
+      "audit-backed execution gate",
+    ],
+    summary:
+      "Show conflicting rollback signals, choose a canonical decision, collect quorum sign-off, and only then execute the final rollback call.",
+    whyIsolated:
+      "Rollback governance is easiest to explain when the conflicting metrics, quorum gate, and final execution path stay visible together in one route.",
+  },
+  {
     id: "sample-react-streaming-ssr",
     title: "Streaming SSR and prerender flows",
     topic: "React Server",

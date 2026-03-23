@@ -59,10 +59,11 @@ Implemented now:
 - ownership transfer auditing with outgoing and incoming acknowledgements plus escalation replay context before the handoff closes
 - delegated approval bundles with expiry windows and replayable audit evidence before publish
 - incident timeline reconstruction with conflicting witness notes and a publish-safe executive summary gate
+- release rollback decision matrices with conflicting metrics and quorum-based sign-off
 
 Highest-value addition:
 
-- a twenty-first feature slice that models release rollback decision matrices with conflicting metrics and quorum-based sign-off
+- a twenty-second feature slice that models staged incident comms approval packs with legal overrides and customer-visible rollback wording diffs
 
 Suggested structure:
 
