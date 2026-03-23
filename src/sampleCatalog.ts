@@ -763,6 +763,24 @@ export const miniSampleCatalog = [
       "Relaunch exception registers are easiest to explain when register review, stale-threshold invalidation, and approver sign-off stay visible together in one route.",
   },
   {
+    id: "sample-react-release-remediation-readiness-registries",
+    title: "Release remediation readiness registries",
+    topic: "React Client",
+    status: "implemented",
+    surface: "isolated-route",
+    apis: [
+      "remediation readiness review",
+      "stale-evidence invalidation",
+      "approver sign-off",
+      "readiness packet reconciliation",
+      "publish gating",
+    ],
+    summary:
+      "Show owner-reviewed remediation readiness registries, stale-evidence invalidation, approver sign-off, and a publish gate that only clears once the revised packet is approved.",
+    whyIsolated:
+      "Remediation readiness registries are easiest to explain when registry review, stale-evidence invalidation, and approver sign-off stay visible together in one route.",
+  },
+  {
     id: "sample-react-streaming-ssr",
     title: "Streaming SSR and prerender flows",
     topic: "React Server",

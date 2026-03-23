@@ -198,6 +198,11 @@ This project now treats the remaining backlog as isolated mini-samples instead o
   Status: implemented.
   Recommended surface: standalone route.
 
+- `sample-react-release-remediation-readiness-registries`
+  Covers remediation readiness registries, stale-evidence invalidation, approver sign-off, and the publish gate that stays blocked until the revised packet is approved.
+  Status: implemented.
+  Recommended surface: standalone route.
+
 ## React DOM mini-samples
 
 - `sample-react-portal-modal`
