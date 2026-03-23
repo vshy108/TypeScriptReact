@@ -63,6 +63,7 @@ This project is a modern React starter that goes beyond the default template. It
 - `src/features/release-approval-workflow/types.ts` defines the typed mutation workflow model for a second feature slice
 - `src/features/release-approval-workflow/client.ts`, `src/features/release-approval-workflow/useReleaseApprovalWorkflow.ts`, and `src/features/release-approval-workflow/ReleaseApprovalWorkflowPanel.tsx` show a draft-edit-submit flow with server-style validation and persisted mutation state
 - `src/features/release-rollout-optimistic/types.ts` and `src/features/release-rollout-optimistic/*` show optimistic UI removal, mutation rollback, and speculative client state in a third feature slice
+- `src/features/release-launch-checklist/types.ts` and `src/features/release-launch-checklist/*` show dependent multi-step mutations where one saved action unlocks the next operational step
 - `src/hydration/HydrationHintsApp.tsx` and `src/hydration/main.tsx` demonstrate `hydrateRoot()` plus the resource hint APIs in a separate entry
 - `server-samples/react-streaming-ssr/src/runAllModes.tsx` demonstrates the current stable React server/static rendering APIs in one dedicated SSR workspace
 - `src/samples/UtilityMappedSample.tsx` demonstrates TypeScript utility types, `keyof`, mapped types, conditional types, and `infer` through one derived release-contract model

@@ -277,6 +277,24 @@ export const miniSampleCatalog = [
       "Optimistic updates are easiest to learn when the speculative UI and rollback are visible without unrelated state on the page.",
   },
   {
+    id: "sample-react-release-launch-checklist",
+    title: "Release launch multi-step workflow",
+    topic: "React Client",
+    status: "implemented",
+    surface: "isolated-route",
+    apis: [
+      "multi-step mutation",
+      "dependent follow-up actions",
+      "typed mutation client",
+      "step sequencing",
+      "integration tests",
+    ],
+    summary:
+      "Show a dependent multi-step workflow where saving one launch action unlocks the next, with server-side sequencing and validation rules.",
+    whyIsolated:
+      "Multi-step mutations are easier to reason about when progress, validation, and unlocked follow-up actions are all visible in one place.",
+  },
+  {
     id: "sample-react-streaming-ssr",
     title: "Streaming SSR and prerender flows",
     topic: "React Server",

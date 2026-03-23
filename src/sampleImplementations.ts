@@ -1,6 +1,7 @@
 import type { ComponentType } from "react";
 import type { MiniSampleId } from "./sampleCatalog";
 import ReleaseApprovalWorkflowPanel from "./features/release-approval-workflow/ReleaseApprovalWorkflowPanel";
+import ReleaseLaunchChecklistPanel from "./features/release-launch-checklist/ReleaseLaunchChecklistPanel";
 import ReleaseReadinessPanel from "./features/release-readiness/ReleaseReadinessPanel";
 import ReleaseRolloutOptimisticPanel from "./features/release-rollout-optimistic/ReleaseRolloutOptimisticPanel";
 import ActivityTransitionSample from "./samples/ActivityTransitionSample";
@@ -44,6 +45,7 @@ export const sampleImplementations: Partial<
   "sample-react-memo-lab": MemoLabSample,
   "sample-react-portal-modal": PortalModalSample,
   "sample-react-release-approval-workflow": ReleaseApprovalWorkflowPanel,
+  "sample-react-release-launch-checklist": ReleaseLaunchChecklistPanel,
   "sample-react-release-readiness-feature": ReleaseReadinessPanel,
   "sample-react-release-rollout-optimistic": ReleaseRolloutOptimisticPanel,
   "sample-react-reducer-board": ReducerBoardSample,

@@ -1196,7 +1196,10 @@ select:focus {
 .release-approval-workflow__toolbar,
 .release-approval-workflow__history,
 .release-rollout-optimistic,
-.release-rollout-optimistic__list {
+.release-rollout-optimistic__list,
+.release-launch-checklist,
+.release-launch-checklist__steps,
+.release-launch-checklist__editor {
   display: grid;
   gap: 1rem;
 }
@@ -1211,7 +1214,9 @@ select:focus {
 .release-readiness__details,
 .release-approval-workflow__grid,
 .release-approval-workflow__summary,
-.release-rollout-optimistic__summary {
+.release-rollout-optimistic__summary,
+.release-launch-checklist__summary,
+.release-launch-checklist__grid {
   display: grid;
   gap: 1rem;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1323,6 +1328,17 @@ select:focus {
 }
 
 .release-rollout-optimistic__actions {
+  justify-content: flex-end;
+}
+
+.release-launch-checklist__step-list,
+.release-launch-checklist__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.release-launch-checklist__actions {
   justify-content: flex-end;
 }
 
@@ -1938,6 +1954,8 @@ textarea:focus {
   .release-approval-workflow__grid,
   .release-approval-workflow__summary,
   .release-rollout-optimistic__summary,
+  .release-launch-checklist__summary,
+  .release-launch-checklist__grid,
   .layout-effects-toolbar,
   .layout-effects-legend,
 
