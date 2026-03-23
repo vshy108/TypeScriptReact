@@ -23,6 +23,7 @@ import ReleaseRollbackDecisionMatrixPanel from "./features/release-rollback-deci
 import ReleaseRollbackWaiverLedgersPanel from "./features/release-rollback-waiver-ledgers/ReleaseRollbackWaiverLedgersPanel";
 import ReleaseRolloutPauseResumePanel from "./features/release-rollout-pause-resume/ReleaseRolloutPauseResumePanel";
 import ReleaseScheduledPublishPanel from "./features/release-scheduled-publish/ReleaseScheduledPublishPanel";
+import ReleaseResumptionAttestationRegistersPanel from "./features/release-resumption-attestation-registers/ReleaseResumptionAttestationRegistersPanel";
 import ReleaseStabilityAttestationLedgersPanel from "./features/release-stability-attestation-ledgers/ReleaseStabilityAttestationLedgersPanel";
 import type { MiniSampleId } from "./sampleCatalog";
 import ReleaseHandoffConflictPanel from "./features/release-handoff-conflict/ReleaseHandoffConflictPanel";
@@ -35,6 +36,8 @@ import ReleaseRolloutReconciliationPanel from "./features/release-rollout-reconc
 import ReleaseRolloutOptimisticPanel from "./features/release-rollout-optimistic/ReleaseRolloutOptimisticPanel";
 import ActivityTransitionSample from "./samples/ActivityTransitionSample";
 import AccessibleDialogSample from "./samples/AccessibleDialogSample";
+import AccessibleListboxSample from "./samples/AccessibleListboxSample";
+import AsyncUiVerificationSample from "./samples/AsyncUiVerificationSample";
 import ClassesModelsSample from "./samples/ClassesModelsSample";
 import ConditionalDistributivitySample from "./samples/ConditionalDistributivitySample";
 import ContextIdentitySample from "./samples/ContextIdentitySample";
@@ -64,6 +67,8 @@ export const sampleImplementations: Partial<
   // entries, so forcing every MiniSampleId to have a component would make the registry lie about what is runnable.
   "sample-react-activity-transition": ActivityTransitionSample,
   "sample-react-accessible-dialog": AccessibleDialogSample,
+  "sample-react-accessible-listbox": AccessibleListboxSample,
+  "sample-react-async-ui-verification": AsyncUiVerificationSample,
   "sample-react-context-identity": ContextIdentitySample,
   "sample-react-context-theme": ContextThemeSample,
   "sample-react-debounced-search-race": DebouncedSearchRaceSample,
@@ -116,6 +121,8 @@ export const sampleImplementations: Partial<
   "sample-react-release-rollback-waiver-ledgers":
     ReleaseRollbackWaiverLedgersPanel,
   "sample-react-release-review-threads": ReleaseReviewThreadsPanel,
+  "sample-react-release-resumption-attestation-registers":
+    ReleaseResumptionAttestationRegistersPanel,
   "sample-react-release-rollout-pause-resume": ReleaseRolloutPauseResumePanel,
   "sample-react-release-scheduled-publish": ReleaseScheduledPublishPanel,
   "sample-react-release-stability-attestation-ledgers":

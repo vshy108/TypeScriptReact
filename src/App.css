@@ -2073,6 +2073,128 @@ textarea:focus {
   gap: 1rem;
 }
 
+.release-resumption-attestation-registers,
+.release-resumption-attestation-registers__summary,
+.release-resumption-attestation-registers__grid,
+.release-resumption-attestation-registers__panel,
+.release-resumption-attestation-registers__register-list,
+.release-resumption-attestation-registers__check-list,
+.release-resumption-attestation-registers__audit-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.release-resumption-attestation-registers__summary {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.release-resumption-attestation-registers__grid {
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+}
+
+.release-resumption-attestation-registers__actions {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.release-resumption-attestation-registers__register-card,
+.release-resumption-attestation-registers__check-card,
+.release-resumption-attestation-registers__audit-card,
+.accessible-listbox-sample__option,
+.async-ui-verification-sample__result {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: start;
+  border-radius: 1rem;
+  border: 1px solid var(--border);
+  background: rgba(255, 252, 246, 0.72);
+  padding: 0.9rem 1rem;
+}
+
+.release-resumption-attestation-registers__register-card p,
+.release-resumption-attestation-registers__check-card p,
+.release-resumption-attestation-registers__audit-card p,
+.accessible-listbox-sample__option p,
+.async-ui-verification-sample__result p {
+  margin: 0.25rem 0 0;
+  color: var(--muted);
+}
+
+.release-resumption-attestation-registers__register-card span,
+.release-resumption-attestation-registers__check-card span,
+.release-resumption-attestation-registers__audit-meta span {
+  text-transform: capitalize;
+}
+
+.release-resumption-attestation-registers__register-card > div:last-child {
+  display: grid;
+  gap: 0.5rem;
+  justify-items: end;
+  text-align: right;
+}
+
+.release-resumption-attestation-registers__check-card,
+.release-resumption-attestation-registers__audit-card,
+.accessible-listbox-sample,
+.accessible-listbox-sample__summary,
+.accessible-listbox-sample__layout,
+.async-ui-verification-sample,
+.async-ui-verification-sample__summary,
+.async-ui-verification-sample__layout,
+.async-ui-verification-sample__scenario-group {
+  display: grid;
+  gap: 1rem;
+}
+
+.release-resumption-attestation-registers__audit-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.accessible-listbox-sample__summary,
+.async-ui-verification-sample__summary {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.accessible-listbox-sample__layout,
+.async-ui-verification-sample__layout {
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+}
+
+.accessible-listbox-sample__listbox {
+  display: grid;
+  gap: 0.75rem;
+  outline: none;
+}
+
+.accessible-listbox-sample__listbox:focus {
+  box-shadow: 0 0 0 3px rgba(23, 70, 162, 0.18);
+  border-radius: 1rem;
+}
+
+.accessible-listbox-sample__option {
+  cursor: pointer;
+}
+
+.accessible-listbox-sample__option.is-active {
+  border-color: rgba(23, 70, 162, 0.42);
+}
+
+.accessible-listbox-sample__option.is-selected {
+  background: rgba(226, 241, 255, 0.85);
+}
+
+.async-ui-verification-sample__actions {
+  display: flex;
+}
+
+.async-ui-verification-sample__scenario-group {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
 .sample-summary {
   grid-template-columns: repeat(3, minmax(0, 1fr));
   margin: 1rem 0 1.2rem;
@@ -2263,6 +2385,12 @@ textarea:focus {
   .release-exit-readiness-ledgers__grid,
   .release-stability-attestation-ledgers__summary,
   .release-stability-attestation-ledgers__grid,
+  .release-resumption-attestation-registers__summary,
+  .release-resumption-attestation-registers__grid,
+  .accessible-listbox-sample__summary,
+  .accessible-listbox-sample__layout,
+  .async-ui-verification-sample__summary,
+  .async-ui-verification-sample__layout,
   .release-multi-region-rollback__summary,
   .release-multi-region-rollback__grid,
   .release-rollout-pause-resume__summary,

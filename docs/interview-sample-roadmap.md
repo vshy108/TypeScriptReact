@@ -9,10 +9,10 @@ It is intentionally ordered by practical interview payoff, not by API completene
 Implemented now:
 
 - accessible dialog with focus trap, keyboard dismissal, and focus return
+- accessible listbox with arrow-key navigation, Home and End jumps, and keyboard selection
 
 Highest-value additions:
 
-- menu or listbox with keyboard navigation
 - form error messaging with semantic associations and keyboard-friendly validation
 
 Why this matters:
@@ -25,10 +25,11 @@ Why this matters:
 Implemented now:
 
 - debounced search sample showing stale-response overwrite vs cancellation-based protection
+- testing example showing async UI verification and mocked network behavior
 
 Highest-value additions:
 
-- testing example showing async UI verification and mocked network behavior
+- no additional high-priority additions in this section right now
 
 Why this matters:
 
@@ -70,12 +71,13 @@ Implemented now:
 - remediation readiness registries with stale-evidence invalidation and approver sign-off
 - exit readiness ledgers with stale-criterion invalidation and approver sign-off
 - stability attestation ledgers with stale-signal invalidation and approver sign-off
+- resumption attestation registers with stale-check invalidation and approver sign-off
 - staged incident comms approval packs with legal overrides and customer-visible rollback wording diffs
 - post-rollback customer segmentation with region-specific update timing and escalation-safe message forks
 
 Highest-value addition:
 
-- another feature slice that extends the publish-gated incident workflow pattern with one more typed owner-review and attestation flow
+- no additional high-priority additions in this section right now
 
 Suggested structure:
 

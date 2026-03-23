@@ -173,6 +173,25 @@ export const miniSampleCatalog = [
       "Accessibility behavior is easiest to verify in a focused sample where keyboard flow and focus movement are the main subject.",
   },
   {
+    id: "sample-react-accessible-listbox",
+    title: "Accessible listbox keyboard navigation",
+    topic: "React DOM",
+    status: "implemented",
+    surface: "isolated-route",
+    apis: [
+      'role="listbox"',
+      'role="option"',
+      "aria-activedescendant",
+      "Arrow keys",
+      "Home and End",
+      "keyboard selection",
+    ],
+    summary:
+      "Practice a practical accessibility interview topic: listbox semantics, keyboard navigation, active-option state, and selection without the pointer.",
+    whyIsolated:
+      "Listbox keyboard behavior is easiest to verify in a focused sample where active-option movement and selection are the main subject.",
+  },
+  {
     id: "sample-react-hydration-hints",
     title: "Hydration and resource hint APIs",
     topic: "React DOM",
@@ -221,6 +240,24 @@ export const miniSampleCatalog = [
       "Show that debounce reduces request volume but does not solve stale-response races unless older requests are cancelled or ignored.",
     whyIsolated:
       "Async race-condition demos need tightly controlled timing so the bug and the fix remain visible side by side.",
+  },
+  {
+    id: "sample-react-async-ui-verification",
+    title: "Async UI verification and mocked network behavior",
+    topic: "React Client",
+    status: "implemented",
+    surface: "isolated-route",
+    apis: [
+      "mocked network behavior",
+      "loading state verification",
+      "error path verification",
+      "retry flow",
+      "deterministic async tests",
+    ],
+    summary:
+      "Show a deterministic async UI that makes loading, success, failure, and retry assertions easy to verify with mocked network behavior.",
+    whyIsolated:
+      "Async verification samples are easiest to explain when mocked timing, loading state, and retry behavior stay visible in one focused route.",
   },
   {
     id: "sample-react-release-readiness-feature",
@@ -815,6 +852,24 @@ export const miniSampleCatalog = [
       "Show owner-reviewed stability attestation ledgers, stale-signal invalidation, approver sign-off, and a publish gate that only clears once the revised packet is approved.",
     whyIsolated:
       "Stability attestation ledgers are easiest to explain when ledger review, stale-signal invalidation, and approver sign-off stay visible together in one route.",
+  },
+  {
+    id: "sample-react-release-resumption-attestation-registers",
+    title: "Release resumption attestation registers",
+    topic: "React Client",
+    status: "implemented",
+    surface: "isolated-route",
+    apis: [
+      "resumption register review",
+      "stale-check invalidation",
+      "approver sign-off",
+      "resumption check reconciliation",
+      "publish gating",
+    ],
+    summary:
+      "Show owner-reviewed resumption attestation registers, stale-check invalidation, approver sign-off, and a publish gate that only clears once the revised packet is approved.",
+    whyIsolated:
+      "Resumption attestation registers are easiest to explain when register review, stale-check invalidation, and approver sign-off stay visible together in one route.",
   },
   {
     id: "sample-react-streaming-ssr",

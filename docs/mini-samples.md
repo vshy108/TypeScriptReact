@@ -48,6 +48,11 @@ This project now treats the remaining backlog as isolated mini-samples instead o
   Status: implemented.
   Recommended surface: standalone route.
 
+- `sample-react-async-ui-verification`
+  Covers deterministic async UI verification, mocked network behavior, loading/error assertions, and retry flows.
+  Status: implemented.
+  Recommended surface: standalone route.
+
 - `sample-react-release-readiness-feature`
   Covers a typed API client, a custom hook, derived view state, and integration-style feature tests.
   Status: implemented.
@@ -213,6 +218,11 @@ This project now treats the remaining backlog as isolated mini-samples instead o
   Status: implemented.
   Recommended surface: standalone route.
 
+- `sample-react-release-resumption-attestation-registers`
+  Covers resumption attestation registers, stale-check invalidation, approver sign-off, and the publish gate that stays blocked until the revised packet is approved.
+  Status: implemented.
+  Recommended surface: standalone route.
+
 ## React DOM mini-samples
 
 - `sample-react-portal-modal`
@@ -227,6 +237,11 @@ This project now treats the remaining backlog as isolated mini-samples instead o
 
 - `sample-react-accessible-dialog`
   Covers accessible dialog semantics, focus trap, focus return, and keyboard dismissal.
+  Status: implemented.
+  Recommended surface: standalone route.
+
+- `sample-react-accessible-listbox`
+  Covers listbox semantics, keyboard navigation, `aria-activedescendant`, and keyboard-driven option selection.
   Status: implemented.
   Recommended surface: standalone route.
 

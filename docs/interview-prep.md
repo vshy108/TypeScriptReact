@@ -63,10 +63,8 @@ Primary repo files: [../src/hydration/HydrationHintsApp.tsx](../src/hydration/Hy
 
 These are the most interview-relevant topics that are not yet as strong as the current API coverage:
 
-1. More accessibility-focused component behavior beyond the dialog sample
-2. More async UI examples beyond the debounced search race sample
-3. More collaborative product workflows beyond the release readiness, approval workflow, optimistic rollout, launch checklist, conflict-resolution, reconciliation, collaborative-editing, review-thread, field-merge, audit-history, branch-compare, scheduled-publish, launch-orchestration, pause-resume rollout, multi-region rollback, communication-handoff, escalation-routing, ownership-transfer-audit, delegated-approval-bundles, incident-timeline-reconstruction, rollback-decision-matrix, incident-comms-approval-packs, incident-faq-curation, post-rollback-segmentation, follow-up-commitments, remediation-evidence-bundles, customer-promise-reconciliation, rollback-waiver-ledgers, recovery-credit-ledgers, relaunch-exception-registers, remediation-readiness-registries, exit-readiness-ledgers, and stability-attestation-ledgers examples
-4. Additional interview-style walkthroughs for product scenarios
+1. Accessibility-focused form error messaging with semantic associations and keyboard-friendly validation
+2. Additional interview-style walkthroughs for product scenarios
 
 ## Related Guides
 
