@@ -1314,6 +1314,75 @@ textarea:focus {
   gap: 1rem;
 }
 
+.release-incident-faq-curation,
+.release-incident-faq-curation__summary,
+.release-incident-faq-curation__grid,
+.release-incident-faq-curation__panel,
+.release-incident-faq-curation__channel-list,
+.release-incident-faq-curation__faq-list,
+.release-incident-faq-curation__audit-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.release-incident-faq-curation__summary {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.release-incident-faq-curation__grid {
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+}
+
+.release-incident-faq-curation__actions {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.release-incident-faq-curation__channel-card,
+.release-incident-faq-curation__faq-card,
+.release-incident-faq-curation__audit-card {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: start;
+  border-radius: 1rem;
+  border: 1px solid var(--border);
+  background: rgba(255, 252, 246, 0.72);
+  padding: 0.9rem 1rem;
+}
+
+.release-incident-faq-curation__channel-card p,
+.release-incident-faq-curation__faq-card p,
+.release-incident-faq-curation__audit-card p {
+  margin: 0.25rem 0 0;
+  color: var(--muted);
+}
+
+.release-incident-faq-curation__channel-card span,
+.release-incident-faq-curation__faq-card span,
+.release-incident-faq-curation__audit-meta span {
+  text-transform: capitalize;
+}
+
+.release-incident-faq-curation__channel-card > div:last-child {
+  display: grid;
+  gap: 0.5rem;
+  justify-items: end;
+  text-align: right;
+}
+
+.release-incident-faq-curation__faq-card,
+.release-incident-faq-curation__audit-card {
+  display: grid;
+}
+
+.release-incident-faq-curation__audit-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
 .release-post-rollback-segmentation,
 .release-post-rollback-segmentation__summary,
 .release-post-rollback-segmentation__grid,
@@ -1549,6 +1618,8 @@ textarea:focus {
   .release-incident-timeline-reconstruction__grid,
   .release-rollback-decision-matrix__summary,
   .release-rollback-decision-matrix__grid,
+  .release-incident-faq-curation__summary,
+  .release-incident-faq-curation__grid,
   .release-incident-comms-approval-packs__summary,
   .release-incident-comms-approval-packs__grid,
   .release-post-rollback-segmentation__summary,

@@ -158,6 +158,11 @@ This project now treats the remaining backlog as isolated mini-samples instead o
   Status: implemented.
   Recommended surface: standalone route.
 
+- `sample-react-release-incident-faq-curation`
+  Covers cross-channel FAQ review, stale-answer invalidation, reviewer sign-off, and the publish gate that stays blocked until the refreshed answers are approved.
+  Status: implemented.
+  Recommended surface: standalone route.
+
 - `sample-react-release-post-rollback-segmentation`
   Covers region-specific rollback update timing, customer segmentation, escalation-safe message forks, and the publish gate that stays blocked until the segmented plan is ready.
   Status: implemented.

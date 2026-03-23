@@ -601,6 +601,24 @@ export const miniSampleCatalog = [
       "Rollback governance is easiest to explain when the conflicting metrics, quorum gate, and final execution path stay visible together in one route.",
   },
   {
+    id: "sample-react-release-incident-faq-curation",
+    title: "Release incident FAQ curation",
+    topic: "React Client",
+    status: "implemented",
+    surface: "isolated-route",
+    apis: [
+      "cross-channel FAQ review",
+      "stale-answer invalidation",
+      "reviewer sign-off",
+      "incident messaging synchronization",
+      "publish gating",
+    ],
+    summary:
+      "Show cross-channel FAQ review, stale-answer invalidation, reviewer sign-off, and a publish gate that only clears once the refreshed answers are approved.",
+    whyIsolated:
+      "Incident FAQ curation is easiest to explain when the channel review flow, stale-answer invalidation, and reviewer sign-off stay visible together in one route.",
+  },
+  {
     id: "sample-react-release-incident-comms-approval-packs",
     title: "Release incident comms approval packs",
     topic: "React Client",

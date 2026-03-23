@@ -2,6 +2,7 @@ import type { ComponentType } from "react";
 import ReleaseBranchComparePanel from "./features/release-branch-compare/ReleaseBranchComparePanel";
 import ReleaseChangeHistoryPanel from "./features/release-change-history/ReleaseChangeHistoryPanel";
 import ReleaseCommunicationHandoffPanel from "./features/release-communication-handoff/ReleaseCommunicationHandoffPanel";
+import ReleaseIncidentFaqCurationPanel from "./features/release-incident-faq-curation/ReleaseIncidentFaqCurationPanel";
 import ReleaseIncidentCommsApprovalPacksPanel from "./features/release-incident-comms-approval-packs/ReleaseIncidentCommsApprovalPacksPanel";
 import ReleaseDelegatedApprovalBundlesPanel from "./features/release-delegated-approval-bundles/ReleaseDelegatedApprovalBundlesPanel";
 import ReleaseEscalationRoutingPanel from "./features/release-escalation-routing/ReleaseEscalationRoutingPanel";
@@ -67,6 +68,7 @@ export const sampleImplementations: Partial<
   "sample-react-release-change-history": ReleaseChangeHistoryPanel,
   "sample-react-release-communication-handoff":
     ReleaseCommunicationHandoffPanel,
+  "sample-react-release-incident-faq-curation": ReleaseIncidentFaqCurationPanel,
   "sample-react-release-incident-comms-approval-packs":
     ReleaseIncidentCommsApprovalPacksPanel,
   "sample-react-release-delegated-approval-bundles":
