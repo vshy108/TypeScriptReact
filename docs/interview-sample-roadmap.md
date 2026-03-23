@@ -104,6 +104,7 @@ Already added in this docs folder:
 - [./debugging-playbook.md](./debugging-playbook.md)
 - [./debugging-walkthroughs.md](./debugging-walkthroughs.md)
 - [./system-design-walkthroughs.md](./system-design-walkthroughs.md)
+- [./interview-practice-index.md](./interview-practice-index.md)
 
 Highest-value additions:
 

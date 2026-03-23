@@ -38,6 +38,7 @@ This project is a modern React starter that goes beyond the default template. It
 - `docs/interview-walkthroughs.md` is the product-scenario answer guide for practicing structured interview responses from real repo examples
 - `docs/debugging-walkthroughs.md` is the debugging-answer drill guide for explaining root-cause investigation from concrete repo failures
 - `docs/system-design-walkthroughs.md` is the architecture-scenario drill guide for practicing frontend system design answers from real repo boundaries
+- `docs/interview-practice-index.md` is the quick practice-session index for turning the interview guides into repeatable mock rounds
 
 ## File map
 

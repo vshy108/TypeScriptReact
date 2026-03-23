@@ -17,6 +17,7 @@ Use these guides as a companion while reading the app and sample files. The goal
 - [Debugging playbook](./debugging-playbook.md): common frontend debugging prompts mapped to the existing samples.
 - [Debugging walkthroughs](./debugging-walkthroughs.md): structured debugging-answer drills built from the repository's most useful failure cases.
 - [System design walkthroughs](./system-design-walkthroughs.md): scenario-style architecture drills built from the repo's real boundaries and feature slices.
+- [Interview practice index](./interview-practice-index.md): short repeatable study sessions built from the repo's interview guides.
 
 ## Keyword Index
 
@@ -74,7 +75,8 @@ These are the kinds of comparisons that are easy to confuse in real projects and
 4. Read [Debugging playbook](./debugging-playbook.md).
 5. Read [Debugging walkthroughs](./debugging-walkthroughs.md).
 6. Read [System design walkthroughs](./system-design-walkthroughs.md).
-7. Use [Reading index](./reading-index.md) and the React/TypeScript term guides to fill any weak areas you discover.
+7. Use [Interview practice index](./interview-practice-index.md) to turn those guides into repeatable sessions.
+8. Use [Reading index](./reading-index.md) and the React/TypeScript term guides to fill any weak areas you discover.
 
 ### If You Know Older React But Not React 19
 
