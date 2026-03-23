@@ -1,4 +1,5 @@
 import type { ComponentType } from "react";
+import ReleaseBranchComparePanel from "./features/release-branch-compare/ReleaseBranchComparePanel";
 import ReleaseChangeHistoryPanel from "./features/release-change-history/ReleaseChangeHistoryPanel";
 import ReleaseFieldMergePanel from "./features/release-field-merge/ReleaseFieldMergePanel";
 import type { MiniSampleId } from "./sampleCatalog";
@@ -50,6 +51,7 @@ export const sampleImplementations: Partial<
   "sample-react-layout-effects": LayoutEffectsSample,
   "sample-react-memo-lab": MemoLabSample,
   "sample-react-portal-modal": PortalModalSample,
+  "sample-react-release-branch-compare": ReleaseBranchComparePanel,
   "sample-react-release-change-history": ReleaseChangeHistoryPanel,
   "sample-react-release-field-merge": ReleaseFieldMergePanel,
   "sample-react-release-handoff-conflict": ReleaseHandoffConflictPanel,

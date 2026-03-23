@@ -49,10 +49,11 @@ Implemented now:
 - release review threads and approvals with blocked publish until reviewer comments are resolved and approvals are green
 - release field-level merge resolution with automatic non-conflicting merges and explicit side-by-side conflict choices
 - release audit history and undo with attributed snapshots for each change and rollback of the latest revision
+- release branch compare view with alternate drafts, side-by-side wording comparison, and branch promotion
 
 Highest-value addition:
 
-- an eleventh feature slice that combines history with branching drafts, compare views, or scheduled publish state
+- a twelfth feature slice that combines scheduled publish state with approvals, countdowns, or rollback windows
 
 Suggested structure:
 

@@ -620,6 +620,34 @@ textarea:focus {
   color: var(--muted);
 }
 
+.release-branch-compare,
+.release-branch-compare__grid,
+.release-branch-compare__summary,
+.release-branch-compare__panel,
+.release-branch-compare__branch-list,
+.release-branch-compare__compare-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.release-branch-compare__summary,
+.release-branch-compare__grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.release-branch-compare__compare-card {
+  border-radius: 1rem;
+  border: 1px solid var(--border);
+  background: rgba(255, 252, 246, 0.72);
+  padding: 0.9rem 1rem;
+}
+
+.release-branch-compare__compare-card p,
+.release-branch-compare__compare-card span {
+  margin: 0.25rem 0 0;
+  color: var(--muted);
+}
+
 .sample-summary {
   grid-template-columns: repeat(3, minmax(0, 1fr));
   margin: 1rem 0 1.2rem;
@@ -2174,6 +2202,8 @@ textarea:focus {
   .release-field-merge__grid,
   .release-change-history__summary,
   .release-change-history__grid,
+  .release-branch-compare__summary,
+  .release-branch-compare__grid,
   .release-review-threads__summary,
   .release-review-threads__grid,
   .release-rollout-reconciliation__grid,

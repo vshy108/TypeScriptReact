@@ -403,6 +403,24 @@ export const miniSampleCatalog = [
       "Audit and undo flows are easiest to discuss when the current draft and the recent history entries are visible together in one route.",
   },
   {
+    id: "sample-react-release-branch-compare",
+    title: "Release branch compare view",
+    topic: "React Client",
+    status: "implemented",
+    surface: "isolated-route",
+    apis: [
+      "branching drafts",
+      "compare view",
+      "branch promotion",
+      "alternate messaging",
+      "revision selection",
+    ],
+    summary:
+      "Show a primary release draft alongside alternate branches so you can compare wording and promote the stronger branch.",
+    whyIsolated:
+      "Branch compare workflows are easiest to explain when the current primary draft and the alternate wording stay visible side by side in one route.",
+  },
+  {
     id: "sample-react-streaming-ssr",
     title: "Streaming SSR and prerender flows",
     topic: "React Server",
