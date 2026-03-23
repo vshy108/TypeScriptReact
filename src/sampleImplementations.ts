@@ -25,6 +25,8 @@ import UseResourceSample from "./samples/UseResourceSample";
 export const sampleImplementations: Partial<
   Record<MiniSampleId, ComponentType>
 > = {
+  // Partial<Record<...>> is deliberate here: the catalog also contains planned and documentation-only
+  // entries, so forcing every MiniSampleId to have a component would make the registry lie about what is runnable.
   "sample-react-activity-transition": ActivityTransitionSample,
   "sample-react-context-identity": ContextIdentitySample,
   "sample-react-context-theme": ContextThemeSample,

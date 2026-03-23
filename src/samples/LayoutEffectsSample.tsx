@@ -161,6 +161,8 @@ function applyMarker(marker: HTMLDivElement | null, snapshot: LayoutSnapshot | n
     return
   }
 
+  // Moving with transforms avoids forcing surrounding layout to recalculate; the sample wants to
+  // isolate effect timing differences, not accidentally add extra layout work from the marker itself.
   marker.style.opacity = '1'
   marker.style.width = `${snapshot.width}px`
   marker.style.transform = `translateX(${snapshot.offset}px)`
@@ -215,6 +217,8 @@ export default function LayoutEffectsSample() {
       return
     }
 
+    // The same style node is reused and only its text changes. Reusing one node keeps the demo focused
+    // on timing semantics rather than repeatedly allocating and inserting extra style elements.
     styleElement.textContent = createLayoutStyles(scopeClass, accent, density)
     document.head.appendChild(styleElement)
 
@@ -250,6 +254,8 @@ export default function LayoutEffectsSample() {
 
   useEffect(() => {
     function handleResize() {
+      // Resize handling recomputes both markers from one fresh measurement so the comparison stays fair:
+      // layout-timed and passive markers are looking at the same geometry snapshot.
       const snapshot = readSnapshot(stripRef.current, getChipNode(chipRefs.current, activeId), activeSignal.label)
 
       applyMarker(layoutMarkerRef.current, snapshot)

@@ -51,6 +51,8 @@ function comparePrivacy(): readonly string[] {
   const results: string[] = [];
 
   // TS private: accessible via bracket notation at runtime (no real privacy).
+  // The sample uses an any-cast on purpose here because the point is to show that TypeScript's
+  // privacy check disappears after compilation; the runtime object still has a normal property.
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const tsLeaked = (ts as any)["secret"] as string;
   results.push(`TS private via bracket: "${tsLeaked}"`);
@@ -133,6 +135,8 @@ class Employee {
   protected salary: number;
 
   constructor(name: string, department: string, salary: number) {
+    // The explicit assignments look more verbose, but they keep this file compatible with the repo's
+    // erasableSyntaxOnly setting, which rejects parameter properties because they emit runtime code.
     this.name = name;
     this.department = department;
     this.salary = salary;

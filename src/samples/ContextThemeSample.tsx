@@ -95,6 +95,8 @@ function ThemeProvider({ children }: PropsWithChildren) {
 }
 
 function FeatureFlagsProvider({ children }: PropsWithChildren) {
+  // This sample keeps feature flags in a separate context from theme tokens so unrelated changes do not
+  // have to travel through one giant provider value. Splitting contexts is a common readability and perf tool.
   const [flags, setFlags] = useState({
     showTexture: true,
     showTelemetry: true,
@@ -200,6 +202,8 @@ function ThemeToolbar() {
 
 function ThemePreviewPanel() {
   const { theme, tokens } = useThemeContext()
+  // Reading both contexts here is intentional: this panel should update when either theme tokens change
+  // or feature flags toggle. The sample uses one consumer to make that subscription behavior visible.
   const { showTelemetry, showTexture } = useFeatureFlags()
 
   return (

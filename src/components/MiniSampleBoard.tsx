@@ -7,6 +7,8 @@ import {
 import { toSampleHash } from '../sampleRuntime'
 
 function countByStatus(status: keyof typeof sampleStatusMeta) {
+  // Summary counts are derived from the catalog at render time so the board cannot drift out of sync
+  // with the actual sample registry when statuses change.
   return miniSampleCatalog.filter((sample) => sample.status === status).length
 }
 
@@ -41,6 +43,8 @@ export default function MiniSampleBoard() {
 
       <div className="sample-topic-list">
         {sampleTopics.map((topic) => {
+          // Grouping by topic first keeps the board readable as a learning map. A flat list would mix
+          // React DOM, SSR, and TypeScript samples together and make implementation progress harder to scan.
           const samples = miniSampleCatalog.filter((sample) => sample.topic === topic)
 
           return (

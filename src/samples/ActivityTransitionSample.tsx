@@ -101,6 +101,8 @@ function formatNow() {
 }
 
 function getRegionDetail(regionId: RegionId): RegionDetail {
+  // The fallback keeps the sample resilient if selection briefly points at an unknown id during
+  // future refactors or URL-driven wiring; the demo should degrade to a valid panel, not crash.
   return regionDetails.get(regionId) ?? { ...operatorRegions[0], inspectedAt: '—', checklist: [] }
 }
 
@@ -216,6 +218,8 @@ export default function ActivityTransitionSample() {
   // updates from anywhere — event handlers, callbacks, or module-level code — without needing
   // a component-scoped isPending flag. This is the key difference from useTransition.
   function handleFilterChange(nextFilter: PriorityTier | 'all') {
+    // The actual filter is urgent because the user should see the chosen chip react immediately.
+    // Only the logging work is deferred, which demonstrates that startTransition is for secondary UI.
     setTierFilter(nextFilter)
 
     // The log update is intentionally wrapped in startTransition because it is non-urgent UI feedback.
@@ -257,6 +261,8 @@ export default function ActivityTransitionSample() {
               key={option}
               type="button"
               className={`chip ${tierFilter === option ? 'chip--active' : ''}`}
+              // The click handler stays tiny on purpose: all interesting scheduling decisions live in
+              // handleFilterChange so the demo has one obvious place to explain urgent vs deferred work.
               onClick={() => { handleFilterChange(option) }}
               aria-pressed={tierFilter === option}
             >

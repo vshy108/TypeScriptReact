@@ -30,6 +30,11 @@ This project is a modern React starter that goes beyond the default template. It
 - `npm run typecheck` runs TypeScript without building the app bundle
 - `npm run preview` serves the built app locally
 
+## Reading guides
+
+- `docs/reading-index.md` is the fastest repo-first reading path through the annotated code
+- `docs/react-typescript-terms.md` is the landing page for the React and TypeScript term guides
+
 ## File map
 
 - `src/App.tsx` contains the interactive React showcase

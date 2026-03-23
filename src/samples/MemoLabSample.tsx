@@ -73,6 +73,9 @@ interface MemoLabStageProps {
 
 const focusOptions = ['All', 'UI Systems', 'Data Viz', 'Infra', 'Operations'] as const satisfies readonly FocusFilter[]
 
+// as const satisfies keeps the option values narrow enough for the FocusFilter union while still
+// checking that this list is valid. That is safer than widening to string[] and losing type help.
+
 const labMembers = [
   {
     id: 'member-1',
@@ -200,6 +203,9 @@ function useVisibleRoster(
   const normalizedQuery = query.trim().toLowerCase()
 
   const roster = useMemo<VisibleRosterResult>(() => {
+    // Filtering, scoring, and sorting live inside one memoized derivation because they are all
+    // derived from the same source inputs. Keeping them together makes the expensive work explicit
+    // and avoids duplicating intermediate state that would drift out of sync.
     const visibleMembers = labMembers
       .filter((member) => (focusFilter === 'All' ? true : member.focus === focusFilter))
       .filter((member) => (onlyAvailable ? member.available : true))

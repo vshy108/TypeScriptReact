@@ -8,6 +8,9 @@ import {
   type ResourceHintId,
 } from './hydrationData'
 
+// This app is intentionally separate from the main SPA because hydration needs pre-rendered HTML to
+// attach to. The goal is to show the lifecycle after server markup exists, not a fresh client-only mount.
+
 function getNextHintId(currentId: ResourceHintId): ResourceHintId {
   const currentIndex = resourceHintPlans.findIndex((plan) => plan.id === currentId)
   const nextIndex = (currentIndex + 1) % resourceHintPlans.length
@@ -23,6 +26,8 @@ export default function HydrationHintsApp() {
   // the initial hydration render completes. This gives hydrateRoot() time to
   // finish attaching event handlers before we update the status message.
   useEffect(() => {
+    // The timeout is not for perceived delay. It is there so this state change happens in a later task,
+    // proving the shell became interactive through hydration before this follow-up client update runs.
     const hydrationTick = window.setTimeout(() => {
       setStatusMessage(hydratedStatus)
       setActivityLog((currentLog) => [
@@ -41,6 +46,8 @@ export default function HydrationHintsApp() {
   function focusNextHint() {
     const nextHintId = getNextHintId(activeHintId)
     const nextHint = findResourceHintPlan(nextHintId)
+    // Cycling through the hints from hydrated controls demonstrates that the pre-rendered buttons are
+    // already live after hydrateRoot() attaches event handlers; no DOM replacement is needed.
     setActiveHintId(nextHintId)
     setActivityLog((currentLog) => [`Focused ${nextHint.api} from the hydrated controls.`, ...currentLog].slice(0, 4))
   }

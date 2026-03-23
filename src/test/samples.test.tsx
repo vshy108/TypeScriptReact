@@ -12,6 +12,9 @@ const implementedRouteSamples = implementedSamples.filter((sample) => sample.sur
 const implementedArtifactSamples = implementedSamples.filter(
   (sample) => sample.surface === 'node-only' || sample.surface === 'separate-entry' || sample.surface === 'comment-demo',
 )
+// The test harness splits implemented samples by surface because each surface has a different proof
+// of existence: inline components render through MiniSampleStage, while artifact-backed samples are
+// verified through files and commands instead of JSX rendering.
 const supportedImplementedSurfaces = new Set(
   ['current-app', 'isolated-route', 'separate-entry', 'node-only', 'comment-demo'] as const,
 )
@@ -26,12 +29,15 @@ describe('sample coverage contract', () => {
   })
 
   it('maps every implemented isolated-route sample to a concrete component', () => {
+    // This prevents "catalog says implemented, but nothing renders" regressions.
     const missingImplementations = implementedRouteSamples.map((sample) => sample.id).filter((id) => !sampleImplementations[id])
 
     expect(missingImplementations).toEqual([])
   })
 
   it('maps every implemented artifact-backed sample to an artifact entry', () => {
+    // Artifact-backed samples still count as implemented, but their proof lives in files/commands
+    // rather than a component export. This test keeps that alternate contract honest.
     const missingArtifacts = implementedArtifactSamples
       .map((sample) => sample.id)
       .filter((id) => !implementedSampleArtifacts[id])

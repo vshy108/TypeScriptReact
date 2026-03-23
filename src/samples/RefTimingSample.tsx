@@ -111,6 +111,8 @@ function CallbackRefDemo() {
   const handleCallbackRef = useCallback((node: HTMLDivElement | null) => {
     if (node) {
       const rect = node.getBoundingClientRect();
+      // Measuring inside the callback ref is deliberate: this is the earliest point where the node
+      // definitely exists in the DOM, which makes it a good place for integration-style imperative work.
       setLog((prev) =>
         [
           createLog(
@@ -196,6 +198,8 @@ const FocusableInput = forwardRef<FocusableInputHandle>(
           return value;
         },
       }),
+      // getValue() closes over the latest input state, so the imperative handle must refresh when
+      // value changes; otherwise the parent would read a stale snapshot from an outdated closure.
       [value],
     );
 

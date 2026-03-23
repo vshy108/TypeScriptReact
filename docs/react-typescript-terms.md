@@ -8,6 +8,7 @@ Use these guides as a companion while reading the app and sample files. The goal
 
 ## Guides
 
+- [Reading index](./reading-index.md): the shortest recommended path through the repository now that the code has more rationale comments.
 - [React terms](./react-terms.md): React client APIs, DOM APIs, server APIs, compiler and lint concepts, and the edge-case terms demonstrated by this repo.
 - [TypeScript terms](./typescript-terms.md): TypeScript language features, interop topics, compiler options, and type-system edge cases demonstrated by this repo.
 
@@ -28,9 +29,10 @@ Use these guides as a companion while reading the app and sample files. The goal
 ### If You Want A Repo-First Study Order
 
 1. Read [../README.md](../README.md) for the map of the project.
-2. Read [React terms](./react-terms.md).
-3. Read [TypeScript terms](./typescript-terms.md).
-4. Browse [../src/sampleCatalog.ts](../src/sampleCatalog.ts) and then open the linked sample files that match the terms you want to practice.
+2. Read [Reading index](./reading-index.md) for the fastest path through the annotated files.
+3. Read [React terms](./react-terms.md).
+4. Read [TypeScript terms](./typescript-terms.md).
+5. Browse [../src/sampleCatalog.ts](../src/sampleCatalog.ts) and then open the linked sample files that match the terms you want to practice.
 
 ## Scope
 

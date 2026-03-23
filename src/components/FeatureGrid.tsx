@@ -17,6 +17,8 @@ interface FeatureGridProps<T extends SelectableFeature> {
   readonly items: readonly T[]
   readonly activeId: T['id']
   readonly onSelect: (id: T['id']) => void
+  // Callers supply renderMeta so this generic grid stays reusable; the grid owns selection layout,
+  // while each caller decides which extra fields matter for its specific item type.
   readonly renderMeta: (item: T) => ReactNode
 }
 

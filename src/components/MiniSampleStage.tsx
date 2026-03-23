@@ -24,6 +24,8 @@ export default function MiniSampleStage() {
       setActiveSampleId(readSampleIdFromHash() ?? getDefaultSampleId())
     }
 
+    // Run once immediately because the initial URL hash may already point at a sample before
+    // React mounts; only listening for future hashchange events would miss that first state.
     syncFromHash()
     window.addEventListener('hashchange', syncFromHash)
 

@@ -34,12 +34,16 @@ interface PluginSnapshot {
 }
 
 // Intersection types merge independently useful contracts into one render model without inventing another giant interface.
+// That keeps runtime classes focused on domain behavior while the UI consumes a smaller composed view model
+// instead of depending on every field and method from the concrete plugin objects.
 type PluginCardModel = PluginSnapshot &
   Schedulable & {
     readonly riskBand: string
   }
 
 // This abstract class centralizes shared plugin behavior while forcing subclasses to supply cadence, windows, and run logic.
+// An abstract class is the right fit here because the sample wants both shared runtime behavior
+// (describe, risk-band logic, runbook helpers) and a compile-time contract for subclasses.
 abstract class ReleasePlugin implements PluginContract, Schedulable {
   public readonly id: PluginId
   public readonly title: string
@@ -47,7 +51,10 @@ abstract class ReleasePlugin implements PluginContract, Schedulable {
   public readonly capability: PluginCapability
   public abstract readonly cadence: string
   public abstract readonly nextWindow: string
+  // runbook is protected because subclasses extend and reuse it when building results.
   protected readonly runbook: readonly string[]
+  // baselineRisk stays private because callers and subclasses should use the derived public risk band,
+  // not couple themselves to the internal numeric scoring rule.
   private readonly baselineRisk: number
 
   protected constructor(config: {
@@ -71,6 +78,8 @@ abstract class ReleasePlugin implements PluginContract, Schedulable {
   }
 
   public toCardModel(): PluginCardModel {
+    // The UI only needs a render-focused snapshot, not the full class instance. Converting here keeps
+    // presentation code decoupled from the plugin internals and makes the sample's class layer reusable.
     return {
       id: this.id,
       title: this.title,

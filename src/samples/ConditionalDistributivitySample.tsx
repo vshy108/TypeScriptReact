@@ -29,6 +29,9 @@ import { useState } from "react";
 
 type IsString<T> = T extends string ? "yes" : "no";
 
+// The type parameter is "naked" here, which is why unions distribute. Wrapping T in another
+// structure would change the meaning of the type entirely.
+
 // "a" | 42 distributes: IsString<"a"> | IsString<42> → "yes" | "no"
 type DistributiveResult = IsString<"a" | 42>;
 
@@ -78,6 +81,9 @@ type EventMap =
 
 type FilterByKind<T, K> = T extends { kind: K } ? T : never;
 
+// Returning never for non-matches is the key trick: distributive conditionals automatically erase
+// those never branches from the final union, leaving only the members we want.
+
 // Extracts only the "click" event type from the union.
 type ClickEvent = FilterByKind<EventMap, "click">;
 
@@ -113,6 +119,9 @@ const _checkElement: ArrElem = 1 as 1 | 2 | 3;
 
 // Extract the resolved type from a Promise.
 type Awaited2<T> = T extends Promise<infer R> ? Awaited2<R> : T;
+
+// The recursive branch mirrors how deeply nested Promise types are peeled in practice; this sample
+// uses a custom Awaited to show that many built-in utility types are just small conditional patterns.
 
 type DeepPromise = Promise<Promise<string>>;
 type Resolved = Awaited2<DeepPromise>; // string

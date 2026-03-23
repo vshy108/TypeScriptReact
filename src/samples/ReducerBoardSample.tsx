@@ -60,6 +60,8 @@ const starterBoardTasks = [
 let nextBoardTaskNumber = starterBoardTasks.length + 1
 
 function createBoardState(): BoardState {
+  // Keeping initialization in a named function gives useReducer a reusable source of truth for both
+  // first mount and reset. That avoids copying the same initial object into multiple code paths.
   return {
     filter: 'All',
     tasks: starterBoardTasks,
@@ -133,6 +135,8 @@ function createBoardTask(title: string): BoardTask {
 }
 
 function tasksForLane(tasks: readonly BoardTask[], lane: BoardLane) {
+  // This stays outside the reducer because it is derived view data, not persistent state. Reducers
+  // should store the minimal source state and let render compute presentation-specific slices.
   return tasks.filter((task) => task.lane === lane)
 }
 
@@ -156,6 +160,8 @@ export default function ReducerBoardSample() {
       return
     }
 
+    // The form keeps draftTitle in local component state because it is transient input state. Only
+    // committed domain changes go through the reducer; otherwise every keystroke would become an action.
     dispatch({
       type: 'add',
       task: createBoardTask(title),

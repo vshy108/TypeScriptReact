@@ -14,6 +14,11 @@ export type SampleSurface =
   | "node-only"
   | "comment-demo";
 
+// surface is the execution contract for a sample, not just a display label:
+// current-app renders inside App.tsx, isolated-route renders through MiniSampleStage,
+// separate-entry has its own HTML/runtime entry, node-only is verified through tsc in a Node context,
+// and comment-demo documents concepts that are real but not runnable in this workspace.
+
 export type MiniSampleId = `sample-${string}`;
 
 export interface MiniSample {
@@ -40,6 +45,8 @@ export const sampleTopics = [
 // The UI reads it to populate the sample board and command palette, the test suite reads it
 // to verify that every "implemented" entry has a matching component or artifact, and the
 // routing module reads it to resolve hash slugs back to catalog ids.
+// Keeping all of that metadata in one catalog prevents the common drift where navigation,
+// documentation, and tests silently describe different sets of samples.
 export const miniSampleCatalog = [
   {
     id: "sample-core-lab",

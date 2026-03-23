@@ -39,6 +39,8 @@ export function CommandPalette({ ref, suggestions, onSubmit }: CommandPalettePro
         inputRef.current.select()
       },
     }),
+    // The handle only depends on the stable inputRef object, so an empty dependency list keeps
+    // the exposed imperative API stable for parents instead of replacing it every render.
     [],
   )
 

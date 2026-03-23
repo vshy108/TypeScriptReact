@@ -33,6 +33,8 @@ export function readSampleIdFromHash(
     (entry) => toSampleSlug(entry.id) === slug,
   );
 
+  // Unknown hashes return null instead of throwing so the UI can gracefully fall back to a
+  // default sample and still keep back/forward navigation resilient against bad URLs.
   return sample?.id ?? null;
 }
 

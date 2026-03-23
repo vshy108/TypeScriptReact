@@ -36,6 +36,8 @@ const ThemeContext = createContext<ThemeValue | null>(null);
 
 function useTheme(): ThemeValue {
   const value = useContext(ThemeContext);
+  // Failing fast here keeps consumers simple: every caller gets a non-null ThemeValue instead of
+  // carrying null checks everywhere just because the context default is null.
   if (!value) {
     throw new Error("useTheme must be used inside a ThemeContext provider.");
   }
@@ -145,6 +147,8 @@ function FixedProvider({ children }: { readonly children: React.ReactNode }) {
   const [palette, setPalette] = useState<PaletteMode>("ocean");
 
   // FIX: useCallback makes togglePalette referentially stable across renders.
+  // That matters because the provider value object includes this function; if the callback changes,
+  // useMemo would still have to produce a new provider value and all consumers would re-render.
   const togglePalette = useCallback(() => {
     setPalette((p) => nextPalette(p));
   }, []);
@@ -171,6 +175,8 @@ export default function ContextIdentitySample() {
 
   // Increment the parent render counter whenever unrelatedTick changes.
   // This keeps the count visible without writing to a ref during render.
+  // The sample wants parent churn to be explicit state so the re-render cause is visible in React,
+  // not hidden inside a mutable ref that would update without showing up in the render graph.
   const parentRenderCount = parentRenders + unrelatedTick;
 
   const Provider = mode === "buggy" ? BuggyProvider : FixedProvider;

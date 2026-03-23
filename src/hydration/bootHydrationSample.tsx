@@ -41,6 +41,8 @@ export function bootHydrationSample({
   registerHydrationHints()
 
   const hydrationOptions: HydrationOptions = {
+    // A prefix keeps useId-generated ids stable if this hydration demo ever shares a page with
+    // another React root; without it, separate apps could accidentally generate colliding ids.
     identifierPrefix: 'hydration-lab-',
     ...(onRecoverableError ? { onRecoverableError } : {}),
   }

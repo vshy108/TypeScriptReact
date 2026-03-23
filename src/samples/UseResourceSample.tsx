@@ -95,6 +95,8 @@ function readLaunchBrief(briefId: LaunchBriefId, revision: number) {
   const cachedPromise = resourceCache.get(cacheKey)
 
   if (cachedPromise) {
+    // Reusing the same Promise is the important part: if each render created a fresh Promise, React
+    // would keep seeing a new pending resource and the Suspense boundary could never settle cleanly.
     return cachedPromise
   }
 
@@ -109,6 +111,8 @@ function BriefPreview({
   readonly resourcePromise: Promise<LoadedLaunchBrief>
 }) {
   // use() lets render read a promise directly; if it is still pending, React will suspend this subtree automatically.
+  // The component does not own fetching logic or loading flags. Its job is just to declare, "I need
+  // this resource to render," and let Suspense coordinate the waiting state.
   const brief = use(resourcePromise)
 
   return (
@@ -162,6 +166,8 @@ export default function UseResourceSample() {
   const activeResource = readLaunchBrief(activeId, revision)
 
   function warmBrief(briefId: LaunchBriefId) {
+    // Warming uses the same read path as the real render so the demo teaches the actual cache contract,
+    // not a special prefetch-only API with different behavior.
     void readLaunchBrief(briefId, revision)
     setActivityLog((currentLog) => [
       `${formatTime(new Date())} - Warmed ${briefId} for revision ${revision}.`,

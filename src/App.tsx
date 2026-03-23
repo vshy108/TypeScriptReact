@@ -84,6 +84,8 @@ function assertNonEmptyString(
   value: FormDataEntryValue | null,
   field: string,
 ): asserts value is string {
+  // This assertion helper keeps runtime validation and type narrowing in one place so the parsing
+  // code below can stay linear instead of repeatedly checking for null, string-ness, and emptiness.
   if (typeof value !== 'string' || !value.trim()) {
     throw new Error(`${field} is required.`)
   }
@@ -173,6 +175,9 @@ export default function App() {
   const [submissionState, submitTask, isSubmitting] = useActionState(
     async (_previousState: SubmissionState, formData: FormData): Promise<SubmissionState> => {
       try {
+        // The action re-parses FormData instead of trusting the optimistic path because this function
+        // is the real source of truth. It must be able to validate and save correctly even if the
+        // optimistic update path changes, is skipped, or throws before submitTask() runs.
         const draft = parseTaskFormData(formData)
         await wait(900)
         const savedTask = createTask(draft)
@@ -195,6 +200,8 @@ export default function App() {
 
   // useEffectEvent lets a long-lived effect read the latest selected feature without re-subscribing.
   const activeFeatureEvent = useEffectEvent(() => {
+    // We resolve the feature inside the event instead of closing over a previously found object so the
+    // keyboard shortcut always uses the latest selected id without forcing the outer effect to re-run.
     const activeFeature = featureCatalog.find((feature) => feature.id === activeFeatureId) ?? featureCatalog[0]
 
     commandRef.current?.load(activeFeature.title)
@@ -207,6 +214,9 @@ export default function App() {
   // useEffect is the right place for browser subscriptions because setup happens after render and cleanup happens on unmount.
   useEffect(() => {
     // Register the global shortcut once; the effect event keeps its inner logic fresh.
+    // This effect intentionally has an empty dependency list because the browser subscription itself
+    // should be stable for the lifetime of the component. useEffectEvent carries the latest logic
+    // into that stable listener so we do not pay the cost of remove/add on every feature change.
     function handleGlobalShortcut(event: KeyboardEvent) {
       if (!(event.metaKey || event.ctrlKey) || event.key.toLowerCase() !== 'k') {
         return
@@ -225,6 +235,9 @@ export default function App() {
 
   function handleTaskAction(formData: FormData) {
     try {
+      // We parse here before submitTask() so optimistic UI can reuse the same validated TaskDraft shape
+      // that the async action will later save. We still pass the original FormData into useActionState
+      // because that hook owns the authoritative submit lifecycle, pending flag, and final error/success message.
       const draft = parseTaskFormData(formData)
       addOptimisticTask(draft)
       taskFormRef.current?.reset()

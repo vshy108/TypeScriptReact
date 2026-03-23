@@ -1,6 +1,9 @@
 import type { MiniSampleId } from "./sampleCatalog";
 
 export interface ImplementedSampleArtifact {
+  // label is UI-facing, rootDir scopes where the sample actually lives, and entryPoint identifies
+  // the canonical source file the tests and docs should point at. The optional fields exist because
+  // not every artifact-backed sample has an HTML shell, launch URL, or workspace README.
   readonly label: string;
   readonly rootDir: string;
   readonly entryPoint: string;
@@ -14,6 +17,8 @@ export interface ImplementedSampleArtifact {
 // artifact details here. This is separate from sampleImplementations because these samples
 // have their own entry points (hydration HTML, SSR workspace, node-only tsconfig, comment-based
 // demo files) rather than a React component that MiniSampleStage can render inline.
+// In other words: sampleImplementations answers "what component can the stage render?", while
+// this file answers "if it cannot render inline, what files and commands prove the sample exists?"
 export const implementedSampleArtifacts: Partial<
   Record<MiniSampleId, ImplementedSampleArtifact>
 > = {
