@@ -69,7 +69,8 @@ export function useReleaseMultiRegionRollback() {
   );
 
   const dependenciesReady = useMemo(
-    () => dependencies.every((dependency) => dependency.status === "acknowledged"),
+    () =>
+      dependencies.every((dependency) => dependency.status === "acknowledged"),
     [dependencies],
   );
 

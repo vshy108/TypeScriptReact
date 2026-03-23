@@ -18,7 +18,12 @@ export interface ReleaseRollbackRegion {
   readonly id: ReleaseRollbackRegionId;
   readonly name: string;
   readonly trafficPercent: number;
-  readonly status: "stable" | "targeted" | "rolling-back" | "rolled-back" | "recovering";
+  readonly status:
+    | "stable"
+    | "targeted"
+    | "rolling-back"
+    | "rolled-back"
+    | "recovering";
   readonly note: string;
 }
 

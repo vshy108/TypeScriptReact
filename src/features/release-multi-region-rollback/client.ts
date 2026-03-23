@@ -56,13 +56,15 @@ const initialDependencies = [
   {
     id: "rollback-dependency-1",
     owner: "Payments cache",
-    action: "Clear stale checkout pricing cache before the final region recovers.",
+    action:
+      "Clear stale checkout pricing cache before the final region recovers.",
     status: "pending",
   },
   {
     id: "rollback-dependency-2",
     owner: "Support updates",
-    action: "Acknowledge the customer-facing incident update before the final rollback closes.",
+    action:
+      "Acknowledge the customer-facing incident update before the final rollback closes.",
     status: "pending",
   },
 ] as const satisfies readonly ReleaseRollbackDependency[];
@@ -101,13 +103,13 @@ function cloneWorkspace(): ReleaseRollbackWorkspaceResponse {
 }
 
 function dependenciesReady() {
-  return dependencies.every((dependency) => dependency.status === "acknowledged");
+  return dependencies.every(
+    (dependency) => dependency.status === "acknowledged",
+  );
 }
 
 function nextTargetedRegion() {
-  return (
-    regions.find((region) => region.status === "targeted") ?? null
-  );
+  return regions.find((region) => region.status === "targeted") ?? null;
 }
 
 export function resetReleaseMultiRegionRollbackMockState() {
@@ -127,13 +129,16 @@ export function advanceReleaseRollbackClock() {
     return;
   }
 
-  const activeRegion = regions.find((region) => region.id === run.activeRegionId) ?? null;
+  const activeRegion =
+    regions.find((region) => region.id === run.activeRegionId) ?? null;
 
   if (!activeRegion || activeRegion.status !== "rolling-back") {
     return;
   }
 
-  const remainingTargets = regions.filter((region) => region.status === "targeted");
+  const remainingTargets = regions.filter(
+    (region) => region.status === "targeted",
+  );
 
   if (activeRegion.id === "rollback-region-2") {
     regions = regions.map((region) =>
@@ -194,7 +199,8 @@ export function advanceReleaseRollbackClock() {
     ...run,
     stage: "completed",
     activeRegionId: null,
-    recoverySummary: "Rollback finished across the targeted regions and follow-up dependencies were acknowledged.",
+    recoverySummary:
+      "Rollback finished across the targeted regions and follow-up dependencies were acknowledged.",
     updatedAt: formatTimestamp(new Date()),
     updatedBy: "Taylor - Rollback lead",
   };
@@ -317,7 +323,11 @@ export function resumeReleaseRollbackRecovery(
       }
 
       if (!dependenciesReady()) {
-        reject(new Error("All dependency acknowledgements must be complete before recovery resumes."));
+        reject(
+          new Error(
+            "All dependency acknowledgements must be complete before recovery resumes.",
+          ),
+        );
         return;
       }
 
