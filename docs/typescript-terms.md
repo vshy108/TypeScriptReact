@@ -114,6 +114,21 @@ Use `type` when you need unions, mapped types, conditional types, template liter
 
 This repo uses both styles. [../src/catalog.ts](../src/catalog.ts) uses `interface` for reusable object contracts like `FeatureDefinition` and `Task`, while many samples use `type` for unions and transformations because those patterns are not expressible with `interface` alone.
 
+Example:
+
+```ts
+interface UserRecord {
+	id: string
+	name: string
+}
+
+type LoadState = 'idle' | 'loading' | 'done'
+type UserId = `user-${string}`
+type ReadonlyUserRecord = Readonly<UserRecord>
+```
+
+In that example, `UserRecord` is an object contract, so `interface` is a natural fit. The other three are type-level compositions, so `type` is the better tool.
+
 ### unknown vs any
 
 Use `unknown` when you genuinely do not know a value's type yet, but want TypeScript to force you to narrow it before using it.
@@ -161,6 +176,16 @@ Use a type alias when you need to describe a reusable transformed or parameteriz
 Use a generic component when the component's props, callbacks, or selected ids depend on a type parameter chosen by the caller.
 
 In this repo, the model-side type work appears throughout the samples as aliases and mapped types, while [../src/components/FeatureGrid.tsx](../src/components/FeatureGrid.tsx) shows the UI-side version: a generic component that stays reusable without giving up strict typing for ids and render callbacks.
+
+### `K extends string` vs `key: string`
+
+Use `key: string` when a parameter only needs to accept a string and you do not need the type system to remember the exact literal that was passed.
+
+Use `K extends string` when you want to restrict a generic to string-like inputs while still preserving the exact literal type through the rest of the function's signature.
+
+That is why generic helpers often prefer `K extends string` over a plain `string` parameter. It keeps APIs both safe and precise: callers cannot pass numbers or objects, but literals like `'name'` can still flow through as `'name'` instead of widening to `string`.
+
+Repo example: [../node-samples/ts-generic-inference/src/index.ts](../node-samples/ts-generic-inference/src/index.ts)
 
 ## Type Transformation Terms
 
