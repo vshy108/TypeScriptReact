@@ -1,5 +1,6 @@
 import type { ComponentType } from "react";
 import type { MiniSampleId } from "./sampleCatalog";
+import ReleaseHandoffConflictPanel from "./features/release-handoff-conflict/ReleaseHandoffConflictPanel";
 import ReleaseApprovalWorkflowPanel from "./features/release-approval-workflow/ReleaseApprovalWorkflowPanel";
 import ReleaseLaunchChecklistPanel from "./features/release-launch-checklist/ReleaseLaunchChecklistPanel";
 import ReleaseReadinessPanel from "./features/release-readiness/ReleaseReadinessPanel";
@@ -44,6 +45,7 @@ export const sampleImplementations: Partial<
   "sample-react-layout-effects": LayoutEffectsSample,
   "sample-react-memo-lab": MemoLabSample,
   "sample-react-portal-modal": PortalModalSample,
+  "sample-react-release-handoff-conflict": ReleaseHandoffConflictPanel,
   "sample-react-release-approval-workflow": ReleaseApprovalWorkflowPanel,
   "sample-react-release-launch-checklist": ReleaseLaunchChecklistPanel,
   "sample-react-release-readiness-feature": ReleaseReadinessPanel,

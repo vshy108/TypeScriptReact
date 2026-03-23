@@ -410,6 +410,52 @@ select:focus {
   font-size: 1.02rem;
 }
 
+textarea {
+  width: 100%;
+  border-radius: 1rem;
+  border: 1px solid var(--border);
+  background: rgba(255, 253, 249, 0.92);
+  color: var(--ink);
+  padding: 0.9rem 1rem;
+  font: inherit;
+  box-sizing: border-box;
+  resize: vertical;
+  transition:
+    border-color 160ms ease,
+    transform 160ms ease,
+    box-shadow 160ms ease;
+}
+
+textarea:focus {
+  outline: none;
+  border-color: rgba(29, 87, 194, 0.5);
+  box-shadow: 0 0 0 4px rgba(29, 87, 194, 0.08);
+  transform: translateY(-1px);
+}
+
+.release-handoff-conflict,
+.release-handoff-conflict__grid,
+.release-handoff-conflict__summary,
+.release-handoff-conflict__editor {
+  display: grid;
+  gap: 1rem;
+}
+
+.release-handoff-conflict__summary,
+.release-handoff-conflict__grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.release-handoff-conflict__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.release-handoff-conflict__editor {
+  align-content: start;
+}
+
 .sample-summary {
   grid-template-columns: repeat(3, minmax(0, 1fr));
   margin: 1rem 0 1.2rem;
@@ -1956,6 +2002,8 @@ textarea:focus {
   .release-rollout-optimistic__summary,
   .release-launch-checklist__summary,
   .release-launch-checklist__grid,
+  .release-handoff-conflict__summary,
+  .release-handoff-conflict__grid,
   .layout-effects-toolbar,
   .layout-effects-legend,
 

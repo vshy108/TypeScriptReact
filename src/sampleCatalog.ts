@@ -295,6 +295,24 @@ export const miniSampleCatalog = [
       "Multi-step mutations are easier to reason about when progress, validation, and unlocked follow-up actions are all visible in one place.",
   },
   {
+    id: "sample-react-release-handoff-conflict",
+    title: "Release handoff conflict resolution",
+    topic: "React Client",
+    status: "implemented",
+    surface: "isolated-route",
+    apis: [
+      "background refetching",
+      "conflict detection",
+      "polling",
+      "expected revision",
+      "reload latest server version",
+    ],
+    summary:
+      "Combine mutation saves with background refetching so the UI can detect when the server version changed underneath a local draft.",
+    whyIsolated:
+      "Conflict-resolution flows are easiest to discuss when the local draft, polled server copy, and recovery actions are all visible together.",
+  },
+  {
     id: "sample-react-streaming-ssr",
     title: "Streaming SSR and prerender flows",
     topic: "React Server",

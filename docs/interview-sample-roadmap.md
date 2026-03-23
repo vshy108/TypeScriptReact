@@ -43,10 +43,11 @@ Implemented now:
 - release approval mutation workflow with draft state, a save mutation, validation errors, and persisted workflow history
 - release rollout optimistic updates with speculative UI removal and rollback on failed validation
 - release launch multi-step workflow with dependent saved actions that unlock later steps
+- release handoff conflict resolution with background polling, expected-revision saves, and explicit reload-before-save recovery
 
 Highest-value addition:
 
-- a fifth feature slice that combines mutations with background refetching or conflict resolution
+- a sixth feature slice that combines optimistic UI with server reconciliation after background refetch
 
 Suggested structure:
 
