@@ -65,7 +65,7 @@ These are the most interview-relevant topics that are not yet as strong as the c
 
 1. More accessibility-focused component behavior beyond the dialog sample
 2. More async UI examples beyond the debounced search race sample
-3. More collaborative product workflows beyond the release readiness, approval workflow, optimistic rollout, launch checklist, conflict-resolution, and reconciliation examples
+3. More collaborative product workflows beyond the release readiness, approval workflow, optimistic rollout, launch checklist, conflict-resolution, reconciliation, and collaborative-editing examples
 4. Additional interview-style walkthroughs for product scenarios
 
 ## Related Guides

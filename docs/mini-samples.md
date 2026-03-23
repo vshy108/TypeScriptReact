@@ -78,6 +78,11 @@ This project now treats the remaining backlog as isolated mini-samples instead o
   Status: implemented.
   Recommended surface: standalone route.
 
+- `sample-react-release-incident-collaboration`
+  Covers multi-actor presence, a shared draft, teammate edits, and conflict-aware collaborative saves.
+  Status: implemented.
+  Recommended surface: standalone route.
+
 ## React DOM mini-samples
 
 - `sample-react-portal-modal`

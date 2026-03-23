@@ -45,10 +45,11 @@ Implemented now:
 - release launch multi-step workflow with dependent saved actions that unlock later steps
 - release handoff conflict resolution with background polling, expected-revision saves, and explicit reload-before-save recovery
 - release rollout reconciliation with optimistic client state that later syncs back to the authoritative server result
+- release incident collaborative editing with teammate presence, a shared draft, and conflict-aware saves
 
 Highest-value addition:
 
-- a seventh feature slice that combines multi-actor presence or collaborative edits with conflict-aware saves
+- an eighth feature slice that combines collaborative edits with comment threads, approvals, or partial-field merges
 
 Suggested structure:
 

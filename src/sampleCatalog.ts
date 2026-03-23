@@ -331,6 +331,24 @@ export const miniSampleCatalog = [
       "Reconciliation behavior is easiest to reason about when the optimistic view and the authoritative server correction are visible side by side.",
   },
   {
+    id: "sample-react-release-incident-collaboration",
+    title: "Release incident collaborative editing",
+    topic: "React Client",
+    status: "implemented",
+    surface: "isolated-route",
+    apis: [
+      "multi-actor presence",
+      "shared draft state",
+      "conflict-aware save",
+      "polling",
+      "collaborative editing",
+    ],
+    summary:
+      "Show a shared incident draft with collaborator presence, teammate edits, and conflict-aware saves when another editor changes the server version first.",
+    whyIsolated:
+      "Collaborative editing is easiest to discuss when presence, local draft state, and conflict recovery all stay visible in one focused route.",
+  },
+  {
     id: "sample-react-streaming-ssr",
     title: "Streaming SSR and prerender flows",
     topic: "React Server",
