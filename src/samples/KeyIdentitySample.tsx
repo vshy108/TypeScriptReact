@@ -85,7 +85,7 @@ function ResettableForm({ resetKey }: { readonly resetKey: number }) {
   const [email, setEmail] = useState("");
 
   return (
-    <div className="sample-card" key={resetKey}>
+    <div className="sample-card">
       <p className="eyebrow">
         Form instance (key={resetKey})
       </p>
@@ -236,7 +236,7 @@ export default function KeyIdentitySample() {
         Reset via key (current: {formResetKey})
       </button>
 
-      <ResettableForm resetKey={formResetKey} />
+      <ResettableForm key={formResetKey} resetKey={formResetKey} />
     </div>
   );
 }
