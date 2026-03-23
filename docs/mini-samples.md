@@ -43,6 +43,11 @@ This project now treats the remaining backlog as isolated mini-samples instead o
   Status: implemented.
   Recommended surface: standalone route.
 
+- `sample-react-debounced-search-race`
+  Covers debouncing, `useEffect` cleanup, `AbortController`, and stale-response handling.
+  Status: implemented.
+  Recommended surface: standalone route.
+
 ## React DOM mini-samples
 
 - `sample-react-portal-modal`
@@ -52,6 +57,11 @@ This project now treats the remaining backlog as isolated mini-samples instead o
 
 - `sample-react-form-status`
   Covers `useFormStatus`.
+  Status: implemented.
+  Recommended surface: standalone route.
+
+- `sample-react-accessible-dialog`
+  Covers accessible dialog semantics, focus trap, focus return, and keyboard dismissal.
   Status: implemented.
   Recommended surface: standalone route.
 

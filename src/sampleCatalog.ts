@@ -154,6 +154,25 @@ export const miniSampleCatalog = [
       "It is easier to learn when the button and form status relationship is the whole example.",
   },
   {
+    id: "sample-react-accessible-dialog",
+    title: "Accessible dialog and focus management",
+    topic: "React DOM",
+    status: "implemented",
+    surface: "isolated-route",
+    apis: [
+      'role="dialog"',
+      "aria-modal",
+      "aria-labelledby",
+      "focus trap",
+      "focus return",
+      "Escape key",
+    ],
+    summary:
+      "Practice the accessibility behavior interviewers often expect: labeled dialog semantics, keyboard dismissal, trapped focus, and focus return.",
+    whyIsolated:
+      "Accessibility behavior is easiest to verify in a focused sample where keyboard flow and focus movement are the main subject.",
+  },
+  {
     id: "sample-react-hydration-hints",
     title: "Hydration and resource hint APIs",
     topic: "React DOM",
@@ -184,6 +203,24 @@ export const miniSampleCatalog = [
       "Control which subtrees are visible or hidden with Activity while deferring low-priority updates through the standalone startTransition API.",
     whyIsolated:
       "Activity boundaries affect rendering visibility and are easiest to understand in a dedicated operator console scenario.",
+  },
+  {
+    id: "sample-react-debounced-search-race",
+    title: "Debounced search and request races",
+    topic: "React Client",
+    status: "implemented",
+    surface: "isolated-route",
+    apis: [
+      "debouncing",
+      "useEffect cleanup",
+      "AbortController",
+      "request cancellation",
+      "stale response overwrite",
+    ],
+    summary:
+      "Show that debounce reduces request volume but does not solve stale-response races unless older requests are cancelled or ignored.",
+    whyIsolated:
+      "Async race-condition demos need tightly controlled timing so the bug and the fix remain visible side by side.",
   },
   {
     id: "sample-react-streaming-ssr",

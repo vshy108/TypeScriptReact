@@ -1183,6 +1183,77 @@ select:focus {
   font-size: 1.35rem;
 }
 
+.accessible-dialog-sample,
+.accessible-dialog__summary,
+.accessible-dialog__toolbar,
+.accessible-dialog__log,
+.debounced-search-sample,
+.debounced-search__toolbar,
+.debounced-search__events {
+  display: grid;
+  gap: 1rem;
+}
+
+.accessible-dialog__summary {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.debounced-search__summary,
+.debounced-search__panels {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.accessible-dialog__toolbar {
+  justify-items: start;
+}
+
+.debounced-search__toolbar {
+  align-items: end;
+}
+
+.debounced-search__quick-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.debounced-search__panel {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.debounced-search__results {
+  margin: 0;
+  padding-left: 1.1rem;
+  display: grid;
+  gap: 0.45rem;
+}
+
+.accessible-dialog__checklist {
+  margin-top: 0;
+}
+
+.accessible-dialog__panel {
+  width: min(620px, calc(100vw - 2rem));
+  display: grid;
+  gap: 1rem;
+}
+
+.accessible-dialog__reviewers {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+}
+
+.accessible-dialog__actions {
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
 .portal-toast-stack {
   position: absolute;
   top: 1rem;
@@ -1741,8 +1812,14 @@ select:focus {
   .memo-stats,
   .portal-toolbar,
   .portal-summary,
+  .debounced-search__summary,
+  .debounced-search__panels,
   .layout-effects-toolbar,
   .layout-effects-legend,
+
+  .accessible-dialog__summary {
+    grid-template-columns: 1fr;
+  }
   .resource-summary {
     grid-template-columns: 1fr;
   }

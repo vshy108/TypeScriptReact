@@ -1,10 +1,12 @@
 import type { ComponentType } from "react";
 import type { MiniSampleId } from "./sampleCatalog";
 import ActivityTransitionSample from "./samples/ActivityTransitionSample";
+import AccessibleDialogSample from "./samples/AccessibleDialogSample";
 import ClassesModelsSample from "./samples/ClassesModelsSample";
 import ConditionalDistributivitySample from "./samples/ConditionalDistributivitySample";
 import ContextIdentitySample from "./samples/ContextIdentitySample";
 import ContextThemeSample from "./samples/ContextThemeSample";
+import DebouncedSearchRaceSample from "./samples/DebouncedSearchRaceSample";
 import ErrorBoundarySample from "./samples/ErrorBoundarySample";
 import FormStatusSample from "./samples/FormStatusSample";
 import FunctionsTuplesSample from "./samples/FunctionsTuplesSample";
@@ -28,8 +30,10 @@ export const sampleImplementations: Partial<
   // Partial<Record<...>> is deliberate here: the catalog also contains planned and documentation-only
   // entries, so forcing every MiniSampleId to have a component would make the registry lie about what is runnable.
   "sample-react-activity-transition": ActivityTransitionSample,
+  "sample-react-accessible-dialog": AccessibleDialogSample,
   "sample-react-context-identity": ContextIdentitySample,
   "sample-react-context-theme": ContextThemeSample,
+  "sample-react-debounced-search-race": DebouncedSearchRaceSample,
   "sample-react-error-boundary": ErrorBoundarySample,
   "sample-react-form-status": FormStatusSample,
   "sample-react-key-identity": KeyIdentitySample,

@@ -11,6 +11,10 @@ Use these guides as a companion while reading the app and sample files. The goal
 - [Reading index](./reading-index.md): the shortest recommended path through the repository now that the code has more rationale comments.
 - [React terms](./react-terms.md): React client APIs, DOM APIs, server APIs, compiler and lint concepts, and the edge-case terms demonstrated by this repo.
 - [TypeScript terms](./typescript-terms.md): TypeScript language features, interop topics, compiler options, and type-system edge cases demonstrated by this repo.
+- [Interview prep](./interview-prep.md): the practical study path for using this repo to prepare for React frontend interviews with TypeScript.
+- [Interview questions](./interview-questions.md): common interview prompts mapped back to the repo files that help answer them.
+- [Frontend system design](./frontend-system-design.md): architecture and tradeoff discussion points grounded in this repository.
+- [Debugging playbook](./debugging-playbook.md): common frontend debugging prompts mapped to the existing samples.
 
 ## Keyword Index
 
@@ -59,6 +63,14 @@ These are the kinds of comparisons that are easy to confuse in real projects and
 - union literals vs `enum`: union literals fit this repo's style better for lightweight domain sets, while `enum` is a runtime construct with different tradeoffs.
 
 ## Recommended Reading Paths
+
+### If You Are Preparing For Interviews
+
+1. Read [Interview prep](./interview-prep.md).
+2. Read [Interview questions](./interview-questions.md).
+3. Read [Frontend system design](./frontend-system-design.md).
+4. Read [Debugging playbook](./debugging-playbook.md).
+5. Use [Reading index](./reading-index.md) and the React/TypeScript term guides to fill any weak areas you discover.
 
 ### If You Know Older React But Not React 19
 

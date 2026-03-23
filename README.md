@@ -34,6 +34,7 @@ This project is a modern React starter that goes beyond the default template. It
 
 - `docs/reading-index.md` is the fastest repo-first reading path through the annotated code
 - `docs/react-typescript-terms.md` is the landing page for the React and TypeScript term guides
+- `docs/interview-prep.md` is the practical React frontend interview-prep path built on top of the repo
 
 ## File map
 
@@ -54,7 +55,9 @@ This project is a modern React starter that goes beyond the default template. It
 - `src/samples/MemoLabSample.tsx` demonstrates `memo()`, `useMemo()`, `useCallback()`, `Profiler`, and `useDebugValue()` in one isolated render-control lab
 - `src/samples/LayoutEffectsSample.tsx` demonstrates `useLayoutEffect()` and `useInsertionEffect()` with measured chips and injected style rules
 - `src/samples/UseResourceSample.tsx` demonstrates `use()` with Suspense, a tiny promise cache, and explicit resource refreshes
+- `src/samples/DebouncedSearchRaceSample.tsx` demonstrates debouncing, overlapping request races, and `AbortController`-based cancellation
 - `src/samples/PortalModalSample.tsx` demonstrates `createPortal()` and `flushSync()` with body-mounted modal and toast hosts
+- `src/samples/AccessibleDialogSample.tsx` demonstrates accessible dialog behavior with labeled semantics, focus trapping, Escape dismissal, and focus return
 - `src/hydration/HydrationHintsApp.tsx` and `src/hydration/main.tsx` demonstrate `hydrateRoot()` plus the resource hint APIs in a separate entry
 - `server-samples/react-streaming-ssr/src/runAllModes.tsx` demonstrates the current stable React server/static rendering APIs in one dedicated SSR workspace
 - `src/samples/UtilityMappedSample.tsx` demonstrates TypeScript utility types, `keyof`, mapped types, conditional types, and `infer` through one derived release-contract model
