@@ -655,6 +655,24 @@ export const miniSampleCatalog = [
       "Post-rollback segmentation is easiest to explain when segment timing, message forks, and the final publish gate stay visible together in one route.",
   },
   {
+    id: "sample-react-release-follow-up-commitments",
+    title: "Release follow-up commitments",
+    topic: "React Client",
+    status: "implemented",
+    surface: "isolated-route",
+    apis: [
+      "follow-up commitments",
+      "eta drift invalidation",
+      "approver sign-off",
+      "post-incident planning",
+      "publish gating",
+    ],
+    summary:
+      "Show owner-reviewed follow-up commitments, ETA drift invalidation, approver sign-off, and a publish gate that only clears once the revised commitments are approved.",
+    whyIsolated:
+      "Follow-up commitments are easiest to explain when owner review, ETA drift invalidation, and approver sign-off stay visible together in one route.",
+  },
+  {
     id: "sample-react-streaming-ssr",
     title: "Streaming SSR and prerender flows",
     topic: "React Server",

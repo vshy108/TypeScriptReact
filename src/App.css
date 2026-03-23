@@ -1452,6 +1452,75 @@ textarea:focus {
   gap: 1rem;
 }
 
+.release-follow-up-commitments,
+.release-follow-up-commitments__summary,
+.release-follow-up-commitments__grid,
+.release-follow-up-commitments__panel,
+.release-follow-up-commitments__commitment-list,
+.release-follow-up-commitments__eta-list,
+.release-follow-up-commitments__audit-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.release-follow-up-commitments__summary {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.release-follow-up-commitments__grid {
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+}
+
+.release-follow-up-commitments__actions {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.release-follow-up-commitments__commitment-card,
+.release-follow-up-commitments__eta-card,
+.release-follow-up-commitments__audit-card {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: start;
+  border-radius: 1rem;
+  border: 1px solid var(--border);
+  background: rgba(255, 252, 246, 0.72);
+  padding: 0.9rem 1rem;
+}
+
+.release-follow-up-commitments__commitment-card p,
+.release-follow-up-commitments__eta-card p,
+.release-follow-up-commitments__audit-card p {
+  margin: 0.25rem 0 0;
+  color: var(--muted);
+}
+
+.release-follow-up-commitments__commitment-card span,
+.release-follow-up-commitments__eta-card span,
+.release-follow-up-commitments__audit-meta span {
+  text-transform: capitalize;
+}
+
+.release-follow-up-commitments__commitment-card > div:last-child {
+  display: grid;
+  gap: 0.5rem;
+  justify-items: end;
+  text-align: right;
+}
+
+.release-follow-up-commitments__eta-card,
+.release-follow-up-commitments__audit-card {
+  display: grid;
+}
+
+.release-follow-up-commitments__audit-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
 .sample-summary {
   grid-template-columns: repeat(3, minmax(0, 1fr));
   margin: 1rem 0 1.2rem;
@@ -1624,6 +1693,8 @@ textarea:focus {
   .release-incident-comms-approval-packs__grid,
   .release-post-rollback-segmentation__summary,
   .release-post-rollback-segmentation__grid,
+  .release-follow-up-commitments__summary,
+  .release-follow-up-commitments__grid,
   .release-multi-region-rollback__summary,
   .release-multi-region-rollback__grid,
   .release-rollout-pause-resume__summary,

@@ -168,6 +168,11 @@ This project now treats the remaining backlog as isolated mini-samples instead o
   Status: implemented.
   Recommended surface: standalone route.
 
+- `sample-react-release-follow-up-commitments`
+  Covers post-incident follow-up commitments, ETA drift invalidation, approver sign-off, and the publish gate that stays blocked until the revised commitments are approved.
+  Status: implemented.
+  Recommended surface: standalone route.
+
 ## React DOM mini-samples
 
 - `sample-react-portal-modal`

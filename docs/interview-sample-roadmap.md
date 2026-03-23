@@ -61,12 +61,13 @@ Implemented now:
 - incident timeline reconstruction with conflicting witness notes and a publish-safe executive summary gate
 - release rollback decision matrices with conflicting metrics and quorum-based sign-off
 - cross-channel incident FAQ curation with stale-answer invalidation and reviewer sign-off
+- post-incident follow-up commitments with ETA drift invalidation and approver sign-off
 - staged incident comms approval packs with legal overrides and customer-visible rollback wording diffs
 - post-rollback customer segmentation with region-specific update timing and escalation-safe message forks
 
 Highest-value addition:
 
-- a twenty-fifth feature slice that models post-incident follow-up commitments with ETA drift invalidation and approver sign-off
+- a twenty-sixth feature slice that models remediation evidence bundles with stale-proof invalidation and approver sign-off
 
 Suggested structure:
 
