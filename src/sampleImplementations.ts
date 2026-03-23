@@ -23,6 +23,7 @@ import ReleaseRollbackDecisionMatrixPanel from "./features/release-rollback-deci
 import ReleaseRollbackWaiverLedgersPanel from "./features/release-rollback-waiver-ledgers/ReleaseRollbackWaiverLedgersPanel";
 import ReleaseRolloutPauseResumePanel from "./features/release-rollout-pause-resume/ReleaseRolloutPauseResumePanel";
 import ReleaseScheduledPublishPanel from "./features/release-scheduled-publish/ReleaseScheduledPublishPanel";
+import ReleaseStabilityAttestationLedgersPanel from "./features/release-stability-attestation-ledgers/ReleaseStabilityAttestationLedgersPanel";
 import type { MiniSampleId } from "./sampleCatalog";
 import ReleaseHandoffConflictPanel from "./features/release-handoff-conflict/ReleaseHandoffConflictPanel";
 import ReleaseIncidentCollaborationPanel from "./features/release-incident-collaboration/ReleaseIncidentCollaborationPanel";
@@ -117,6 +118,8 @@ export const sampleImplementations: Partial<
   "sample-react-release-review-threads": ReleaseReviewThreadsPanel,
   "sample-react-release-rollout-pause-resume": ReleaseRolloutPauseResumePanel,
   "sample-react-release-scheduled-publish": ReleaseScheduledPublishPanel,
+  "sample-react-release-stability-attestation-ledgers":
+    ReleaseStabilityAttestationLedgersPanel,
   "sample-react-release-rollout-reconciliation":
     ReleaseRolloutReconciliationPanel,
   "sample-react-release-rollout-optimistic": ReleaseRolloutOptimisticPanel,

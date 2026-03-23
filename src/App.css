@@ -2004,6 +2004,75 @@ textarea:focus {
   gap: 1rem;
 }
 
+.release-stability-attestation-ledgers,
+.release-stability-attestation-ledgers__summary,
+.release-stability-attestation-ledgers__grid,
+.release-stability-attestation-ledgers__panel,
+.release-stability-attestation-ledgers__ledger-list,
+.release-stability-attestation-ledgers__signal-list,
+.release-stability-attestation-ledgers__audit-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.release-stability-attestation-ledgers__summary {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.release-stability-attestation-ledgers__grid {
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+}
+
+.release-stability-attestation-ledgers__actions {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.release-stability-attestation-ledgers__ledger-card,
+.release-stability-attestation-ledgers__signal-card,
+.release-stability-attestation-ledgers__audit-card {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: start;
+  border-radius: 1rem;
+  border: 1px solid var(--border);
+  background: rgba(255, 252, 246, 0.72);
+  padding: 0.9rem 1rem;
+}
+
+.release-stability-attestation-ledgers__ledger-card p,
+.release-stability-attestation-ledgers__signal-card p,
+.release-stability-attestation-ledgers__audit-card p {
+  margin: 0.25rem 0 0;
+  color: var(--muted);
+}
+
+.release-stability-attestation-ledgers__ledger-card span,
+.release-stability-attestation-ledgers__signal-card span,
+.release-stability-attestation-ledgers__audit-meta span {
+  text-transform: capitalize;
+}
+
+.release-stability-attestation-ledgers__ledger-card > div:last-child {
+  display: grid;
+  gap: 0.5rem;
+  justify-items: end;
+  text-align: right;
+}
+
+.release-stability-attestation-ledgers__signal-card,
+.release-stability-attestation-ledgers__audit-card {
+  display: grid;
+}
+
+.release-stability-attestation-ledgers__audit-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
 .sample-summary {
   grid-template-columns: repeat(3, minmax(0, 1fr));
   margin: 1rem 0 1.2rem;
@@ -2192,6 +2261,8 @@ textarea:focus {
   .release-remediation-readiness-registries__grid,
   .release-exit-readiness-ledgers__summary,
   .release-exit-readiness-ledgers__grid,
+  .release-stability-attestation-ledgers__summary,
+  .release-stability-attestation-ledgers__grid,
   .release-multi-region-rollback__summary,
   .release-multi-region-rollback__grid,
   .release-rollout-pause-resume__summary,

@@ -799,6 +799,24 @@ export const miniSampleCatalog = [
       "Exit readiness ledgers are easiest to explain when ledger review, stale-criterion invalidation, and approver sign-off stay visible together in one route.",
   },
   {
+    id: "sample-react-release-stability-attestation-ledgers",
+    title: "Release stability attestation ledgers",
+    topic: "React Client",
+    status: "implemented",
+    surface: "isolated-route",
+    apis: [
+      "stability attestation review",
+      "stale-signal invalidation",
+      "approver sign-off",
+      "stability signal reconciliation",
+      "publish gating",
+    ],
+    summary:
+      "Show owner-reviewed stability attestation ledgers, stale-signal invalidation, approver sign-off, and a publish gate that only clears once the revised packet is approved.",
+    whyIsolated:
+      "Stability attestation ledgers are easiest to explain when ledger review, stale-signal invalidation, and approver sign-off stay visible together in one route.",
+  },
+  {
     id: "sample-react-streaming-ssr",
     title: "Streaming SSR and prerender flows",
     topic: "React Server",
