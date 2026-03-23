@@ -46,10 +46,11 @@ Implemented now:
 - release handoff conflict resolution with background polling, expected-revision saves, and explicit reload-before-save recovery
 - release rollout reconciliation with optimistic client state that later syncs back to the authoritative server result
 - release incident collaborative editing with teammate presence, a shared draft, and conflict-aware saves
+- release review threads and approvals with blocked publish until reviewer comments are resolved and approvals are green
 
 Highest-value addition:
 
-- an eighth feature slice that combines collaborative edits with comment threads, approvals, or partial-field merges
+- a ninth feature slice that combines collaborative edits with partial-field merges or side-by-side conflict resolution
 
 Suggested structure:
 

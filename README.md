@@ -67,6 +67,7 @@ This project is a modern React starter that goes beyond the default template. It
 - `src/features/release-handoff-conflict/types.ts` and `src/features/release-handoff-conflict/*` show background polling, expected-revision saves, server-drift detection, and explicit conflict resolution for a local draft
 - `src/features/release-rollout-reconciliation/types.ts` and `src/features/release-rollout-reconciliation/*` show optimistic client state that is later reconciled by background refetch and authoritative server updates
 - `src/features/release-incident-collaboration/types.ts` and `src/features/release-incident-collaboration/*` show multi-actor presence, a shared incident draft, teammate edits, and conflict-aware collaborative saves
+- `src/features/release-review-threads/types.ts` and `src/features/release-review-threads/*` show collaborative review threads, approvals, and a publish action that stays blocked until review is complete
 - `src/hydration/HydrationHintsApp.tsx` and `src/hydration/main.tsx` demonstrate `hydrateRoot()` plus the resource hint APIs in a separate entry
 - `server-samples/react-streaming-ssr/src/runAllModes.tsx` demonstrates the current stable React server/static rendering APIs in one dedicated SSR workspace
 - `src/samples/UtilityMappedSample.tsx` demonstrates TypeScript utility types, `keyof`, mapped types, conditional types, and `infer` through one derived release-contract model

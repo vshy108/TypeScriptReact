@@ -349,6 +349,24 @@ export const miniSampleCatalog = [
       "Collaborative editing is easiest to discuss when presence, local draft state, and conflict recovery all stay visible in one focused route.",
   },
   {
+    id: "sample-react-release-review-threads",
+    title: "Release review threads and approvals",
+    topic: "React Client",
+    status: "implemented",
+    surface: "isolated-route",
+    apis: [
+      "comment threads",
+      "approval workflow",
+      "blocked publish",
+      "shared draft review",
+      "reviewer feedback",
+    ],
+    summary:
+      "Show a shared release message that collects blocking review threads and approvals before publication can proceed.",
+    whyIsolated:
+      "Review workflows are easiest to explain when the draft, blocking comments, and approval state are visible together in one route.",
+  },
+  {
     id: "sample-react-streaming-ssr",
     title: "Streaming SSR and prerender flows",
     topic: "React Server",

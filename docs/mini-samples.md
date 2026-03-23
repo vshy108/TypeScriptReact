@@ -83,6 +83,11 @@ This project now treats the remaining backlog as isolated mini-samples instead o
   Status: implemented.
   Recommended surface: standalone route.
 
+- `sample-react-release-review-threads`
+  Covers comment threads, reviewer approvals, and blocked publish flows for a shared release message.
+  Status: implemented.
+  Recommended surface: standalone route.
+
 ## React DOM mini-samples
 
 - `sample-react-portal-modal`

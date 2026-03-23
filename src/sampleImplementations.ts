@@ -5,6 +5,7 @@ import ReleaseIncidentCollaborationPanel from "./features/release-incident-colla
 import ReleaseApprovalWorkflowPanel from "./features/release-approval-workflow/ReleaseApprovalWorkflowPanel";
 import ReleaseLaunchChecklistPanel from "./features/release-launch-checklist/ReleaseLaunchChecklistPanel";
 import ReleaseReadinessPanel from "./features/release-readiness/ReleaseReadinessPanel";
+import ReleaseReviewThreadsPanel from "./features/release-review-threads/ReleaseReviewThreadsPanel";
 import ReleaseRolloutReconciliationPanel from "./features/release-rollout-reconciliation/ReleaseRolloutReconciliationPanel";
 import ReleaseRolloutOptimisticPanel from "./features/release-rollout-optimistic/ReleaseRolloutOptimisticPanel";
 import ActivityTransitionSample from "./samples/ActivityTransitionSample";
@@ -53,6 +54,7 @@ export const sampleImplementations: Partial<
   "sample-react-release-approval-workflow": ReleaseApprovalWorkflowPanel,
   "sample-react-release-launch-checklist": ReleaseLaunchChecklistPanel,
   "sample-react-release-readiness-feature": ReleaseReadinessPanel,
+  "sample-react-release-review-threads": ReleaseReviewThreadsPanel,
   "sample-react-release-rollout-reconciliation":
     ReleaseRolloutReconciliationPanel,
   "sample-react-release-rollout-optimistic": ReleaseRolloutOptimisticPanel,

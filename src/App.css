@@ -512,6 +512,49 @@ textarea:focus {
   color: var(--muted);
 }
 
+.release-review-threads,
+.release-review-threads__grid,
+.release-review-threads__summary,
+.release-review-threads__panel,
+.release-review-threads__thread-list,
+.release-review-threads__approval-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.release-review-threads__summary,
+.release-review-threads__grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.release-review-threads__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.release-review-threads__thread-card,
+.release-review-threads__approval-card {
+  border-radius: 1rem;
+  border: 1px solid var(--border);
+  background: rgba(255, 252, 246, 0.72);
+  padding: 0.9rem 1rem;
+}
+
+.release-review-threads__thread-card p,
+.release-review-threads__thread-card span,
+.release-review-threads__approval-card p {
+  margin: 0.25rem 0 0;
+  color: var(--muted);
+}
+
+.release-review-threads__approval-card {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: center;
+}
+
 .sample-summary {
   grid-template-columns: repeat(3, minmax(0, 1fr));
   margin: 1rem 0 1.2rem;
@@ -2062,6 +2105,8 @@ textarea:focus {
   .release-handoff-conflict__grid,
   .release-incident-collaboration__summary,
   .release-incident-collaboration__grid,
+  .release-review-threads__summary,
+  .release-review-threads__grid,
   .release-rollout-reconciliation__grid,
   .release-rollout-reconciliation__metrics,
   .layout-effects-toolbar,
