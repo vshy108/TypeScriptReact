@@ -11,6 +11,7 @@ This guide explains the React terms covered by this repository. It is written fo
 ## Table Of Contents
 
 - [Core Client Terms](#core-client-terms)
+- [Common Decision Points](#common-decision-points)
 - [React DOM Terms](#react-dom-terms)
 - [React Server Terms](#react-server-terms)
 - [Compiler And Lint Terms](#compiler-and-lint-terms)
@@ -167,6 +168,66 @@ Repo example: [../src/samples/StaleClosureSample.tsx](../src/samples/StaleClosur
 This pattern stores the latest value in a ref so async callbacks can read it without re-subscribing effects or depending on stale closures. It is an escape hatch, not the first tool to reach for.
 
 Repo examples: [../src/samples/StaleClosureSample.tsx](../src/samples/StaleClosureSample.tsx), [../src/samples/RefTimingSample.tsx](../src/samples/RefTimingSample.tsx)
+
+## Common Decision Points
+
+### useEffect vs useEffectEvent
+
+Use `useEffect` to set up and clean up subscriptions, timers, or other work tied to the component lifecycle.
+
+Use `useEffectEvent` when that long-lived effect needs access to the latest props or state without forcing the outer effect to tear down and re-create the subscription every time those values change.
+
+In this repo, [../src/App.tsx](../src/App.tsx) registers the global keyboard listener in `useEffect`, while `useEffectEvent` keeps the handler logic aligned with the latest selected feature.
+
+### useDeferredValue vs useTransition
+
+Use `useDeferredValue` when you already have a value and want a lagging version of it for expensive derived UI such as filtering or searching.
+
+Use `useTransition` when you are about to trigger a state update and want React to treat that update as non-urgent.
+
+In this repo, [../src/App.tsx](../src/App.tsx) uses both: the search text is deferred with `useDeferredValue`, while category changes are wrapped in `useTransition`. [../src/samples/ActivityTransitionSample.tsx](../src/samples/ActivityTransitionSample.tsx) makes the same scheduling distinction visible in a more isolated sample.
+
+### useActionState vs useOptimistic
+
+Use `useActionState` when you need one authoritative place to run async work and return the resulting success or error state.
+
+Use `useOptimistic` when you want to render the likely next UI immediately before that authoritative async work finishes.
+
+In this repo, [../src/App.tsx](../src/App.tsx) uses `useOptimistic` to insert a temporary task card right away, but `useActionState` still owns the real submission lifecycle, pending flag, validation outcome, and final saved result.
+
+### useState vs useReducer
+
+Use `useState` for simple local state where each update is direct and easy to describe.
+
+Use `useReducer` when state transitions are easier to model as named actions over a shared state object.
+
+In this repo, [../src/App.tsx](../src/App.tsx) uses `useState` for straightforward UI state such as filters and logs, while [../src/samples/ReducerBoardSample.tsx](../src/samples/ReducerBoardSample.tsx) uses `useReducer` because task-board changes are easier to understand as domain actions like add, move, and reset.
+
+### useMemo vs memo vs useCallback
+
+Use `useMemo` to cache a computed value.
+
+Use `memo` to skip re-rendering a component when its props are unchanged.
+
+Use `useCallback` to stabilize a function reference when that identity affects memoized children or memoized values.
+
+These tools solve related but different problems. [../src/samples/MemoLabSample.tsx](../src/samples/MemoLabSample.tsx) shows all three together, and [../src/samples/ContextIdentitySample.tsx](../src/samples/ContextIdentitySample.tsx) shows why stabilizing a callback or provider value can matter for downstream render cost.
+
+### useEffect vs useLayoutEffect
+
+Prefer `useEffect` by default because most side effects do not need to block paint.
+
+Use `useLayoutEffect` only when you must measure layout or synchronously adjust the DOM before the browser paints the frame.
+
+This repo keeps normal browser subscriptions in `useEffect` inside [../src/App.tsx](../src/App.tsx), while [../src/samples/LayoutEffectsSample.tsx](../src/samples/LayoutEffectsSample.tsx) demonstrates the narrower case where pre-paint layout measurement and visual alignment actually matter.
+
+### Suspense vs ErrorBoundary
+
+Use `Suspense` for waiting states such as lazy-loaded code or promise-backed resources.
+
+Use an Error Boundary for actual failures. A thrown error is not a loading state.
+
+This distinction matters in [../src/samples/ErrorBoundarySample.tsx](../src/samples/ErrorBoundarySample.tsx): a lazy component can suspend while it is loading, but a failed lazy import throws to the nearest error boundary instead of rendering the Suspense fallback forever.
 
 ## React DOM Terms
 

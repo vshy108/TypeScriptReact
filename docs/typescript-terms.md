@@ -11,6 +11,7 @@ This guide explains the TypeScript terms covered by this repository. It focuses 
 ## Table Of Contents
 
 - [Core Language And Config Terms](#core-language-and-config-terms)
+- [Common Decision Points](#common-decision-points)
 - [Type Transformation Terms](#type-transformation-terms)
 - [Function And Object Modeling Terms](#function-and-object-modeling-terms)
 - [Recursive And Structural Terms](#recursive-and-structural-terms)
@@ -25,6 +26,30 @@ This guide explains the TypeScript terms covered by this repository. It focuses 
 `exactOptionalPropertyTypes` makes optional properties behave more like runtime JavaScript: omitted and explicitly `undefined` are no longer treated as the same thing in every context.
 
 Repo examples: [../tsconfig.app.json](../tsconfig.app.json), [../node-samples/ts-advanced-tsconfig/src/index.ts](../node-samples/ts-advanced-tsconfig/src/index.ts)
+
+### null vs undefined vs void vs `field?: Type`
+
+These four ideas are related, but they do different jobs.
+
+- `undefined` is a real runtime value that usually means a value was not provided, not initialized, or a property is missing
+- `null` is a real runtime value that usually means a value is intentionally empty
+- `void` is mainly a function return type meaning the caller should not expect a useful return value
+- `field?: Type` means the property itself may be omitted entirely
+
+Important distinction:
+
+- `field?: Type` means the property can be absent
+- `field: Type | undefined` means the property must exist, but its value may be `undefined`
+
+With `exactOptionalPropertyTypes`, that distinction becomes stricter and more useful. In other words, `field?: Type` is not treated as just another spelling of `field: Type | undefined`.
+
+Rule of thumb:
+
+- use `undefined` for missing or not-yet-provided values
+- use `null` when you want to model an explicit empty state
+- use `void` for function returns, not for data fields
+- use `field?: Type` when callers are allowed to omit the property
+- use `field: Type | undefined` when the property must exist in the object shape even if it currently has no value
 
 ### noUncheckedIndexedAccess
 
@@ -56,11 +81,86 @@ Repo example: [../src/catalog.ts](../src/catalog.ts)
 
 Repo examples: [../src/catalog.ts](../src/catalog.ts), [../src/samples/UtilityMappedSample.tsx](../src/samples/UtilityMappedSample.tsx), [../node-samples/ts-generic-inference/src/index.ts](../node-samples/ts-generic-inference/src/index.ts)
 
+### satisfies vs as
+
+Use `satisfies` when you want TypeScript to verify that an object or array matches a required shape, but you still want to keep the value's own narrow inferred literals.
+
+Use `as` when you need to tell TypeScript something it cannot prove on its own, such as a DOM value that is known by runtime wiring to be a narrower union.
+
+In this repo, `as const satisfies` is the preferred pattern for static config-like data because it preserves literal values and validates the shape at the same time. Examples include [../src/catalog.ts](../src/catalog.ts), [../src/App.tsx](../src/App.tsx), and [../src/hydration/hydrationData.ts](../src/hydration/hydrationData.ts).
+
+Plain `as SomeType` is used more carefully. A good example is [../src/samples/UtilityMappedSample.tsx](../src/samples/UtilityMappedSample.tsx), where a DOM event still exposes `event.target.value` as `string`, so the code narrows it to the known field union.
+
+Rule of thumb:
+
+- prefer `satisfies` for object literals and array literals
+- prefer `as const satisfies` for readonly config data with literal values
+- use plain `as` only when the type system is missing runtime information and you are certain the cast is correct
+- avoid using plain `as` to silence mismatches that `satisfies` would catch
+
 ### generic components
 
 A generic component is a component or helper whose props or return values depend on type parameters. It lets reusable UI stay strongly typed without hard-coding one data shape.
 
 Repo example: [../src/components/FeatureGrid.tsx](../src/components/FeatureGrid.tsx)
+
+## Common Decision Points
+
+### type vs interface
+
+Use `interface` when you want to describe an object-shaped contract that may be extended or implemented by classes.
+
+Use `type` when you need unions, mapped types, conditional types, template literal types, or other compositions that go beyond object-shape declarations.
+
+This repo uses both styles. [../src/catalog.ts](../src/catalog.ts) uses `interface` for reusable object contracts like `FeatureDefinition` and `Task`, while many samples use `type` for unions and transformations because those patterns are not expressible with `interface` alone.
+
+### unknown vs any
+
+Use `unknown` when you genuinely do not know a value's type yet, but want TypeScript to force you to narrow it before using it.
+
+Use `any` only when you are deliberately opting out of type safety, usually at an unsafe interop boundary or in a tightly scoped demonstration.
+
+In this repo, the safer pattern is visible in [../src/App.tsx](../src/App.tsx), where unknown form values are validated and narrowed before use. A more escape-hatch style cast appears in [../src/samples/PrivateFieldsSample.tsx](../src/samples/PrivateFieldsSample.tsx), where `any` is used on purpose to demonstrate that TypeScript `private` does not create runtime privacy.
+
+### type guards vs assertion functions
+
+Use a type guard when you want a boolean result that narrows inside `if` statements or other control flow.
+
+Use an assertion function when invalid data should stop execution immediately and all later code should see the narrowed type.
+
+In this repo, [../src/App.tsx](../src/App.tsx) uses both patterns together: `isTaskLane()` is a type guard because the code branches on the result, while `assertNonEmptyString()` is an assertion function because missing form fields should throw and stop the parse.
+
+### readonly vs as const
+
+Use `readonly` when you are defining a type shape and want properties or arrays to be immutable through that contract.
+
+Use `as const` on a specific value when you want TypeScript to preserve literal values and infer readonly-ness automatically.
+
+This repo uses `readonly` heavily in interfaces such as [../src/catalog.ts](../src/catalog.ts), while values like task lanes and static metadata use `as const` so literals like `'UI'` stay narrow instead of widening to `string`.
+
+### `field?: Type` vs `field: Type | undefined`
+
+Use `field?: Type` when callers are allowed to omit the property entirely.
+
+Use `field: Type | undefined` when the property must exist in the object shape even if its current value may be missing.
+
+This distinction becomes especially important with `exactOptionalPropertyTypes`, which this repo treats as part of its core TypeScript model. The earlier [null vs undefined vs void vs `field?: Type`](#null-vs-undefined-vs-void-vs-field-type) section explains the runtime meaning; this comparison is the design decision you make when defining object contracts.
+
+### union literals vs enum
+
+Use union literals when you want a lightweight set of allowed values with no extra runtime object.
+
+Use `enum` when you explicitly want a runtime construct and are willing to accept its emitted-code tradeoffs.
+
+This repo usually prefers union literals such as the domain types in [../src/catalog.ts](../src/catalog.ts), because they fit React props and static configuration naturally. The node-only advanced runtime sample at [../node-samples/ts-advanced-runtime/src/index.ts](../node-samples/ts-advanced-runtime/src/index.ts) covers `enum` as a separate runtime-oriented language feature.
+
+### type aliases vs generic components
+
+Use a type alias when you need to describe a reusable transformed or parameterized type.
+
+Use a generic component when the component's props, callbacks, or selected ids depend on a type parameter chosen by the caller.
+
+In this repo, the model-side type work appears throughout the samples as aliases and mapped types, while [../src/components/FeatureGrid.tsx](../src/components/FeatureGrid.tsx) shows the UI-side version: a generic component that stays reusable without giving up strict typing for ids and render callbacks.
 
 ## Type Transformation Terms
 
