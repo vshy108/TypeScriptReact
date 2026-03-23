@@ -68,10 +68,12 @@ export const implementedSampleArtifacts: Partial<
       "node ./node_modules/typescript/bin/tsc -p node-samples/ts-advanced-tsconfig/tsconfig.json",
   },
   "sample-react-compiler": {
-    label: "Comment-based compiler demo",
-    rootDir: ".",
-    entryPoint: "src/samples/ReactCompilerDemo.ts",
-    verificationCommand: "npm run typecheck",
+    label: "Node-only compiler directive workspace",
+    rootDir: "node-samples/react-compiler",
+    readmePath: "node-samples/react-compiler/README.md",
+    entryPoint: "node-samples/react-compiler/src/reportCompilerDirectives.ts",
+    verificationCommand:
+      "node ./node_modules/typescript/bin/tsc -p node-samples/react-compiler/tsconfig.json && node node-samples/react-compiler/dist/src/reportCompilerDirectives.js",
   },
   "sample-react-server-components": {
     label: "Node-only server boundary workspace",

@@ -97,14 +97,12 @@ It is intentionally organized by major feature area instead of trying to enumera
 - [x] `resumeAndPrerender`
 - [x] `resumeAndPrerenderToNodeStream`
 
-### Included now: compiler topics, plus runnable lint and server-boundary coverage
+### Included now: runnable compiler, lint, and server-boundary coverage
 
-- [x] React Compiler setup
-- [x] `"use memo"` directive
-- [x] `"use no memo"` directive
+- [x] Runnable source-boundary verification for React Compiler setup, `"use memo"`, and `"use no memo"`
 - [x] Runnable source-boundary verification for Server Components, Server Functions, `'use client'`, and `'use server'`
 - [x] Runnable ESLint verification for `exhaustive-deps`, `rules-of-hooks`, and `only-export-components`
-- [x] Comment-based compiler purity examples until the compiler lint plugin is enabled here
+- [x] Comment-based transformed-output examples until the compiler plugin can run in this workspace
 
 ### Optional or deferred React topics
 

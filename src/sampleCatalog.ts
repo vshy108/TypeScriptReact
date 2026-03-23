@@ -935,12 +935,12 @@ export const miniSampleCatalog = [
     title: "React Compiler and directives",
     topic: "React Server",
     status: "implemented",
-    surface: "comment-demo",
+    surface: "node-only",
     apis: ["React Compiler", '"use memo"', '"use no memo"'],
     summary:
-      "Comment-based demonstration of compiler setup, generated behavior, and directive-controlled optimization. Requires the Babel/SWC plugin to run for real.",
+      "Node-only workspace that verifies compiler directives and infer-mode naming boundaries, while keeping real transform output documented until the plugin is available.",
     whyIsolated:
-      "Compiler configuration affects the whole build and is demonstrated through annotated code comments instead of runnable samples.",
+      "The Babel or SWC transform still affects the whole build, but directive boundaries and inference heuristics can be verified in isolation without changing the app toolchain.",
   },
   {
     id: "sample-ts-recursive-types",

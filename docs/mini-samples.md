@@ -274,8 +274,8 @@ This project now treats the remaining backlog as isolated mini-samples instead o
 
 - `sample-react-compiler`
   Covers React Compiler, `"use memo"`, and `"use no memo"`.
-  Status: implemented (comment-based demo).
-  Surface: comment-demo.
+  Status: implemented.
+  Recommended surface: node-only package-style sample.
 
 ## TypeScript language mini-samples
 

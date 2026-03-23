@@ -3,11 +3,14 @@
 // ============================================================================
 //
 // The React Compiler (previously React Forget) is a build-time tool that
-// automatically memoizes components and hooks. It cannot run in this Vite
-// workspace because it requires a dedicated Babel or SWC plugin.
+// automatically memoizes components and hooks. This repo now verifies the
+// source-level directive boundaries through the companion workspace in
+// node-samples/react-compiler/, but the real transformed output still requires
+// a dedicated Babel or SWC plugin.
 //
 // This file shows what compiled code looks like and how the two directives
-// ("use memo" and "use no memo") control the compiler's behavior.
+// ("use memo" and "use no memo") control the compiler's behavior once the
+// actual compiler plugin is available.
 //
 // To enable the compiler in a real project:
 //

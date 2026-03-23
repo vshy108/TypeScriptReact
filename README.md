@@ -147,11 +147,9 @@ This project is a modern React starter that goes beyond the default template. It
 - `docs/mini-samples.md` splits the backlog into isolated sample-sized units
 ## Why some React features are not covered here
 
-All stable React client and DOM APIs are demonstrated in this project. The remaining features that still require special infrastructure are covered through comment-based demonstrations (`comment-demo` surface) showing annotated sample code:
+All stable React client and DOM APIs are demonstrated in this project.
 
-| Feature | How covered |
-|---------|-------------|
-| React Compiler, `"use memo"`, `"use no memo"` | Comment-based demo in `src/samples/ReactCompilerDemo.ts`. Requires the Babel/SWC plugin to run for real. |
+The React Compiler sample is now partially covered through a runnable node-only workspace in `node-samples/react-compiler/`, which verifies directives and infer-mode naming boundaries while leaving transformed output documented in `src/samples/ReactCompilerDemo.ts`.
 
 The Server Components sample is now partially covered through a runnable node-only workspace in `node-samples/react-server-components/`, which verifies source-level boundaries while leaving framework transport and serialization behavior documented in `src/samples/ServerComponentsDemo.ts`.
 
