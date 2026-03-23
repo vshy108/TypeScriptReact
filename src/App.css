@@ -1245,6 +1245,75 @@ textarea:focus {
   gap: 1rem;
 }
 
+.release-incident-comms-approval-packs,
+.release-incident-comms-approval-packs__summary,
+.release-incident-comms-approval-packs__grid,
+.release-incident-comms-approval-packs__panel,
+.release-incident-comms-approval-packs__pack-list,
+.release-incident-comms-approval-packs__diff-list,
+.release-incident-comms-approval-packs__audit-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.release-incident-comms-approval-packs__summary {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.release-incident-comms-approval-packs__grid {
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+}
+
+.release-incident-comms-approval-packs__actions {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.release-incident-comms-approval-packs__pack-card,
+.release-incident-comms-approval-packs__diff-card,
+.release-incident-comms-approval-packs__audit-card {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: start;
+  border-radius: 1rem;
+  border: 1px solid var(--border);
+  background: rgba(255, 252, 246, 0.72);
+  padding: 0.9rem 1rem;
+}
+
+.release-incident-comms-approval-packs__pack-card p,
+.release-incident-comms-approval-packs__diff-card p,
+.release-incident-comms-approval-packs__audit-card p {
+  margin: 0.25rem 0 0;
+  color: var(--muted);
+}
+
+.release-incident-comms-approval-packs__pack-card span,
+.release-incident-comms-approval-packs__diff-card span,
+.release-incident-comms-approval-packs__audit-meta span {
+  text-transform: capitalize;
+}
+
+.release-incident-comms-approval-packs__pack-card > div:last-child {
+  display: grid;
+  gap: 0.5rem;
+  justify-items: end;
+  text-align: right;
+}
+
+.release-incident-comms-approval-packs__diff-card,
+.release-incident-comms-approval-packs__audit-card {
+  display: grid;
+}
+
+.release-incident-comms-approval-packs__audit-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
 .sample-summary {
   grid-template-columns: repeat(3, minmax(0, 1fr));
   margin: 1rem 0 1.2rem;
@@ -1411,6 +1480,8 @@ textarea:focus {
   .release-incident-timeline-reconstruction__grid,
   .release-rollback-decision-matrix__summary,
   .release-rollback-decision-matrix__grid,
+  .release-incident-comms-approval-packs__summary,
+  .release-incident-comms-approval-packs__grid,
   .release-multi-region-rollback__summary,
   .release-multi-region-rollback__grid,
   .release-rollout-pause-resume__summary,

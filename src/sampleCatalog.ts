@@ -601,6 +601,24 @@ export const miniSampleCatalog = [
       "Rollback governance is easiest to explain when the conflicting metrics, quorum gate, and final execution path stay visible together in one route.",
   },
   {
+    id: "sample-react-release-incident-comms-approval-packs",
+    title: "Release incident comms approval packs",
+    topic: "React Client",
+    status: "implemented",
+    surface: "isolated-route",
+    apis: [
+      "staged approvals",
+      "legal override",
+      "wording diff",
+      "publish gate",
+      "customer-visible rollback messaging",
+    ],
+    summary:
+      "Show staged operations and legal approvals, a customer-visible rollback wording diff, and a publish gate that only clears after the legal override is applied.",
+    whyIsolated:
+      "Incident comms approval packs are easiest to explain when the staged review flow, wording diff, and publish gate stay visible together in one route.",
+  },
+  {
     id: "sample-react-streaming-ssr",
     title: "Streaming SSR and prerender flows",
     topic: "React Server",

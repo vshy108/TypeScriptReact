@@ -153,6 +153,11 @@ This project now treats the remaining backlog as isolated mini-samples instead o
   Status: implemented.
   Recommended surface: standalone route.
 
+- `sample-react-release-incident-comms-approval-packs`
+  Covers staged operations and legal approvals, rollback wording diffs, legal override application, and the publish gate that stays blocked until the override is applied.
+  Status: implemented.
+  Recommended surface: standalone route.
+
 ## React DOM mini-samples
 
 - `sample-react-portal-modal`

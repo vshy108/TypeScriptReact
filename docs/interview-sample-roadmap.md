@@ -60,10 +60,11 @@ Implemented now:
 - delegated approval bundles with expiry windows and replayable audit evidence before publish
 - incident timeline reconstruction with conflicting witness notes and a publish-safe executive summary gate
 - release rollback decision matrices with conflicting metrics and quorum-based sign-off
+- staged incident comms approval packs with legal overrides and customer-visible rollback wording diffs
 
 Highest-value addition:
 
-- a twenty-second feature slice that models staged incident comms approval packs with legal overrides and customer-visible rollback wording diffs
+- a twenty-third feature slice that models post-rollback customer segmentation with region-specific update timing and escalation-safe message forks
 
 Suggested structure:
 
