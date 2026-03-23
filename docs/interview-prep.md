@@ -25,6 +25,7 @@ The existing guides explain React and TypeScript terms well. Interview preparati
 7. Read [./debugging-walkthroughs.md](./debugging-walkthroughs.md) to practice how to structure debugging answers under interview pressure.
 8. Read [./system-design-walkthroughs.md](./system-design-walkthroughs.md) to practice architecture scenario answers with concrete repo boundaries.
 9. Use [./interview-practice-index.md](./interview-practice-index.md) when you want short repeatable practice sessions instead of choosing a path each time.
+10. Use [./interview-answer-rubric.md](./interview-answer-rubric.md) to score whether an answer is specific and interview-ready.
 
 ## Practical Interview Focus Areas
 
@@ -76,4 +77,5 @@ The highest-priority interview walkthrough gap is now covered. The remaining wor
 - [./debugging-walkthroughs.md](./debugging-walkthroughs.md)
 - [./system-design-walkthroughs.md](./system-design-walkthroughs.md)
 - [./interview-practice-index.md](./interview-practice-index.md)
+- [./interview-answer-rubric.md](./interview-answer-rubric.md)
 - [./interview-sample-roadmap.md](./interview-sample-roadmap.md)

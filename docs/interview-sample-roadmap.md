@@ -105,6 +105,7 @@ Already added in this docs folder:
 - [./debugging-walkthroughs.md](./debugging-walkthroughs.md)
 - [./system-design-walkthroughs.md](./system-design-walkthroughs.md)
 - [./interview-practice-index.md](./interview-practice-index.md)
+- [./interview-answer-rubric.md](./interview-answer-rubric.md)
 
 Highest-value additions:
 

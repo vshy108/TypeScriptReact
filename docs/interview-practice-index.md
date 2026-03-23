@@ -52,6 +52,8 @@ What to grade yourself on:
 - did you anchor the answer to a real file in the repo
 - did you say how you would verify the behavior or fix
 
+Use [./interview-answer-rubric.md](./interview-answer-rubric.md) if you want a more explicit scoring pass after the session.
+
 ## One-Week Rotation
 
 Use this when you want a simple repeated schedule instead of choosing topics every day.
@@ -82,5 +84,6 @@ Use this repair loop:
 - [./interview-walkthroughs.md](./interview-walkthroughs.md) for product scenarios
 - [./debugging-walkthroughs.md](./debugging-walkthroughs.md) for root-cause explanation drills
 - [./system-design-walkthroughs.md](./system-design-walkthroughs.md) for architecture scenarios
+- [./interview-answer-rubric.md](./interview-answer-rubric.md) for scoring whether an answer is interview-ready
 
 If you cannot explain an answer without reopening the repo, that is still useful. It tells you exactly what to practice next.
