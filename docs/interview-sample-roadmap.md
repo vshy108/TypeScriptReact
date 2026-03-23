@@ -57,10 +57,11 @@ Implemented now:
 - incident communication handoff with channel-specific acknowledgements and staged publish recovery when one handoff lane fails
 - escalation routing with acknowledgement deadlines and fallback owner reassignment when the primary owner misses the window
 - ownership transfer auditing with outgoing and incoming acknowledgements plus escalation replay context before the handoff closes
+- delegated approval bundles with expiry windows and replayable audit evidence before publish
 
 Highest-value addition:
 
-- a nineteenth feature slice that models delegated approval bundles with expiry windows and replayable audit evidence before publish
+- a twentieth feature slice that models incident timeline reconstruction with conflicting witness notes and a publish-safe executive summary gate
 
 Suggested structure:
 

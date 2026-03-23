@@ -547,6 +547,24 @@ export const miniSampleCatalog = [
       "Ownership transfer auditing is easiest to explain when the active acknowledgement, replay context, and audit trail stay visible together in one route.",
   },
   {
+    id: "sample-react-release-delegated-approval-bundles",
+    title: "Release delegated approval bundles",
+    topic: "React Client",
+    status: "implemented",
+    surface: "isolated-route",
+    apis: [
+      "delegated approval",
+      "expiry window",
+      "publish gate",
+      "audit evidence replay",
+      "timer-driven fallback",
+    ],
+    summary:
+      "Show approval bundles that expire into delegated ownership, require evidence replay, and only then clear the publish gate.",
+    whyIsolated:
+      "Delegated approval bundles are easiest to explain when the expiry window, delegate takeover, and evidence replay gate stay visible together in one route.",
+  },
+  {
     id: "sample-react-streaming-ssr",
     title: "Streaming SSR and prerender flows",
     topic: "React Server",

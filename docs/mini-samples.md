@@ -138,6 +138,11 @@ This project now treats the remaining backlog as isolated mini-samples instead o
   Status: implemented.
   Recommended surface: standalone route.
 
+- `sample-react-release-delegated-approval-bundles`
+  Covers delegated approval fallback, expiry windows, replayable audit evidence, and the publish gate that stays closed until all of that is complete.
+  Status: implemented.
+  Recommended surface: standalone route.
+
 ## React DOM mini-samples
 
 - `sample-react-portal-modal`
