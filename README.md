@@ -7,7 +7,18 @@ This project is a modern React starter that goes beyond the default template. It
 - TypeScript `5.9.3`
 - Vite `8.0.0`
 
-## What the app demonstrates
+## What this repo is for
+
+This repository now acts as a practical React and TypeScript lab rather than just a starter app.
+
+It combines four execution surfaces:
+
+- the integrated app for the core React 19 client examples
+- isolated routes for focused React and product-style workflows
+- separate HTML entries for hydration-specific behavior
+- node-only workspaces for TypeScript-only, compiler-boundary, lint, and server-boundary examples
+
+## What the repo demonstrates
 
 - `useActionState()` for form workflows
 - `useOptimistic()` for immediate optimistic feedback
@@ -30,6 +41,13 @@ This project is a modern React starter that goes beyond the default template. It
 - `npm run typecheck` runs TypeScript without building the app bundle
 - `npm run preview` serves the built app locally
 
+## Start here
+
+- `docs/reading-index.md` is the fastest repo-first reading path through the annotated code
+- `docs/coverage-roadmap.md` explains what is covered and which execution surface each topic uses
+- `src/sampleCatalog.ts` is the canonical feature and sample inventory
+- `docs/interview-prep.md` is the interview-practice entry point
+
 ## Reading guides
 
 - `docs/reading-index.md` is the fastest repo-first reading path through the annotated code
@@ -42,7 +60,17 @@ This project is a modern React starter that goes beyond the default template. It
 - `docs/interview-answer-rubric.md` is the scoring rubric for checking whether practice answers are concrete, correct, and defensible
 - `docs/interview-answer-antipatterns.md` is the weak-answer repair guide for turning generic responses into concrete repo-backed answers
 
+## Coverage surfaces
+
+- `current-app`: integrated into the main React lab UI
+- `isolated-route`: focused app-routed samples and feature slices
+- `separate-entry`: standalone HTML/runtime entries such as hydration scenarios
+- `node-only`: TypeScript or source-boundary workspaces verified outside the SPA
+- `comment-demo`: explanatory files for framework-aware or toolchain-dependent behavior that is documented rather than fully executed here
+
 ## File map
+
+`src/sampleCatalog.ts` is the canonical inventory. The file map below is a guided set of landmarks, not the authoritative full feature registry.
 
 - `src/App.tsx` contains the interactive React showcase
 - `src/catalog.ts` holds typed sample data and domain types
@@ -191,4 +219,4 @@ Beyond API coverage, these samples demonstrate the non-obvious gotchas and speci
 
 ## Notes
 
-The request asked to “show all React and TypeScript usage”. A single project cannot literally cover every API and every type-system feature without turning into a reference manual. This app focuses on the most useful modern patterns you are likely to apply in real work while keeping the code readable and runnable.
+The request asked to “show all React and TypeScript usage”. A single repo cannot literally cover every API and every type-system corner case without turning into a reference manual. This project instead focuses on the stable React surface area, the highest-value TypeScript language features, and the interview-relevant edge cases that appear in real product code.

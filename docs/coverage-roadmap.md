@@ -4,6 +4,8 @@ This file tracks what the current project already demonstrates and what is still
 
 The missing work is now split into isolated mini-samples instead of one monolithic backlog. See `docs/mini-samples.md` for the implementation queue.
 
+`src/sampleCatalog.ts` is the canonical inventory for sample coverage. This roadmap is the high-level coverage summary and execution-surface guide.
+
 It is aligned to the current stable React 19.2 reference and the main TypeScript handbook/reference sections:
 
 - React reference overview: https://react.dev/reference/react
@@ -12,6 +14,26 @@ It is aligned to the current stable React 19.2 reference and the main TypeScript
 - TypeScript docs index: https://www.typescriptlang.org/docs/
 
 It is intentionally organized by major feature area instead of trying to enumerate every historical or niche syntax detail.
+
+## How to read coverage in this repo
+
+Different topics live on different execution surfaces. That is intentional.
+
+| Surface | Meaning | Typical examples |
+|---|---|---|
+| `current-app` | Integrated into the main React lab UI | core hook and component demos in `src/App.tsx` |
+| `isolated-route` | Routed or staged inside the app as focused samples | `src/samples/*`, `src/features/*` |
+| `separate-entry` | Needs its own HTML shell or runtime entry | hydration and hydration-mismatch examples |
+| `node-only` | Verified outside the SPA through TypeScript, lint, or source-boundary analysis | `node-samples/*` |
+| `comment-demo` | Explained in-repo but not fully executable in this workspace | framework-aware or plugin-dependent demos |
+
+## Current execution-surface summary
+
+- React client and DOM fundamentals are primarily covered in the integrated app and isolated-route samples
+- hydration-specific behavior is covered through separate-entry artifacts
+- React server/static rendering is covered in the dedicated SSR workspace
+- compiler, lint, server-boundary, and advanced TypeScript topics use node-only workspaces when the SPA is not the right execution surface
+- some framework-aware behaviors still remain documented rather than fully runnable here, which is a tooling constraint rather than a missing conceptual explanation
 
 ## React coverage
 

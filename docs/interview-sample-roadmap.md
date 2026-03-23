@@ -1,6 +1,8 @@
-# Interview Sample Roadmap
+# Interview Sample Status
 
-This roadmap lists the highest-value additions for making the repository more useful for frontend interview preparation.
+This file tracks the interview-preparation sample coverage that currently exists in the repository.
+
+The original backlog is now largely complete, so this document is better read as a status summary than as an open roadmap.
 
 It is intentionally ordered by practical interview payoff, not by API completeness.
 
@@ -12,9 +14,9 @@ Implemented now:
 - accessible listbox with arrow-key navigation, Home and End jumps, and keyboard selection
 - accessible form errors with semantic associations, announced summaries, and focus on the first invalid field
 
-Highest-value additions:
+Current status:
 
-- no additional high-priority additions in this section right now
+- this section is in good shape and does not need more high-priority samples right now
 
 Why this matters:
 
@@ -28,9 +30,9 @@ Implemented now:
 - debounced search sample showing stale-response overwrite vs cancellation-based protection
 - testing example showing async UI verification and mocked network behavior
 
-Highest-value additions:
+Current status:
 
-- no additional high-priority additions in this section right now
+- this section is in good shape and does not need more high-priority samples right now
 
 Why this matters:
 
@@ -76,9 +78,10 @@ Implemented now:
 - staged incident comms approval packs with legal overrides and customer-visible rollback wording diffs
 - post-rollback customer segmentation with region-specific update timing and escalation-safe message forks
 
-Highest-value addition:
+Current status:
 
-- no additional high-priority additions in this section right now
+- this section is the strongest part of the repo for interview storytelling because it now contains many concrete product-style workflows
+- future work here should focus on maintenance quality, test clarity, and doc discoverability rather than adding more feature slices by default
 
 Suggested structure:
 
@@ -108,6 +111,13 @@ Already added in this docs folder:
 - [./interview-answer-rubric.md](./interview-answer-rubric.md)
 - [./interview-answer-antipatterns.md](./interview-answer-antipatterns.md)
 
-Highest-value additions:
+Current status:
 
-- no additional high-priority additions in this section right now
+- the core interview docs are already present
+- the main documentation risk is drift between the docs and the canonical sample inventory in `src/sampleCatalog.ts`
+
+## Remaining high-value maintenance work
+
+- keep top-level docs concise and point readers to the canonical inventory instead of repeating long parallel lists
+- keep execution-surface guidance clear so readers know whether a topic is app-routed, separate-entry, node-only, or comment-only
+- keep a small number of high-value explanatory comments in tricky tests and timing-sensitive samples rather than adding broad comment noise everywhere
