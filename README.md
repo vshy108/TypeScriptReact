@@ -45,14 +45,13 @@ It combines four execution surfaces:
 
 - `docs/reading-index.md` is the fastest repo-first reading path through the annotated code
 - `docs/coverage-roadmap.md` explains what is covered and which execution surface each topic uses
+- `docs/feature-matrix.md` is the catalog-backed feature matrix grouped by topic and execution surface
 - `src/sampleCatalog.ts` is the canonical feature and sample inventory
 - `docs/interview-prep.md` is the interview-practice entry point
 
-## Reading guides
+## Deeper docs
 
-- `docs/reading-index.md` is the fastest repo-first reading path through the annotated code
 - `docs/react-typescript-terms.md` is the landing page for the React and TypeScript term guides
-- `docs/interview-prep.md` is the practical React frontend interview-prep path built on top of the repo
 - `docs/interview-walkthroughs.md` is the product-scenario answer guide for practicing structured interview responses from real repo examples
 - `docs/debugging-walkthroughs.md` is the debugging-answer drill guide for explaining root-cause investigation from concrete repo failures
 - `docs/system-design-walkthroughs.md` is the architecture-scenario drill guide for practicing frontend system design answers from real repo boundaries
@@ -81,7 +80,9 @@ Quick landmarks:
 - `node-samples/*` contains TypeScript-only and source-boundary workspaces
 - `server-samples/react-streaming-ssr/*` contains the dedicated SSR workspace
 - `docs/coverage-roadmap.md` explains coverage and execution surfaces
+- `docs/feature-matrix.md` gives the catalog-backed topic and surface matrix
 - `docs/repo-map.md` is the detailed repository navigation guide
+
 ## Why some React features are not covered here
 
 All stable React client and DOM APIs are demonstrated in this project.

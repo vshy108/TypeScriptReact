@@ -176,6 +176,7 @@ Server/static rendering workspace:
 
 - `docs/reading-index.md`: repo-first reading order
 - `docs/coverage-roadmap.md`: coverage summary and execution-surface guidance
+- `docs/feature-matrix.md`: catalog-backed matrix of implemented samples by topic and surface
 - `docs/interview-prep.md`: interview-prep entry point
 - `docs/interview-sample-roadmap.md`: interview sample status summary
 - `docs/mini-samples.md`: implementation backlog framing
