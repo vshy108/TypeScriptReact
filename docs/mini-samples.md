@@ -143,6 +143,11 @@ This project now treats the remaining backlog as isolated mini-samples instead o
   Status: implemented.
   Recommended surface: standalone route.
 
+- `sample-react-release-incident-timeline-reconstruction`
+  Covers conflicting witness notes, canonical timeline resolution, executive summary regeneration, and the publish gate that stays blocked until the summary is safe.
+  Status: implemented.
+  Recommended surface: standalone route.
+
 ## React DOM mini-samples
 
 - `sample-react-portal-modal`

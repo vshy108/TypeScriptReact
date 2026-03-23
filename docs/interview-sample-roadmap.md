@@ -58,10 +58,11 @@ Implemented now:
 - escalation routing with acknowledgement deadlines and fallback owner reassignment when the primary owner misses the window
 - ownership transfer auditing with outgoing and incoming acknowledgements plus escalation replay context before the handoff closes
 - delegated approval bundles with expiry windows and replayable audit evidence before publish
+- incident timeline reconstruction with conflicting witness notes and a publish-safe executive summary gate
 
 Highest-value addition:
 
-- a twentieth feature slice that models incident timeline reconstruction with conflicting witness notes and a publish-safe executive summary gate
+- a twenty-first feature slice that models release rollback decision matrices with conflicting metrics and quorum-based sign-off
 
 Suggested structure:
 

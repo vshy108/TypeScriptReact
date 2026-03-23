@@ -565,6 +565,24 @@ export const miniSampleCatalog = [
       "Delegated approval bundles are easiest to explain when the expiry window, delegate takeover, and evidence replay gate stay visible together in one route.",
   },
   {
+    id: "sample-react-release-incident-timeline-reconstruction",
+    title: "Release incident timeline reconstruction",
+    topic: "React Client",
+    status: "implemented",
+    surface: "isolated-route",
+    apis: [
+      "timeline conflict resolution",
+      "canonical event ordering",
+      "executive summary gate",
+      "audit-backed publish safety",
+      "witness note reconciliation",
+    ],
+    summary:
+      "Show conflicting witness notes, pick a canonical timeline entry, regenerate a publish-safe executive summary, and only then clear the publish gate.",
+    whyIsolated:
+      "Timeline reconstruction is easiest to explain when the witness conflict, canonical resolution, and executive summary gate stay visible together in one route.",
+  },
+  {
     id: "sample-react-streaming-ssr",
     title: "Streaming SSR and prerender flows",
     topic: "React Server",
