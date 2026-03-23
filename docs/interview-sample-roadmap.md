@@ -99,5 +99,10 @@ Already added in this docs folder:
 
 - [./interview-prep.md](./interview-prep.md)
 - [./interview-questions.md](./interview-questions.md)
+- [./interview-walkthroughs.md](./interview-walkthroughs.md)
 - [./frontend-system-design.md](./frontend-system-design.md)
 - [./debugging-playbook.md](./debugging-playbook.md)
+
+Highest-value additions:
+
+- no additional high-priority additions in this section right now

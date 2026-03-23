@@ -35,6 +35,7 @@ This project is a modern React starter that goes beyond the default template. It
 - `docs/reading-index.md` is the fastest repo-first reading path through the annotated code
 - `docs/react-typescript-terms.md` is the landing page for the React and TypeScript term guides
 - `docs/interview-prep.md` is the practical React frontend interview-prep path built on top of the repo
+- `docs/interview-walkthroughs.md` is the product-scenario answer guide for practicing structured interview responses from real repo examples
 
 ## File map
 

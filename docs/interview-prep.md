@@ -19,8 +19,9 @@ The existing guides explain React and TypeScript terms well. Interview preparati
 1. Read [./reading-index.md](./reading-index.md) to understand the repository structure quickly.
 2. Read [./react-typescript-terms.md](./react-typescript-terms.md) for the vocabulary used across the repo.
 3. Read [./interview-questions.md](./interview-questions.md) to practice answering common React + TypeScript frontend questions using repo examples.
-4. Read [./frontend-system-design.md](./frontend-system-design.md) to practice architecture and tradeoff discussions.
-5. Read [./debugging-playbook.md](./debugging-playbook.md) to prepare for debugging and troubleshooting questions.
+4. Read [./interview-walkthroughs.md](./interview-walkthroughs.md) to practice product-style prompts that require a structured answer, not just a definition.
+5. Read [./frontend-system-design.md](./frontend-system-design.md) to practice architecture and tradeoff discussions.
+6. Read [./debugging-playbook.md](./debugging-playbook.md) to prepare for debugging and troubleshooting questions.
 
 ## Practical Interview Focus Areas
 
@@ -61,13 +62,12 @@ Primary repo files: [../src/hydration/HydrationHintsApp.tsx](../src/hydration/Hy
 
 ## Highest-Value Gaps To Study Next
 
-These are the most interview-relevant topics that are not yet as strong as the current API coverage:
-
-1. Additional interview-style walkthroughs for product scenarios
+The highest-priority interview walkthrough gap is now covered. The remaining work is lower-priority expansion, not a missing core study path.
 
 ## Related Guides
 
 - [./interview-questions.md](./interview-questions.md)
+- [./interview-walkthroughs.md](./interview-walkthroughs.md)
 - [./frontend-system-design.md](./frontend-system-design.md)
 - [./debugging-playbook.md](./debugging-playbook.md)
 - [./interview-sample-roadmap.md](./interview-sample-roadmap.md)
