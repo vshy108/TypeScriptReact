@@ -37,9 +37,13 @@ Why this matters:
 
 ## 3. Real-World Feature Slice
 
+Implemented now:
+
+- release readiness feature slice with `types.ts`, `client.ts`, `useReleaseReadiness.ts`, `ReleaseReadinessPanel.tsx`, and an integration test
+
 Highest-value addition:
 
-- a small feature with typed API client, hook, UI component, and tests
+- a second feature slice that includes a mutation flow, not only a read-heavy dashboard
 
 Suggested structure:
 

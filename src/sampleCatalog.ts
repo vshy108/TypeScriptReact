@@ -223,6 +223,24 @@ export const miniSampleCatalog = [
       "Async race-condition demos need tightly controlled timing so the bug and the fix remain visible side by side.",
   },
   {
+    id: "sample-react-release-readiness-feature",
+    title: "Release readiness feature slice",
+    topic: "React Client",
+    status: "implemented",
+    surface: "isolated-route",
+    apis: [
+      "typed API client",
+      "custom hook",
+      "AbortController",
+      "derived view state",
+      "integration tests",
+    ],
+    summary:
+      "Model a small product-facing feature with typed data, a client layer, a custom hook, and a rendering component that can be tested end to end.",
+    whyIsolated:
+      "A feature slice is easiest to discuss when the architecture is visible in one focused route instead of being mixed into unrelated demos.",
+  },
+  {
     id: "sample-react-streaming-ssr",
     title: "Streaming SSR and prerender flows",
     topic: "React Server",

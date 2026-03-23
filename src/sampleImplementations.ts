@@ -1,5 +1,6 @@
 import type { ComponentType } from "react";
 import type { MiniSampleId } from "./sampleCatalog";
+import ReleaseReadinessPanel from "./features/release-readiness/ReleaseReadinessPanel";
 import ActivityTransitionSample from "./samples/ActivityTransitionSample";
 import AccessibleDialogSample from "./samples/AccessibleDialogSample";
 import ClassesModelsSample from "./samples/ClassesModelsSample";
@@ -40,6 +41,7 @@ export const sampleImplementations: Partial<
   "sample-react-layout-effects": LayoutEffectsSample,
   "sample-react-memo-lab": MemoLabSample,
   "sample-react-portal-modal": PortalModalSample,
+  "sample-react-release-readiness-feature": ReleaseReadinessPanel,
   "sample-react-reducer-board": ReducerBoardSample,
   "sample-react-ref-timing": RefTimingSample,
   "sample-react-stale-closure": StaleClosureSample,
