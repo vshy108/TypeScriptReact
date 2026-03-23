@@ -385,6 +385,24 @@ export const miniSampleCatalog = [
       "Field-level conflict resolution is easiest to explain when the base, local, and server values are visible side by side in one route.",
   },
   {
+    id: "sample-react-release-change-history",
+    title: "Release audit history and undo",
+    topic: "React Client",
+    status: "implemented",
+    surface: "isolated-route",
+    apis: [
+      "audit history",
+      "change attribution",
+      "undo latest change",
+      "revision snapshots",
+      "shared draft history",
+    ],
+    summary:
+      "Show a shared release update that records attributed snapshots on every change and lets the user undo the most recent revision.",
+    whyIsolated:
+      "Audit and undo flows are easiest to discuss when the current draft and the recent history entries are visible together in one route.",
+  },
+  {
     id: "sample-react-streaming-ssr",
     title: "Streaming SSR and prerender flows",
     topic: "React Server",

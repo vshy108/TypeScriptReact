@@ -48,10 +48,11 @@ Implemented now:
 - release incident collaborative editing with teammate presence, a shared draft, and conflict-aware saves
 - release review threads and approvals with blocked publish until reviewer comments are resolved and approvals are green
 - release field-level merge resolution with automatic non-conflicting merges and explicit side-by-side conflict choices
+- release audit history and undo with attributed snapshots for each change and rollback of the latest revision
 
 Highest-value addition:
 
-- a tenth feature slice that combines merge resolution with audit history, change attribution, or undo support
+- an eleventh feature slice that combines history with branching drafts, compare views, or scheduled publish state
 
 Suggested structure:
 

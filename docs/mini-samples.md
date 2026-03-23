@@ -93,6 +93,11 @@ This project now treats the remaining backlog as isolated mini-samples instead o
   Status: implemented.
   Recommended surface: standalone route.
 
+- `sample-react-release-change-history`
+  Covers audit history, change attribution, and undoing the most recent release update revision.
+  Status: implemented.
+  Recommended surface: standalone route.
+
 ## React DOM mini-samples
 
 - `sample-react-portal-modal`
