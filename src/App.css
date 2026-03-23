@@ -970,6 +970,70 @@ textarea:focus {
   color: #8d3d1f;
 }
 
+.release-ownership-transfer-audit,
+.release-ownership-transfer-audit__summary,
+.release-ownership-transfer-audit__grid,
+.release-ownership-transfer-audit__panel,
+.release-ownership-transfer-audit__step-list,
+.release-ownership-transfer-audit__event-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.release-ownership-transfer-audit__summary {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.release-ownership-transfer-audit__grid {
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+}
+
+.release-ownership-transfer-audit__actions {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.release-ownership-transfer-audit__step-card,
+.release-ownership-transfer-audit__event-card {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: start;
+  border-radius: 1rem;
+  border: 1px solid var(--border);
+  background: rgba(255, 252, 246, 0.72);
+  padding: 0.9rem 1rem;
+}
+
+.release-ownership-transfer-audit__step-card p,
+.release-ownership-transfer-audit__event-card p {
+  margin: 0.25rem 0 0;
+  color: var(--muted);
+}
+
+.release-ownership-transfer-audit__step-card span,
+.release-ownership-transfer-audit__event-meta span {
+  text-transform: capitalize;
+}
+
+.release-ownership-transfer-audit__step-card > div:last-child {
+  display: grid;
+  gap: 0.5rem;
+  justify-items: end;
+  text-align: right;
+}
+
+.release-ownership-transfer-audit__event-card {
+  display: grid;
+}
+
+.release-ownership-transfer-audit__event-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
 .sample-summary {
   grid-template-columns: repeat(3, minmax(0, 1fr));
   margin: 1rem 0 1.2rem;
@@ -1128,6 +1192,8 @@ textarea:focus {
   .release-communication-handoff__grid,
   .release-escalation-routing__summary,
   .release-escalation-routing__grid,
+  .release-ownership-transfer-audit__summary,
+  .release-ownership-transfer-audit__grid,
   .release-multi-region-rollback__summary,
   .release-multi-region-rollback__grid,
   .release-rollout-pause-resume__summary,

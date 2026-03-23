@@ -6,6 +6,7 @@ import ReleaseEscalationRoutingPanel from "./features/release-escalation-routing
 import ReleaseFieldMergePanel from "./features/release-field-merge/ReleaseFieldMergePanel";
 import ReleaseLaunchOrchestrationPanel from "./features/release-launch-orchestration/ReleaseLaunchOrchestrationPanel";
 import ReleaseMultiRegionRollbackPanel from "./features/release-multi-region-rollback/ReleaseMultiRegionRollbackPanel";
+import ReleaseOwnershipTransferAuditPanel from "./features/release-ownership-transfer-audit/ReleaseOwnershipTransferAuditPanel";
 import ReleaseRolloutPauseResumePanel from "./features/release-rollout-pause-resume/ReleaseRolloutPauseResumePanel";
 import ReleaseScheduledPublishPanel from "./features/release-scheduled-publish/ReleaseScheduledPublishPanel";
 import type { MiniSampleId } from "./sampleCatalog";
@@ -70,6 +71,8 @@ export const sampleImplementations: Partial<
   "sample-react-release-launch-checklist": ReleaseLaunchChecklistPanel,
   "sample-react-release-launch-orchestration": ReleaseLaunchOrchestrationPanel,
   "sample-react-release-multi-region-rollback": ReleaseMultiRegionRollbackPanel,
+  "sample-react-release-ownership-transfer-audit":
+    ReleaseOwnershipTransferAuditPanel,
   "sample-react-release-readiness-feature": ReleaseReadinessPanel,
   "sample-react-release-review-threads": ReleaseReviewThreadsPanel,
   "sample-react-release-rollout-pause-resume": ReleaseRolloutPauseResumePanel,

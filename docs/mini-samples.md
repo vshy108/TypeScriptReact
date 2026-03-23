@@ -133,6 +133,11 @@ This project now treats the remaining backlog as isolated mini-samples instead o
   Status: implemented.
   Recommended surface: standalone route.
 
+- `sample-react-release-ownership-transfer-audit`
+  Covers outgoing and incoming owner acknowledgements, escalation replay context, and a persistent audit trail before ownership changes hands.
+  Status: implemented.
+  Recommended surface: standalone route.
+
 ## React DOM mini-samples
 
 - `sample-react-portal-modal`

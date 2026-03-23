@@ -77,6 +77,7 @@ This project is a modern React starter that goes beyond the default template. It
 - `src/features/release-multi-region-rollback/types.ts` and `src/features/release-multi-region-rollback/*` show targeted regional rollback, partial recovery, dependency acknowledgements, and the resumed final recovery step
 - `src/features/release-communication-handoff/types.ts` and `src/features/release-communication-handoff/*` show channel-by-channel acknowledgements, staged publish sequencing, and recovery confirmation when one communication lane fails
 - `src/features/release-escalation-routing/types.ts` and `src/features/release-escalation-routing/*` show acknowledgement deadlines, fallback reassignment, and queue progression after a rerouted escalation
+- `src/features/release-ownership-transfer-audit/types.ts` and `src/features/release-ownership-transfer-audit/*` show outgoing and incoming ownership acknowledgements, escalation replay context, and the audit trail that proves when release ownership changed hands
 - `src/hydration/HydrationHintsApp.tsx` and `src/hydration/main.tsx` demonstrate `hydrateRoot()` plus the resource hint APIs in a separate entry
 - `server-samples/react-streaming-ssr/src/runAllModes.tsx` demonstrates the current stable React server/static rendering APIs in one dedicated SSR workspace
 - `src/samples/UtilityMappedSample.tsx` demonstrates TypeScript utility types, `keyof`, mapped types, conditional types, and `infer` through one derived release-contract model

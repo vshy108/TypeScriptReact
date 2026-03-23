@@ -529,6 +529,24 @@ export const miniSampleCatalog = [
       "Escalation routing is easiest to explain when the active deadline, fallback owner, and queue progression stay visible together in one route.",
   },
   {
+    id: "sample-react-release-ownership-transfer-audit",
+    title: "Release ownership transfer audit",
+    topic: "React Client",
+    status: "implemented",
+    surface: "isolated-route",
+    apis: [
+      "ownership handoff",
+      "acknowledgement history",
+      "audit trail",
+      "escalation replay",
+      "operator transfer",
+    ],
+    summary:
+      "Show an operator handoff that records outgoing and incoming acknowledgements, replays the latest escalation context, and only then transfers ownership.",
+    whyIsolated:
+      "Ownership transfer auditing is easiest to explain when the active acknowledgement, replay context, and audit trail stay visible together in one route.",
+  },
+  {
     id: "sample-react-streaming-ssr",
     title: "Streaming SSR and prerender flows",
     topic: "React Server",

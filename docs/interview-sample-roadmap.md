@@ -56,10 +56,11 @@ Implemented now:
 - release multi-region rollback targeting with dependency acknowledgements and partial recovery before the final region completes
 - incident communication handoff with channel-specific acknowledgements and staged publish recovery when one handoff lane fails
 - escalation routing with acknowledgement deadlines and fallback owner reassignment when the primary owner misses the window
+- ownership transfer auditing with outgoing and incoming acknowledgements plus escalation replay context before the handoff closes
 
 Highest-value addition:
 
-- an eighteenth feature slice that combines ownership transfer auditing with acknowledgement history or escalation replay context
+- a nineteenth feature slice that models delegated approval bundles with expiry windows and replayable audit evidence before publish
 
 Suggested structure:
 
