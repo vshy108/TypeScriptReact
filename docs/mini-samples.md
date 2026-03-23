@@ -108,6 +108,11 @@ This project now treats the remaining backlog as isolated mini-samples instead o
   Status: implemented.
   Recommended surface: standalone route.
 
+- `sample-react-release-launch-orchestration`
+  Covers progressive rollout checkpoints, traffic promotion, live guardrails, and automatic abort behavior.
+  Status: implemented.
+  Recommended surface: standalone route.
+
 ## React DOM mini-samples
 
 - `sample-react-portal-modal`

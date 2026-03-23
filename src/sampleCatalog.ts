@@ -439,6 +439,24 @@ export const miniSampleCatalog = [
       "Scheduled publish flows are easiest to explain when the gate conditions, countdown, and rollback state are all visible in one route.",
   },
   {
+    id: "sample-react-release-launch-orchestration",
+    title: "Release launch orchestration",
+    topic: "React Client",
+    status: "implemented",
+    surface: "isolated-route",
+    apis: [
+      "progressive checkpoints",
+      "traffic promotion",
+      "guardrail monitors",
+      "automatic abort",
+      "timer-driven orchestration",
+    ],
+    summary:
+      "Show a launch that advances through canary, regional, and global checkpoints while live guardrails can automatically abort the rollout.",
+    whyIsolated:
+      "Launch orchestration is easiest to explain when checkpoint state, live guardrails, and the abort outcome stay visible in one route.",
+  },
+  {
     id: "sample-react-streaming-ssr",
     title: "Streaming SSR and prerender flows",
     topic: "React Server",

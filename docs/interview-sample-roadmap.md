@@ -51,10 +51,11 @@ Implemented now:
 - release audit history and undo with attributed snapshots for each change and rollback of the latest revision
 - release branch compare view with alternate drafts, side-by-side wording comparison, and branch promotion
 - release scheduled publish state with approvals, a live countdown, and a rollback window immediately after publish
+- release launch orchestration with progressive checkpoints, live guardrails, and automatic abort when a metric breaches during rollout
 
 Highest-value addition:
 
-- a thirteenth feature slice that combines launch orchestration with progressive rollout checkpoints or automated abort conditions
+- a fourteenth feature slice that combines rollout pause-and-resume controls with checkpoint acknowledgements or manual override recovery
 
 Suggested structure:
 
