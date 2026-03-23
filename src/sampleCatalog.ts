@@ -511,6 +511,24 @@ export const miniSampleCatalog = [
       "Communication handoff is easiest to explain when channel ownership, staged publish state, and recovery remain visible in one route.",
   },
   {
+    id: "sample-react-release-escalation-routing",
+    title: "Release escalation routing",
+    topic: "React Client",
+    status: "implemented",
+    surface: "isolated-route",
+    apis: [
+      "acknowledgement deadline",
+      "fallback reassignment",
+      "queue routing",
+      "owner handoff",
+      "timer-driven escalation",
+    ],
+    summary:
+      "Show an escalation queue that reroutes to fallback owners when deadlines expire and keeps the remaining queue moving.",
+    whyIsolated:
+      "Escalation routing is easiest to explain when the active deadline, fallback owner, and queue progression stay visible together in one route.",
+  },
+  {
     id: "sample-react-streaming-ssr",
     title: "Streaming SSR and prerender flows",
     topic: "React Server",

@@ -55,10 +55,11 @@ Implemented now:
 - release rollout pause and resume with checkpoint acknowledgements and manual override recovery after an operator stop
 - release multi-region rollback targeting with dependency acknowledgements and partial recovery before the final region completes
 - incident communication handoff with channel-specific acknowledgements and staged publish recovery when one handoff lane fails
+- escalation routing with acknowledgement deadlines and fallback owner reassignment when the primary owner misses the window
 
 Highest-value addition:
 
-- a seventeenth feature slice that combines escalation routing with acknowledgement deadlines or fallback owner reassignment
+- an eighteenth feature slice that combines ownership transfer auditing with acknowledgement history or escalation replay context
 
 Suggested structure:
 

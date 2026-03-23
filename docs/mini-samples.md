@@ -128,6 +128,11 @@ This project now treats the remaining backlog as isolated mini-samples instead o
   Status: implemented.
   Recommended surface: standalone route.
 
+- `sample-react-release-escalation-routing`
+  Covers acknowledgement deadlines, fallback owner reassignment, and queue progression after a rerouted escalation.
+  Status: implemented.
+  Recommended surface: standalone route.
+
 ## React DOM mini-samples
 
 - `sample-react-portal-modal`

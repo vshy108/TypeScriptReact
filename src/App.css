@@ -916,6 +916,60 @@ textarea:focus {
   color: #8d3d1f;
 }
 
+.release-escalation-routing,
+.release-escalation-routing__summary,
+.release-escalation-routing__grid,
+.release-escalation-routing__panel,
+.release-escalation-routing__route-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.release-escalation-routing__summary {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.release-escalation-routing__grid {
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.2fr);
+}
+
+.release-escalation-routing__actions {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.release-escalation-routing__route-card {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: start;
+  border-radius: 1rem;
+  border: 1px solid var(--border);
+  background: rgba(255, 252, 246, 0.72);
+  padding: 0.9rem 1rem;
+}
+
+.release-escalation-routing__route-card p {
+  margin: 0.25rem 0 0;
+  color: var(--muted);
+}
+
+.release-escalation-routing__route-card span,
+.release-escalation-routing__reroute {
+  text-transform: capitalize;
+}
+
+.release-escalation-routing__route-card > div:last-child {
+  display: grid;
+  gap: 0.5rem;
+  justify-items: end;
+  text-align: right;
+}
+
+.release-escalation-routing__reroute {
+  color: #8d3d1f;
+}
+
 .sample-summary {
   grid-template-columns: repeat(3, minmax(0, 1fr));
   margin: 1rem 0 1.2rem;
@@ -1072,6 +1126,8 @@ textarea:focus {
   .release-launch-orchestration__grid,
   .release-communication-handoff__summary,
   .release-communication-handoff__grid,
+  .release-escalation-routing__summary,
+  .release-escalation-routing__grid,
   .release-multi-region-rollback__summary,
   .release-multi-region-rollback__grid,
   .release-rollout-pause-resume__summary,

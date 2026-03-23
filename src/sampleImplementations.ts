@@ -2,6 +2,7 @@ import type { ComponentType } from "react";
 import ReleaseBranchComparePanel from "./features/release-branch-compare/ReleaseBranchComparePanel";
 import ReleaseChangeHistoryPanel from "./features/release-change-history/ReleaseChangeHistoryPanel";
 import ReleaseCommunicationHandoffPanel from "./features/release-communication-handoff/ReleaseCommunicationHandoffPanel";
+import ReleaseEscalationRoutingPanel from "./features/release-escalation-routing/ReleaseEscalationRoutingPanel";
 import ReleaseFieldMergePanel from "./features/release-field-merge/ReleaseFieldMergePanel";
 import ReleaseLaunchOrchestrationPanel from "./features/release-launch-orchestration/ReleaseLaunchOrchestrationPanel";
 import ReleaseMultiRegionRollbackPanel from "./features/release-multi-region-rollback/ReleaseMultiRegionRollbackPanel";
@@ -60,6 +61,7 @@ export const sampleImplementations: Partial<
   "sample-react-release-change-history": ReleaseChangeHistoryPanel,
   "sample-react-release-communication-handoff":
     ReleaseCommunicationHandoffPanel,
+  "sample-react-release-escalation-routing": ReleaseEscalationRoutingPanel,
   "sample-react-release-field-merge": ReleaseFieldMergePanel,
   "sample-react-release-handoff-conflict": ReleaseHandoffConflictPanel,
   "sample-react-release-incident-collaboration":
