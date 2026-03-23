@@ -10,6 +10,7 @@ import ReleaseIncidentTimelineReconstructionPanel from "./features/release-incid
 import ReleaseLaunchOrchestrationPanel from "./features/release-launch-orchestration/ReleaseLaunchOrchestrationPanel";
 import ReleaseMultiRegionRollbackPanel from "./features/release-multi-region-rollback/ReleaseMultiRegionRollbackPanel";
 import ReleaseOwnershipTransferAuditPanel from "./features/release-ownership-transfer-audit/ReleaseOwnershipTransferAuditPanel";
+import ReleasePostRollbackSegmentationPanel from "./features/release-post-rollback-segmentation/ReleasePostRollbackSegmentationPanel";
 import ReleaseRollbackDecisionMatrixPanel from "./features/release-rollback-decision-matrix/ReleaseRollbackDecisionMatrixPanel";
 import ReleaseRolloutPauseResumePanel from "./features/release-rollout-pause-resume/ReleaseRolloutPauseResumePanel";
 import ReleaseScheduledPublishPanel from "./features/release-scheduled-publish/ReleaseScheduledPublishPanel";
@@ -83,6 +84,8 @@ export const sampleImplementations: Partial<
   "sample-react-release-multi-region-rollback": ReleaseMultiRegionRollbackPanel,
   "sample-react-release-ownership-transfer-audit":
     ReleaseOwnershipTransferAuditPanel,
+  "sample-react-release-post-rollback-segmentation":
+    ReleasePostRollbackSegmentationPanel,
   "sample-react-release-readiness-feature": ReleaseReadinessPanel,
   "sample-react-release-rollback-decision-matrix":
     ReleaseRollbackDecisionMatrixPanel,

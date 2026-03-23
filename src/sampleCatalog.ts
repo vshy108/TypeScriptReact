@@ -619,6 +619,24 @@ export const miniSampleCatalog = [
       "Incident comms approval packs are easiest to explain when the staged review flow, wording diff, and publish gate stay visible together in one route.",
   },
   {
+    id: "sample-react-release-post-rollback-segmentation",
+    title: "Release post-rollback customer segmentation",
+    topic: "React Client",
+    status: "implemented",
+    surface: "isolated-route",
+    apis: [
+      "customer segmentation",
+      "region timing",
+      "message forks",
+      "escalation-safe copy",
+      "publish gating",
+    ],
+    summary:
+      "Show region-specific rollback update timing, escalation-safe message forks, and a publish gate that only clears after each segment and fork is ready.",
+    whyIsolated:
+      "Post-rollback segmentation is easiest to explain when segment timing, message forks, and the final publish gate stay visible together in one route.",
+  },
+  {
     id: "sample-react-streaming-ssr",
     title: "Streaming SSR and prerender flows",
     topic: "React Server",

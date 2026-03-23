@@ -1314,6 +1314,75 @@ textarea:focus {
   gap: 1rem;
 }
 
+.release-post-rollback-segmentation,
+.release-post-rollback-segmentation__summary,
+.release-post-rollback-segmentation__grid,
+.release-post-rollback-segmentation__panel,
+.release-post-rollback-segmentation__segment-list,
+.release-post-rollback-segmentation__fork-list,
+.release-post-rollback-segmentation__audit-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.release-post-rollback-segmentation__summary {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.release-post-rollback-segmentation__grid {
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+}
+
+.release-post-rollback-segmentation__actions {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.release-post-rollback-segmentation__segment-card,
+.release-post-rollback-segmentation__fork-card,
+.release-post-rollback-segmentation__audit-card {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: start;
+  border-radius: 1rem;
+  border: 1px solid var(--border);
+  background: rgba(255, 252, 246, 0.72);
+  padding: 0.9rem 1rem;
+}
+
+.release-post-rollback-segmentation__segment-card p,
+.release-post-rollback-segmentation__fork-card p,
+.release-post-rollback-segmentation__audit-card p {
+  margin: 0.25rem 0 0;
+  color: var(--muted);
+}
+
+.release-post-rollback-segmentation__segment-card span,
+.release-post-rollback-segmentation__fork-card span,
+.release-post-rollback-segmentation__audit-meta span {
+  text-transform: capitalize;
+}
+
+.release-post-rollback-segmentation__segment-card > div:last-child {
+  display: grid;
+  gap: 0.5rem;
+  justify-items: end;
+  text-align: right;
+}
+
+.release-post-rollback-segmentation__fork-card,
+.release-post-rollback-segmentation__audit-card {
+  display: grid;
+}
+
+.release-post-rollback-segmentation__audit-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
 .sample-summary {
   grid-template-columns: repeat(3, minmax(0, 1fr));
   margin: 1rem 0 1.2rem;
@@ -1482,6 +1551,8 @@ textarea:focus {
   .release-rollback-decision-matrix__grid,
   .release-incident-comms-approval-packs__summary,
   .release-incident-comms-approval-packs__grid,
+  .release-post-rollback-segmentation__summary,
+  .release-post-rollback-segmentation__grid,
   .release-multi-region-rollback__summary,
   .release-multi-region-rollback__grid,
   .release-rollout-pause-resume__summary,

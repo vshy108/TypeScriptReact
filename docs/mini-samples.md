@@ -158,6 +158,11 @@ This project now treats the remaining backlog as isolated mini-samples instead o
   Status: implemented.
   Recommended surface: standalone route.
 
+- `sample-react-release-post-rollback-segmentation`
+  Covers region-specific rollback update timing, customer segmentation, escalation-safe message forks, and the publish gate that stays blocked until the segmented plan is ready.
+  Status: implemented.
+  Recommended surface: standalone route.
+
 ## React DOM mini-samples
 
 - `sample-react-portal-modal`
