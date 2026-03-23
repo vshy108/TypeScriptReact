@@ -2,10 +2,12 @@
 // React ESLint rules — comment-only demonstration
 // ============================================================================
 //
-// These lint rules are part of eslint-plugin-react-hooks and the React Compiler
-// eslint plugin. They enforce the Rules of React at the code level.
-// Demonstrating them requires intentionally broken code, which does not fit
-// the sample-and-test pattern. This file shows what each rule catches.
+// These lint rules are part of eslint-plugin-react-hooks, eslint-plugin-react-refresh,
+// and the React Compiler lint plugin. They enforce the Rules of React at the code level.
+// This repo now verifies the installed lint rules through the companion workspace in
+// node-samples/react-lint-rules/. This file stays valuable as the teaching reference,
+// and it still documents compiler-purity examples that are not executable here until
+// eslint-plugin-react-compiler is added to the workspace.
 //
 // ============================================================================
 // 1. react-hooks/exhaustive-deps

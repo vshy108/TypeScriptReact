@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hydration Mismatch Detection Sample</title>
+  </head>
+  <body>
+    <div id="hydration-mismatch-root">
+      <div class="hydration-page">
+        <header class="hydration-hero">
+          <p class="eyebrow">Implemented sample</p>
+          <h1>Hydration mismatch detection</h1>
+          <p class="hydration-copy">This entry starts with one server-rendered text value that does not match the client tree. React reports the mismatch as recoverable, patches the text, and keeps the rest of the shell interactive.</p>
+          <div class="hydration-meta">
+            <span>Entry: /hydration-mismatch.html</span>
+            <span>Root API: hydrateRoot()</span>
+            <span>Mismatch: text content only</span>
+          </div>
+        </header>
+
+        <main class="hydration-grid">
+          <article class="hydration-card">
+            <p class="eyebrow">Intentional mismatch</p>
+            <h2>Server and client render different text</h2>
+            <p class="section-copy">Waiting for hydrateRoot() to compare the server HTML with the client tree.</p>
+            <div class="sample-card__meta">
+              <span>Server shell rendered first</span>
+              <span>React compares during hydration</span>
+              <span>Recoverable text diff</span>
+            </div>
+            <section class="hydration-detail" aria-live="polite">
+              <span>Render checksum</span>
+              <code>server-seed-2026-03-23T00:00:00.000Z</code>
+              <p>The checked-in HTML starts with a server checksum. The client tree intentionally reads a different checksum so the mismatch is easy to detect and verify.</p>
+            </section>
+            <div class="hydration-actions">
+              <button type="button" class="primary-button">Acknowledge recovery</button>
+            </div>
+            <div class="hydration-log">
+              <p>The server shell rendered before the client bundle executed.</p>
+              <p>One text node is intentionally different so hydration can report a recoverable mismatch.</p>
+            </div>
+          </article>
+
+          <article class="hydration-card">
+            <p class="eyebrow">Safer patterns</p>
+            <h2>How to avoid real mismatches</h2>
+            <ul class="summary-list">
+              <li>Move client-only values such as Date.now() and window reads into useEffect.</li>
+              <li>Use useSyncExternalStore with getServerSnapshot when the server needs a stable fallback value.</li>
+              <li>Use useId for deterministic ids instead of Math.random() during render.</li>
+              <li>Use suppressHydrationWarning only for intentional one-off differences such as timestamps.</li>
+            </ul>
+          </article>
+        </main>
+      </div>
+    </div>
+    <script type="module" src="/src/hydration-mismatch/main.tsx"></script>
+  </body>
+</html>

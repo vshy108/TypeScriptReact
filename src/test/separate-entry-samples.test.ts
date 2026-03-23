@@ -9,6 +9,11 @@ import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { JSDOM } from "jsdom";
 import { describe, expect, it } from "vitest";
+import { HydrationMismatchPage } from "../hydration-mismatch/HydrationMismatchApp";
+import {
+  hydrationMismatchRootId,
+  serverRenderedChecksum,
+} from "../hydration-mismatch/hydrationMismatchData";
 import HydrationHintsApp from "../hydration/HydrationHintsApp";
 import { hydrationRootId } from "../hydration/hydrationData";
 import { implementedSampleArtifacts } from "../implementedSampleArtifacts";
@@ -101,6 +106,35 @@ describe("separate-entry mini-samples", () => {
     expect(normalizeTagWhitespace(rootElement?.innerHTML ?? "")).toBe(
       normalizeTagWhitespace(
         expectedDocument.getElementById(hydrationRootId)?.innerHTML ?? "",
+      ),
+    );
+  });
+
+  it("keeps the hydration mismatch HTML shell aligned with the intentional server render", () => {
+    const artifact =
+      implementedSampleArtifacts["sample-react-hydration-mismatch"];
+
+    if (!artifact?.entryHtml) {
+      throw new Error(
+        "Missing HTML entry for sample-react-hydration-mismatch.",
+      );
+    }
+
+    const html = readFileSync(
+      resolve(process.cwd(), artifact.entryHtml),
+      "utf8",
+    );
+    const document = new JSDOM(html).window.document;
+    const rootElement = document.getElementById(hydrationMismatchRootId);
+    const expectedDocument = new JSDOM(
+      `<div id="${hydrationMismatchRootId}">${renderToStaticMarkup(createElement(HydrationMismatchPage, { renderedChecksum: serverRenderedChecksum }))}</div>`,
+    ).window.document;
+
+    expect(rootElement).toBeTruthy();
+    expect(normalizeTagWhitespace(rootElement?.innerHTML ?? "")).toBe(
+      normalizeTagWhitespace(
+        expectedDocument.getElementById(hydrationMismatchRootId)?.innerHTML ??
+          "",
       ),
     );
   });

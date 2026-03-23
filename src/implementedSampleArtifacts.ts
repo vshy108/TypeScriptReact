@@ -74,22 +74,29 @@ export const implementedSampleArtifacts: Partial<
     verificationCommand: "npm run typecheck",
   },
   "sample-react-server-components": {
-    label: "Comment-based server components demo",
-    rootDir: ".",
-    entryPoint: "src/samples/ServerComponentsDemo.ts",
-    verificationCommand: "npm run typecheck",
+    label: "Node-only server boundary workspace",
+    rootDir: "node-samples/react-server-components",
+    readmePath: "node-samples/react-server-components/README.md",
+    entryPoint:
+      "node-samples/react-server-components/src/reportServerComponentBoundaries.ts",
+    verificationCommand:
+      "node ./node_modules/typescript/bin/tsc -p node-samples/react-server-components/tsconfig.json && node node-samples/react-server-components/dist/src/reportServerComponentBoundaries.js",
   },
   "sample-react-lint-rules-demo": {
-    label: "Comment-based lint rules demo",
-    rootDir: ".",
-    entryPoint: "src/samples/ReactLintRulesDemo.ts",
-    verificationCommand: "npm run typecheck",
+    label: "Node-only lint fixture workspace",
+    rootDir: "node-samples/react-lint-rules",
+    readmePath: "node-samples/react-lint-rules/README.md",
+    entryPoint: "node-samples/react-lint-rules/src/reportLintRules.ts",
+    verificationCommand:
+      "node ./node_modules/typescript/bin/tsc -p node-samples/react-lint-rules/tsconfig.json && node node-samples/react-lint-rules/dist/src/reportLintRules.js",
   },
   "sample-react-hydration-mismatch": {
-    label: "Comment-based hydration mismatch demo",
+    label: "Separate hydration mismatch entry",
     rootDir: ".",
-    entryPoint: "src/samples/HydrationMismatchDemo.ts",
-    verificationCommand: "npm run typecheck",
+    entryHtml: "hydration-mismatch.html",
+    entryPoint: "src/hydration-mismatch/main.tsx",
+    launchPath: "/hydration-mismatch.html",
+    verificationCommand: "npm run build",
   },
   "sample-ts-variance": {
     label: "Node-only variance and assignability workspace",

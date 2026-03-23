@@ -135,22 +135,27 @@ This project is a modern React starter that goes beyond the default template. It
 - `node-samples/ts-jsdoc-interop/src/index.ts` imports and type-checks the JSDoc-typed JS module
 - `node-samples/ts-advanced-tsconfig/src/index.ts` demonstrates advanced tsconfig options: path aliases, composite projects, declaration maps, and index-signature strictness
 - `src/samples/ReactCompilerDemo.ts` is a comment-based demonstration of React Compiler setup, `"use memo"`, and `"use no memo"` directives
-- `src/samples/ServerComponentsDemo.ts` is a comment-based demonstration of Server Components, Server Functions, `'use client'`, and `'use server'` directives
-- `src/samples/ReactLintRulesDemo.ts` is a comment-based demonstration of `exhaustive-deps`, `rules-of-hooks`, purity enforcement, and component-only export rules
+- `node-samples/react-server-components/README.md` explains the node-only boundary workspace for Server Components, Server Functions, `'use client'`, and `'use server'`
+- `src/samples/ServerComponentsDemo.ts` keeps the explanatory notes about runtime transport and serialization boundaries that still require a framework-aware bundler
+- `node-samples/react-lint-rules/README.md` explains the runnable lint fixture workspace for `exhaustive-deps`, `rules-of-hooks`, and component-only export checks
+- `src/samples/ReactLintRulesDemo.ts` keeps the explanatory examples, including compiler-purity notes that still require an extra lint plugin to execute for real
 - `hydration.html` is the separate HTML shell that the hydration sample attaches to
+- `hydration-mismatch.html` is the intentional mismatch shell used to demonstrate recoverable hydration errors
 - `server-samples/react-streaming-ssr/README.md` explains the SSR workspace and how to run it directly
 - `src/components/TypeNotes.tsx` is lazy-loaded behind `Suspense`
 - `docs/coverage-roadmap.md` tracks what is implemented and what still needs examples
 - `docs/mini-samples.md` splits the backlog into isolated sample-sized units
 ## Why some React features are not covered here
 
-All stable React client and DOM APIs are demonstrated in this project. The remaining features that require special infrastructure are covered through comment-based demonstrations (`comment-demo` surface) showing annotated sample code:
+All stable React client and DOM APIs are demonstrated in this project. The remaining features that still require special infrastructure are covered through comment-based demonstrations (`comment-demo` surface) showing annotated sample code:
 
 | Feature | How covered |
 |---------|-------------|
 | React Compiler, `"use memo"`, `"use no memo"` | Comment-based demo in `src/samples/ReactCompilerDemo.ts`. Requires the Babel/SWC plugin to run for real. |
-| Server Components, Server Functions, `'use client'`, `'use server'` | Comment-based demo in `src/samples/ServerComponentsDemo.ts`. Requires a framework-aware bundler to run for real. |
-| Lint rules (`exhaustive-deps`, purity, `rules-of-hooks`) | Comment-based demo in `src/samples/ReactLintRulesDemo.ts`. Requires intentionally broken code that does not fit the sample-and-test pattern. |
+
+The Server Components sample is now partially covered through a runnable node-only workspace in `node-samples/react-server-components/`, which verifies source-level boundaries while leaving framework transport and serialization behavior documented in `src/samples/ServerComponentsDemo.ts`.
+
+The React lint rules sample is now covered through a runnable node-only workspace in `node-samples/react-lint-rules/`, while compiler-purity examples remain documented in `src/samples/ReactLintRulesDemo.ts` until the compiler lint plugin is added here.
 
 The following categories are intentionally excluded:
 

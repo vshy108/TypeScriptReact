@@ -4,10 +4,12 @@
 //
 // Server Components and Server Functions require a framework-aware bundler
 // (e.g., Next.js, Remix, or a custom RSC setup) that splits server and client
-// modules at build time. They cannot run in a plain Vite client app.
+// modules at build time. They cannot fully run in a plain Vite client app.
 //
-// This file shows the patterns, directives, and mental model so you can
-// recognize them when working in a framework that supports them.
+// This repo now verifies the source-level boundaries through the companion
+// workspace in node-samples/react-server-components/. This file still acts as
+// the teaching reference for the mental model, transport rules, and runtime
+// serialization caveats that the node-only workspace cannot execute for real.
 //
 // ============================================================================
 // 'use client' directive

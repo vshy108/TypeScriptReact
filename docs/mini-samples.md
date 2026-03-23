@@ -269,8 +269,8 @@ This project now treats the remaining backlog as isolated mini-samples instead o
 
 - `sample-react-server-components`
   Covers Server Components, Server Functions, `'use client'`, and `'use server'`.
-  Status: implemented (comment-based demo).
-  Surface: comment-demo.
+  Status: implemented.
+  Recommended surface: node-only package-style sample.
 
 - `sample-react-compiler`
   Covers React Compiler, `"use memo"`, and `"use no memo"`.
@@ -325,8 +325,8 @@ This project now treats the remaining backlog as isolated mini-samples instead o
 
 - `sample-react-lint-rules-demo`
   Covers `exhaustive-deps`, `rules-of-hooks`, `react-compiler` purity enforcement, and `react-refresh/only-export-components`.
-  Status: implemented (comment-based demo).
-  Surface: comment-demo.
+  Status: implemented.
+  Recommended surface: node-only package-style sample.
 
 ## React edge-case mini-samples
 
@@ -357,8 +357,8 @@ This project now treats the remaining backlog as isolated mini-samples instead o
 
 - `sample-react-hydration-mismatch`
   Covers hydration mismatch causes, detection, suppressHydrationWarning, and fixes.
-  Status: implemented (comment-based demo).
-  Surface: comment-demo.
+  Status: implemented.
+  Recommended surface: separate entry.
 
 ## TypeScript edge-case mini-samples
 

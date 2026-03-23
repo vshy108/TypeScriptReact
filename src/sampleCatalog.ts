@@ -918,7 +918,7 @@ export const miniSampleCatalog = [
     title: "Server Components and Server Functions",
     topic: "React Server",
     status: "implemented",
-    surface: "comment-demo",
+    surface: "node-only",
     apis: [
       "Server Components",
       "Server Functions",
@@ -926,9 +926,9 @@ export const miniSampleCatalog = [
       "'use server'",
     ],
     summary:
-      "Comment-based demonstration of server/client boundaries and file-level directives. Requires a framework-aware bundler to run for real.",
+      "Node-only boundary workspace that verifies client directives, async server components, file-level server functions, and inline server actions through fixture analysis.",
     whyIsolated:
-      "These patterns are environment-specific and are demonstrated through annotated code comments instead of runnable samples.",
+      "Full RSC transport still needs a framework-aware bundler, but the source-level boundaries can be verified in an isolated workspace without polluting the client app.",
   },
   {
     id: "sample-react-compiler",
@@ -1070,7 +1070,7 @@ export const miniSampleCatalog = [
     title: "React ESLint rules and purity enforcement",
     topic: "React Client",
     status: "implemented",
-    surface: "comment-demo",
+    surface: "node-only",
     apis: [
       "exhaustive-deps",
       "rules-of-hooks",
@@ -1078,9 +1078,9 @@ export const miniSampleCatalog = [
       "react-refresh/only-export-components",
     ],
     summary:
-      "Comment-based demonstration of the key React lint rules: exhaustive-deps, purity enforcement, rules-of-hooks, and component-only exports.",
+      "Node-only lint fixture workspace that verifies exhaustive-deps, rules-of-hooks, and component-only exports, while keeping compiler-purity notes documented alongside the sample.",
     whyIsolated:
-      "Lint rule demos require intentionally broken code and are shown through annotated code comments instead of runnable samples.",
+      "Intentional lint failures should run in an isolated workspace instead of polluting the main app build, and compiler-purity checks need a separate plugin before they can become executable here.",
   },
   {
     id: "sample-ts-advanced-tsconfig",
@@ -1197,7 +1197,7 @@ export const miniSampleCatalog = [
     title: "Hydration mismatch detection",
     topic: "React DOM",
     status: "implemented",
-    surface: "comment-demo",
+    surface: "separate-entry",
     apis: [
       "hydration mismatch",
       "suppressHydrationWarning",
@@ -1206,9 +1206,9 @@ export const miniSampleCatalog = [
       "streaming SSR recovery",
     ],
     summary:
-      "Explain what causes hydration mismatches (Date.now, window APIs, locale), how React 19 detects and reports them with diff views, and fixes: useEffect, useSyncExternalStore, suppressHydrationWarning, useId.",
+      "Hydrates intentionally mismatched server HTML so you can watch React 19 report a recoverable text diff, patch the client value, and keep the shell interactive.",
     whyIsolated:
-      "Hydration mismatches require a real SSR setup to reproduce. This comment-based demo explains the edge cases and fixes with type-checked code snippets.",
+      "Hydration mismatches need pre-rendered HTML before the client bundle runs, so the demo lives on its own HTML entry instead of inside the SPA route.",
   },
   {
     id: "sample-ts-conditional-distributivity",

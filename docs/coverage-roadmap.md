@@ -82,7 +82,7 @@ It is intentionally organized by major feature area instead of trying to enumera
 - [x] Error boundaries and Suspense interaction
 - [x] Key identity and state preservation
 - [x] Ref timing and callback refs
-- [x] Hydration mismatch detection (comment-based demo)
+- [x] Hydration mismatch detection (separate entry demo)
 
 ### Included now: server and prerender APIs
 
@@ -97,16 +97,14 @@ It is intentionally organized by major feature area instead of trying to enumera
 - [x] `resumeAndPrerender`
 - [x] `resumeAndPrerenderToNodeStream`
 
-### Included now: compiler, lint, and server-component topics (comment-based demos)
+### Included now: compiler topics, plus runnable lint and server-boundary coverage
 
 - [x] React Compiler setup
 - [x] `"use memo"` directive
 - [x] `"use no memo"` directive
-- [x] Server Components
-- [x] Server Functions
-- [x] `'use client'`
-- [x] `'use server'`
-- [x] Deeper React lint examples such as `exhaustive-deps`, `purity`, and `static-components`
+- [x] Runnable source-boundary verification for Server Components, Server Functions, `'use client'`, and `'use server'`
+- [x] Runnable ESLint verification for `exhaustive-deps`, `rules-of-hooks`, and `only-export-components`
+- [x] Comment-based compiler purity examples until the compiler lint plugin is enabled here
 
 ### Optional or deferred React topics
 
