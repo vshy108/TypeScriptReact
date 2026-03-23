@@ -68,111 +68,20 @@ It combines four execution surfaces:
 - `node-only`: TypeScript or source-boundary workspaces verified outside the SPA
 - `comment-demo`: explanatory files for framework-aware or toolchain-dependent behavior that is documented rather than fully executed here
 
-## File map
+## Repo map
 
-`src/sampleCatalog.ts` is the canonical inventory. The file map below is a guided set of landmarks, not the authoritative full feature registry.
+`src/sampleCatalog.ts` is still the canonical inventory. For a fuller guided structure overview, see `docs/repo-map.md`.
 
-- `src/App.tsx` contains the interactive React showcase
-- `src/catalog.ts` holds typed sample data and domain types
-- `src/releaseStore.ts` is the external store example for `useSyncExternalStore`
-- `src/sampleCatalog.ts` is the typed registry for isolated mini-samples
-- `src/implementedSampleArtifacts.ts` describes implemented samples that live outside the current SPA route surface
-- `src/sampleImplementations.ts` is the shared implementation registry used by both the app and the test suite
-- `src/sampleRuntime.ts` resolves mini-sample hash routes
-- `src/components/CommandPalette.tsx` shows React 19 ref-as-prop usage
-- `src/components/FeatureGrid.tsx` is a generic TypeScript component
-- `src/components/MiniSampleBoard.tsx` renders the mini-sample backlog in the app
-- `src/components/MiniSampleStage.tsx` renders the active mini-sample or placeholder slot
-- `src/samples/ContextThemeSample.tsx` demonstrates `createContext()` and `useContext()` in an isolated sample
-- `src/samples/ReducerBoardSample.tsx` demonstrates `useReducer()` with domain-oriented actions instead of a trivial counter
-- `src/samples/FormStatusSample.tsx` demonstrates `useFormStatus()` through nested submit controls and a form-scoped pending inspector
-- `src/samples/MemoLabSample.tsx` demonstrates `memo()`, `useMemo()`, `useCallback()`, `Profiler`, and `useDebugValue()` in one isolated render-control lab
-- `src/samples/LayoutEffectsSample.tsx` demonstrates `useLayoutEffect()` and `useInsertionEffect()` with measured chips and injected style rules
-- `src/samples/UseResourceSample.tsx` demonstrates `use()` with Suspense, a tiny promise cache, and explicit resource refreshes
-- `src/samples/DebouncedSearchRaceSample.tsx` demonstrates debouncing, overlapping request races, and `AbortController`-based cancellation
-- `src/samples/PortalModalSample.tsx` demonstrates `createPortal()` and `flushSync()` with body-mounted modal and toast hosts
-- `src/samples/AccessibleDialogSample.tsx` demonstrates accessible dialog behavior with labeled semantics, focus trapping, Escape dismissal, and focus return
-- `src/features/release-readiness/types.ts` defines the typed domain model for the real-world feature slice
-- `src/features/release-readiness/client.ts`, `src/features/release-readiness/useReleaseReadiness.ts`, and `src/features/release-readiness/ReleaseReadinessPanel.tsx` show one complete feature path from typed API client to hook to UI
-- `src/features/release-approval-workflow/types.ts` defines the typed mutation workflow model for a second feature slice
-- `src/features/release-approval-workflow/client.ts`, `src/features/release-approval-workflow/useReleaseApprovalWorkflow.ts`, and `src/features/release-approval-workflow/ReleaseApprovalWorkflowPanel.tsx` show a draft-edit-submit flow with server-style validation and persisted mutation state
-- `src/features/release-rollout-optimistic/types.ts` and `src/features/release-rollout-optimistic/*` show optimistic UI removal, mutation rollback, and speculative client state in a third feature slice
-- `src/features/release-launch-checklist/types.ts` and `src/features/release-launch-checklist/*` show dependent multi-step mutations where one saved action unlocks the next operational step
-- `src/features/release-handoff-conflict/types.ts` and `src/features/release-handoff-conflict/*` show background polling, expected-revision saves, server-drift detection, and explicit conflict resolution for a local draft
-- `src/features/release-rollout-reconciliation/types.ts` and `src/features/release-rollout-reconciliation/*` show optimistic client state that is later reconciled by background refetch and authoritative server updates
-- `src/features/release-incident-collaboration/types.ts` and `src/features/release-incident-collaboration/*` show multi-actor presence, a shared incident draft, teammate edits, and conflict-aware collaborative saves
-- `src/features/release-review-threads/types.ts` and `src/features/release-review-threads/*` show collaborative review threads, approvals, and a publish action that stays blocked until review is complete
-- `src/features/release-field-merge/types.ts` and `src/features/release-field-merge/*` show field-level merge resolution where untouched fields auto-merge and overlapping fields require an explicit choice
-- `src/features/release-change-history/types.ts` and `src/features/release-change-history/*` show audit history, change attribution, and undo support for the latest shared release revision
-- `src/features/release-branch-compare/types.ts` and `src/features/release-branch-compare/*` show branching drafts, side-by-side compare views, and promotion of an alternate release branch to primary
-- `src/features/release-scheduled-publish/types.ts` and `src/features/release-scheduled-publish/*` show approval-gated scheduling, live publish countdowns, and a short rollback window after publish
-- `src/features/release-launch-orchestration/types.ts` and `src/features/release-launch-orchestration/*` show progressive rollout checkpoints, timer-driven promotion, live guardrails, and automatic abort when a metric breaches
-- `src/features/release-rollout-pause-resume/types.ts` and `src/features/release-rollout-pause-resume/*` show pausing at an active checkpoint, collecting operator acknowledgements, and resuming through a manual override path
-- `src/features/release-multi-region-rollback/types.ts` and `src/features/release-multi-region-rollback/*` show targeted regional rollback, partial recovery, dependency acknowledgements, and the resumed final recovery step
-- `src/features/release-communication-handoff/types.ts` and `src/features/release-communication-handoff/*` show channel-by-channel acknowledgements, staged publish sequencing, and recovery confirmation when one communication lane fails
-- `src/features/release-escalation-routing/types.ts` and `src/features/release-escalation-routing/*` show acknowledgement deadlines, fallback reassignment, and queue progression after a rerouted escalation
-- `src/features/release-ownership-transfer-audit/types.ts` and `src/features/release-ownership-transfer-audit/*` show outgoing and incoming ownership acknowledgements, escalation replay context, and the audit trail that proves when release ownership changed hands
-- `src/features/release-delegated-approval-bundles/types.ts` and `src/features/release-delegated-approval-bundles/*` show delegated approvers, expiry-window fallback, replayable audit evidence, and the publish gate that stays blocked until those bundles clear
-- `src/features/release-incident-timeline-reconstruction/types.ts` and `src/features/release-incident-timeline-reconstruction/*` show conflicting witness notes, canonical timeline resolution, executive summary regeneration, and the publish gate that stays blocked until the summary is safe
-- `src/features/release-rollback-decision-matrix/types.ts` and `src/features/release-rollback-decision-matrix/*` show conflicting rollback signals, canonical decision resolution, quorum sign-off, and the execution gate that stays blocked until governance is complete
-- `src/features/release-incident-faq-curation/types.ts` and `src/features/release-incident-faq-curation/*` show cross-channel FAQ review, stale-answer invalidation, reviewer sign-off, and the publish gate that stays blocked until the refreshed answers are approved
-- `src/features/release-incident-comms-approval-packs/types.ts` and `src/features/release-incident-comms-approval-packs/*` show staged communications approval packs, legal override application, customer-visible rollback wording diffs, and the publish gate that stays blocked until the override is applied
-- `src/features/release-post-rollback-segmentation/types.ts` and `src/features/release-post-rollback-segmentation/*` show region-specific rollback update timing, escalation-safe message forks, customer segmentation, and the publish gate that stays blocked until the segmented plan is ready
-- `src/features/release-follow-up-commitments/types.ts` and `src/features/release-follow-up-commitments/*` show owner-reviewed follow-up commitments, ETA drift invalidation, approver sign-off, and the publish gate that stays blocked until the revised commitments are approved
-- `src/features/release-remediation-evidence-bundles/types.ts` and `src/features/release-remediation-evidence-bundles/*` show remediation evidence bundles, stale-proof invalidation, approver sign-off, and the publish gate that stays blocked until the revised evidence is approved
-- `src/features/release-customer-promise-reconciliation/types.ts` and `src/features/release-customer-promise-reconciliation/*` show customer promise review, stale-claim invalidation, approver sign-off, and the publish gate that stays blocked until the reconciled language is approved
-- `src/features/release-rollback-waiver-ledgers/types.ts` and `src/features/release-rollback-waiver-ledgers/*` show rollback waiver review, expired-exception invalidation, approver sign-off, and the publish gate that stays blocked until the revised waivers are approved
-- `src/features/release-recovery-credit-ledgers/types.ts` and `src/features/release-recovery-credit-ledgers/*` show recovery credit review, stale-credit invalidation, approver sign-off, and the publish gate that stays blocked until the revised credits are approved
-- `src/features/release-relaunch-exception-registers/types.ts` and `src/features/release-relaunch-exception-registers/*` show relaunch register review, stale-threshold invalidation, approver sign-off, and the publish gate that stays blocked until the revised thresholds are approved
-- `src/features/release-remediation-readiness-registries/types.ts` and `src/features/release-remediation-readiness-registries/*` show remediation readiness registry review, stale-evidence invalidation, approver sign-off, and the publish gate that stays blocked until the revised packet is approved
-- `src/features/release-exit-readiness-ledgers/types.ts` and `src/features/release-exit-readiness-ledgers/*` show exit readiness ledger review, stale-criterion invalidation, approver sign-off, and the publish gate that stays blocked until the revised packet is approved
-- `src/features/release-stability-attestation-ledgers/types.ts` and `src/features/release-stability-attestation-ledgers/*` show stability attestation ledger review, stale-signal invalidation, approver sign-off, and the publish gate that stays blocked until the revised packet is approved
-- `src/features/release-resumption-attestation-registers/types.ts` and `src/features/release-resumption-attestation-registers/*` show resumption register review, stale-check invalidation, approver sign-off, and the publish gate that stays blocked until the revised packet is approved
-- `src/samples/AccessibleFormErrorsSample.tsx` demonstrates semantic form errors, `aria-describedby`, `aria-invalid`, announced error summaries, and focus on the first invalid field through a remediation request form
-- `src/samples/AccessibleListboxSample.tsx` demonstrates listbox semantics, `aria-activedescendant`, arrow-key navigation, and keyboard selection through a release handoff lane chooser
-- `src/samples/AsyncUiVerificationSample.tsx` demonstrates deterministic async UI verification, mocked network behavior, loading/error assertions, and retry flows through a mocked release summary loader
-- `src/hydration/HydrationHintsApp.tsx` and `src/hydration/main.tsx` demonstrate `hydrateRoot()` plus the resource hint APIs in a separate entry
-- `server-samples/react-streaming-ssr/src/runAllModes.tsx` demonstrates the current stable React server/static rendering APIs in one dedicated SSR workspace
-- `src/samples/UtilityMappedSample.tsx` demonstrates TypeScript utility types, `keyof`, mapped types, conditional types, and `infer` through one derived release-contract model
-- `src/samples/FunctionsTuplesSample.tsx` demonstrates tuples, overloads, call signatures, construct signatures, and `this` typing through a typed command-routing playground
-- `src/samples/ClassesModelsSample.tsx` demonstrates classes, access modifiers, abstract classes, `implements`, and intersection types through a plugin registry model
-- `src/samples/RecursiveTypesSample.tsx` demonstrates recursive interfaces, recursive type aliases, `DeepReadonly`, and `DeepKeyPaths` through an org-tree hierarchy
-- `src/samples/ActivityTransitionSample.tsx` demonstrates `<Activity>` boundaries and standalone `startTransition` through a tier-based operator console
-- `src/samples/StaleClosureSample.tsx` demonstrates stale closures in setTimeout/Promise, functional updaters, and React 18+ automatic batching
-- `src/samples/ContextIdentitySample.tsx` demonstrates the context provider identity perf trap and the useMemo/useCallback fix
-- `src/samples/ErrorBoundarySample.tsx` demonstrates ErrorBoundary vs Suspense, lazy() failures, nested boundaries, and reset
-- `src/samples/KeyIdentitySample.tsx` demonstrates key={index} reorder bug, key={id} fix, and the key reset trick
-- `src/samples/RefTimingSample.tsx` demonstrates ref.current null during render, callback refs, and useImperativeHandle
-- `src/samples/ConditionalDistributivitySample.tsx` demonstrates distributive vs non-distributive conditional types, Extract/Exclude, and infer
-- `src/samples/MappedFilteringSample.tsx` demonstrates mapped type key remapping with `as`, value-based filtering, and template literal key transforms
-- `src/samples/PrivateFieldsSample.tsx` demonstrates private vs #private fields, override keyword, parameter properties, and init order
-- `src/samples/HydrationMismatchDemo.ts` is a comment-based demonstration of hydration mismatch causes, detection, and fixes
-- `node-samples/ts-variance/src/index.ts` demonstrates covariance, contravariance, invariance, Array unsoundness, and explicit variance annotations
-- `node-samples/ts-template-literals/src/index.ts` demonstrates template literal types, union cartesian products, infer pattern matching, and route params
-- `node-samples/ts-generic-inference/src/index.ts` demonstrates generic inference failures (partial inference, NoInfer, overload order, satisfies)
-- `src/test/samples.test.tsx` smoke-tests the integrated app and every implemented isolated-route sample from the catalog
-- `src/test/node-samples.test.ts` type-checks implemented node-only samples through their own project configs
-- `src/test/separate-entry-samples.test.ts` verifies implemented separate-entry samples publish the expected HTML and module entry files
-- `src/test/react-streaming-ssr.test.ts` compiles and executes the SSR workspace so the report proves each server/static API path actually ran
-- `src/test/hydration-entry.test.tsx` hydrates the pre-rendered sample shell and checks that the resource hint APIs register their DOM hints
-- `src/test/setup.ts` provides the jsdom test setup and browser API shims used by Vitest
-- `node-samples/ts-declarations/src/index.ts` consumes an untyped JavaScript module through authored declarations, module augmentation, and a triple-slash reference
-- `node-samples/ts-declarations/vendor/legacy-release-kit.d.ts` is the authored declaration file for the node-only interop sample
-- `node-samples/ts-advanced-runtime/src/index.ts` demonstrates enums, symbols, iterators, generators, TC39 decorators, mixins, and namespaces
-- `node-samples/ts-jsdoc-interop/src/release-notes.js` is a JSDoc-typed JavaScript module consumed by TypeScript through `allowJs` + `checkJs`
-- `node-samples/ts-jsdoc-interop/src/index.ts` imports and type-checks the JSDoc-typed JS module
-- `node-samples/ts-advanced-tsconfig/src/index.ts` demonstrates advanced tsconfig options: path aliases, composite projects, declaration maps, and index-signature strictness
-- `src/samples/ReactCompilerDemo.ts` is a comment-based demonstration of React Compiler setup, `"use memo"`, and `"use no memo"` directives
-- `node-samples/react-server-components/README.md` explains the node-only boundary workspace for Server Components, Server Functions, `'use client'`, and `'use server'`
-- `src/samples/ServerComponentsDemo.ts` keeps the explanatory notes about runtime transport and serialization boundaries that still require a framework-aware bundler
-- `node-samples/react-lint-rules/README.md` explains the runnable lint fixture workspace for `exhaustive-deps`, `rules-of-hooks`, and component-only export checks
-- `src/samples/ReactLintRulesDemo.ts` keeps the explanatory examples, including compiler-purity notes that still require an extra lint plugin to execute for real
-- `hydration.html` is the separate HTML shell that the hydration sample attaches to
-- `hydration-mismatch.html` is the intentional mismatch shell used to demonstrate recoverable hydration errors
-- `server-samples/react-streaming-ssr/README.md` explains the SSR workspace and how to run it directly
-- `src/components/TypeNotes.tsx` is lazy-loaded behind `Suspense`
-- `docs/coverage-roadmap.md` tracks what is implemented and what still needs examples
-- `docs/mini-samples.md` splits the backlog into isolated sample-sized units
+Quick landmarks:
+
+- `src/App.tsx` is the integrated React 19 lab entry
+- `src/samples/*` contains focused React and TypeScript demonstrations
+- `src/features/*` contains the larger product-style feature slices
+- `src/test/*` contains the Vitest coverage for integrated samples, separate entries, and workspaces
+- `node-samples/*` contains TypeScript-only and source-boundary workspaces
+- `server-samples/react-streaming-ssr/*` contains the dedicated SSR workspace
+- `docs/coverage-roadmap.md` explains coverage and execution surfaces
+- `docs/repo-map.md` is the detailed repository navigation guide
 ## Why some React features are not covered here
 
 All stable React client and DOM APIs are demonstrated in this project.
