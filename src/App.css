@@ -800,6 +800,68 @@ textarea:focus {
   color: #8d3d1f;
 }
 
+.release-multi-region-rollback,
+.release-multi-region-rollback__summary,
+.release-multi-region-rollback__grid,
+.release-multi-region-rollback__panel,
+.release-multi-region-rollback__region-list,
+.release-multi-region-rollback__dependency-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.release-multi-region-rollback__summary {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.release-multi-region-rollback__grid {
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.15fr) minmax(0, 1.05fr);
+}
+
+.release-multi-region-rollback__actions {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.release-multi-region-rollback__region-card,
+.release-multi-region-rollback__dependency-card {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: start;
+  border-radius: 1rem;
+  border: 1px solid var(--border);
+  background: rgba(255, 252, 246, 0.72);
+  padding: 0.9rem 1rem;
+}
+
+.release-multi-region-rollback__region-card p,
+.release-multi-region-rollback__dependency-card p {
+  margin: 0.25rem 0 0;
+  color: var(--muted);
+}
+
+.release-multi-region-rollback__region-card span,
+.release-multi-region-rollback__dependency-card span,
+.release-multi-region-rollback__summary-text {
+  text-transform: capitalize;
+}
+
+.release-multi-region-rollback__region-card > div:last-child,
+.release-multi-region-rollback__dependency-card > div:last-child {
+  text-align: right;
+}
+
+.release-multi-region-rollback__dependency-card > div:last-child {
+  display: grid;
+  gap: 0.5rem;
+  justify-items: end;
+}
+
+.release-multi-region-rollback__summary-text {
+  color: #8d3d1f;
+}
+
 .sample-summary {
   grid-template-columns: repeat(3, minmax(0, 1fr));
   margin: 1rem 0 1.2rem;
@@ -954,6 +1016,8 @@ textarea:focus {
 
   .release-launch-orchestration__summary,
   .release-launch-orchestration__grid,
+  .release-multi-region-rollback__summary,
+  .release-multi-region-rollback__grid,
   .release-rollout-pause-resume__summary,
   .release-rollout-pause-resume__grid {
     grid-template-columns: minmax(0, 1fr);

@@ -74,6 +74,7 @@ This project is a modern React starter that goes beyond the default template. It
 - `src/features/release-scheduled-publish/types.ts` and `src/features/release-scheduled-publish/*` show approval-gated scheduling, live publish countdowns, and a short rollback window after publish
 - `src/features/release-launch-orchestration/types.ts` and `src/features/release-launch-orchestration/*` show progressive rollout checkpoints, timer-driven promotion, live guardrails, and automatic abort when a metric breaches
 - `src/features/release-rollout-pause-resume/types.ts` and `src/features/release-rollout-pause-resume/*` show pausing at an active checkpoint, collecting operator acknowledgements, and resuming through a manual override path
+- `src/features/release-multi-region-rollback/types.ts` and `src/features/release-multi-region-rollback/*` show targeted regional rollback, partial recovery, dependency acknowledgements, and the resumed final recovery step
 - `src/hydration/HydrationHintsApp.tsx` and `src/hydration/main.tsx` demonstrate `hydrateRoot()` plus the resource hint APIs in a separate entry
 - `server-samples/react-streaming-ssr/src/runAllModes.tsx` demonstrates the current stable React server/static rendering APIs in one dedicated SSR workspace
 - `src/samples/UtilityMappedSample.tsx` demonstrates TypeScript utility types, `keyof`, mapped types, conditional types, and `infer` through one derived release-contract model

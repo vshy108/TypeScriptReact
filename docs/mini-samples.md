@@ -118,6 +118,11 @@ This project now treats the remaining backlog as isolated mini-samples instead o
   Status: implemented.
   Recommended surface: standalone route.
 
+- `sample-react-release-multi-region-rollback`
+  Covers targeted regional rollback, partial recovery, dependency acknowledgements, and resuming the final recovery step.
+  Status: implemented.
+  Recommended surface: standalone route.
+
 ## React DOM mini-samples
 
 - `sample-react-portal-modal`

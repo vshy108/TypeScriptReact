@@ -475,6 +475,24 @@ export const miniSampleCatalog = [
       "Pause-and-resume recovery is easiest to explain when the active checkpoint, acknowledgement gate, and resumed timeline stay visible together in one route.",
   },
   {
+    id: "sample-react-release-multi-region-rollback",
+    title: "Release multi-region rollback",
+    topic: "React Client",
+    status: "implemented",
+    surface: "isolated-route",
+    apis: [
+      "targeted rollback",
+      "region sequencing",
+      "partial recovery",
+      "dependency acknowledgement",
+      "recovery resume",
+    ],
+    summary:
+      "Show a rollback that targets only unstable regions, pauses in partial recovery, and waits for dependency acknowledgements before the final region recovers.",
+    whyIsolated:
+      "Multi-region rollback is easiest to explain when targeted regions, dependency blockers, and the resumed recovery path stay visible in one route.",
+  },
+  {
     id: "sample-react-streaming-ssr",
     title: "Streaming SSR and prerender flows",
     topic: "React Server",

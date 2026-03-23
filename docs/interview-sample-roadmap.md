@@ -53,10 +53,11 @@ Implemented now:
 - release scheduled publish state with approvals, a live countdown, and a rollback window immediately after publish
 - release launch orchestration with progressive checkpoints, live guardrails, and automatic abort when a metric breaches during rollout
 - release rollout pause and resume with checkpoint acknowledgements and manual override recovery after an operator stop
+- release multi-region rollback targeting with dependency acknowledgements and partial recovery before the final region completes
 
 Highest-value addition:
 
-- a fifteenth feature slice that combines multi-region rollback targeting with dependency acknowledgements or partial recovery tracking
+- a sixteenth feature slice that combines incident communication handoff with channel-specific acknowledgements or staged publish recovery
 
 Suggested structure:
 
