@@ -54,10 +54,11 @@ Implemented now:
 - release launch orchestration with progressive checkpoints, live guardrails, and automatic abort when a metric breaches during rollout
 - release rollout pause and resume with checkpoint acknowledgements and manual override recovery after an operator stop
 - release multi-region rollback targeting with dependency acknowledgements and partial recovery before the final region completes
+- incident communication handoff with channel-specific acknowledgements and staged publish recovery when one handoff lane fails
 
 Highest-value addition:
 
-- a sixteenth feature slice that combines incident communication handoff with channel-specific acknowledgements or staged publish recovery
+- a seventeenth feature slice that combines escalation routing with acknowledgement deadlines or fallback owner reassignment
 
 Suggested structure:
 

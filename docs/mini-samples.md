@@ -123,6 +123,11 @@ This project now treats the remaining backlog as isolated mini-samples instead o
   Status: implemented.
   Recommended surface: standalone route.
 
+- `sample-react-release-communication-handoff`
+  Covers per-channel handoff acknowledgements, staged publish sequencing, and recovery confirmation when one channel fails mid-publish.
+  Status: implemented.
+  Recommended surface: standalone route.
+
 ## React DOM mini-samples
 
 - `sample-react-portal-modal`

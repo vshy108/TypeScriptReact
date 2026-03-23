@@ -862,6 +862,60 @@ textarea:focus {
   color: #8d3d1f;
 }
 
+.release-communication-handoff,
+.release-communication-handoff__summary,
+.release-communication-handoff__grid,
+.release-communication-handoff__panel,
+.release-communication-handoff__channel-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.release-communication-handoff__summary {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.release-communication-handoff__grid {
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.25fr);
+}
+
+.release-communication-handoff__actions {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.release-communication-handoff__channel-card {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: start;
+  border-radius: 1rem;
+  border: 1px solid var(--border);
+  background: rgba(255, 252, 246, 0.72);
+  padding: 0.9rem 1rem;
+}
+
+.release-communication-handoff__channel-card p {
+  margin: 0.25rem 0 0;
+  color: var(--muted);
+}
+
+.release-communication-handoff__channel-card span,
+.release-communication-handoff__recovery {
+  text-transform: capitalize;
+}
+
+.release-communication-handoff__channel-card > div:last-child {
+  display: grid;
+  gap: 0.5rem;
+  justify-items: end;
+  text-align: right;
+}
+
+.release-communication-handoff__recovery {
+  color: #8d3d1f;
+}
+
 .sample-summary {
   grid-template-columns: repeat(3, minmax(0, 1fr));
   margin: 1rem 0 1.2rem;
@@ -1016,6 +1070,8 @@ textarea:focus {
 
   .release-launch-orchestration__summary,
   .release-launch-orchestration__grid,
+  .release-communication-handoff__summary,
+  .release-communication-handoff__grid,
   .release-multi-region-rollback__summary,
   .release-multi-region-rollback__grid,
   .release-rollout-pause-resume__summary,

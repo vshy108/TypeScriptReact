@@ -1,6 +1,7 @@
 import type { ComponentType } from "react";
 import ReleaseBranchComparePanel from "./features/release-branch-compare/ReleaseBranchComparePanel";
 import ReleaseChangeHistoryPanel from "./features/release-change-history/ReleaseChangeHistoryPanel";
+import ReleaseCommunicationHandoffPanel from "./features/release-communication-handoff/ReleaseCommunicationHandoffPanel";
 import ReleaseFieldMergePanel from "./features/release-field-merge/ReleaseFieldMergePanel";
 import ReleaseLaunchOrchestrationPanel from "./features/release-launch-orchestration/ReleaseLaunchOrchestrationPanel";
 import ReleaseMultiRegionRollbackPanel from "./features/release-multi-region-rollback/ReleaseMultiRegionRollbackPanel";
@@ -57,6 +58,8 @@ export const sampleImplementations: Partial<
   "sample-react-portal-modal": PortalModalSample,
   "sample-react-release-branch-compare": ReleaseBranchComparePanel,
   "sample-react-release-change-history": ReleaseChangeHistoryPanel,
+  "sample-react-release-communication-handoff":
+    ReleaseCommunicationHandoffPanel,
   "sample-react-release-field-merge": ReleaseFieldMergePanel,
   "sample-react-release-handoff-conflict": ReleaseHandoffConflictPanel,
   "sample-react-release-incident-collaboration":
@@ -64,8 +67,7 @@ export const sampleImplementations: Partial<
   "sample-react-release-approval-workflow": ReleaseApprovalWorkflowPanel,
   "sample-react-release-launch-checklist": ReleaseLaunchChecklistPanel,
   "sample-react-release-launch-orchestration": ReleaseLaunchOrchestrationPanel,
-  "sample-react-release-multi-region-rollback":
-    ReleaseMultiRegionRollbackPanel,
+  "sample-react-release-multi-region-rollback": ReleaseMultiRegionRollbackPanel,
   "sample-react-release-readiness-feature": ReleaseReadinessPanel,
   "sample-react-release-review-threads": ReleaseReviewThreadsPanel,
   "sample-react-release-rollout-pause-resume": ReleaseRolloutPauseResumePanel,

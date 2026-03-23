@@ -493,6 +493,24 @@ export const miniSampleCatalog = [
       "Multi-region rollback is easiest to explain when targeted regions, dependency blockers, and the resumed recovery path stay visible in one route.",
   },
   {
+    id: "sample-react-release-communication-handoff",
+    title: "Release communication handoff",
+    topic: "React Client",
+    status: "implemented",
+    surface: "isolated-route",
+    apis: [
+      "channel acknowledgement",
+      "staged publish",
+      "handoff ownership",
+      "publish recovery",
+      "channel sequencing",
+    ],
+    summary:
+      "Show an incident-update handoff that requires per-channel acknowledgement, publishes in stages, and recovers when one channel needs a resend confirmation.",
+    whyIsolated:
+      "Communication handoff is easiest to explain when channel ownership, staged publish state, and recovery remain visible in one route.",
+  },
+  {
     id: "sample-react-streaming-ssr",
     title: "Streaming SSR and prerender flows",
     topic: "React Server",
