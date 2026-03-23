@@ -313,6 +313,24 @@ export const miniSampleCatalog = [
       "Conflict-resolution flows are easiest to discuss when the local draft, polled server copy, and recovery actions are all visible together.",
   },
   {
+    id: "sample-react-release-rollout-reconciliation",
+    title: "Release rollout reconciliation",
+    topic: "React Client",
+    status: "implemented",
+    surface: "isolated-route",
+    apis: [
+      "optimistic UI",
+      "background refetching",
+      "server reconciliation",
+      "polling",
+      "authoritative server state",
+    ],
+    summary:
+      "Show optimistic client state that is later corrected by background refetch when the server settles on a different rollout result.",
+    whyIsolated:
+      "Reconciliation behavior is easiest to reason about when the optimistic view and the authoritative server correction are visible side by side.",
+  },
+  {
     id: "sample-react-streaming-ssr",
     title: "Streaming SSR and prerender flows",
     topic: "React Server",

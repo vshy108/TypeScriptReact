@@ -73,6 +73,11 @@ This project now treats the remaining backlog as isolated mini-samples instead o
   Status: implemented.
   Recommended surface: standalone route.
 
+- `sample-react-release-rollout-reconciliation`
+  Covers optimistic UI that is later corrected by background refetch and authoritative server reconciliation.
+  Status: implemented.
+  Recommended surface: standalone route.
+
 ## React DOM mini-samples
 
 - `sample-react-portal-modal`

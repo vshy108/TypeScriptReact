@@ -44,10 +44,11 @@ Implemented now:
 - release rollout optimistic updates with speculative UI removal and rollback on failed validation
 - release launch multi-step workflow with dependent saved actions that unlock later steps
 - release handoff conflict resolution with background polling, expected-revision saves, and explicit reload-before-save recovery
+- release rollout reconciliation with optimistic client state that later syncs back to the authoritative server result
 
 Highest-value addition:
 
-- a sixth feature slice that combines optimistic UI with server reconciliation after background refetch
+- a seventh feature slice that combines multi-actor presence or collaborative edits with conflict-aware saves
 
 Suggested structure:
 
