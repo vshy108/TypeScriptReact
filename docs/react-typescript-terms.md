@@ -19,6 +19,7 @@ Use these guides as a companion while reading the app and sample files. The goal
 - [System design walkthroughs](./system-design-walkthroughs.md): scenario-style architecture drills built from the repo's real boundaries and feature slices.
 - [Interview practice index](./interview-practice-index.md): short repeatable study sessions built from the repo's interview guides.
 - [Interview answer rubric](./interview-answer-rubric.md): a compact scoring guide for checking whether practiced answers are specific and defensible.
+- [Interview answer anti-patterns](./interview-answer-antipatterns.md): common weak-answer shapes and how to repair them with concrete repo evidence.
 
 ## Keyword Index
 
@@ -78,7 +79,8 @@ These are the kinds of comparisons that are easy to confuse in real projects and
 6. Read [System design walkthroughs](./system-design-walkthroughs.md).
 7. Use [Interview practice index](./interview-practice-index.md) to turn those guides into repeatable sessions.
 8. Use [Interview answer rubric](./interview-answer-rubric.md) to score your answers.
-9. Use [Reading index](./reading-index.md) and the React/TypeScript term guides to fill any weak areas you discover.
+9. Read [Interview answer anti-patterns](./interview-answer-antipatterns.md) to catch vague habits.
+10. Use [Reading index](./reading-index.md) and the React/TypeScript term guides to fill any weak areas you discover.
 
 ### If You Know Older React But Not React 19
 

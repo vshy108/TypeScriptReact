@@ -106,6 +106,7 @@ Already added in this docs folder:
 - [./system-design-walkthroughs.md](./system-design-walkthroughs.md)
 - [./interview-practice-index.md](./interview-practice-index.md)
 - [./interview-answer-rubric.md](./interview-answer-rubric.md)
+- [./interview-answer-antipatterns.md](./interview-answer-antipatterns.md)
 
 Highest-value additions:
 

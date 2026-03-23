@@ -85,5 +85,6 @@ Use this repair loop:
 - [./debugging-walkthroughs.md](./debugging-walkthroughs.md) for root-cause explanation drills
 - [./system-design-walkthroughs.md](./system-design-walkthroughs.md) for architecture scenarios
 - [./interview-answer-rubric.md](./interview-answer-rubric.md) for scoring whether an answer is interview-ready
+- [./interview-answer-antipatterns.md](./interview-answer-antipatterns.md) for spotting vague or misleading answer patterns
 
 If you cannot explain an answer without reopening the repo, that is still useful. It tells you exactly what to practice next.

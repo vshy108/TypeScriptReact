@@ -40,6 +40,7 @@ This project is a modern React starter that goes beyond the default template. It
 - `docs/system-design-walkthroughs.md` is the architecture-scenario drill guide for practicing frontend system design answers from real repo boundaries
 - `docs/interview-practice-index.md` is the quick practice-session index for turning the interview guides into repeatable mock rounds
 - `docs/interview-answer-rubric.md` is the scoring rubric for checking whether practice answers are concrete, correct, and defensible
+- `docs/interview-answer-antipatterns.md` is the weak-answer repair guide for turning generic responses into concrete repo-backed answers
 
 ## File map
 
