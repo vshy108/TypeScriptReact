@@ -50,10 +50,11 @@ Implemented now:
 - release field-level merge resolution with automatic non-conflicting merges and explicit side-by-side conflict choices
 - release audit history and undo with attributed snapshots for each change and rollback of the latest revision
 - release branch compare view with alternate drafts, side-by-side wording comparison, and branch promotion
+- release scheduled publish state with approvals, a live countdown, and a rollback window immediately after publish
 
 Highest-value addition:
 
-- a twelfth feature slice that combines scheduled publish state with approvals, countdowns, or rollback windows
+- a thirteenth feature slice that combines launch orchestration with progressive rollout checkpoints or automated abort conditions
 
 Suggested structure:
 

@@ -648,6 +648,36 @@ textarea:focus {
   color: var(--muted);
 }
 
+.release-scheduled-publish,
+.release-scheduled-publish__grid,
+.release-scheduled-publish__summary,
+.release-scheduled-publish__panel,
+.release-scheduled-publish__approval-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.release-scheduled-publish__summary,
+.release-scheduled-publish__grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.release-scheduled-publish__approval-card {
+  border-radius: 1rem;
+  border: 1px solid var(--border);
+  background: rgba(255, 252, 246, 0.72);
+  padding: 0.9rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: center;
+}
+
+.release-scheduled-publish__approval-card p {
+  margin: 0.25rem 0 0;
+  color: var(--muted);
+}
+
 .sample-summary {
   grid-template-columns: repeat(3, minmax(0, 1fr));
   margin: 1rem 0 1.2rem;
@@ -2204,6 +2234,8 @@ textarea:focus {
   .release-change-history__grid,
   .release-branch-compare__summary,
   .release-branch-compare__grid,
+  .release-scheduled-publish__summary,
+  .release-scheduled-publish__grid,
   .release-review-threads__summary,
   .release-review-threads__grid,
   .release-rollout-reconciliation__grid,

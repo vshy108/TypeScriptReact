@@ -421,6 +421,24 @@ export const miniSampleCatalog = [
       "Branch compare workflows are easiest to explain when the current primary draft and the alternate wording stay visible side by side in one route.",
   },
   {
+    id: "sample-react-release-scheduled-publish",
+    title: "Release scheduled publish state",
+    topic: "React Client",
+    status: "implemented",
+    surface: "isolated-route",
+    apis: [
+      "approval gate",
+      "publish countdown",
+      "scheduled state",
+      "rollback window",
+      "live timer UI",
+    ],
+    summary:
+      "Show a release that waits for approvals, then counts down to publication and exposes a short rollback window immediately afterward.",
+    whyIsolated:
+      "Scheduled publish flows are easiest to explain when the gate conditions, countdown, and rollback state are all visible in one route.",
+  },
+  {
     id: "sample-react-streaming-ssr",
     title: "Streaming SSR and prerender flows",
     topic: "React Server",
