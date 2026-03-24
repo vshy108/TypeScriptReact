@@ -31,7 +31,7 @@ describe('release rollout optimistic updates', () => {
       target: { value: 'Resolved after the canary review completed and mitigation steps were documented.' },
     })
 
-    fireEvent.click(screen.getAllByRole('button', { name: 'Resolve optimistically' })[0])
+    fireEvent.click(screen.getAllByRole('button', { name: 'Resolve optimistically' })[0]!)
 
     expect(screen.queryByText(blockerTitle)).toBeNull()
 
@@ -57,7 +57,7 @@ describe('release rollout optimistic updates', () => {
       target: { value: 'Resolved after review completed without extra work.' },
     })
 
-    fireEvent.click(screen.getAllByRole('button', { name: 'Resolve optimistically' })[1])
+    fireEvent.click(screen.getAllByRole('button', { name: 'Resolve optimistically' })[1]!)
 
     expect(screen.queryByText(blockerTitle)).toBeNull()
 

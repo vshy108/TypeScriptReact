@@ -133,7 +133,7 @@ For execution-surface definitions, see `docs/coverage-roadmap.md`. For file-layo
 |---|---|---|---|
 | Declaration files and package typing | `sample-ts-declarations` | `node-only` | `implemented` |
 | JSDoc and JS project typing | `sample-ts-jsdoc-interop` | `node-only` | `implemented` |
-| Enums, symbols, iterators, mixins, and decorators | `sample-ts-advanced-runtime-types` | `node-only` | `implemented` |
+| Enums, symbols, iterators, decorators, Temporal, Map upsert, and RegExp.escape | `sample-ts-advanced-runtime-types` | `node-only` | `implemented` |
 | Advanced tsconfig options beyond strict | `sample-ts-advanced-tsconfig` | `node-only` | `implemented` |
 
 ## Notes

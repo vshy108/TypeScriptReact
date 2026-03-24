@@ -1,10 +1,10 @@
-# React 19 + TypeScript 5.9 Lab
+# React 19 + TypeScript 6.0 Lab
 
 This project is a modern React starter that goes beyond the default template. It uses the current scaffolded stack in this workspace:
 
 - React `19.2.4`
 - React DOM `19.2.4`
-- TypeScript `5.9.3`
+- TypeScript `6.0.2`
 - Vite `8.0.0`
 
 ## What this repo is for

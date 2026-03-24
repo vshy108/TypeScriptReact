@@ -196,6 +196,10 @@ export function undoLatestReleaseHistoryChange(
       }
 
       const [, previousEntry, ...remainingEntries] = auditTrail;
+      if (!previousEntry) {
+        reject(new Error("No previous revision is available to undo to."));
+        return;
+      }
       serverRecord = {
         ...previousEntry.snapshot,
         updatedAt: formatTimestamp(new Date()),

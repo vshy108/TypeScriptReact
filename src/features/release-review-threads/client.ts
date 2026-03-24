@@ -40,9 +40,7 @@ export const releaseReviewFetchDelayMs = 180;
 export const releaseReviewMutationDelayMs = 220;
 
 let serverRecord: ReleaseReviewRecord = { ...initialRecord };
-let serverThreads: ReleaseReviewThread[] = initialThreads.map((thread) => ({
-  ...thread,
-}));
+let serverThreads: ReleaseReviewThread[] = [];
 let serverApprovals: ReleaseReviewerApproval[] = initialApprovals.map(
   (approval) => ({ ...approval }),
 );
@@ -78,7 +76,7 @@ function approvalsReady() {
 
 export function resetReleaseReviewThreadsMockState() {
   serverRecord = { ...initialRecord };
-  serverThreads = initialThreads.map((thread) => ({ ...thread }));
+  serverThreads = [];
   serverApprovals = initialApprovals.map((approval) => ({ ...approval }));
 }
 

@@ -41,7 +41,9 @@ export const releaseIncidentPollIntervalMs = 650;
 
 let serverRecord: ReleaseIncidentRecord = { ...initialRecord };
 let serverCollaborators: ReleaseCollaboratorPresence[] =
-  initialCollaborators.map((collaborator) => ({ ...collaborator }));
+  initialCollaborators.map(
+    (collaborator): ReleaseCollaboratorPresence => ({ ...collaborator }),
+  );
 
 class ReleaseIncidentConflictError extends Error {
   readonly code: ReleaseIncidentConflictErrorShape["code"];
@@ -52,8 +54,12 @@ class ReleaseIncidentConflictError extends Error {
     super(details.message);
     this.name = "ReleaseIncidentConflictError";
     this.code = details.code;
-    this.latestRecord = details.latestRecord;
-    this.latestCollaborators = details.latestCollaborators;
+    if (details.latestRecord !== undefined) {
+      this.latestRecord = details.latestRecord;
+    }
+    if (details.latestCollaborators !== undefined) {
+      this.latestCollaborators = details.latestCollaborators;
+    }
   }
 }
 
@@ -87,9 +93,9 @@ export function isReleaseIncidentConflictError(
 
 export function resetReleaseIncidentCollaborationMockState() {
   serverRecord = { ...initialRecord };
-  serverCollaborators = initialCollaborators.map((collaborator) => ({
-    ...collaborator,
-  }));
+  serverCollaborators = initialCollaborators.map(
+    (collaborator): ReleaseCollaboratorPresence => ({ ...collaborator }),
+  );
 }
 
 export function simulateTeammateIncidentEdit() {
@@ -110,14 +116,15 @@ export function simulateTeammateIncidentEdit() {
       status: "editing",
       lastSeen: formatTimestamp(new Date()),
     },
-    ...serverCollaborators.map((collaborator) =>
-      collaborator.id === "collaborator-1"
-        ? {
-            ...collaborator,
-            status: "reviewing",
-            lastSeen: formatTimestamp(new Date()),
-          }
-        : collaborator,
+    ...serverCollaborators.map(
+      (collaborator): ReleaseCollaboratorPresence =>
+        collaborator.id === "collaborator-1"
+          ? {
+              ...collaborator,
+              status: "reviewing",
+              lastSeen: formatTimestamp(new Date()),
+            }
+          : collaborator,
     ),
   ];
 }

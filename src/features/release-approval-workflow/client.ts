@@ -74,7 +74,7 @@ export const releaseApprovalSaveDelayMs = 340;
 
 let nextRevision = 1;
 let nextHistoryNumber = 4;
-let releaseStore = baseRecords.map((release) => ({
+let releaseStore: ReleaseApprovalRecord[] = baseRecords.map((release) => ({
   ...release,
   history: [...release.history],
 }));

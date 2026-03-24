@@ -28,7 +28,7 @@ describe('release rollout reconciliation', () => {
       await Promise.resolve()
     })
 
-    fireEvent.click(screen.getAllByRole('button', { name: 'Promote to 100%' })[0])
+    fireEvent.click(screen.getAllByRole('button', { name: 'Promote to 100%' })[0]!)
 
     expect(screen.getByText('Optimistically promoted Enterprise EU to 100%. Waiting for the next server refresh.')).toBeTruthy()
     expect(screen.getAllByText('100%')[0]).toBeTruthy()
@@ -42,7 +42,7 @@ describe('release rollout reconciliation', () => {
       await Promise.resolve()
     })
 
-    fireEvent.click(screen.getAllByRole('button', { name: 'Promote to 100%' })[0])
+    fireEvent.click(screen.getAllByRole('button', { name: 'Promote to 100%' })[0]!)
 
     await act(async () => {
       vi.advanceTimersByTime(releaseRolloutSaveDelayMs)

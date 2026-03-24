@@ -10,7 +10,10 @@ import { toSampleHash } from '../sampleRuntime'
 const implementedSamples = miniSampleCatalog.filter((sample) => sample.status === 'implemented')
 const implementedRouteSamples = implementedSamples.filter((sample) => sample.surface === 'isolated-route')
 const implementedArtifactSamples = implementedSamples.filter(
-  (sample) => sample.surface === 'node-only' || sample.surface === 'separate-entry' || sample.surface === 'comment-demo',
+  (sample) =>
+    sample.surface === 'node-only' ||
+    sample.surface === 'separate-entry' ||
+    (sample.surface as string) === 'comment-demo',
 )
 // The test harness splits implemented samples by surface because each surface has a different proof
 // of existence: inline components render through MiniSampleStage, while artifact-backed samples are

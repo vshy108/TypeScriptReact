@@ -1048,7 +1048,8 @@ export const miniSampleCatalog = [
   },
   {
     id: "sample-ts-advanced-runtime-types",
-    title: "Enums, symbols, iterators, mixins, and decorators",
+    title:
+      "Enums, symbols, iterators, decorators, Temporal, Map upsert, and RegExp.escape",
     topic: "TypeScript Interop",
     status: "implemented",
     surface: "node-only",
@@ -1059,9 +1060,12 @@ export const miniSampleCatalog = [
       "mixins",
       "decorators",
       "namespaces",
+      "Temporal",
+      "Map.getOrInsert",
+      "RegExp.escape",
     ],
     summary:
-      "Explore the lesser-used corners of the language and compare which ones still make sense in modern TS.",
+      "Explore the lesser-used corners of the language plus new ES2025/ESNext runtime APIs added in TypeScript 6.0.",
     whyIsolated:
       "These topics are niche and should not dilute the main learning path before the core language samples exist.",
   },

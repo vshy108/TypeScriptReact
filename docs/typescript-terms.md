@@ -18,6 +18,7 @@ This guide explains the TypeScript terms covered by this repository. It focuses 
 - [Interop And Declaration Terms](#interop-and-declaration-terms)
 - [Advanced Runtime And Project Terms](#advanced-runtime-and-project-terms)
 - [Type-System Edge Cases](#type-system-edge-cases)
+- [TypeScript 6.0 And 7.0 Notes](#typescript-60-and-70-notes)
 
 ## Core Language And Config Terms
 
@@ -455,6 +456,36 @@ This flag forces indexed access syntax in cases where a property comes from an i
 
 Repo examples: [../node-samples/ts-advanced-tsconfig/tsconfig.json](../node-samples/ts-advanced-tsconfig/tsconfig.json), [../node-samples/ts-advanced-tsconfig/src/index.ts](../node-samples/ts-advanced-tsconfig/src/index.ts)
 
+### Temporal types
+
+The Temporal API (ECMAScript stage 4) provides immutable, timezone-aware date and time primitives that replace the legacy `Date` object. TypeScript 6.0 adds built-in types via `esnext.temporal`.
+
+Repo example: [../node-samples/ts-advanced-runtime/src/index.ts](../node-samples/ts-advanced-runtime/src/index.ts)
+
+### Map.getOrInsert
+
+`Map.getOrInsert` and `Map.getOrInsertComputed` (ECMAScript stage 4 "upsert" proposal) replace the tedious has/get/set pattern on Maps. `getOrInsert` takes a default value directly while `getOrInsertComputed` takes a callback that runs only when the key is absent.
+
+Repo example: [../node-samples/ts-advanced-runtime/src/index.ts](../node-samples/ts-advanced-runtime/src/index.ts)
+
+### RegExp.escape
+
+`RegExp.escape` (ECMAScript stage 4, part of ES2025) escapes special regex characters in a string so it can be safely interpolated into a dynamically built `RegExp`.
+
+Repo example: [../node-samples/ts-advanced-runtime/src/index.ts](../node-samples/ts-advanced-runtime/src/index.ts)
+
+### es2025 target and lib
+
+TypeScript 6.0 adds `es2025` as a valid `target` and `lib` value. This moves `RegExp.escape`, `Promise.try`, `Iterator` helper methods, and `Set` methods from `esnext` into the stable `es2025` lib. This repo now targets ES2025 across all tsconfig files.
+
+### DOM.Iterable merged into DOM
+
+In TypeScript 6.0 the contents of `lib.dom.iterable.d.ts` and `lib.dom.asynciterable.d.ts` are fully included in `lib.dom.d.ts`. Projects that previously specified `["DOM", "DOM.Iterable"]` can simplify to just `["DOM"]`.
+
+### stableTypeOrdering
+
+`--stableTypeOrdering` is a TypeScript 6.0 flag that makes type and union ordering deterministic, matching TypeScript 7.0's parallel-checker behavior. It is useful for comparing declaration emit between 6.0 and 7.0 during migration but adds up to 25% compile-time overhead so it is not recommended for daily development.
+
 ## Type-System Edge Cases
 
 ### distributive conditional types
@@ -660,3 +691,16 @@ Repo example: [../node-samples/ts-generic-inference/src/index.ts](../node-sample
 The `satisfies` operator verifies compatibility with a target type while keeping more precise inference from the original value.
 
 Repo examples: [../src/catalog.ts](../src/catalog.ts), [../node-samples/ts-generic-inference/src/index.ts](../node-samples/ts-generic-inference/src/index.ts)
+
+## TypeScript 6.0 And 7.0 Notes
+
+TypeScript 6.0 is the last release based on the JavaScript codebase. It acts as a bridge to TypeScript 7.0, which is a ground-up rewrite of the compiler and language service in Go for 10x faster compilation through native code and shared-memory parallelism.
+
+You can try the native compiler today:
+
+- npm: `npm install -D @typescript/native-preview`
+- VS Code extension: [TypeScript Native Preview](https://marketplace.visualstudio.com/items?itemName=TypeScriptTeam.native-preview)
+
+Key TypeScript 6.0 defaults that differ from 5.x: `strict` is now `true`, `module` defaults to `esnext`, `target` defaults to the current-year ES version, `types` defaults to `[]`, and `noUncheckedSideEffectImports` is `true`. This repo already used all of these settings explicitly so the upgrade was low-friction.
+
+Deprecated options removed or flagged in 6.0 include `target: es5`, `moduleResolution: node10`, `baseUrl`, `outFile`, and the `asserts` keyword on imports. None of these were used by this project.

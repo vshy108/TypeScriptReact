@@ -32,7 +32,9 @@ class ReleaseHandoffConflictError extends Error {
     super(details.message);
     this.name = "ReleaseHandoffConflictError";
     this.code = details.code;
-    this.serverRecord = details.serverRecord;
+    if (details.serverRecord !== undefined) {
+      this.serverRecord = details.serverRecord;
+    }
   }
 }
 

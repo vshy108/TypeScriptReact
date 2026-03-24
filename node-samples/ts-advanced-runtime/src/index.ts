@@ -338,6 +338,92 @@ const namespaceOutput = (() => {
 })();
 
 // ============================================================================
+// 7. TEMPORAL — date and time without the legacy Date footguns
+// ============================================================================
+// The Temporal API (stage 4, shipping in ES2025+) replaces the mutable, timezone-confused
+// Date object with immutable value types for instants, plain dates, times, and durations.
+// TypeScript 6.0 adds built-in types via esnext.temporal.
+
+const temporalOutput = (() => {
+  const lines: string[] = [];
+
+  // Temporal.Now.instant() captures the current moment on the UTC timeline.
+  const now = Temporal.Now.instant();
+  lines.push(`Current instant: ${now}`);
+
+  // PlainDate represents a calendar date with no time or timezone.
+  const releaseDate = Temporal.PlainDate.from("2026-03-15");
+  const followUp = releaseDate.add({ days: 7 });
+  lines.push(
+    `Release: ${releaseDate}, follow-up: ${followUp} (${Temporal.PlainDate.compare(followUp, releaseDate)} days later)`,
+  );
+
+  // Duration models a length of time and supports rounding and balancing.
+  const sprintLength = Temporal.Duration.from({ weeks: 2 });
+  lines.push(`Sprint length: ${sprintLength}`);
+
+  // PlainDateTime for datebook-style scheduling without timezone ambiguity.
+  const meeting = Temporal.PlainDateTime.from("2026-03-24T10:30:00");
+  const meetingEnd = meeting.add({ hours: 1, minutes: 30 });
+  lines.push(`Meeting: ${meeting} → ${meetingEnd}`);
+
+  return lines;
+})();
+
+// ============================================================================
+// 8. MAP UPSERT — getOrInsert and getOrInsertComputed
+// ============================================================================
+// The "upsert" proposal (stage 4) adds getOrInsert and getOrInsertComputed to
+// Map and WeakMap, replacing the tedious has/get/set pattern.
+
+const mapUpsertOutput = (() => {
+  const lines: string[] = [];
+
+  // getOrInsert: return the existing value or insert the default and return it.
+  const tagCounts = new Map<string, number>();
+  const firstInsert = tagCounts.getOrInsert("deploy", 0);
+  tagCounts.set("deploy", tagCounts.getOrInsert("deploy", 0) + 1);
+  const afterIncrement = tagCounts.get("deploy");
+  lines.push(
+    `getOrInsert — first: ${firstInsert}, after increment: ${afterIncrement}`,
+  );
+
+  // getOrInsertComputed: the default is lazily computed only when the key is missing.
+  const deployLogs = new Map<string, string[]>();
+  const logs = deployLogs.getOrInsertComputed("canary", () => []);
+  logs.push("Region EU healthy");
+  logs.push("Region US healthy");
+  lines.push(
+    `getOrInsertComputed — logs for canary: [${deployLogs.get("canary")?.join(", ")}]`,
+  );
+
+  return lines;
+})();
+
+// ============================================================================
+// 9. REGEXP.ESCAPE — safe dynamic regex construction
+// ============================================================================
+// RegExp.escape (stage 4, ES2025) escapes special regex characters in a string
+// so it can be safely interpolated into a RegExp pattern.
+
+const regexpEscapeOutput = (() => {
+  const lines: string[] = [];
+
+  const userInput = "deploy (v2.0+hotfix)";
+  const escaped = RegExp.escape(userInput);
+  lines.push(`Raw: "${userInput}" → escaped: "${escaped}"`);
+
+  // Safe whole-word matching with user-supplied text.
+  const text =
+    "Rollout includes deploy (v2.0+hotfix) for the EU region and deploy (v3.0) for US.";
+  const regex = new RegExp(`\\b${escaped}\\b`, "g");
+  const matches = text.match(regex);
+  lines.push(`Matches in text: ${matches?.length ?? 0}`);
+
+  return lines;
+})();
+
+// ============================================================================
 // Combined output — proves every feature runs and type-checks
 // ============================================================================
 
@@ -348,6 +434,9 @@ export const advancedRuntimeOutput = {
   decorators: decoratorOutput,
   mixins: mixinOutput,
   namespaces: namespaceOutput,
+  temporal: temporalOutput,
+  mapUpsert: mapUpsertOutput,
+  regexpEscape: regexpEscapeOutput,
 } as const;
 
 export const advancedRuntimeSummary = Object.entries(advancedRuntimeOutput)

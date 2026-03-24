@@ -48,7 +48,9 @@ export const rolloutWorkspaceFetchDelayMs = 240;
 export const rolloutResolveDelayMs = 320;
 
 let nextRevision = 1;
-let rolloutStore = baseBlockers.map((blocker) => ({ ...blocker }));
+let rolloutStore: RolloutBlocker[] = baseBlockers.map((blocker) => ({
+  ...blocker,
+}));
 
 class ResolveBlockerError extends Error {
   readonly code: ResolveBlockerErrorShape["code"];
