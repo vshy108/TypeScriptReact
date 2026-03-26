@@ -11,6 +11,8 @@ Use these guides as a companion while reading the app and sample files. The goal
 - [Reading index](./reading-index.md): the shortest recommended path through the repository now that the code has more rationale comments.
 - [React terms](./react-terms.md): React client APIs, DOM APIs, server APIs, compiler and lint concepts, and the edge-case terms demonstrated by this repo.
 - [TypeScript terms](./typescript-terms.md): TypeScript language features, interop topics, compiler options, and type-system edge cases demonstrated by this repo.
+- [React cheatsheet](./react-cheatsheet.md): one-page quick-reference for React hooks, patterns, and common decisions.
+- [TypeScript cheatsheet](./typescript-cheatsheet.md): one-page quick-reference for TypeScript types, utilities, and common decisions.
 - [Interview prep](./interview-prep.md): the practical study path for using this repo to prepare for React frontend interviews with TypeScript.
 - [Interview questions](./interview-questions.md): common interview prompts mapped back to the repo files that help answer them.
 - [Frontend system design](./frontend-system-design.md): architecture and tradeoff discussion points grounded in this repository.
