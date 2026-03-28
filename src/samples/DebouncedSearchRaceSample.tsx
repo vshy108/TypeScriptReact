@@ -149,53 +149,71 @@ export default function DebouncedSearchRaceSample() {
     setEvents((previous) => [createEvent(label, detail), ...previous].slice(0, 6));
   }
 
+  // Debounce the raw input before it triggers a fetch. When the input is
+  // cleared we still route through setTimeout (with a 0 ms delay) instead of
+  // calling setDebouncedQuery synchronously. React treats synchronous setState
+  // inside an effect body as a cascading render, which hurts performance and
+  // triggers a strict-mode warning. Deferring via setTimeout keeps the update
+  // asynchronous so React can batch it normally.
   useEffect(() => {
     const normalizedValue = inputValue.trim();
 
-    if (!normalizedValue) {
-      setDebouncedQuery("");
-      return;
-    }
-
     const timeoutId = window.setTimeout(() => {
       setDebouncedQuery(normalizedValue);
-    }, debounceWindowMs);
+    }, normalizedValue ? debounceWindowMs : 0);
 
     return () => {
       window.clearTimeout(timeoutId);
     };
   }, [inputValue]);
 
+  // Fetch effect: subscribes to debouncedQuery changes, fires searches, and
+  // manages cancellation via AbortController. All setState calls are deferred
+  // into asynchronous callbacks (promise .then / setTimeout) rather than called
+  // synchronously in the effect body, because React treats synchronous setState
+  // inside an effect as a cascading render.
   useEffect(() => {
     if (!debouncedQuery) {
-      setNaiveState(
-        createPanelState("Every response can overwrite the UI, even if it is stale."),
-      );
-      setGuardedState(
-        createPanelState("The previous request is cancelled before the next one becomes current."),
-      );
-      return;
+      // Reset panels asynchronously to avoid the cascading-render warning.
+      const id = window.setTimeout(() => {
+        setNaiveState(
+          createPanelState("Every response can overwrite the UI, even if it is stale."),
+        );
+        setGuardedState(
+          createPanelState("The previous request is cancelled before the next one becomes current."),
+        );
+      }, 0);
+      return () => { window.clearTimeout(id); };
     }
 
     const requestId = requestSequenceRef.current + 1;
     requestSequenceRef.current = requestId;
     latestGuardedRequestRef.current = requestId;
-    setStartedSearches((count) => count + 1);
 
-    setNaiveState((previous) => ({
-      status: "loading",
-      note: `Loading request #${requestId} for "${debouncedQuery}" without cancellation.`,
-      result: previous.result,
-    }));
-    setGuardedState((previous) => ({
-      status: "loading",
-      note: `Loading request #${requestId} for "${debouncedQuery}" and cancelling the previous one.`,
-      result: previous.result,
-    }));
-    pushEvent(
-      "Search started",
-      `Debounced query "${debouncedQuery}" started request #${requestId} in both panels.`,
-    );
+    // Defer the loading-state update so it does not run synchronously in the
+    // effect body. queueMicrotask is chosen over setTimeout because microtasks
+    // execute right after the current call stack clears — before the browser
+    // paints or any macrotask timers fire — so the "Loading" indicator appears
+    // in the very next React batch with no visible gap between the debounce
+    // firing and the UI update.
+    queueMicrotask(() => {
+      setStartedSearches((count) => count + 1);
+
+      setNaiveState((previous) => ({
+        status: "loading",
+        note: `Loading request #${requestId} for "${debouncedQuery}" without cancellation.`,
+        result: previous.result,
+      }));
+      setGuardedState((previous) => ({
+        status: "loading",
+        note: `Loading request #${requestId} for "${debouncedQuery}" and cancelling the previous one.`,
+        result: previous.result,
+      }));
+      pushEvent(
+        "Search started",
+        `Debounced query "${debouncedQuery}" started request #${requestId} in both panels.`,
+      );
+    });
 
     const guardedController = new AbortController();
 

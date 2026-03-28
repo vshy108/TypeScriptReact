@@ -81,6 +81,13 @@ function fetchMockedReleaseSummary(
       });
     }, scenario.delayMs);
 
+    // Abort integration — mirrors what fetch() does internally with its signal.
+    // handleAbort clears the pending timeout, detaches itself, and rejects with
+    // an AbortError. The pre-check for signal.aborted handles the edge case
+    // where the caller already aborted before the promise executor ran. The
+    // listener covers future aborts, and { once: true } auto-removes after
+    // firing (the explicit removeEventListener is a safety net for the normal-
+    // completion path where the timeout fires first).
     function handleAbort() {
       window.clearTimeout(timeoutId);
       signal?.removeEventListener("abort", handleAbort);
