@@ -109,6 +109,8 @@ Repo example: [../src/samples/UseResourceSample.tsx](../src/samples/UseResourceS
 
 ### How does Context prevent or cause unnecessary re-renders?
 
+`fix-performance`
+
 Good answer shape:
 
 - every consumer re-renders when the provider value changes identity
@@ -219,6 +221,8 @@ Repo example: [../src/App.tsx](../src/App.tsx)
 
 ### How would you build an accessible modal dialog in React?
 
+`build-component` · `design-reusable`
+
 Good answer shape:
 
 - label the dialog with `aria-labelledby` and optionally `aria-describedby`
@@ -228,6 +232,8 @@ Good answer shape:
 Repo example: [../src/samples/AccessibleDialogSample.tsx](../src/samples/AccessibleDialogSample.tsx)
 
 ### What does an accessible custom listbox require?
+
+`build-component` · `design-reusable`
 
 Good answer shape:
 
@@ -259,6 +265,8 @@ Repo example: [../src/samples/AsyncUiVerificationSample.tsx](../src/samples/Asyn
 
 ### How would you build a type-safe generic React component?
 
+`build-component` · `design-reusable`
+
 Good answer shape:
 
 - define a baseline constraint interface and use a generic parameter `T extends Baseline`
@@ -268,6 +276,8 @@ Good answer shape:
 Repo example: [../src/components/FeatureGrid.tsx](../src/components/FeatureGrid.tsx)
 
 ### When would you use `useImperativeHandle` with ref-as-prop?
+
+`design-reusable`
 
 Good answer shape:
 
@@ -288,6 +298,8 @@ Good answer shape:
 Repo examples: [../src/features/release-approval-workflow/ReleaseApprovalWorkflowPanel.tsx](../src/features/release-approval-workflow/ReleaseApprovalWorkflowPanel.tsx), [../src/features/release-approval-workflow/useReleaseApprovalWorkflow.ts](../src/features/release-approval-workflow/useReleaseApprovalWorkflow.ts)
 
 ### What component composition patterns does React favor over inheritance?
+
+`design-reusable`
 
 Good answer shape:
 
@@ -320,6 +332,8 @@ Repo examples: [../src/samples/ContextThemeSample.tsx](../src/samples/ContextThe
 
 ### How does the React Profiler API help identify render bottlenecks?
 
+`fix-performance`
+
 Good answer shape:
 
 - the `<Profiler>` component wraps a subtree and reports actual vs base render duration on each commit
@@ -329,6 +343,8 @@ Good answer shape:
 Repo example: [../src/samples/MemoLabSample.tsx](../src/samples/MemoLabSample.tsx)
 
 ### What composition techniques reduce re-renders without adding memoization?
+
+`fix-performance`
 
 Good answer shape:
 
@@ -340,6 +356,8 @@ Repo examples: [../src/samples/ContextThemeSample.tsx](../src/samples/ContextThe
 
 ### How would you contribute to a shared design system or component library in React?
 
+`build-component` · `design-reusable`
+
 Good answer shape:
 
 - design system components should be generic, accessible, and composable through props and children
@@ -349,6 +367,8 @@ Good answer shape:
 Repo examples: [../src/samples/AccessibleDialogSample.tsx](../src/samples/AccessibleDialogSample.tsx), [../src/samples/AccessibleListboxSample.tsx](../src/samples/AccessibleListboxSample.tsx), [../src/samples/ContextThemeSample.tsx](../src/samples/ContextThemeSample.tsx)
 
 ### How would you handle controlled forms at scale without performance issues?
+
+`build-component` · `fix-performance`
 
 Good answer shape:
 
@@ -674,6 +694,8 @@ Repo example: [../src/components/MiniSampleStage.tsx](../src/components/MiniSamp
 
 ### How would you debug a child component that re-renders more than expected?
 
+`fix-performance`
+
 Good answer shape:
 
 - check prop identity first, not just state changes, because new objects or functions on each render break `memo`
@@ -683,6 +705,8 @@ Good answer shape:
 Repo examples: [../src/samples/MemoLabSample.tsx](../src/samples/MemoLabSample.tsx), [../src/samples/ContextIdentitySample.tsx](../src/samples/ContextIdentitySample.tsx)
 
 ### How would you debug slow typing or filtering in a search UI?
+
+`fix-performance`
 
 Good answer shape:
 
