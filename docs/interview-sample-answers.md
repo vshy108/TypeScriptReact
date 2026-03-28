@@ -46,6 +46,78 @@ Refs are populated during commit, so reading `ref.current` during render is too 
 
 With `use()`, render reads a promise directly and React suspends that subtree until the promise resolves. That means the loading UI is owned by the nearest `Suspense` boundary instead of by local `isLoading` branches. [../src/samples/UseResourceSample.tsx](../src/samples/UseResourceSample.tsx) also shows the important cache rule: if each render creates a new pending promise, the boundary never settles cleanly.
 
+### How does Context prevent or cause unnecessary re-renders?
+
+Every context consumer re-renders whenever the provider value changes identity. If the provider creates a new object on each render, every consumer re-renders even when the meaningful data has not changed. Stabilizing the value with `useMemo` in [../src/samples/ContextIdentitySample.tsx](../src/samples/ContextIdentitySample.tsx) prevents those wasted renders, and splitting contexts by update frequency can isolate the damage further as shown in [../src/samples/ContextThemeSample.tsx](../src/samples/ContextThemeSample.tsx).
+
+### What is `createPortal` for, and when does `flushSync` matter?
+
+`createPortal` renders children into a DOM node that lives outside the parent tree. This is important for modals and overlays because it avoids inheriting stacking contexts or overflow clipping from ancestors. `flushSync` forces React to commit a state update synchronously so an imperative DOM read immediately after sees the new value. [../src/samples/PortalModalSample.tsx](../src/samples/PortalModalSample.tsx) demonstrates both patterns together.
+
+### How do you handle race conditions in debounced async effects?
+
+The cleanup function returned from `useEffect` is the primary tool because it fires when the query changes. Combined with `AbortController`, it cancels in-flight requests so stale responses cannot overwrite the current result. Without cleanup, a slow response from an older query can silently land after a newer one has already resolved. [../src/samples/DebouncedSearchRaceSample.tsx](../src/samples/DebouncedSearchRaceSample.tsx) walks through the full pattern.
+
+### How does `useFormStatus` avoid prop-drilling pending state?
+
+`useFormStatus` reads the pending state of the nearest enclosing `<form>` from any descendant, so a submit button deep in the tree can know whether the action is still running without receiving any props. This removes the need to lift state up to the form shell and thread it down. [../src/samples/FormStatusSample.tsx](../src/samples/FormStatusSample.tsx) shows the pattern clearly.
+
+### What is the `Activity` component and when would you use it?
+
+`Activity` controls visibility of a subtree. When mode is `"hidden"`, the subtree stops painting and laying out, but React keeps its state alive so revealing it again is instant. It is useful for tabs, priority dashboards, and off-screen content. [../src/samples/ActivityTransitionSample.tsx](../src/samples/ActivityTransitionSample.tsx) also shows how `startTransition` pairs with `Activity` to keep non-urgent state changes smooth.
+
+### When would you use `useSyncExternalStore` instead of `useState`?
+
+I would use it when the state lives outside React, like browser online status, color scheme preferences, or a shared module-level store. It requires a `subscribe` function, a `getSnapshot` function, and optionally `getServerSnapshot` for SSR safety. [../src/releaseStore.ts](../src/releaseStore.ts) shows the full subscribe-notify-snapshot contract and how it avoids tearing during concurrent renders.
+
+### What does `useEffectEvent` solve that `useEffect` alone cannot?
+
+It lets a long-lived effect read the latest props or state without re-subscribing. In [../src/App.tsx](../src/App.tsx), the keyboard shortcut effect has an empty dependency list for stability, but the event function inside reads the latest selected feature because `useEffectEvent` always runs with fresh values. Without it, the effect would have to include the feature in its deps and restart on every change.
+
+### What does the React Compiler do, and how do its directives work?
+
+The compiler inserts memoization automatically at build time so you can drop manual `useMemo` and `useCallback` calls. `"use memo"` opts a component in and `"use no memo"` opts it out when the compiler gets a case wrong. [../src/samples/ReactCompilerDemo.ts](../src/samples/ReactCompilerDemo.ts) documents the before/after shape, and [../node-samples/react-compiler/src/reportCompilerDirectives.ts](../node-samples/react-compiler/src/reportCompilerDirectives.ts) verifies directive boundaries.
+
+### What are the key React ESLint rules you should never disable?
+
+`exhaustive-deps` prevents stale closure bugs by keeping dependency arrays honest. `rules-of-hooks` prevents hooks from being called conditionally or inside loops. Stable references like `setState` and `dispatch` from `useReducer` are guaranteed stable and do not need to be in deps. [../src/samples/ReactLintRulesDemo.ts](../src/samples/ReactLintRulesDemo.ts) and the [../node-samples/react-lint-rules/](../node-samples/react-lint-rules/) workspace verify these rules against fixture code.
+
+### How do `'use client'` and `'use server'` directives define component boundaries?
+
+In an RSC-aware framework, files without a directive are server components by default. `'use client'` at the top of a file marks everything in it as client-side, allowing hooks and browser events. `'use server'` marks exported functions as server actions that the client can call through the framework's transport. [../src/samples/ServerComponentsDemo.ts](../src/samples/ServerComponentsDemo.ts) and [../node-samples/react-server-components/](../node-samples/react-server-components/) cover both boundaries.
+
+### How does `lazy()` with `Suspense` implement code splitting?
+
+`lazy()` wraps `import()` so the chunk is fetched only when the component is first rendered. `Suspense` shows a fallback while the chunk is in flight. An Error Boundary is still needed because a failed import throws an error, not a pending promise. [../src/App.tsx](../src/App.tsx) uses `lazy()` for the `TypeNotes` panel.
+
+### How would you build an accessible modal dialog in React?
+
+Label the dialog with `aria-labelledby` and `aria-describedby`. On open, move focus into the dialog and trap Tab so it cycles only through the dialog's controls. On Escape or close, return focus to the trigger button. [../src/samples/AccessibleDialogSample.tsx](../src/samples/AccessibleDialogSample.tsx) implements the full pattern with a query selector for focusable elements and keyboard event handling.
+
+### What does an accessible custom listbox require?
+
+Use `role="listbox"` and `role="option"` with `aria-activedescendant` to keep the screen reader aligned with the visually active option. Arrow keys, Home, and End navigate through options, and Enter or Space selects. All of this must work without a pointer. [../src/samples/AccessibleListboxSample.tsx](../src/samples/AccessibleListboxSample.tsx) implements these patterns with key handlers and state management.
+
+### How should form validation errors be announced to screen readers?
+
+Each invalid field should have `aria-invalid="true"` and `aria-describedby` pointing at its specific error message. A summary with `role="alert"` announces the failure immediately when the form is submitted. On submit failure, focus should move to the first invalid field. [../src/samples/AccessibleFormErrorsSample.tsx](../src/samples/AccessibleFormErrorsSample.tsx) shows all three pieces together.
+
+### How do you test async UI behavior deterministically?
+
+Use fake timers and mocked responses so the test controls timing completely. Assert intermediate states like the loading indicator before advancing timers. Then exercise both the success and failure paths, including retry. [../src/samples/AsyncUiVerificationSample.tsx](../src/samples/AsyncUiVerificationSample.tsx) and [../src/test/async-ui-verification-sample.test.tsx](../src/test/async-ui-verification-sample.test.tsx) demonstrate this strategy.
+
+### How would you build a type-safe generic React component?
+
+Define a constraint interface with the minimum required fields and use `T extends Constraint` as the generic parameter. The component accesses only the constraint fields, while callers pass their richer type through. A `renderMeta` callback lets the component stay reusable because each caller decides what extra detail to show. [../src/components/FeatureGrid.tsx](../src/components/FeatureGrid.tsx) uses this exact pattern.
+
+### When would you use `useImperativeHandle` with ref-as-prop?
+
+When I want to expose a small imperative API like `focus()` or `load()` to the parent instead of handing over the raw DOM node. React 19 lets ref be a regular prop so `forwardRef` is no longer needed. The dependency array on `useImperativeHandle` must include any closed-over state that the exposed methods read, or callers get stale values. [../src/components/CommandPalette.tsx](../src/components/CommandPalette.tsx) and [../src/samples/RefTimingSample.tsx](../src/samples/RefTimingSample.tsx) both demonstrate this.
+
+### What pattern do the feature panels use for domain state management?
+
+Each panel extracts domain logic into a custom hook that owns loading, draft, and submit state. The panel component receives the hook's return value and stays purely declarative. Discriminated unions or status strings keep the state machine explicit instead of using multiple booleans. [../src/features/release-approval-workflow/ReleaseApprovalWorkflowPanel.tsx](../src/features/release-approval-workflow/ReleaseApprovalWorkflowPanel.tsx) is a representative example.
+
 ## TypeScript Answers
 
 ### When would you use `satisfies` instead of `as`?
@@ -88,6 +160,38 @@ TypeScript `private` is enforced by the type checker but erased at runtime, so i
 
 They are powerful when I want to derive string APIs, route params, handler names, or naming conventions from smaller literal building blocks. They become a problem when large cartesian products create huge unions that slow the checker or hit complexity limits. [../node-samples/ts-template-literals/src/index.ts](../node-samples/ts-template-literals/src/index.ts) shows both the expressive side and the performance cost.
 
+### How do mapped types filter or rename keys with the `as` clause?
+
+The `as` clause in a mapped type lets you transform or filter keys. Mapping a key to `never` removes it, so `PickByType<T, string>` keeps only string-valued properties. Template literal types in the `as` clause rename keys to follow patterns like `getName`. [../src/samples/MappedFilteringSample.tsx](../src/samples/MappedFilteringSample.tsx) demonstrates both key removal and key renaming patterns.
+
+### When would you model domain objects with classes instead of plain interfaces?
+
+I would use classes when I need runtime behavior, encapsulation, and `instanceof` narrowing. Abstract classes are useful for enforcing a subclass contract while sharing common logic. For pure data composition without runtime behavior, intersection types compose interfaces. [../src/samples/ClassesModelsSample.tsx](../src/samples/ClassesModelsSample.tsx) shows both the abstract class hierarchy and the intersection-based view model.
+
+### How do recursive types model tree-shaped data, and what are their limits?
+
+A recursive interface references itself in a child property, allowing TypeScript to describe trees of arbitrary depth. Utility types like `DeepReadonly` and `DeepKeyPaths` recur over every level. The main limit is the compiler's recursion depth, and very deep `as const` trees can exceed inference bounds. [../src/samples/RecursiveTypesSample.tsx](../src/samples/RecursiveTypesSample.tsx) shows both the type definitions and the matching recursive runtime helpers.
+
+### What is type variance, and when do `in`, `out`, and `in out` annotations matter?
+
+Covariance means a more specific type can substitute in output position: `Producer<Cat>` is assignable to `Producer<Animal>`. Contravariance reverses this for input position: `Consumer<Animal>` is assignable to `Consumer<Cat>`. Explicit `in` and `out` annotations document and enforce these rules, catching unsound assignments faster. [../node-samples/ts-variance/src/index.ts](../node-samples/ts-variance/src/index.ts) walks through all three variance modes.
+
+### When are enums appropriate, and when should you use union types instead?
+
+Enums produce a runtime object and support reverse mapping, which matters when the value set must exist at runtime. Union types are lighter because they are erased. `const enum` inlines values at compile time but has restrictions with `isolatedModules` and `verbatimModuleSyntax`. [../node-samples/ts-advanced-runtime/src/index.ts](../node-samples/ts-advanced-runtime/src/index.ts) covers numeric enums, string enums, and const enums side by side.
+
+### How do you type an untyped JavaScript module with `.d.ts` files?
+
+Create a `.d.ts` file alongside the JS module that declares the exported types. For global types, use declaration merging. For additional type files, use triple-slash references. This gives full type safety without touching the vendor source. [../node-samples/ts-declarations/src/index.ts](../node-samples/ts-declarations/src/index.ts) imports from a plain JS vendor module using this approach.
+
+### How does JSDoc typing work with `allowJs` and `checkJs`?
+
+`allowJs` lets TypeScript compile `.js` files and `checkJs` turns on type checking for them. JSDoc annotations like `@param`, `@returns`, and `@typedef` provide the type information inside the JS file. A TypeScript file can import the JS module and get full type safety without a `.d.ts` file. [../node-samples/ts-jsdoc-interop/src/index.ts](../node-samples/ts-jsdoc-interop/src/index.ts) demonstrates this interop.
+
+### What does `NoInfer<T>` do, and when is it useful?
+
+`NoInfer<T>` prevents TypeScript from inferring a type parameter from a specific argument position. This forces inference to come from the other call site, so the second argument must match rather than widen. It solves inference-site conflicts without requiring explicit type parameters from the caller. [../node-samples/ts-generic-inference/src/index.ts](../node-samples/ts-generic-inference/src/index.ts) uses it to prevent the second array argument from widening T.
+
 ## Architecture And Debugging Answers
 
 ### How is the sample system organized so UI, routing, and tests do not drift apart?
@@ -117,3 +221,19 @@ It means the client tried to hydrate markup that does not match what the server 
 ### Why are the hydration examples separate entry points instead of ordinary routed components?
 
 Real hydration starts with existing server-rendered HTML already in the document before the client code runs. A normal SPA route would only show a fresh client mount, which misses the actual hydration contract. That is why [../src/hydration/HydrationHintsApp.tsx](../src/hydration/HydrationHintsApp.tsx) is paired with artifact metadata in [../src/implementedSampleArtifacts.ts](../src/implementedSampleArtifacts.ts) instead of being treated like an ordinary route sample.
+
+### How does the streaming SSR workspace compare different server rendering modes?
+
+It runs `renderToString`, `renderToPipeableStream`, `prerender`, `resume`, and other APIs against the same component tree. Each mode produces a summary that shows whether Suspense fallbacks or resolved content appear in the output. This helps you choose the right rendering mode based on your latency and SEO needs. [../server-samples/react-streaming-ssr/src/runAllModes.tsx](../server-samples/react-streaming-ssr/src/runAllModes.tsx) is the entry point.
+
+### What does dynamic component resolution look like in the sample stage?
+
+The stage reads the current URL hash, resolves a catalog id, and looks up either a component or an artifact entry. If a component exists it renders inline, if an artifact exists it shows the entry details, and otherwise it shows a placeholder. This centralizes routing, rendering, and fallback logic in one component. [../src/components/MiniSampleStage.tsx](../src/components/MiniSampleStage.tsx) shows the resolution chain.
+
+### How would you debug a child component that re-renders more than expected?
+
+I would check prop identity first. New objects or functions created every render break `memo` boundaries. Then I would check context provider values because unstable provider objects force every consumer to re-render. The React Profiler or `useDebugValue` can confirm which renders and effects actually run. [../src/samples/MemoLabSample.tsx](../src/samples/MemoLabSample.tsx) and [../src/samples/ContextIdentitySample.tsx](../src/samples/ContextIdentitySample.tsx) demonstrate these patterns.
+
+### How would you debug slow typing or filtering in a search UI?
+
+First I would decide whether the bottleneck is expensive derived computation, unnecessary re-renders, or lack of scheduling. `useDeferredValue` lets derived work lag behind urgent input so keystrokes stay responsive. Debouncing the network request prevents flooding, and `AbortController` cancels stale requests before they resolve. [../src/App.tsx](../src/App.tsx) and [../src/samples/DebouncedSearchRaceSample.tsx](../src/samples/DebouncedSearchRaceSample.tsx) cover both approaches.
