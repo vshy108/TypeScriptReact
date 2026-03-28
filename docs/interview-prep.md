@@ -19,14 +19,15 @@ The existing guides explain React and TypeScript terms well. Interview preparati
 1. Read [./reading-index.md](./reading-index.md) to understand the repository structure quickly.
 2. Read [./react-typescript-terms.md](./react-typescript-terms.md) for the vocabulary used across the repo.
 3. Read [./interview-questions.md](./interview-questions.md) to practice answering common React + TypeScript frontend questions using repo examples.
-4. Read [./interview-walkthroughs.md](./interview-walkthroughs.md) to practice product-style prompts that require a structured answer, not just a definition.
-5. Read [./frontend-system-design.md](./frontend-system-design.md) to practice architecture and tradeoff discussions.
-6. Read [./debugging-playbook.md](./debugging-playbook.md) to prepare for debugging and troubleshooting questions.
-7. Read [./debugging-walkthroughs.md](./debugging-walkthroughs.md) to practice how to structure debugging answers under interview pressure.
-8. Read [./system-design-walkthroughs.md](./system-design-walkthroughs.md) to practice architecture scenario answers with concrete repo boundaries.
-9. Use [./interview-practice-index.md](./interview-practice-index.md) when you want short repeatable practice sessions instead of choosing a path each time.
-10. Use [./interview-answer-rubric.md](./interview-answer-rubric.md) to score whether an answer is specific and interview-ready.
-11. Read [./interview-answer-antipatterns.md](./interview-answer-antipatterns.md) to catch the most common ways strong topics still turn into weak answers.
+4. Read [./interview-sample-answers.md](./interview-sample-answers.md) after your first attempt so you can compare your answer shape against a concise model.
+5. Read [./interview-walkthroughs.md](./interview-walkthroughs.md) to practice product-style prompts that require a structured answer, not just a definition.
+6. Read [./frontend-system-design.md](./frontend-system-design.md) to practice architecture and tradeoff discussions.
+7. Read [./debugging-playbook.md](./debugging-playbook.md) to prepare for debugging and troubleshooting questions.
+8. Read [./debugging-walkthroughs.md](./debugging-walkthroughs.md) to practice how to structure debugging answers under interview pressure.
+9. Read [./system-design-walkthroughs.md](./system-design-walkthroughs.md) to practice architecture scenario answers with concrete repo boundaries.
+10. Use [./interview-practice-index.md](./interview-practice-index.md) when you want short repeatable practice sessions instead of choosing a path each time.
+11. Use [./interview-answer-rubric.md](./interview-answer-rubric.md) to score whether an answer is specific and interview-ready.
+12. Read [./interview-answer-antipatterns.md](./interview-answer-antipatterns.md) to catch the most common ways strong topics still turn into weak answers.
 
 ## Practical Interview Focus Areas
 
@@ -72,6 +73,7 @@ The highest-priority interview walkthrough gap is now covered. The remaining wor
 ## Related Guides
 
 - [./interview-questions.md](./interview-questions.md)
+- [./interview-sample-answers.md](./interview-sample-answers.md)
 - [./interview-walkthroughs.md](./interview-walkthroughs.md)
 - [./frontend-system-design.md](./frontend-system-design.md)
 - [./debugging-playbook.md](./debugging-playbook.md)
