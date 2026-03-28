@@ -118,6 +118,34 @@ When I want to expose a small imperative API like `focus()` or `load()` to the p
 
 Each panel extracts domain logic into a custom hook that owns loading, draft, and submit state. The panel component receives the hook's return value and stays purely declarative. Discriminated unions or status strings keep the state machine explicit instead of using multiple booleans. [../src/features/release-approval-workflow/ReleaseApprovalWorkflowPanel.tsx](../src/features/release-approval-workflow/ReleaseApprovalWorkflowPanel.tsx) is a representative example.
 
+### What component composition patterns does React favor over inheritance?
+
+React favors composition over inheritance. The `children` prop is the simplest form: a layout component renders whatever the parent passes without knowing the content. Render props and generic callback props like the `renderMeta` prop in [../src/components/FeatureGrid.tsx](../src/components/FeatureGrid.tsx) let customers inject behavior without modifying the component. [../src/samples/ContextThemeSample.tsx](../src/samples/ContextThemeSample.tsx) shows provider composition where theme and feature-flag providers wrap children without coupling to each other.
+
+### How do custom hooks extract and reuse stateful logic across components?
+
+A custom hook is a regular function starting with `use` that encapsulates hooks, effects, and derived state. The component that calls it stays declarative because it only receives the return value. In [../src/features/release-approval-workflow/useReleaseApprovalWorkflow.ts](../src/features/release-approval-workflow/useReleaseApprovalWorkflow.ts), the hook owns fetch lifecycle, abort cleanup, draft state, and submission flow. The panel component does not manage any of that logic itself. [../src/samples/DebouncedSearchRaceSample.tsx](../src/samples/DebouncedSearchRaceSample.tsx) shows the same pattern for debounced search with `AbortController`.
+
+### How do you decide where state should live — local, lifted, context, or external store?
+
+I colocate state as close to its consumer as possible. If siblings need the same value, I lift it to their common parent. If deeply nested components need infrequently changing data like theme tokens or auth, I use context as in [../src/samples/ContextThemeSample.tsx](../src/samples/ContextThemeSample.tsx). If state must be read from outside React or shared across unrelated subtrees, I use an external store with `useSyncExternalStore` like [../src/releaseStore.ts](../src/releaseStore.ts). The feature panels in [../src/features/release-approval-workflow/useReleaseApprovalWorkflow.ts](../src/features/release-approval-workflow/useReleaseApprovalWorkflow.ts) show the middle ground: a custom hook colocates complex state within the feature boundary without globalizing it.
+
+### How does the React Profiler API help identify render bottlenecks?
+
+The `<Profiler>` component wraps a subtree and fires a callback on each commit with `actualDuration` (time spent rendering) and `baseDuration` (estimated cost without memoization). Comparing the two reveals how much memoization is saving. In [../src/samples/MemoLabSample.tsx](../src/samples/MemoLabSample.tsx), the Profiler logs show that `memo` on the member card skips renders when props are stable, and `useMemo` avoids recomputing the expensive roster filter. `useDebugValue` labels the custom hook in DevTools so you can trace which hook is contributing to slow commits.
+
+### What composition techniques reduce re-renders without adding memoization?
+
+Three techniques help before reaching for `memo` or `useMemo`. First, move state down so only the component that owns it re-renders. Second, pass expensive subtrees as `children` so the parent can re-render without recreating the child tree. Third, split context providers by update frequency so fast-changing data like input text does not re-render slow consumers like theme. [../src/samples/ContextThemeSample.tsx](../src/samples/ContextThemeSample.tsx) splits theme from feature flags, and [../src/samples/ContextIdentitySample.tsx](../src/samples/ContextIdentitySample.tsx) shows how stabilizing a provider value prevents consumer cascades.
+
+### How would you contribute to a shared design system or component library in React?
+
+Design system components should be generic, accessible, and composable. Accessibility comes first: keyboard navigation, focus management, and ARIA attributes should be baked in. [../src/samples/AccessibleDialogSample.tsx](../src/samples/AccessibleDialogSample.tsx) shows a modal with focus trapping and Escape handling, and [../src/samples/AccessibleListboxSample.tsx](../src/samples/AccessibleListboxSample.tsx) shows a keyboard-navigable listbox with `aria-activedescendant`. Consistent design tokens from a shared context like [../src/samples/ContextThemeSample.tsx](../src/samples/ContextThemeSample.tsx) keep colors, spacing, and typography unified. Components should expose props and children for customization rather than flags for every variation.
+
+### How would you handle controlled forms at scale without performance issues?
+
+The key is isolating re-renders per field. Each input should live in its own component so a keystroke only re-renders that field, not the entire form. Validation and submission logic can live in a custom hook or the form parent, while field components stay lightweight. For form-level pending state, `useFormStatus` as in [../src/samples/FormStatusSample.tsx](../src/samples/FormStatusSample.tsx) avoids prop-drilling an `isSubmitting` flag to every button. [../src/samples/AccessibleFormErrorsSample.tsx](../src/samples/AccessibleFormErrorsSample.tsx) shows how to pair this with accessible error announcements so screen readers know which fields need attention.
+
 ## TypeScript Answers
 
 ### When would you use `satisfies` instead of `as`?
@@ -163,6 +191,22 @@ They are powerful when I want to derive string APIs, route params, handler names
 ### How do mapped types filter or rename keys with the `as` clause?
 
 The `as` clause in a mapped type lets you transform or filter keys. Mapping a key to `never` removes it, so `PickByType<T, string>` keeps only string-valued properties. Template literal types in the `as` clause rename keys to follow patterns like `getName`. [../src/samples/MappedFilteringSample.tsx](../src/samples/MappedFilteringSample.tsx) demonstrates both key removal and key renaming patterns.
+
+### How do you type API responses so loading, error, and success states are mutually exclusive?
+
+I define a discriminated union keyed on a `status` field. The `loading` variant carries no data, `error` carries a message, and `success` carries the typed payload. This makes it impossible to access `data` when the request is still loading. In [../src/features/release-approval-workflow/useReleaseApprovalWorkflow.ts](../src/features/release-approval-workflow/useReleaseApprovalWorkflow.ts), the hook uses `RequestStatus` and `SubmitStatus` string unions so the panel can branch on status without guessing whether data exists. [../src/samples/AsyncUiVerificationSample.tsx](../src/samples/AsyncUiVerificationSample.tsx) shows a simpler `AsyncStatus` union that drives loading, success, and error rendering paths.
+
+### How do type guards safely narrow unknown data at runtime boundaries?
+
+A type guard is a function with a return type like `value is SomeType`. After a truthy check, TypeScript narrows the variable inside the guarded branch. At API boundaries where data arrives as `unknown`, this is the safe way to assert shape before using it. In [../src/features/release-approval-workflow/client.ts](../src/features/release-approval-workflow/client.ts), `isReleaseApprovalAbortError` and `isReleaseApprovalMutationError` are type guards that narrow `unknown` catch values into specific error shapes. Simpler guards use `typeof`, `in`, or discriminant-field checks as shown in [../src/samples/ConditionalDistributivitySample.tsx](../src/samples/ConditionalDistributivitySample.tsx).
+
+### How would you type a generic data-fetching hook that preserves the response shape?
+
+The hook should be generic over the response type `T` so callers get a typed `data: T` in the return value. The return type should be a discriminated union or status-driven object so callers cannot access `data` before it exists. `AbortController` should be part of the hook contract so effect cleanup cancels in-flight requests. [../src/features/release-approval-workflow/useReleaseApprovalWorkflow.ts](../src/features/release-approval-workflow/useReleaseApprovalWorkflow.ts) shows a concrete non-generic version of this pattern, and [../src/samples/DebouncedSearchRaceSample.tsx](../src/samples/DebouncedSearchRaceSample.tsx) shows the abort cleanup side. Making it generic means replacing the concrete response type with `T` while keeping the status union intact.
+
+### How do branded types prevent accidental mixing of structurally identical primitives?
+
+Branded types add a phantom property that makes two structurally identical types incompatible. Template literal types like `release-${number}` in [../src/features/release-approval-workflow/types.ts](../src/features/release-approval-workflow/types.ts) achieve this naturally: a `ReleaseApprovalId` is `release-${number}` and a `BoardTaskId` in [../src/samples/ReducerBoardSample.tsx](../src/samples/ReducerBoardSample.tsx) is `board-task-${number}`, so passing one where the other is expected is a compile error even though both are strings. For cases where template literals do not fit, a `__brand` phantom field serves the same purpose.
 
 ### When would you model domain objects with classes instead of plain interfaces?
 

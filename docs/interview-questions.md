@@ -287,6 +287,77 @@ Good answer shape:
 
 Repo examples: [../src/features/release-approval-workflow/ReleaseApprovalWorkflowPanel.tsx](../src/features/release-approval-workflow/ReleaseApprovalWorkflowPanel.tsx), [../src/features/release-approval-workflow/useReleaseApprovalWorkflow.ts](../src/features/release-approval-workflow/useReleaseApprovalWorkflow.ts)
 
+### What component composition patterns does React favor over inheritance?
+
+Good answer shape:
+
+- children composition, render props, and higher-order components are the primary reuse strategies
+- composition keeps components open to different content without modifying the component itself
+- inheritance hierarchies are rarely needed because hooks and composition cover shared behavior
+
+Repo examples: [../src/samples/ContextThemeSample.tsx](../src/samples/ContextThemeSample.tsx), [../src/components/FeatureGrid.tsx](../src/components/FeatureGrid.tsx)
+
+### How do custom hooks extract and reuse stateful logic across components?
+
+Good answer shape:
+
+- a custom hook is a function starting with `use` that can call other hooks
+- it encapsulates fetch logic, subscriptions, timers, or domain state so the component stays declarative
+- the hook owns the lifecycle and the component owns the rendering
+
+Repo examples: [../src/features/release-approval-workflow/useReleaseApprovalWorkflow.ts](../src/features/release-approval-workflow/useReleaseApprovalWorkflow.ts), [../src/samples/DebouncedSearchRaceSample.tsx](../src/samples/DebouncedSearchRaceSample.tsx)
+
+### How do you decide where state should live — local, lifted, context, or external store?
+
+Good answer shape:
+
+- colocate state as close to its consumers as possible to avoid unnecessary re-renders
+- lift state when siblings need access to the same value
+- use context when deeply nested consumers share infrequently changing data like theme or auth
+- use an external store when state must be read from outside React or shared across unrelated subtrees
+
+Repo examples: [../src/samples/ContextThemeSample.tsx](../src/samples/ContextThemeSample.tsx), [../src/releaseStore.ts](../src/releaseStore.ts), [../src/features/release-approval-workflow/useReleaseApprovalWorkflow.ts](../src/features/release-approval-workflow/useReleaseApprovalWorkflow.ts)
+
+### How does the React Profiler API help identify render bottlenecks?
+
+Good answer shape:
+
+- the `<Profiler>` component wraps a subtree and reports actual vs base render duration on each commit
+- actual duration shows how long the render took after memoization, base duration shows cost without memoization
+- `useDebugValue` labels custom hooks in DevTools so you can trace which hook contributes to slow renders
+
+Repo example: [../src/samples/MemoLabSample.tsx](../src/samples/MemoLabSample.tsx)
+
+### What composition techniques reduce re-renders without adding memoization?
+
+Good answer shape:
+
+- move state down into the component that actually needs it so siblings are not forced to re-render
+- pass expensive subtrees as `children` so the parent re-renders without recreating the child tree
+- split context providers by update frequency so fast-changing data does not re-render slow consumers
+
+Repo examples: [../src/samples/ContextThemeSample.tsx](../src/samples/ContextThemeSample.tsx), [../src/samples/ContextIdentitySample.tsx](../src/samples/ContextIdentitySample.tsx), [../src/samples/MemoLabSample.tsx](../src/samples/MemoLabSample.tsx)
+
+### How would you contribute to a shared design system or component library in React?
+
+Good answer shape:
+
+- design system components should be generic, accessible, and composable through props and children
+- keyboard navigation, focus management, and ARIA attributes should be built in, not bolted on
+- consistent tokens for color, spacing, and typography keep the visual language unified
+
+Repo examples: [../src/samples/AccessibleDialogSample.tsx](../src/samples/AccessibleDialogSample.tsx), [../src/samples/AccessibleListboxSample.tsx](../src/samples/AccessibleListboxSample.tsx), [../src/samples/ContextThemeSample.tsx](../src/samples/ContextThemeSample.tsx)
+
+### How would you handle controlled forms at scale without performance issues?
+
+Good answer shape:
+
+- isolate each field into its own component so a keystroke only re-renders that field, not the entire form
+- lift validation and submission logic into a custom hook or parent while keeping field rendering local
+- prefer `useFormStatus` for submission state instead of prop-drilling an `isSubmitting` flag
+
+Repo examples: [../src/samples/FormStatusSample.tsx](../src/samples/FormStatusSample.tsx), [../src/samples/AccessibleFormErrorsSample.tsx](../src/samples/AccessibleFormErrorsSample.tsx)
+
 ## TypeScript Questions
 
 ### When would you use `satisfies` instead of `as`?
@@ -398,6 +469,46 @@ Good answer shape:
 - template literal types in the `as` clause rename keys to follow patterns like `getName` or `setName`
 
 Repo example: [../src/samples/MappedFilteringSample.tsx](../src/samples/MappedFilteringSample.tsx)
+
+### How do you type API responses so loading, error, and success states are mutually exclusive?
+
+Good answer shape:
+
+- define a discriminated union with a `status` field that narrows to different payload shapes
+- `loading` carries no data, `error` carries a message, and `success` carries the typed payload
+- this prevents accessing `data` when the request is still loading or has failed
+
+Repo examples: [../src/features/release-approval-workflow/types.ts](../src/features/release-approval-workflow/types.ts), [../src/features/release-approval-workflow/useReleaseApprovalWorkflow.ts](../src/features/release-approval-workflow/useReleaseApprovalWorkflow.ts), [../src/samples/AsyncUiVerificationSample.tsx](../src/samples/AsyncUiVerificationSample.tsx)
+
+### How do type guards safely narrow unknown data at runtime boundaries?
+
+Good answer shape:
+
+- a type guard is a function returning `value is SomeType` that narrows the type after a truthy check
+- at API boundaries, incoming data should be validated as `unknown` before narrowing
+- discriminated union checks with `typeof` or `in` operator are simple built-in guards
+
+Repo examples: [../src/features/release-approval-workflow/client.ts](../src/features/release-approval-workflow/client.ts), [../src/samples/ConditionalDistributivitySample.tsx](../src/samples/ConditionalDistributivitySample.tsx)
+
+### How would you type a generic data-fetching hook that preserves the response shape?
+
+Good answer shape:
+
+- the hook takes a generic `T` for the response type so callers get a typed `data: T` back
+- the hook returns a discriminated union or status-driven object so callers cannot access data before it exists
+- `AbortController` integration should be typed so cleanup is part of the contract
+
+Repo examples: [../src/features/release-approval-workflow/useReleaseApprovalWorkflow.ts](../src/features/release-approval-workflow/useReleaseApprovalWorkflow.ts), [../src/samples/DebouncedSearchRaceSample.tsx](../src/samples/DebouncedSearchRaceSample.tsx)
+
+### How do branded types prevent accidental mixing of structurally identical primitives?
+
+Good answer shape:
+
+- branded types add a phantom `__brand` field to a primitive so two `string` types with different brands are incompatible
+- template literal types like `` `release-${number}` `` achieve a similar effect by narrowing the string pattern
+- this catches bugs like passing a user id where a release id is expected even though both are strings
+
+Repo examples: [../src/features/release-approval-workflow/types.ts](../src/features/release-approval-workflow/types.ts), [../src/samples/ReducerBoardSample.tsx](../src/samples/ReducerBoardSample.tsx)
 
 ### When would you model domain objects with classes instead of plain interfaces?
 
