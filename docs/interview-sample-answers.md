@@ -1154,6 +1154,10 @@ const pair = createPair('name', 42)
 // pair is { key: 'name'; value: number }
 
 // Useful when downstream generics depend on exact keys
+// ExtractKey checks if T has a `key` property; if so, infer captures its type into K
+// With the constraint above, pair.key is literal 'name', so ExtractKey returns 'name'
+// Without the constraint, pair.key would be string, so ExtractKey would return string
+// On unions, it distributes: ExtractKey<{key:'a'} | {key:'b'}> → 'a' | 'b'
 type ExtractKey<T> = T extends { key: infer K } ? K : never
 type Result = ExtractKey<typeof pair>  // 'name', not string
 ```
@@ -1327,6 +1331,10 @@ interface Service { fetch(): void; url: string; timeout: number }
 type DataOnly = OmitByType<Service, Function>  // { url: string; timeout: number }
 
 // Rename keys with template literal — generate getter names
+// Step 1: K in keyof T & string — iterate string keys only (filters out number/symbol)
+// Step 2: as `get${Capitalize<K>}` — remap each key ("name" → "getName", "age" → "getAge")
+// Step 3: () => T[K] — value becomes a zero-arg function returning the original type
+// Gotcha: numeric keys like 0 are silently dropped because number & string is never
 type Getters<T> = {
   [K in keyof T & string as `get${Capitalize<K>}`]: () => T[K]
 }

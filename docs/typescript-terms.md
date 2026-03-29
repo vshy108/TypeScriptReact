@@ -18,6 +18,7 @@ This guide explains the TypeScript terms covered by this repository. It focuses 
 - [Interop And Declaration Terms](#interop-and-declaration-terms)
 - [Advanced Runtime And Project Terms](#advanced-runtime-and-project-terms)
 - [Type-System Edge Cases](#type-system-edge-cases)
+- [Narrowing And Safety Patterns](#narrowing-and-safety-patterns)
 - [TypeScript 6.0 And 7.0 Notes](#typescript-60-and-70-notes)
 
 ## Core Language And Config Terms
@@ -98,6 +99,18 @@ Rule of thumb:
 - prefer `as const satisfies` for readonly config data with literal values
 - use plain `as` only when the type system is missing runtime information and you are certain the cast is correct
 - avoid using plain `as` to silence mismatches that `satisfies` would catch
+
+### never
+
+`never` is the bottom type: it represents a value that can never occur. It is the return type of functions that always throw, the type of impossible branches in exhaustive switches, and the result of intersecting incompatible types. In conditional types, `never` behaves like an empty union, which can make results look surprising.
+
+Repo examples: [../src/samples/ReducerBoardSample.tsx](../src/samples/ReducerBoardSample.tsx) (exhaustive switch), [../src/samples/ConditionalDistributivitySample.tsx](../src/samples/ConditionalDistributivitySample.tsx) (never as empty union)
+
+### generic constraints
+
+A generic constraint like `T extends SomeType` restricts a type parameter to values that satisfy a shape or supertype. `K extends string` preserves string literals through the return type instead of widening to `string`. `T extends { length: number }` accepts any value with a `length` property. Constraints keep generics both safe and precise.
+
+Repo examples: [../node-samples/ts-generic-inference/src/index.ts](../node-samples/ts-generic-inference/src/index.ts), [../src/components/FeatureGrid.tsx](../src/components/FeatureGrid.tsx)
 
 ### generic components
 
@@ -196,9 +209,27 @@ Repo example: [../node-samples/ts-generic-inference/src/index.ts](../node-sample
 
 Repo example: [../src/samples/UtilityMappedSample.tsx](../src/samples/UtilityMappedSample.tsx)
 
+### Required
+
+`Required<T>` makes every property in `T` required, removing optional modifiers.
+
+Repo example: [../src/samples/UtilityMappedSample.tsx](../src/samples/UtilityMappedSample.tsx)
+
+### Readonly
+
+`Readonly<T>` makes every top-level property in `T` readonly. For deep immutability, use a recursive `DeepReadonly<T>` pattern.
+
+Repo example: [../src/samples/UtilityMappedSample.tsx](../src/samples/UtilityMappedSample.tsx)
+
 ### Pick
 
 `Pick<T, K>` builds a type containing only the selected keys from another type.
+
+Repo example: [../src/samples/UtilityMappedSample.tsx](../src/samples/UtilityMappedSample.tsx)
+
+### Omit
+
+`Omit<T, K>` builds a type by removing the specified keys from another type. It is the complement of `Pick`.
 
 Repo example: [../src/samples/UtilityMappedSample.tsx](../src/samples/UtilityMappedSample.tsx)
 
@@ -214,6 +245,24 @@ Repo example: [../src/samples/UtilityMappedSample.tsx](../src/samples/UtilityMap
 
 Repo example: [../src/samples/UtilityMappedSample.tsx](../src/samples/UtilityMappedSample.tsx)
 
+### Parameters
+
+`Parameters<typeof fn>` extracts the parameter types of a function as a tuple.
+
+Repo example: [../src/samples/UtilityMappedSample.tsx](../src/samples/UtilityMappedSample.tsx)
+
+### Awaited
+
+`Awaited<T>` recursively unwraps `Promise` wrappers to get the resolved value type. `Awaited<Promise<Promise<string>>>` is `string`. This is what `async`/`await` return types resolve to.
+
+Repo example: [../src/samples/ConditionalDistributivitySample.tsx](../src/samples/ConditionalDistributivitySample.tsx)
+
+### NonNullable
+
+`NonNullable<T>` removes `null` and `undefined` from a union. It is useful after optional chaining or when narrowing nullable values at type boundaries.
+
+Repo example: [../src/samples/UtilityMappedSample.tsx](../src/samples/UtilityMappedSample.tsx)
+
 ### keyof
 
 `keyof T` produces the union of property names available on `T`.
@@ -222,19 +271,19 @@ Repo example: [../src/samples/UtilityMappedSample.tsx](../src/samples/UtilityMap
 
 ### conditional types
 
-Conditional types choose one result type or another based on whether a type relationship holds, usually using the `T extends U ? X : Y` form.
+Conditional types choose one result type or another based on whether a type relationship holds, using the `T extends U ? X : Y` form. When the checked type is a naked type parameter with a union, the conditional distributes: `IsString<string | number>` evaluates to `IsString<string> | IsString<number>`. Wrapping both sides in tuples (`[T] extends [U]`) prevents distribution and tests the union as a whole.
 
 Repo examples: [../src/samples/UtilityMappedSample.tsx](../src/samples/UtilityMappedSample.tsx), [../src/samples/ConditionalDistributivitySample.tsx](../src/samples/ConditionalDistributivitySample.tsx)
 
 ### mapped types
 
-Mapped types transform one object type into another by iterating over keys and computing new property shapes.
+Mapped types transform one object type into another by iterating over keys and computing new property shapes. The `as` clause can rename keys (using template literal types) or filter them (by mapping unwanted keys to `never`). Patterns like `PickByType<T, V>`, `OmitByType<T, V>`, and `Getters<T>` compose filtering and renaming as pure type-level transforms.
 
 Repo examples: [../src/samples/UtilityMappedSample.tsx](../src/samples/UtilityMappedSample.tsx), [../src/samples/MappedFilteringSample.tsx](../src/samples/MappedFilteringSample.tsx)
 
 ### infer
 
-`infer` introduces a type variable inside a conditional type so TypeScript can extract part of a larger type expression.
+`infer` introduces a type variable inside a conditional type so TypeScript can extract part of a larger type expression. `T extends (...args: never[]) => infer R` captures the return type. `T extends Promise<infer U> ? U : T` unwraps one promise level. `T extends readonly (infer E)[] ? E : never` extracts the element type. Nested `infer` works for recursive unwrapping, which is how `Awaited<T>` is built. The key benefit: derived types stay coupled to their source rather than drifting into manual copies.
 
 Repo examples: [../src/samples/UtilityMappedSample.tsx](../src/samples/UtilityMappedSample.tsx), [../src/samples/ConditionalDistributivitySample.tsx](../src/samples/ConditionalDistributivitySample.tsx), [../node-samples/ts-template-literals/src/index.ts](../node-samples/ts-template-literals/src/index.ts)
 
@@ -242,13 +291,13 @@ Repo examples: [../src/samples/UtilityMappedSample.tsx](../src/samples/UtilityMa
 
 ### tuples
 
-Tuples describe fixed-length arrays where each position has a known type and usually a known meaning.
+Tuples describe fixed-length arrays where each position has a known type and usually a known meaning. Labeled tuples add slot names like `[method: string, path: string, retries: number]` that appear in IDE tooltips and error messages. Tuples also support rest elements for variadic patterns and can be spread into function parameters.
 
 Repo example: [../src/samples/FunctionsTuplesSample.tsx](../src/samples/FunctionsTuplesSample.tsx)
 
 ### function overloads
 
-Function overloads let one function expose multiple call signatures while preserving accurate types for each call form.
+Function overloads let one function expose multiple call signatures while preserving accurate types for each call form. The implementation signature must be compatible with all overloads but is not visible to callers. TypeScript evaluates overloads top to bottom and picks the first match, so more specific signatures must come before more general ones. Prefer overloads when different inputs produce meaningfully different return types; prefer a union parameter when the return type is uniform.
 
 Repo example: [../src/samples/FunctionsTuplesSample.tsx](../src/samples/FunctionsTuplesSample.tsx)
 
@@ -272,7 +321,7 @@ Repo example: [../src/samples/FunctionsTuplesSample.tsx](../src/samples/Function
 
 ### classes
 
-Classes are TypeScript's object-oriented syntax for stateful instances, inheritance, and method-based design.
+Classes are TypeScript's object-oriented syntax for stateful instances, inheritance, and method-based design. Use classes when you need runtime behavior, encapsulation, and `instanceof` narrowing. Abstract classes enforce a subclass contract while sharing common logic. For pure data composition without runtime behavior, intersection types compose interfaces instead.
 
 Repo examples: [../src/samples/ClassesModelsSample.tsx](../src/samples/ClassesModelsSample.tsx), [../src/samples/PrivateFieldsSample.tsx](../src/samples/PrivateFieldsSample.tsx)
 
@@ -304,7 +353,7 @@ Repo example: [../src/samples/ClassesModelsSample.tsx](../src/samples/ClassesMod
 
 ### recursive types
 
-Recursive types are types that refer to themselves, directly or indirectly, to model tree-like or nested structures.
+Recursive types are types that refer to themselves, directly or indirectly, to model tree-like or nested structures. Utility types like `DeepReadonly<T>` and `DeepKeyPaths<T>` recur over every level. The main limit is the compiler's recursion depth (~50 levels), and very deep `as const` trees can exceed inference bounds.
 
 Repo example: [../src/samples/RecursiveTypesSample.tsx](../src/samples/RecursiveTypesSample.tsx)
 
@@ -336,7 +385,7 @@ Repo example: [../src/samples/RecursiveTypesSample.tsx](../src/samples/Recursive
 
 ### .d.ts authoring
 
-Declaration authoring means writing `.d.ts` files that describe the public types of a JavaScript module or library.
+Declaration authoring means writing `.d.ts` files that describe the public types of a JavaScript module or library. Use `declare module` to type an untyped JS module, declaration merging to extend existing types across files, and triple-slash references to pull in additional type packages. The `.d.ts` file must be included by the tsconfig through `rootDir`, `include`, or `typeRoots`.
 
 Repo examples: [../node-samples/ts-declarations/vendor/legacy-release-kit.d.ts](../node-samples/ts-declarations/vendor/legacy-release-kit.d.ts), [../node-samples/ts-declarations/src/release-audit.d.ts](../node-samples/ts-declarations/src/release-audit.d.ts)
 
@@ -360,7 +409,7 @@ Repo example: [../node-samples/ts-declarations/src/index.ts](../node-samples/ts-
 
 ### JSDoc-powered typing
 
-This is the practice of using JSDoc comments in JavaScript files so TypeScript can infer and check types without rewriting the code to `.ts`.
+This is the practice of using JSDoc comments in JavaScript files so TypeScript can infer and check types without rewriting the code to `.ts`. `@param` and `@returns` type function signatures, `@typedef` defines reusable type aliases, and `@type` annotates variables. With `allowJs` and `checkJs` enabled, a TypeScript file can import the JS module and get full type safety without a `.d.ts` file. This is useful for gradual migration.
 
 Repo examples: [../node-samples/ts-jsdoc-interop/src/release-notes.js](../node-samples/ts-jsdoc-interop/src/release-notes.js), [../node-samples/ts-jsdoc-interop/src/index.ts](../node-samples/ts-jsdoc-interop/src/index.ts)
 
@@ -380,7 +429,7 @@ Repo example: [../node-samples/ts-jsdoc-interop/tsconfig.json](../node-samples/t
 
 ### enums
 
-Enums are named sets of constants that compile to runtime JavaScript objects.
+Enums are named sets of constants that compile to runtime JavaScript objects. Numeric enums support reverse mapping (`DeployStage[0]` returns `'Build'`). String enums produce more readable serialized values but do not reverse-map. `const enum` inlines values at each call site and emits no runtime object, but breaks with `isolatedModules` because the enum definition is not available across module boundaries. Union types are usually lighter because they are erased entirely.
 
 Repo example: [../node-samples/ts-advanced-runtime/src/index.ts](../node-samples/ts-advanced-runtime/src/index.ts)
 
@@ -622,7 +671,7 @@ Repo example: [../src/samples/PrivateFieldsSample.tsx](../src/samples/PrivateFie
 
 ### template literal types
 
-Template literal types build string types from other string types using template syntax.
+Template literal types build string types from other string types using template syntax. `` `on${Capitalize<EventName>}` `` turns `'click' | 'focus'` into `'onClick' | 'onFocus'`. Combined with mapped types, this generates entire handler-name APIs from a list of events. The danger is cartesian explosion: `` `${A}-${B}-${C}` `` where each union has 10 members produces 1000 members, which slows the compiler or hits complexity limits.
 
 Repo example: [../node-samples/ts-template-literals/src/index.ts](../node-samples/ts-template-literals/src/index.ts)
 
@@ -691,6 +740,32 @@ Repo example: [../node-samples/ts-generic-inference/src/index.ts](../node-sample
 The `satisfies` operator verifies compatibility with a target type while keeping more precise inference from the original value.
 
 Repo examples: [../src/catalog.ts](../src/catalog.ts), [../node-samples/ts-generic-inference/src/index.ts](../node-samples/ts-generic-inference/src/index.ts)
+
+## Narrowing And Safety Patterns
+
+### discriminated unions
+
+A discriminated union is a union of object types that share a common literal-typed field (the discriminant). Checking the discriminant narrows the entire object. `type Result = { status: 'loading' } | { status: 'error'; message: string } | { status: 'success'; data: T }` makes it impossible to access `data` during loading because TypeScript narrows based on `status`. This is safer than flat objects with optional fields.
+
+Repo examples: [../src/features/release-approval-workflow/useReleaseApprovalWorkflow.ts](../src/features/release-approval-workflow/useReleaseApprovalWorkflow.ts), [../src/samples/ReducerBoardSample.tsx](../src/samples/ReducerBoardSample.tsx), [../src/samples/AsyncUiVerificationSample.tsx](../src/samples/AsyncUiVerificationSample.tsx)
+
+### branded types
+
+Branded types add a phantom property or template literal pattern that makes two structurally identical types incompatible. Template literal branding like `` `release-${number}` `` is the lightest approach: the patterns are structurally different so no phantom field is needed. For cases where the shape is identical (e.g., two `number` types), a `__brand` phantom field makes them nominal.
+
+Repo examples: [../src/features/release-approval-workflow/types.ts](../src/features/release-approval-workflow/types.ts), [../src/samples/ReducerBoardSample.tsx](../src/samples/ReducerBoardSample.tsx)
+
+### assertNever
+
+`assertNever` is an exhaustive checking pattern where the default branch of a `switch` calls a function typed as `(value: never) => never`. If a new union member is added without a corresponding case, TypeScript errors because the new member is not assignable to `never`.
+
+Repo example: [../src/samples/ReducerBoardSample.tsx](../src/samples/ReducerBoardSample.tsx)
+
+### type guards
+
+A type guard is a function with a return type like `value is SomeType`. After a truthy check, TypeScript narrows the variable inside the guarded branch. Built-in guards include `typeof`, `instanceof`, and `in`. Custom guards are useful at API boundaries where data arrives as `unknown`.
+
+Repo examples: [../src/features/release-approval-workflow/client.ts](../src/features/release-approval-workflow/client.ts), [../src/App.tsx](../src/App.tsx)
 
 ## TypeScript 6.0 And 7.0 Notes
 

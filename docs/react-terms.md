@@ -15,6 +15,7 @@ This guide explains the React terms covered by this repository. It is written fo
 - [React DOM Terms](#react-dom-terms)
 - [React Server Terms](#react-server-terms)
 - [Compiler And Lint Terms](#compiler-and-lint-terms)
+- [Accessibility Terms](#accessibility-terms)
 - [Edge-Case Terms](#edge-case-terms)
 
 ## Core Client Terms
@@ -33,7 +34,7 @@ Repo example: [../src/App.tsx](../src/App.tsx)
 
 ### useActionState
 
-`useActionState()` models an async action as state. Instead of juggling separate loading, success, and error flags, you return the next action state from one function and React gives you the current result plus a pending flag.
+`useActionState()` models an async action as state. Instead of juggling separate loading, success, and error flags, you return the next action state from one function and React gives you the current result plus a pending flag. When paired with `useOptimistic`, the action handles the real submission lifecycle while optimistic state provides instant UI feedback. The two paths are intentionally independent: the action re-parses `FormData` from scratch rather than receiving the optimistic draft, so the authoritative save is correct even if the optimistic path throws.
 
 Repo example: [../src/App.tsx](../src/App.tsx)
 
@@ -63,7 +64,7 @@ Repo example: [../src/App.tsx](../src/App.tsx)
 
 ### useSyncExternalStore
 
-`useSyncExternalStore()` is the correct hook for reading data from a store that lives outside React state. This repo uses it for a small external release snapshot instead of storing that snapshot in component-owned state.
+`useSyncExternalStore()` connects React to state that lives outside its tree, like browser online status or a module-level store. It requires a `subscribe` function that adds a listener and returns a cleanup function, a `getSnapshot` function that returns the current immutable snapshot, and optionally `getServerSnapshot` for SSR safety. React reads a consistent snapshot on each render, preventing tearing during concurrent updates. When browser state changes, the store creates a new snapshot and calls every listener, which triggers consumers to re-render.
 
 Repo examples: [../src/App.tsx](../src/App.tsx), [../src/releaseStore.ts](../src/releaseStore.ts)
 
@@ -293,7 +294,7 @@ Repo example: [../src/hydration/bootHydrationSample.tsx](../src/hydration/bootHy
 
 ### hydration mismatch
 
-A hydration mismatch happens when server-rendered HTML does not match what the client renders during hydration. React then has to warn, recover, or replace markup depending on the case.
+A hydration mismatch happens when server-rendered HTML does not match what the client renders during hydration. React then has to warn, recover, or replace markup depending on the case. Common causes include `Date.now()` or `Math.random()` during render, `typeof window` branching that produces different markup, and environment-sensitive CSS classes. The fix is to defer client-only values to `useEffect` (which runs after hydration) or use `suppressHydrationWarning` on individual elements where mismatch is intentional. The `onRecoverableError` option on `hydrateRoot` can log mismatch details.
 
 Repo example: [../src/samples/HydrationMismatchDemo.ts](../src/samples/HydrationMismatchDemo.ts)
 
@@ -319,7 +320,7 @@ Repo examples: [../src/releaseStore.ts](../src/releaseStore.ts), [../src/App.tsx
 
 ### Activity
 
-`<Activity>` is a React boundary that controls whether a subtree is visible or hidden without reducing the problem to simple conditional rendering. This repo pairs it with transitions to explain visibility and scheduling together.
+`<Activity>` is a React boundary that controls whether a subtree is visible or hidden without reducing the problem to simple conditional rendering. When `mode` is `"hidden"`, the subtree stops painting and laying out, but React keeps its state alive so revealing it again is instant without remounting or refetching. It is useful for tabs, off-screen panels, and priority dashboards. This repo pairs it with transitions to explain visibility and scheduling together.
 
 Repo example: [../src/samples/ActivityTransitionSample.tsx](../src/samples/ActivityTransitionSample.tsx)
 
@@ -331,7 +332,7 @@ Repo example: [../src/samples/ActivityTransitionSample.tsx](../src/samples/Activ
 
 ### renderToPipeableStream
 
-`renderToPipeableStream()` is the Node-stream SSR API for progressively streaming HTML to the client.
+`renderToPipeableStream()` streams HTML chunks as data becomes ready, so the client sees fallback content immediately and replacement content arrives later via inline `<script>` tags. This lowers time-to-first-byte compared to `renderToString`, which blocks until the entire tree is ready. Suspense boundaries control which parts stream and which parts show fallbacks.
 
 Repo example: [../server-samples/react-streaming-ssr/src/runAllModes.tsx](../server-samples/react-streaming-ssr/src/runAllModes.tsx)
 
@@ -457,6 +458,44 @@ This lint rule supports reliable fast refresh behavior by encouraging files to e
 
 Repo example: [../src/samples/ReactLintRulesDemo.ts](../src/samples/ReactLintRulesDemo.ts)
 
+## Accessibility Terms
+
+### accessible modal dialog
+
+An accessible modal uses `role="dialog"`, `aria-labelledby`, and `aria-modal="true"`. On open, focus moves into the dialog and Tab is trapped so it cycles only through the dialog's controls. On Escape or close, focus returns to the trigger button. No library is needed: the focus trap is a `querySelectorAll` of focusable selectors plus two `preventDefault` conditions for Tab wrapping.
+
+Repo example: [../src/samples/AccessibleDialogSample.tsx](../src/samples/AccessibleDialogSample.tsx)
+
+### accessible custom listbox
+
+A custom listbox uses `role="listbox"` and `role="option"` with `aria-activedescendant` pointing to the highlighted option's ID. Arrow keys, Home, and End navigate, Enter and Space select. All navigation works without a pointer, and screen readers announce the active option through the `aria-activedescendant` binding.
+
+Repo example: [../src/samples/AccessibleListboxSample.tsx](../src/samples/AccessibleListboxSample.tsx)
+
+### accessible form errors
+
+Each invalid field should have `aria-invalid="true"` and `aria-describedby` pointing at its specific error message. A summary with `role="alert"` announces the failure immediately on submit. Focus should move to the first invalid field.
+
+Repo example: [../src/samples/AccessibleFormErrorsSample.tsx](../src/samples/AccessibleFormErrorsSample.tsx)
+
+### AbortController cleanup
+
+The cleanup function returned from `useEffect` is the primary cancellation mechanism. Creating an `AbortController` per effect invocation and calling `controller.abort()` in cleanup cancels in-flight `fetch` requests when deps change. Always check for `AbortError` in the catch block to avoid logging expected cancellations.
+
+Repo examples: [../src/samples/DebouncedSearchRaceSample.tsx](../src/samples/DebouncedSearchRaceSample.tsx), [../src/features/release-approval-workflow/useReleaseApprovalWorkflow.ts](../src/features/release-approval-workflow/useReleaseApprovalWorkflow.ts)
+
+### debouncing and race conditions
+
+Debouncing delays a network request until the user pauses typing, using `setTimeout` in an effect with cleanup. Combined with `AbortController`, it prevents stale responses from overwriting the current result. Without cleanup, a slow response from an older query can silently land after a newer one has already resolved.
+
+Repo example: [../src/samples/DebouncedSearchRaceSample.tsx](../src/samples/DebouncedSearchRaceSample.tsx)
+
+### onRecoverableError
+
+`onRecoverableError` is an option on `hydrateRoot` (and `createRoot`) that receives errors React recovers from, such as hydration mismatches. It is useful for logging mismatch details in production without crashing the app.
+
+Repo example: [../src/hydration/HydrationHintsApp.tsx](../src/hydration/HydrationHintsApp.tsx)
+
 ## Edge-Case Terms
 
 ### React 18 batching
@@ -503,7 +542,7 @@ Repo example: [../src/samples/ContextIdentitySample.tsx](../src/samples/ContextI
 
 ### ErrorBoundary class
 
-An Error Boundary is still implemented as a class component in today's stable React APIs. It catches rendering errors below it and renders fallback UI instead of crashing the whole tree.
+An Error Boundary is still implemented as a class component in today's stable React APIs. It catches rendering errors below it and renders fallback UI instead of crashing the whole tree. `getDerivedStateFromError` captures the error and derives fallback state. A reset handler clears the error and lets children attempt to render again. Error boundaries catch thrown errors from render, not from event handlers or async code.
 
 Repo example: [../src/samples/ErrorBoundarySample.tsx](../src/samples/ErrorBoundarySample.tsx)
 
