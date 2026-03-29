@@ -44,6 +44,7 @@ A quick-reference card for the React APIs and patterns demonstrated by this repo
 | `forwardRef(Component)` | (Pre-19) Forward a ref to an inner element |
 | `Fragment` / `<>...</>` | Group children without extra DOM nodes |
 | `Profiler` | Measure render timing of a subtree |
+| `Activity` | Hide/show a subtree while preserving its React state |
 
 ## Boundaries
 
@@ -193,6 +194,68 @@ Force a component to remount by changing its `key`:
 ```
 
 When `userId` changes, React destroys the old `Profile` and creates a fresh one, resetting all internal state.
+
+## Effect Cleanup & AbortController
+
+```tsx
+useEffect(() => {
+  const controller = new AbortController();
+  fetch(url, { signal: controller.signal })
+    .then(res => res.json())
+    .then(data => setData(data))
+    .catch(err => {
+      if (err.name !== 'AbortError') throw err;
+    });
+  return () => controller.abort();
+}, [url]);
+```
+
+**Key points:**
+- The cleanup function is the primary cancellation mechanism in effects.
+- `AbortController` cancels in-flight `fetch` requests when deps change.
+- Always check for `AbortError` to avoid logging expected cancellations.
+- Avoid synchronous `setState` in effect bodies — use `setTimeout(..., 0)` or `queueMicrotask` to defer when needed.
+
+## React Compiler Directives
+
+| Directive | Effect |
+|---|---|
+| `"use memo"` | Opt a component into automatic memoization by the React Compiler |
+| `"use no memo"` | Opt a component out of the React Compiler |
+
+The compiler auto-inserts `useMemo` / `useCallback` at build time so you write plain code. Requires a Babel or SWC plugin.
+
+## Server Component Directives
+
+| Directive | Meaning |
+|---|---|
+| `'use client'` | Marks a file as a client boundary — can use hooks and browser events |
+| `'use server'` | Marks functions as server actions callable from the client |
+
+In an RSC framework, components are **server components by default**. Only add `'use client'` when the component needs interactivity.
+
+## Activity Component
+
+```tsx
+<Activity mode={isVisible ? 'visible' : 'hidden'}>
+  <ExpensivePanel />
+</Activity>
+```
+
+- Hidden activities **preserve React state** but skip paint and layout cost.
+- Useful for tabs, off-screen panels, and content that should remain warm.
+- Switching to `'visible'` reveals the subtree instantly without remounting.
+
+## Accessibility Quick Reference
+
+| Pattern | Key Attributes |
+|---|---|
+| Modal dialog | `role="dialog"`, `aria-labelledby`, `aria-modal="true"`, focus trap |
+| Custom listbox | `role="listbox"`, `role="option"`, `aria-activedescendant` |
+| Form errors | `aria-invalid`, `aria-describedby`, `role="alert"` for summary |
+| Live region | `aria-live="polite"` or `aria-live="assertive"` |
+
+**Focus management:** move focus into a dialog on open, return focus to the trigger on close. Escape should dismiss.
 
 ## Rules Of Hooks
 

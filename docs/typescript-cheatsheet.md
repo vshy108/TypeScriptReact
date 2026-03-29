@@ -319,9 +319,75 @@ const usd = 100 as USD;
 // NoInfer<T> — prevent inference from a specific position
 function createFSM<S extends string>(initial: NoInfer<S>, states: S[]) { ... }
 
-// DeepReadonly
+// DeepReadonly (recursive type)
 type DeepReadonly<T> = { readonly [K in keyof T]: DeepReadonly<T[K]> };
 
 // Record from union
 type Flags = Record<'dark' | 'compact' | 'rtl', boolean>;
 ```
+
+## Recursive Types
+
+```ts
+// Tree-shaped data
+interface TreeNode {
+  label: string;
+  children: TreeNode[];
+}
+
+// Recursive utility — deep key paths
+type DeepKeyPaths<T> = T extends object
+  ? { [K in keyof T & string]: K | `${K}.${DeepKeyPaths<T[K]>}` }[keyof T & string]
+  : never;
+```
+
+**Gotcha:** Deeply recursive types can hit the compiler's depth limit. Keep recursion bounded or add a depth counter type parameter.
+
+## Declaration Files & Module Augmentation
+
+```ts
+// vendor.d.ts — type an untyped JS module
+declare module 'legacy-lib' {
+  export function doStuff(input: string): number;
+}
+
+// Module augmentation — extend an existing module
+declare module 'express' {
+  interface Request {
+    userId?: string;
+  }
+}
+
+// Global augmentation
+declare global {
+  interface Window {
+    analytics: { track(event: string): void };
+  }
+}
+```
+
+Triple-slash `/// <reference types="..." />` pulls in additional declarations before type checking.
+
+## JSDoc Typing (allowJs + checkJs)
+
+```js
+// @ts-check
+
+/** @type {string} */
+let name = 'Alice';
+
+/**
+ * @param {number} a
+ * @param {number} b
+ * @returns {number}
+ */
+function add(a, b) { return a + b; }
+
+/** @typedef {{ id: string; name: string }} User */
+/** @type {User} */
+const user = { id: '1', name: 'Alice' };
+```
+
+- `allowJs` lets TypeScript compile `.js` files.
+- `checkJs` turns on type checking for `.js` files.
+- A TypeScript file can import a JSDoc-annotated JS module and get full type safety without a `.d.ts`.
