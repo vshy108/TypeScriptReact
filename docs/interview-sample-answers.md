@@ -1480,24 +1480,33 @@ const price = usd(9.99)       // price is USD
 
 I would use classes when I need runtime behavior, encapsulation, and `instanceof` narrowing. Abstract classes are useful for enforcing a subclass contract while sharing common logic. For pure data composition without runtime behavior, intersection types compose interfaces. [../src/samples/ClassesModelsSample.tsx](../src/samples/ClassesModelsSample.tsx) shows both the abstract class hierarchy and the intersection-based view model.
 
+The key difference between `abstract class` and a regular `class`: an abstract class cannot be instantiated directly — only subclasses can. Members marked `abstract` have no body; the subclass must provide the implementation. A regular class can be instantiated and all members must have bodies. Both are runtime constructs (they emit real JavaScript constructor functions), unlike `interface` which is erased. The `abstract` keyword itself is compile-time enforcement — at runtime the emitted JS is just a normal class, but TypeScript blocks `new ReleasePlugin()` at compile time.
+
 The abstract `ReleasePlugin` base class in the sample enforces that every subclass provides a `cadence` string and a `run()` method, while sharing a base `summary()` method. Subclasses like `NightlyPlugin` and `WeeklyPlugin` override `cadence` and `run()` but inherit `summary()`. This is useful when polymorphism matters at runtime (e.g., iterating `plugins.map(p => p.run())` where each invocation dispatches to the right subclass). For pure data shapes, the sample composes interfaces with intersection types: `type ReleaseViewModel = PluginSummary & BuildMetadata & { releaseDate: string }` merges three shapes without any class hierarchy. Choose classes for behavior + narrowing, interfaces + intersections for data composition.
 
 ```ts
-// Abstract class — enforces subclass contract, shares common logic
+// Abstract class — cannot be instantiated directly, enforces subclass contract
 abstract class ReleasePlugin {
-  abstract readonly cadence: string         // subclass must define
-  abstract run(): PluginRunResult           // subclass must implement
-  summary(): string {                       // shared base method
+  abstract readonly cadence: string         // no value — subclass must define
+  abstract run(): PluginRunResult           // no body — subclass must implement
+  summary(): string {                       // concrete method — shared by all subclasses
     return `${this.cadence}: ${this.constructor.name}`
   }
 }
+// new ReleasePlugin()                      // ❌ compile error — cannot instantiate abstract class
 
+// Regular class — can be instantiated, must implement all abstract members
 class NightlyPlugin extends ReleasePlugin {
   readonly cadence = 'nightly'              // satisfies abstract property
   run(): PluginRunResult { /* ... */ }      // satisfies abstract method
 }
+const plugin = new NightlyPlugin()          // ✅ regular class can be instantiated
+plugin.summary()                            // inherited from abstract base
 
-// instanceof narrowing works at runtime
+// At runtime, abstract class emits a normal JS constructor function
+// The "abstract" restriction is compile-time only — JS has no abstract keyword
+
+// instanceof narrowing works at runtime (both abstract and regular classes)
 function describe(plugin: ReleasePlugin) {
   if (plugin instanceof NightlyPlugin) {
     plugin.cadence  // narrowed to 'nightly' (literal)
