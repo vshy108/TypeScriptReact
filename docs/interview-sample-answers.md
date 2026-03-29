@@ -1221,15 +1221,17 @@ type Config = ReturnOf<typeof parseConfig>   // { port: number; host: string }
 
 I prefer overloads when different call shapes should produce meaningfully different typing rules or return types. If the implementation and the return type are uniform, a union parameter is usually simpler. [../src/samples/FunctionsTuplesSample.tsx](../src/samples/FunctionsTuplesSample.tsx) and [../node-samples/ts-generic-inference/src/index.ts](../node-samples/ts-generic-inference/src/index.ts) also show the key caveat: overload order matters because TypeScript picks the first compatible signature.
 
-Overloads let you express "if you pass a string, you get a number; if you pass a number, you get a string" in a way that a single union signature cannot. The implementation signature must be compatible with all overloads but is not visible to callers. The FunctionsTuples sample also shows call signatures on interfaces (for function objects with properties) and construct signatures (for classes that act as constructors). The key caveat: TypeScript evaluates overloads top to bottom and picks the first match, so more specific signatures must come before more general ones.
+Overloads let you express "if you pass a string, you get a number; if you pass a number, you get a string" in a way that a single union signature cannot. The implementation signature must be compatible with all overloads but is not visible to callers. The FunctionsTuples sample also shows call signatures on interfaces (for function objects with properties) and construct signatures (for classes that act as constructors). The key caveat: TypeScript evaluates overloads top to bottom and picks the first match, so more specific signatures must come before more general ones. Overloads are a compile-time-only feature: the declaration signatures guide the type checker but are completely erased in the emitted JavaScript. At runtime, only the single implementation function exists — the engine has no concept of multiple signatures. This is the same compile-time vs runtime split as `private` (erased) vs `#private` (enforced by the engine): overload declarations exist only for the checker, and JavaScript runs the implementation body directly.
 
 ```ts
 // Overloads — different inputs produce different return types
-function parse(input: string): number        // overload 1: string → number
-function parse(input: number): string        // overload 2: number → string
-function parse(input: string | number): string | number {  // implementation (hidden)
+// Declaration signatures are compile-time only — erased in emitted JS
+function parse(input: string): number        // overload 1: string → number (compile-time)
+function parse(input: number): string        // overload 2: number → string (compile-time)
+function parse(input: string | number): string | number {  // implementation (runtime)
   return typeof input === 'string' ? Number(input) : String(input)
 }
+// Emitted JS has only ONE function: function parse(input) { ... }
 const a = parse('42')    // number (overload 1 matched)
 const b = parse(42)      // string (overload 2 matched)
 
