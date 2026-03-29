@@ -218,12 +218,15 @@ enum Color { Red, Green, Blue }
 ## Function Overloads
 
 ```ts
-function parse(input: string): number;
-function parse(input: number): string;
-function parse(input: string | number): string | number {
+function parse(input: string): number;          // declaration (compile-time only)
+function parse(input: number): string;          // declaration (compile-time only)
+function parse(input: string | number): string | number {  // implementation (runtime)
   return typeof input === 'string' ? Number(input) : String(input);
 }
+// Emitted JS has only the implementation — declaration signatures are erased
 ```
+
+**Key:** Declaration signatures guide the type checker but are completely erased in emitted JS. At runtime only the single implementation function exists.
 
 ## Classes
 
@@ -247,11 +250,13 @@ class Point {
   constructor(public x: number, public y: number) {}
 }
 
-// Abstract class
+// Abstract class — cannot be instantiated directly (compile-time enforcement)
 abstract class Shape {
-  abstract area(): number;
-  describe() { return `Area: ${this.area()}`; }
+  abstract area(): number;          // no body — subclass must implement
+  describe() { return `Area: ${this.area()}`; }  // concrete — inherited by subclasses
 }
+// new Shape()  // ❌ compile error — cannot instantiate abstract class
+// At runtime the emitted JS is a normal class — "abstract" is erased
 ```
 
 ## Tuples
