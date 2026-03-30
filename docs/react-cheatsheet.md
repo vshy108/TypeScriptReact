@@ -105,6 +105,13 @@ return <Content data={data} />;
 
 **Gotcha:** `key={index}` causes bugs when items are reordered, inserted, or deleted.
 
+**Key fallbacks** (in order of preference):
+1. A natural unique field from the data (`name`, `slug`, `email`)
+2. Generate IDs at data creation time: `rawItems.map(item => ({ ...item, id: crypto.randomUUID() }))`
+3. `index` as a last resort — only safe for static lists that are never reordered, filtered, or inserted into
+
+**Gotcha:** `useId` cannot provide list keys. It generates one ID per component instance for accessibility attributes (`id`/`htmlFor`), not per list item. Hooks can't be called inside a `map` callback (violates Rules of Hooks), and React needs the `key` *before* mounting the component — `useId` runs *after* mount.
+
 ## Event Handling
 
 ```tsx
@@ -118,6 +125,14 @@ function handleClick(e: React.MouseEvent<HTMLButtonElement>) {
 }
 <button onClick={handleClick}>Go</button>
 ```
+
+**`preventDefault` rule:** call it when the element has a native browser default for that event — it doesn't matter whether the handler is inline or extracted.
+
+| Need `preventDefault` | No default to prevent |
+|---|---|
+| `<form onSubmit>` (page reload) | `<button type="button" onClick>` |
+| `<a href onClick>` (navigation) | `<div onClick>`, `<span onClick>` |
+| `<input type="checkbox" onChange>` (toggle) | Custom components with no native behavior |
 
 ## State Update Patterns
 
@@ -133,6 +148,83 @@ setState(prev => ({ ...prev, name: 'Alice' }));
 ```
 
 **Gotcha:** Capturing state in `setTimeout` or `Promise.then` reads the value from the render when the closure was created. Use a functional updater or a ref to read the latest value.
+
+### Immutable Updates for Objects & Arrays
+
+React uses **reference equality** (`Object.is`) to decide whether to re-render. Mutating an object/array in place keeps the same reference, so React skips the re-render.
+
+```tsx
+// BUG — mutates in place, same reference, no re-render
+items.push(4);
+setItems(items);
+
+// FIX — always create a new reference
+setItems([...items, 4]);
+```
+
+**Array patterns:**
+
+| Avoid (mutates) | Use instead (returns new) |
+|---|---|
+| `push`, `unshift` | `[...arr, item]`, `[item, ...arr]` |
+| `splice` | `filter`, `toSpliced` (ES2023) |
+| `sort`, `reverse` | `toSorted`, `toReversed` (ES2023) |
+| `arr[i] = x` | `map` or `with` (ES2023) |
+
+**Nested object patterns:**
+
+```tsx
+// Shallow update
+setUser({ ...user, age: 26 });
+
+// Nested update — must copy every level you touch
+setState({
+  ...state,
+  user: { ...state.user, address: { ...state.user.address, city: 'LA' } },
+});
+```
+
+**Deep nesting:** use Immer's `useImmer` to write mutation-style code that produces new references under the hood:
+
+```tsx
+import { useImmer } from 'use-immer';
+const [state, updateState] = useImmer(initialState);
+updateState(draft => { draft.user.address.city = 'LA'; });
+```
+
+## useImperativeHandle
+
+Customizes what a parent gets through a `ref` — expose a controlled API instead of the raw DOM node.
+
+```tsx
+interface ModalHandle {
+  open: () => void;
+  close: () => void;
+}
+
+// React 19: ref is a regular prop, no forwardRef needed
+function Modal({ children, ref }: { children: React.ReactNode; ref?: React.Ref<ModalHandle> }) {
+  const dialogRef = useRef<HTMLDialogElement>(null);
+
+  useImperativeHandle(ref, () => ({
+    open: () => dialogRef.current?.showModal(),
+    close: () => dialogRef.current?.close(),
+  }));
+
+  return <dialog ref={dialogRef}>{children}</dialog>;
+}
+
+// Parent only sees open() and close(), not the raw <dialog> element
+const modalRef = useRef<ModalHandle>(null);
+<Modal ref={modalRef}><p>Hello</p></Modal>
+modalRef.current?.open();
+```
+
+**Key points:**
+- Takes an optional 3rd argument (dependency array) — recomputes the handle only when deps change
+- If an exposed method reads state, that state **must** be in the dependency array or callers get stale values
+- In React 19, `ref` is a regular prop — `forwardRef` is no longer needed
+- Prefer declarative props (`isOpen`) over imperative handles when possible; use `useImperativeHandle` for actions like `focus()`, `scrollTo()`, `open()` that don't map cleanly to props
 
 ## Common Decision Cheat Table
 
