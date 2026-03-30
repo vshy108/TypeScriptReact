@@ -100,6 +100,34 @@ function assertNonNull<T>(val: T): asserts val is NonNullable<T> {
 }
 ```
 
+## typeof vs keyof
+
+```ts
+// typeof — extracts the type from a runtime value
+const config = { port: 3000, host: 'localhost' };
+type Config = typeof config;  // { port: number; host: string }
+
+const fn = (x: number) => x > 0;
+type Fn = typeof fn;          // (x: number) => boolean
+
+// keyof — extracts the union of property keys from a type
+interface User { id: string; name: string; age: number }
+type UserKey = keyof User;    // 'id' | 'name' | 'age'
+
+// Combined — the most common real-world pattern
+const THEMES = { light: '#fff', dark: '#000' } as const;
+type ThemeKey = keyof typeof THEMES;  // 'light' | 'dark'
+```
+
+| | `typeof` | `keyof` |
+|---|---|---|
+| Operand | A runtime value | A type |
+| Returns | The type of that value | Union of property key names |
+| Use when | You have a value and need its type | You have a type and need its keys |
+| Combine as | `keyof typeof value` to get keys from a value | — |
+
+**Gotcha:** `typeof` in a type position (TypeScript, compile-time, erased) is different from `typeof` in a value position (JavaScript, runtime, returns `"string"`, `"number"`, etc.).
+
 ## Generics
 
 ```ts
@@ -183,6 +211,64 @@ type PickByType<T, V> = { [K in keyof T as T[K] extends V ? K : never]: T[K] };
 // Remove readonly
 type Mutable<T> = { -readonly [K in keyof T]: T[K] };
 ```
+
+### Mapped Type Modifiers (`+` / `-`)
+
+```ts
+// -readonly — remove readonly
+type Mutable<T> = { -readonly [K in keyof T]: T[K] };
+
+// +readonly — add readonly (same as bare `readonly`)
+type Locked<T> = { +readonly [K in keyof T]: T[K] };
+
+// -? — remove optional (make required) — this is what Required<T> does
+type Concrete<T> = { [K in keyof T]-?: T[K] };
+
+// +? — add optional (same as bare `?`) — this is what Partial<T> does
+type Relaxed<T> = { [K in keyof T]+?: T[K] };
+```
+
+`+` is the default and can be omitted. `-` is the interesting prefix — it *removes* a modifier.
+
+## Type-Level Operators
+
+| Operator | Position | Purpose |
+|---|---|---|
+| `typeof` | Type | Extract the type from a runtime value |
+| `keyof` | Type | Union of property key names |
+| `T[K]` | Type | Indexed access — look up property type |
+| `T[number]` | Type | Extract array/tuple element type |
+| `&` | Type | Intersection |
+| `\|` | Type | Union |
+| `is` | Return type | Type predicate (`x is string`) |
+| `asserts` | Return type | Assertion function (`asserts x is T`) |
+| `infer` | Conditional type | Extract/capture a type variable |
+| `in` | Mapped type | Iterate over keys |
+| `as` | Mapped type / expression | Key remapping / type assertion |
+| `-readonly` / `-?` | Mapped type | Remove a modifier |
+| `!` | Value expression | Non-null assertion (unsafe — use sparingly) |
+
+### Indexed Access Types
+
+```ts
+type User = { name: string; age: number; address: { city: string } };
+
+type Name = User['name'];              // string
+type NameOrAge = User['name' | 'age']; // string | number
+type City = User['address']['city'];   // string — chained access
+
+// T[number] — extract element type from array/tuple
+const ROLES = ['admin', 'user', 'guest'] as const;
+type Role = (typeof ROLES)[number];    // 'admin' | 'user' | 'guest'
+```
+
+### Non-Null Assertion (`!`)
+
+```ts
+const el = document.getElementById('app')!;  // HTMLElement, not HTMLElement | null
+```
+
+**Danger:** lies to the compiler — crashes at runtime if actually `null`. Prefer narrowing (`if (el)`) or assertion functions when possible.
 
 ## Conditional Types
 
@@ -288,6 +374,12 @@ const [a, b]: Pair = ['hello', 42];
 | Throw-on-invalid narrowing | Assertion function (`asserts x is T`) |
 | Lightweight domain set | Union literal (`'a' \| 'b'`) |
 | Runtime enum object needed | `enum` |
+| Get type from a value | `typeof value` |
+| Get keys from a type | `keyof Type` |
+| Get keys from a value | `keyof typeof value` |
+| Look up a property type | `T['key']` |
+| Get array element type | `T[number]` |
+| Remove readonly / optional in mapped type | `-readonly` / `-?` |
 
 ## Strict Compiler Options Worth Knowing
 
