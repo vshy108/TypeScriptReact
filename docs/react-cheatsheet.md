@@ -21,18 +21,23 @@ A quick-reference card for the React APIs and patterns demonstrated by this repo
 | `useId` | Deterministic unique id for SSR | Accessible `id` / `htmlFor` pairs |
 | `useDebugValue` | Label a custom hook in DevTools | Shared hooks where introspection helps |
 
+## React 18 Hooks
+
+| Hook | One-Liner | When To Reach For It |
+|---|---|---|
+| `useDeferredValue` | Lagging copy of a value | Search/filter text driving expensive derived UI |
+| `useTransition` | Mark a state update as non-urgent | Category changes, tab switches that can wait |
+| `useSyncExternalStore` | Subscribe to a non-React store | Redux-like stores, browser APIs, shared modules |
+
 ## React 19 Hooks
 
 | Hook | One-Liner | When To Reach For It |
 |---|---|---|
 | `useActionState` | Async action → state + pending flag | Form submissions, saves with loading/error states |
 | `useOptimistic` | Show the expected next UI immediately | Instant feedback while an action is in-flight |
-| `useDeferredValue` | Lagging copy of a value | Search/filter text driving expensive derived UI |
-| `useTransition` | Mark a state update as non-urgent | Category changes, tab switches that can wait |
-| `useEffectEvent` | Stable callback that reads latest values | Long-lived effects that must not re-subscribe on every render |
-| `useSyncExternalStore` | Subscribe to a non-React store | Redux-like stores, browser APIs, shared modules |
 | `use` | Read a promise or context during render | Resource fetching inside Suspense boundaries |
 | `useFormStatus` | Read pending state of a parent `<form>` | Disable submit buttons while a form action runs |
+| `useEffectEvent` *(experimental)* | Stable callback that reads latest values | Long-lived effects that must not re-subscribe on every render |
 
 ## Component Utilities
 
@@ -41,7 +46,7 @@ A quick-reference card for the React APIs and patterns demonstrated by this repo
 | `memo(Component)` | Skip re-render when props are shallow-equal |
 | `lazy(() => import(...))` | Code-split a component; pair with `Suspense` |
 | `createContext(default)` | Create a shared value channel |
-| `forwardRef(Component)` | (Pre-19) Forward a ref to an inner element |
+| `forwardRef(Component)` | *(deprecated in React 19)* Forward a ref to an inner element — use `ref` as a regular prop instead |
 | `Fragment` / `<>...</>` | Group children without extra DOM nodes |
 | `Profiler` | Measure render timing of a subtree |
 | `Activity` | Hide/show a subtree while preserving its React state |
@@ -93,6 +98,8 @@ return (
 if (!data) return <Spinner />;
 return <Content data={data} />;
 ```
+
+**Gotcha:** `{count && <Items />}` renders `0` on screen when `count` is `0`, because `0` is a falsy but valid JSX node. Use `{count > 0 && <Items />}` or a ternary instead.
 
 ## Lists
 
@@ -148,6 +155,24 @@ setState(prev => ({ ...prev, name: 'Alice' }));
 ```
 
 **Gotcha:** Capturing state in `setTimeout` or `Promise.then` reads the value from the render when the closure was created. Use a functional updater or a ref to read the latest value.
+
+### Automatic Batching
+
+React 18+ batches **all** `setState` calls into a single re-render — including inside `setTimeout`, promises, and native event listeners. Pre-18, only React event handlers were batched.
+
+```tsx
+// One re-render, not three (React 18+)
+setTimeout(() => {
+  setA(1);
+  setB(2);
+  setC(3);
+}, 100);
+
+// Opt out with flushSync if you truly need intermediate renders (rare)
+import { flushSync } from 'react-dom';
+flushSync(() => setA(1)); // re-renders immediately
+setB(2);                  // batched into next render
+```
 
 ### Immutable Updates for Objects & Arrays
 
@@ -236,7 +261,7 @@ modalRef.current?.open();
 | Stable callback for memoized child | `useCallback` |
 | Skip child re-render on same props | `memo` |
 | Effect that subscribes once | `useEffect` |
-| Effect that reads latest props | `useEffectEvent` inside `useEffect` |
+| Effect that reads latest props | `useEffectEvent` *(experimental)* inside `useEffect` |
 | Measure DOM before paint | `useLayoutEffect` |
 | Defer expensive filter/search | `useDeferredValue` |
 | Mark update as non-urgent | `useTransition` |
@@ -276,6 +301,74 @@ modalRef.current?.open();
 | `renderToStaticMarkup` | Node | No (no React ids) |
 | `prerender` | Web/Edge | Static pre-render |
 | `prerenderToNodeStream` | Node | Static pre-render |
+
+## Custom Hooks
+
+Extract reusable logic into functions that start with `use`. They follow all the same Rules of Hooks.
+
+```tsx
+function useLocalStorage<T>(key: string, initialValue: T) {
+  const [value, setValue] = useState<T>(() => {
+    const stored = localStorage.getItem(key);
+    return stored !== null ? JSON.parse(stored) : initialValue;
+  });
+
+  useEffect(() => {
+    localStorage.setItem(key, JSON.stringify(value));
+  }, [key, value]);
+
+  return [value, setValue] as const;
+}
+```
+
+**Key points:**
+- Must start with `use` — this is how React and linters identify hooks
+- Can call other hooks inside
+- Each call site gets its own independent state — custom hooks share *logic*, not *state*
+- Use `useDebugValue` to label the hook's value in React DevTools
+
+## useRef Latest-Value Pattern
+
+When an effect or callback needs the latest value without re-subscribing:
+
+```tsx
+function useLatest<T>(value: T) {
+  const ref = useRef(value);
+  ref.current = value;
+  return ref;
+}
+
+// Usage: stable interval that always reads current count
+function Counter() {
+  const [count, setCount] = useState(0);
+  const countRef = useLatest(count);
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      console.log('Latest count:', countRef.current);
+    }, 1000);
+    return () => clearInterval(id);
+  }, []); // no need to list count — ref.current is always fresh
+}
+```
+
+**When to use:** effects, timers, or event listeners that must not re-subscribe when a value changes.
+**React 19 alternative:** `useEffectEvent` *(experimental)* solves the same problem without a manual ref.
+
+## StrictMode
+
+```tsx
+<StrictMode>
+  <App />
+</StrictMode>
+```
+
+Dev-only behaviors (no effect in production):
+- **Double-invokes** render functions, effects, and reducers to surface impure logic
+- **Warns** about deprecated APIs (`findDOMNode`, legacy context, string refs)
+- Effects run → cleanup → run again on mount to verify cleanup works correctly
+
+**Gotcha:** if your effect runs twice and breaks, it has a cleanup bug — fix the cleanup, don't remove StrictMode.
 
 ## Key Reset Trick
 
@@ -340,14 +433,88 @@ In an RSC framework, components are **server components by default**. Only add `
 
 ## Accessibility Quick Reference
 
+**First rule:** prefer native HTML elements (`<button>`, `<dialog>`, `<nav>`, `<input type="checkbox">`). They come with ARIA semantics, keyboard handling, and focus management built in. Only reach for ARIA when building something HTML doesn't have natively.
+
+### Common Widget Patterns
+
 | Pattern | Key Attributes |
 |---|---|
 | Modal dialog | `role="dialog"`, `aria-labelledby`, `aria-modal="true"`, focus trap |
 | Custom listbox | `role="listbox"`, `role="option"`, `aria-activedescendant` |
-| Form errors | `aria-invalid`, `aria-describedby`, `role="alert"` for summary |
+| Tabs | `role="tablist"`, `role="tab"`, `role="tabpanel"`, `aria-selected` |
+| Combobox / autocomplete | `role="combobox"`, `aria-expanded`, `aria-activedescendant`, `aria-controls` |
+| Accordion | `aria-expanded`, `aria-controls` on trigger |
+| Form errors | `aria-invalid`, `aria-describedby` or `aria-errormessage`, `role="alert"` for summary |
 | Live region | `aria-live="polite"` or `aria-live="assertive"` |
+| Toggle button | `aria-pressed` |
+| Menu | `role="menu"`, `role="menuitem"`, `aria-haspopup` on trigger |
+| Tree view | `role="tree"`, `role="treeitem"`, `aria-expanded` |
+| Progress bar | `role="progressbar"`, `aria-valuemin`, `aria-valuemax`, `aria-valuenow` |
 
 **Focus management:** move focus into a dialog on open, return focus to the trigger on close. Escape should dismiss.
+
+### ARIA Roles
+
+| Role | Use case |
+|---|---|
+| `role="button"` | Non-`<button>` element acting as a button |
+| `role="dialog"` / `role="alertdialog"` | Modal / urgent dialog |
+| `role="alert"` | Live region for urgent messages |
+| `role="status"` | Live region for non-urgent status (`aria-live="polite"` implied) |
+| `role="listbox"` / `role="option"` | Custom select/dropdown |
+| `role="combobox"` | Input + popup list (autocomplete, search) |
+| `role="tablist"` / `role="tab"` / `role="tabpanel"` | Tab navigation |
+| `role="menu"` / `role="menuitem"` | Action menu (not navigation) |
+| `role="navigation"` | Nav landmark (prefer `<nav>`) |
+| `role="region"` | Generic landmark with a label |
+| `role="progressbar"` | Loading/progress indicator |
+| `role="tooltip"` | Tooltip popup |
+| `role="tree"` / `role="treeitem"` | File tree, nested list |
+| `role="grid"` / `role="row"` / `role="gridcell"` | Interactive data grid |
+| `role="presentation"` / `role="none"` | Strip semantic meaning (layout-only element) |
+
+### ARIA States & Properties
+
+| Attribute | Purpose | Example |
+|---|---|---|
+| `aria-label` | Accessible name when no visible text | Icon-only button |
+| `aria-labelledby` | Points to element(s) that label this one | Dialog title |
+| `aria-describedby` | Points to element(s) that describe this one | Input error message, hint text |
+| `aria-hidden="true"` | Hide from assistive tech (still visible) | Decorative icons, duplicated content |
+| `aria-expanded` | Whether a collapsible section is open | Accordion, dropdown toggle |
+| `aria-haspopup` | Indicates a popup will appear | Menu button, combobox |
+| `aria-controls` | Which element this one controls | Toggle → panel it shows/hides |
+| `aria-selected` | Current selection in a list/tab | Tab, listbox option |
+| `aria-checked` | Checked state for checkboxes/switches | Custom checkbox, toggle switch |
+| `aria-pressed` | Pressed state for toggle buttons | Bold/italic toolbar button |
+| `aria-disabled` | Disabled but still focusable | Button that explains why it's disabled |
+| `aria-invalid` | Input has a validation error | Form field with error |
+| `aria-required` | Input is required | Required form field |
+| `aria-current` | Current item in a set | Active nav link (`"page"`), current step (`"step"`) |
+| `aria-activedescendant` | Which child has virtual focus | Listbox where focus stays on the input |
+| `aria-live` | Announce dynamic content changes | `"polite"` (wait) or `"assertive"` (interrupt) |
+| `aria-atomic` | Announce entire region vs just the change | Toast: announce full message |
+| `aria-busy` | Region is still loading | Skeleton/loading state |
+| `aria-modal` | Traps screen reader focus in dialog | Modal overlay |
+| `aria-errormessage` | Points to error message element | More specific than `aria-describedby` for errors |
+| `aria-valuemin` / `aria-valuemax` / `aria-valuenow` | Range values | Slider, progress bar |
+| `aria-orientation` | Horizontal or vertical | Slider, separator, listbox |
+| `aria-roledescription` | Override the role's announced name | "Carousel" instead of "region" |
+| `aria-keyshortcuts` | Document keyboard shortcut | `"Control+K"` for command palette |
+| `aria-sort` | Column sort direction | Table header (`"ascending"`, `"descending"`) |
+
+### Top 10 ARIA Attributes To Memorize
+
+1. `aria-label` / `aria-labelledby` — naming
+2. `aria-describedby` — descriptions & errors
+3. `aria-expanded` — disclosure/accordion/dropdown
+4. `aria-hidden` — hiding decorative elements
+5. `aria-live` — dynamic content announcements
+6. `aria-modal` — modal focus trapping
+7. `aria-invalid` + `aria-errormessage` — form validation
+8. `aria-selected` / `aria-checked` / `aria-pressed` — selection states
+9. `aria-activedescendant` — virtual focus in composite widgets
+10. `aria-current` — current page/step indicator
 
 ## Rules Of Hooks
 
