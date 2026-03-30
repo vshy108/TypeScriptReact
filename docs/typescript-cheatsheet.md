@@ -23,6 +23,27 @@ let missing: undefined;    // value not provided
 let empty: null;           // intentionally blank
 ```
 
+### unknown vs any
+
+| | `unknown` | `any` |
+|---|---|---|
+| Type-safe | Yes — must narrow before use | No — opts out entirely |
+| Assignable to other types | No (only `unknown` and `any`) | Yes (everything) |
+| Operations allowed | None until narrowed | All — no checks |
+| Use when | Accepting untrusted input (API responses, `JSON.parse`) | Escape hatch during migration |
+
+```ts
+function handleAny(x: any)     { x.foo(); }     // no error — crashes if x has no foo
+function handleUnknown(x: unknown) {
+  // x.foo();  // ❌ compile error — must narrow first
+  if (typeof x === 'object' && x !== null && 'foo' in x) {
+    (x as { foo: () => void }).foo(); // OK after narrowing
+  }
+}
+```
+
+**Rule:** default to `unknown` for values of uncertain type. Use `any` only as a last resort.
+
 ## Object Shapes
 
 ```ts
@@ -67,6 +88,15 @@ type UserWithRole = User & { role: string };
 | `Extract<T, U>` | Members of `T` assignable to `U` |
 | `Exclude<T, U>` | Members of `T` not assignable to `U` |
 | `NonNullable<T>` | Remove `null` and `undefined` |
+| `ConstructorParameters<C>` | Tuple of constructor parameter types |
+| `InstanceType<C>` | The instance type of a constructor function |
+
+**Gotcha:** `Omit<T, K>` does not check that `K` exists in `T`. `Omit<User, 'typo'>` compiles without error and returns `User` unchanged. Use a helper if you need strict key checking:
+
+```ts
+type StrictOmit<T, K extends keyof T> = Omit<T, K>;
+// StrictOmit<User, 'typo'>  // ❌ compile error
+```
 
 ## Narrowing & Guards
 
@@ -98,7 +128,21 @@ function isString(x: unknown): x is string {
 function assertNonNull<T>(val: T): asserts val is NonNullable<T> {
   if (val == null) throw new Error('Unexpected null');
 }
+
+// optional chaining — short-circuits to undefined if null/undefined
+const city = user?.address?.city;         // string | undefined
+const first = items?.[0];                 // T | undefined
+const result = callback?.();              // return type | undefined
+
+// nullish coalescing — fallback only for null/undefined (not '' or 0)
+const name = user.name ?? 'Anonymous';    // uses 'Anonymous' only if null/undefined
+const port = config.port ?? 3000;         // 0 is kept (unlike || which would fallback)
+
+// nullish assignment
+user.name ??= 'Anonymous';               // assigns only if null/undefined
 ```
+
+**Gotcha:** `||` falls back on *any* falsy value (`0`, `''`, `false`, `null`, `undefined`). `??` falls back *only* on `null`/`undefined`. Use `??` when `0`, `''`, or `false` are valid values.
 
 ## typeof vs keyof
 
@@ -151,6 +195,21 @@ interface ApiResponse<T> {
 function List<T extends { id: string }>(props: { items: T[]; render: (item: T) => React.ReactNode }) {
   return <>{props.items.map(item => <div key={item.id}>{props.render(item)}</div>)}</>;
 }
+
+// Generic defaults
+interface Response<T = unknown> {
+  data: T;
+  status: number;
+}
+const res: Response = { data: 'hello', status: 200 }; // T defaults to unknown
+
+// const type parameters (TS 5.0) — preserves literal types at call site
+function createRoutes<const T extends readonly string[]>(routes: T): T {
+  return routes;
+}
+const routes = createRoutes(['/', '/about', '/blog']);
+// type: readonly ['/', '/about', '/blog'] — not string[]
+// Without `const`, T would widen to string[]
 ```
 
 ## as const & satisfies
@@ -215,9 +274,6 @@ type Mutable<T> = { -readonly [K in keyof T]: T[K] };
 ### Mapped Type Modifiers (`+` / `-`)
 
 ```ts
-// -readonly — remove readonly
-type Mutable<T> = { -readonly [K in keyof T]: T[K] };
-
 // +readonly — add readonly (same as bare `readonly`)
 type Locked<T> = { +readonly [K in keyof T]: T[K] };
 
@@ -412,6 +468,11 @@ function assertNever(x: never): never {
 type USD = number & { __brand: 'USD' };
 type EUR = number & { __brand: 'EUR' };
 const usd = 100 as USD;
+// __brand is not a keyword — it's a convention. The phantom property never exists
+// at runtime; it only makes structurally identical types incompatible.
+// Alternatives: _tag, unique symbol (stricter):
+//   declare const USDTag: unique symbol;
+//   type USD = number & { [USDTag]: true };
 
 // NoInfer<T> — prevent inference from a specific position
 function createFSM<S extends string>(initial: NoInfer<S>, states: S[]) { ... }
